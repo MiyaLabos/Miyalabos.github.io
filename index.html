@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>二次関数 問題生成＆解説</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- ページの目的: 高校数学Iの二次関数の問題を生成し、xの変域とyの値域を視覚化して解説する -->
+    <header class="page-header">
+      <h1>二次関数：問題生成とグラフ解説</h1>
+      <p class="subtitle">xの変域とyの値域を図で直感的に理解しよう</p>
+    </header>
+
+    <main class="container">
+      <section class="controls" id="controls">
+        <h2>設定</h2>
+        <div class="grid">
+          <div class="control-group">
+            <label for="formType">入力形式</label>
+            <select id="formType">
+              <option value="standard">標準形 y = ax² + bx + c</option>
+              <option value="vertex">頂点形 y = a(x - p)² + q</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <label for="a">係数 a（0以外）</label>
+            <input id="a" type="number" step="1" value="1" />
+          </div>
+          <div class="control-group standard-only">
+            <label for="b">係数 b</label>
+            <input id="b" type="number" step="1" value="0" />
+          </div>
+          <div class="control-group standard-only">
+            <label for="c">定数項 c</label>
+            <input id="c" type="number" step="1" value="0" />
+          </div>
+
+          <div class="control-group vertex-only">
+            <label for="p">頂点形 p</label>
+            <input id="p" type="number" step="1" value="0" />
+          </div>
+          <div class="control-group vertex-only">
+            <label for="q">頂点形 q</label>
+            <input id="q" type="number" step="1" value="0" />
+          </div>
+
+          <div class="control-group">
+            <label for="xmin">xの変域（下限）</label>
+            <input id="xmin" type="number" step="1" value="-3" />
+          </div>
+          <div class="control-group">
+            <label for="xLeftType">下限の比較</label>
+            <select id="xLeftType">
+              <option value="closed">以上（≥）</option>
+              <option value="open">より大きい（>）</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <label for="xmax">xの変域（上限）</label>
+            <input id="xmax" type="number" step="1" value="4" />
+          </div>
+          <div class="control-group">
+            <label for="xRightType">上限の比較</label>
+            <select id="xRightType">
+              <option value="closed">以下（≤）</option>
+              <option value="open">より小さい（<）</option>
+            </select>
+          </div>
+        </div>
+        <div class="buttons">
+          <button id="updateBtn">更新</button>
+          <button id="randomBtn">ランダム作成</button>
+          <button id="printBtn">印刷</button>
+          <span id="error" aria-live="polite" class="error"></span>
+        </div>
+      </section>
+
+      <section class="problem">
+        <h2>問題</h2>
+        <p id="problemText">読み込み中…</p>
+      </section>
+
+      <section class="viz">
+        <div class="legend">
+          <span class="chip chip-x">xの変域</span>
+          <span class="chip chip-y">yの値域</span>
+          <span class="chip chip-curve">グラフ y = ax² + bx + c</span>
+          <span class="chip chip-vertex">頂点</span>
+          <span class="chip chip-endpoint">端点</span>
+        </div>
+        <div id="svgWrap" class="svg-wrap">
+          <!-- JavaScriptでSVGを挿入 -->
+        </div>
+        <p class="note">図の塗りつぶし: 縦の帯がxの変域、横の帯がyの値域。</p>
+      </section>
+
+      <section class="result">
+        <h2>計算結果</h2>
+        <div class="result-grid">
+          <div>
+            <div><strong>軸</strong>: <span id="axisText">—</span></div>
+            <div><strong>頂点</strong>: <span id="vertexText">—</span></div>
+          </div>
+          <div>
+            <div><strong>最小値</strong>: <span id="minText">—</span></div>
+            <div><strong>最大値</strong>: <span id="maxText">—</span></div>
+          </div>
+          <div>
+            <div><strong>yの値域</strong>: <span id="rangeText">—</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="explain">
+        <h2>解説</h2>
+        <ol id="explainList">
+          <!-- 手順を日本語で差し込む -->
+        </ol>
+      </section>
+
+      <section class="tips">
+        <h2>学習のヒント</h2>
+        <ul>
+          <li>二次関数の<strong>軸</strong>は x = -b/(2a)。</li>
+          <li>頂点のy座標は k = -(b² - 4ac)/(4a)。（平方完成の結果）</li>
+          <li>変域に頂点のxが含まれるかどうかで、値域の端が決まる。</li>
+          <li>a &gt; 0 なら上に開くので頂点が最小、a &lt; 0 なら下に開くので頂点が最大。</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <small>このページはオフラインで動作し、外部ライブラリを使用しません。</small>
+    </footer>
+
+    <script src="main.js"></script>
+  </body>
+  </html>

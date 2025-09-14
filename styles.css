@@ -1,0 +1,157 @@
+/* 画面全体の基本デザイン（日本語UI） */
+:root {
+  --bg: #0e0f12;
+  --panel: #171920;
+  --text: #e8ebf0;
+  --muted: #9aa3af;
+  --accent: #5aa7ff;
+  --chip-x: rgba(255, 200, 0, 0.25);
+  --chip-y: rgba(80, 220, 160, 0.25);
+  --curve: #ff6b6b;
+  --vertex: #ffd166;
+  --endpoint: #9bd0ff;
+  --grid: #2a2e39;
+  --axis: #56607a;
+  --error: #ff9393;
+  --plot-bg: #0f1116;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Noto Sans JP, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+}
+
+.page-header {
+  padding: 20px 16px 8px;
+  background: linear-gradient(180deg, #111319 0%, #0e0f12 100%);
+  border-bottom: 1px solid #1e2230;
+}
+.page-header h1 {
+  margin: 0 0 6px 0;
+  font-size: 22px;
+}
+.subtitle {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.container { max-width: 1000px; margin: 0 auto; padding: 16px; }
+
+section { background: var(--panel); border: 1px solid #1e2230; border-radius: 12px; padding: 16px; margin: 16px 0; }
+section h2 { margin: 0 0 12px 0; font-size: 18px; }
+
+.controls .grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.control-group { display: flex; flex-direction: column; gap: 6px; }
+.control-group label { color: var(--muted); font-size: 13px; }
+.control-group input {
+  padding: 8px 10px;
+  background: #0f1116;
+  color: var(--text);
+  border: 1px solid #262b3a;
+  border-radius: 8px;
+}
+select#formType, select#xLeftType, select#xRightType {
+  padding: 8px 10px;
+  background: #0f1116;
+  color: var(--text);
+  border: 1px solid #262b3a;
+  border-radius: 8px;
+}
+
+.buttons { display: flex; gap: 10px; align-items: center; margin-top: 10px; }
+button {
+  padding: 8px 14px;
+  background: var(--accent);
+  color: #0d1320;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+button:hover { filter: brightness(1.05); }
+.error { color: var(--error); font-size: 14px; }
+
+.problem p { margin: 0; font-size: 16px; }
+
+.legend { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+.chip { padding: 4px 8px; border-radius: 999px; font-size: 12px; background: #0f1116; border: 1px solid #262b3a; color: var(--muted); }
+.chip-x { background: var(--chip-x); color: #f9d15b; border-color: #332a00; }
+.chip-y { background: var(--chip-y); color: #7fe0ba; border-color: #0d3b2d; }
+.chip-curve { color: var(--curve); border-color: #3b1f1f; }
+.chip-vertex { color: var(--vertex); border-color: #3a2f12; }
+.chip-endpoint { color: var(--endpoint); border-color: #1f3347; }
+
+.svg-wrap { width: 100%; aspect-ratio: 16/9; background: #0f1116; border: 1px solid #1e2230; border-radius: 12px; overflow: hidden; position: relative; }
+.note { color: var(--muted); font-size: 13px; margin: 6px 0 0; }
+
+.result-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.result-grid > div { background: #121521; border: 1px solid #1e2230; padding: 10px; border-radius: 10px; }
+
+.explain ol { margin: 0; padding-left: 20px; }
+.explain li { margin: 6px 0; }
+
+.footer { color: var(--muted); text-align: center; padding: 16px; }
+
+@media (max-width: 750px) {
+  .controls .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .result-grid { grid-template-columns: 1fr; }
+}
+
+/* 入力形式の切替（表示/非表示） */
+.controls.mode-standard .vertex-only { display: none; }
+.controls.mode-vertex .standard-only { display: none; }
+
+/* 簡易LaTeXスタイル（ページ全体で有効） */
+.math { font-variant-numeric: lining-nums; }
+.math sup { font-size: 0.8em; vertical-align: super; }
+.math .mfrac { display: inline-flex; flex-direction: column; align-items: center; line-height: 1; }
+.math .mfrac .num { border-bottom: 1px solid currentColor; padding: 0 2px; }
+.math .mfrac .den { padding: 0 2px; }
+
+/* 印刷用スタイル */
+@media print {
+  @page { size: A4 portrait; margin: 12mm; }
+  :root {
+    --bg: #ffffff;
+    --panel: #ffffff;
+    --text: #111111;
+    --muted: #555555;
+    --accent: #000000;
+    --chip-x: rgba(0, 0, 0, 0.06);
+    --chip-y: rgba(0, 0, 0, 0.08);
+    --curve: #000000;
+    --vertex: #000000;
+    --endpoint: #000000;
+    --grid: #d0d0d0;
+    --axis: #999999;
+    --plot-bg: #ffffff;
+  }
+  body { background: #ffffff; color: #111111; }
+  .page-header { background: #ffffff; border: none; padding: 0 0 8px; }
+  .subtitle { color: #555; }
+  .container { max-width: none; padding: 0; }
+  section { background: #ffffff; border: none; border-radius: 0; padding: 0; margin: 0 0 8px 0; }
+  .controls, .tips, .footer { display: none !important; }
+  .legend { gap: 6px; margin: 6px 0; }
+  .chip { background: #f3f3f3; color: #333; border-color: #ddd; font-size: 11px; padding: 2px 6px; }
+  .viz .svg-wrap { aspect-ratio: unset; height: 90mm; border: 1px solid #ccc; border-radius: 6px; }
+  .viz .svg-wrap { background: #ffffff; }
+  .problem, .viz, .explain { break-inside: avoid; page-break-inside: avoid; }
+  h2 { font-size: 14px; margin: 6px 0; }
+  .problem p, .explain { font-size: 12px; }
+  .result { display: none; }
+  .explain ol { margin: 6px 0 0; }
+  .explain li { margin: 4px 0; }
+  .note { color: #666; font-size: 11px; }
+}
