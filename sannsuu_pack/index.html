@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>算数プリント集（切り替え）</title>
+    <!-- 目的: 3つのプリントページをタブで切り替えられる入口ページ。見える文言は日本語。コードは英語、コメントは日本語。 -->
+    <style>
+      :root { --accent:#2a7ae2; --ink:#222; --muted:#666; --bg:#fff; --panel:#f6f8fb; }
+      html, body { margin:0; padding:0; color:var(--ink); background:var(--bg); font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Noto Sans JP", sans-serif; line-height:1.6; height:100%; }
+      header { padding:12px 16px 8px; border-bottom:1px solid #e5e7eb; }
+      header h1 { margin:0 0 4px; font-size:18px; }
+      header p { margin:0; color:var(--muted); font-size:13px; }
+
+      .tabs { display:flex; gap:8px; padding:10px 12px; background:var(--panel); border-bottom:1px solid #e5e7eb; flex-wrap:wrap; }
+      .tabs button { appearance:none; border:1px solid #cfd6e4; background:#fff; color:#111; padding:8px 12px; border-radius:10px; font-size:14px; cursor:pointer; }
+      .tabs button[aria-selected="true"] { background:var(--accent); border-color:var(--accent); color:#fff; }
+
+      .frame-wrap { height: calc(100vh - 120px); }
+      iframe.tool { width:100%; height:100%; border:0; display:none; background:#fff; }
+      iframe.tool.active { display:block; }
+
+      @media (max-height: 640px) { .frame-wrap { height: calc(100vh - 150px); } }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>算数プリント集</h1>
+      <p>下のタブから内容を切り替えてご利用ください（各ページで印刷ができます）。</p>
+    </header>
+    <nav class="tabs" aria-label="プリントの種類">
+      <button type="button" class="tab" data-target="kakeru" aria-selected="true">小数のかけ算</button>
+      <button type="button" class="tab" data-target="tasihiki" aria-selected="false">小数のたし算・ひき算</button>
+      <button type="button" class="tab" data-target="warizan" aria-selected="false">わり算</button>
+    </nav>
+    <main class="frame-wrap" aria-label="コンテンツ">
+      <iframe src="syousuu_kakeru.html" title="小数のかけ算" class="tool active" id="frame-kakeru"></iframe>
+      <iframe src="syousuu_tasihiki.html" title="小数のたし算・ひき算" class="tool" id="frame-tasihiki"></iframe>
+      <iframe src="warizanmaker.html" title="わり算" class="tool" id="frame-warizan"></iframe>
+    </main>
+
+    <script>
+      // タブ→iframeの切替制御
+      const tabs = Array.from(document.querySelectorAll('.tab'));
+      const frames = {
+        kakeru: document.getElementById('frame-kakeru'),
+        tasihiki: document.getElementById('frame-tasihiki'),
+        warizan: document.getElementById('frame-warizan')
+      };
+      function activate(name) {
+        // ボタンの状態
+        tabs.forEach(b => b.setAttribute('aria-selected', String(b.dataset.target === name)));
+        // iframeの表示切替
+        Object.entries(frames).forEach(([key, el]) => {
+          if (key === name) el.classList.add('active'); else el.classList.remove('active');
+        });
+      }
+      tabs.forEach(b => b.addEventListener('click', () => activate(b.dataset.target)));
+    </script>
+  </body>
+  </html>
+
