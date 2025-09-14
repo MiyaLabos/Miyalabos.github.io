@@ -545,6 +545,33 @@ function setError(msg) {
   el.textContent = msg || '';
 }
 
+// 学習ヒントの切り替え描画（標準形/頂点形）
+function updateTips(formType) {
+  const ul = document.getElementById('tipsList');
+  if (!ul) return;
+  const tipsStandard = [
+    '標準形  y = ax^2 + bx + c の基本。',
+    '軸:  x = -\\frac{b}{2a}。',
+    '頂点:  ( -\\frac{b}{2a}, -\\frac{b^2 - 4ac}{4a} )。',
+    'a ＞ 0 なら上に開き頂点が最小、a ＜ 0 なら下に開き頂点が最大。',
+    '頂点が変域に含まれるか、端点の値 f(xの下限), f(xの上限) の比較で値域が決まる（開区間では端点値は達成されない）。',
+  ];
+  const tipsVertex = [
+    '頂点形  y = a(x - p)^2 + q の基本。',
+    '軸:  x = p、頂点:  (p, q)。',
+    'a ＞ 0 なら頂点が最小、a ＜ 0 なら頂点が最大。',
+    '頂点の x = p が変域に含まれるか、端点の値 f(xの下限), f(xの上限) の比較で値域を決める。',
+    '開区間（> / <）では端点側の値は達成されず、上下限のみになる。',
+  ];
+  const rows = formType === 'vertex' ? tipsVertex : tipsStandard;
+  ul.innerHTML = '';
+  rows.forEach(text => {
+    const li = document.createElement('li');
+    li.innerHTML = renderTeXToHTML(text);
+    ul.appendChild(li);
+  });
+}
+
 function updateAll(fromRandom = false) {
   setError('');
   const controls = document.getElementById('controls');
@@ -552,6 +579,7 @@ function updateAll(fromRandom = false) {
   // 表示切替
   controls.classList.toggle('mode-standard', formType === 'standard');
   controls.classList.toggle('mode-vertex', formType === 'vertex');
+  updateTips(formType);
 
   if (!Number.isFinite(a) || a === 0) { setError('a は 0 以外の数で入力してください。'); return; }
   if (formType === 'vertex') {
@@ -626,8 +654,10 @@ function updateAll(fromRandom = false) {
       includeMax = (xRightType === 'closed');
     }
   }
-  const minHTML = renderTeXToHTML(`${minTeX}`);
-  const maxHTML = renderTeXToHTML(`${maxTeX}`);
+  const minDisplay = includeMin ? `y = ${minTeX}` : `なし（下限は  y = ${minTeX}）`;
+  const maxDisplay = includeMax ? `y = ${maxTeX}` : `なし（上限は  y = ${maxTeX}）`;
+  const minHTML = renderTeXToHTML(minDisplay);
+  const maxHTML = renderTeXToHTML(maxDisplay);
   const rangeHTML = renderTeXToHTML(formatRangeTeX(minTeX, includeMin, maxTeX, includeMax));
   document.getElementById('axisText').innerHTML = axisHTML;
   document.getElementById('vertexText').innerHTML = vertexHTML;
