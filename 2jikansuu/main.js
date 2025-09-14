@@ -267,6 +267,9 @@ function buildExplanation(data, ctx) {
   const { a, b, c, xMin, xMax, hFrac, h, kFrac, k, y1, y2, minY, maxY, minSource, maxSource, vertexInside } = data;
   const { formType, p, q, xLeftType, xRightType, vertexIncluded, includeMin, includeMax, minTeX, maxTeX } = ctx || {};
   const steps = [];
+  // 開区間に対応した極値の表現（達成しない場合を明示）
+  const minPhrase = includeMin ? `最小値は  y = ${minTeX}` : `最小値は存在しない（下限は  y = ${minTeX}）`;
+  const maxPhrase = includeMax ? `最大値は  y = ${maxTeX}` : `最大値は存在しない（上限は  y = ${maxTeX}）`;
 
   if (formType === 'vertex') {
     const pTeX = numToTeX(p);
@@ -278,18 +281,18 @@ function buildExplanation(data, ctx) {
     // 3) 場合分け
     if (vertexIncluded) {
       if (a > 0) {
-        steps.push(`3) a ＞ 0 なので上に開く放物線。頂点が最小値、端点で最大値をとる。`);
+        steps.push(`3) a ＞ 0 なので上に開く放物線。頂点が最小、最大は端点側（開区間では達成しない場合がある）。`);
         steps.push(`   端点の値は  f(${xMin}) = ${numToTeX(y1)},  f(${xMax}) = ${numToTeX(y2)}。`);
-        steps.push(`4) よって最小値は  y = ${qTeX}、最大値は  y = ${numToTeX(Math.max(y1, y2))}。`);
+        steps.push(`4) よって ${minPhrase}、${maxPhrase}。`);
       } else {
-        steps.push(`3) a ＜ 0 なので下に開く放物線。頂点が最大値、端点で最小値をとる。`);
+        steps.push(`3) a ＜ 0 なので下に開く放物線。頂点が最大、最小は端点側（開区間では達成しない場合がある）。`);
         steps.push(`   端点の値は  f(${xMin}) = ${numToTeX(y1)},  f(${xMax}) = ${numToTeX(y2)}。`);
-        steps.push(`4) よって最大値は  y = ${qTeX}、最小値は  y = ${numToTeX(Math.min(y1, y2))}。`);
+        steps.push(`4) よって ${maxPhrase}、${minPhrase}。`);
       }
     } else {
-      steps.push(`3) 頂点が変域外なので、最小・最大は端点で決まる。`);
+      steps.push(`3) 頂点が変域外なので、最小・最大は端点で決まる（開区間では達成しない場合がある）。`);
       steps.push(`   f(${xMin}) = ${numToTeX(y1)},  f(${xMax}) = ${numToTeX(y2)}。`);
-      steps.push(`4) よって最小値は  y = ${numToTeX(Math.min(y1, y2))}、最大値は  y = ${numToTeX(Math.max(y1, y2))}。`);
+      steps.push(`4) よって ${minPhrase}、${maxPhrase}。`);
     }
     steps.push(`5) 結論：yの値域は ${formatRangeTeX(minTeX, includeMin, maxTeX, includeMax)}。`);
   } else {
@@ -299,18 +302,18 @@ function buildExplanation(data, ctx) {
     steps.push(`3) 与えられた変域は ${formatIntervalTeXWithTypes(xMin, xMax, xLeftType, xRightType)}。頂点のx = ${fracToTeX(hFrac.n, hFrac.d)} は${vertexIncluded ? '含まれる' : '含まれない'}。`);
     if (vertexIncluded) {
       if (a > 0) {
-        steps.push(`4) a ＞ 0 なので上に開く放物線。頂点が最小値を与え、端点で最大値をとる。`);
+        steps.push(`4) a ＞ 0 なので上に開く放物線。頂点が最小、最大は端点側（開区間では達成しない場合がある）。`);
         steps.push(`   端点の値は  f(${xMin}) = ${numToTeX(y1)},  f(${xMax}) = ${numToTeX(y2)}。`);
-        steps.push(`5) よって最小値は  y = ${fracToTeX(kFrac.n, kFrac.d)}、最大値は  y = ${numToTeX(Math.max(y1, y2))}。`);
+        steps.push(`5) よって ${minPhrase}、${maxPhrase}。`);
       } else {
-        steps.push(`4) a ＜ 0 なので下に開く放物線。頂点が最大値を与え、端点で最小値をとる。`);
+        steps.push(`4) a ＜ 0 なので下に開く放物線。頂点が最大、最小は端点側（開区間では達成しない場合がある）。`);
         steps.push(`   端点の値は  f(${xMin}) = ${numToTeX(y1)},  f(${xMax}) = ${numToTeX(y2)}。`);
-        steps.push(`5) よって最大値は  y = ${fracToTeX(kFrac.n, kFrac.d)}、最小値は  y = ${numToTeX(Math.min(y1, y2))}。`);
+        steps.push(`5) よって ${maxPhrase}、${minPhrase}。`);
       }
     } else {
-      steps.push(`4) 頂点が変域外なので、最小・最大は端点で決まる。`);
+      steps.push(`4) 頂点が変域外なので、最小・最大は端点で決まる（開区間では達成しない場合がある）。`);
       steps.push(`   f(${xMin}) = ${numToTeX(y1)},  f(${xMax}) = ${numToTeX(y2)}。`);
-      steps.push(`5) よって最小値は  y = ${numToTeX(Math.min(y1, y2))}、最大値は  y = ${numToTeX(Math.max(y1, y2))}。`);
+      steps.push(`5) よって ${minPhrase}、${maxPhrase}。`);
     }
     steps.push(`6) 結論：yの値域は ${formatRangeTeX(minTeX, includeMin, maxTeX, includeMax)}。`);
   }
