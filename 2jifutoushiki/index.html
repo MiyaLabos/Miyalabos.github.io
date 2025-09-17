@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>二次不等式 問題生成＆解説</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- ページの目的: 高校数学Iの二次不等式 ax²+bx+c ◇ 0 の解を、図と手順で理解する教材 -->
+    <header class="page-header">
+      <h1>二次不等式：問題生成とグラフ解説</h1>
+      <p class="subtitle">符号変化と解の範囲を図で直感的に理解しよう</p>
+    </header>
+
+    <main class="container">
+      <section class="controls" id="controls">
+        <h2>設定</h2>
+        <div class="grid">
+          <div class="control-group">
+            <label for="formType">入力形式</label>
+            <select id="formType">
+              <option value="standard">標準形 y = ax² + bx + c</option>
+              <option value="vertex">頂点形 y = a(x - p)² + q</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <label for="a">係数 a（0以外・整数）</label>
+            <input id="a" type="number" step="1" inputmode="numeric" value="1" title="整数のみ入力してください" />
+          </div>
+          <div class="control-group standard-only">
+            <label for="b">係数 b（整数）</label>
+            <input id="b" type="number" step="1" inputmode="numeric" value="0" title="整数のみ入力してください" />
+          </div>
+          <div class="control-group standard-only">
+            <label for="c">定数項 c（整数）</label>
+            <input id="c" type="number" step="1" inputmode="numeric" value="-1" title="整数のみ入力してください" />
+          </div>
+
+          <div class="control-group vertex-only">
+            <label for="p">頂点形 p（整数）</label>
+            <input id="p" type="number" step="1" inputmode="numeric" value="0" title="整数のみ入力してください" />
+          </div>
+          <div class="control-group vertex-only">
+            <label for="q">頂点形 q（整数）</label>
+            <input id="q" type="number" step="1" inputmode="numeric" value="-1" title="整数のみ入力してください" />
+          </div>
+
+          <div class="control-group">
+            <label for="ineqType">不等号</label>
+            <select id="ineqType">
+              <option value="<=">≤ 0</option>
+              <option value="<">&lt; 0</option>
+              <option value=">=">≥ 0</option>
+              <option value=">">&gt; 0</option>
+            </select>
+          </div>
+        </div>
+        <div class="buttons">
+          <button id="updateBtn">更新</button>
+          <button id="randomBtn">ランダム作成</button>
+          <button id="printBtn">印刷</button>
+          <span id="error" aria-live="polite" class="error"></span>
+        </div>
+      </section>
+
+      <section class="problem">
+        <h2>問題</h2>
+        <p id="problemText">読み込み中…</p>
+      </section>
+
+      <section class="viz">
+        <div class="legend">
+          <span class="chip chip-solution">解の範囲（x）</span>
+          <span class="chip chip-curve">グラフ y = ax² + bx + c</span>
+          <span class="chip chip-vertex">頂点</span>
+          <span class="chip chip-root">解（根）</span>
+        </div>
+        <div id="svgWrap" class="svg-wrap">
+          <!-- JavaScriptでSVGを挿入 -->
+        </div>
+        <p class="note">縦の帯が「x の解の範囲」。端点が含まれる場合は黒丸、含まれない場合は白丸。</p>
+      </section>
+
+      <section class="result">
+        <h2>計算結果</h2>
+        <div class="result-grid">
+          <div>
+            <div><strong>判別式</strong>: <span id="discText">—</span></div>
+            <div><strong>頂点</strong>: <span id="vertexText">—</span></div>
+          </div>
+          <div>
+            <div><strong>根</strong>: <span id="rootsText">—</span></div>
+            <div><strong>符号</strong>: <span id="signText">—</span></div>
+          </div>
+          <div>
+            <div><strong>解の集合</strong>: <span id="solutionText">—</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="explain">
+        <h2>解説</h2>
+        <ol id="explainList">
+          <!-- 手順を日本語で差し込む -->
+        </ol>
+      </section>
+
+      <section class="tips">
+        <h2>学習のヒント</h2>
+        <ul>
+          <li>判別式 D = b² − 4ac で実数解の個数が決まる。</li>
+          <li>a &gt; 0 なら上に開き、a &lt; 0 なら下に開く。</li>
+          <li>二次不等式は「符号の変化」と「端点の含み方」を押さえる。</li>
+          <li>D &lt; 0 のとき、f(x) は常に a と同符号。</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <small>このページはオフラインで動作し、外部ライブラリを使用しません。</small>
+    </footer>
+
+    <script src="main.js"></script>
+  </body>
+  </html>

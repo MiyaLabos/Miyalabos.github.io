@@ -1,0 +1,98 @@
+/* 二次不等式教材のスタイル（日本語UI） */
+
+:root {
+  --bg: #0f1223;
+  --panel: #151937;
+  --text: #e7ebff;
+  --muted: #a9b1d6;
+  --accent: #7aa2f7;
+  --accent-2: #9ece6a;
+  --danger: #f7768e;
+  --chip-solution: #e0af68;
+  --grid: #2a2f55;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+  background: linear-gradient(180deg, #0c1020, #0f1223 30% 70%, #0b0f20);
+  color: var(--text);
+}
+
+.page-header {
+  padding: 24px 16px 8px;
+  text-align: center;
+}
+.page-header h1 {
+  margin: 0 0 8px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.subtitle { color: var(--muted); margin: 0; }
+
+.container { max-width: 1040px; margin: 0 auto; padding: 16px; }
+
+.controls { background: var(--panel); border-radius: 12px; padding: 16px; }
+.controls h2, .problem h2, .viz h2, .result h2, .explain h2, .tips h2 { font-size: 18px; margin: 0 0 12px; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.control-group { display: grid; gap: 6px; }
+label { color: var(--muted); font-size: 13px; }
+input, select, button {
+  background: #0f1430;
+  color: var(--text);
+  border: 1px solid #2a2f55;
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+select { cursor: pointer; }
+button { cursor: pointer; background: var(--accent); border: none; }
+button:hover { filter: brightness(1.05); }
+
+.buttons { display: flex; gap: 8px; align-items: center; margin-top: 10px; }
+.error { color: var(--danger); margin-left: 8px; }
+
+.problem, .viz, .result, .explain, .tips {
+  background: var(--panel);
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 16px;
+}
+
+.legend { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+.chip { display: inline-block; padding: 4px 8px; border-radius: 999px; font-size: 12px; }
+.chip-solution { background: color-mix(in oklab, var(--chip-solution) 22%, transparent); color: #e8d6b0; border: 1px solid color-mix(in oklab, var(--chip-solution) 36%, transparent); }
+.chip-curve { background: color-mix(in oklab, var(--accent) 22%, transparent); color: #cfe0ff; border: 1px solid color-mix(in oklab, var(--accent) 36%, transparent); }
+.chip-vertex { background: color-mix(in oklab, var(--accent-2) 22%, transparent); color: #e8ffe0; border: 1px solid color-mix(in oklab, var(--accent-2) 36%, transparent); }
+.chip-root { background: color-mix(in oklab, var(--danger) 22%, transparent); color: #ffd6de; border: 1px solid color-mix(in oklab, var(--danger) 36%, transparent); }
+
+.svg-wrap { background: #0c1020; border: 1px solid #1b2247; border-radius: 12px; overflow: hidden; }
+.note { color: var(--muted); font-size: 12px; margin: 8px 0 0; }
+
+.result-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+
+.footer { color: var(--muted); text-align: center; padding: 24px 12px; }
+
+/* SVG内の塗り分け */
+.band-solution { fill: color-mix(in oklab, var(--chip-solution) 22%, transparent); }
+.axis { stroke: #5b76bf; stroke-width: 1; opacity: .8; }
+.gridline { stroke: var(--grid); stroke-width: 1; }
+.curve { stroke: var(--accent); stroke-width: 2; fill: none; }
+.vertex { fill: var(--accent-2); stroke: none; }
+.root-open { fill: #0c1020; stroke: var(--danger); stroke-width: 2; }
+.root-closed { fill: var(--danger); stroke: var(--danger); stroke-width: 2; }
+
+/* 入力切替（標準形/頂点形） */
+.vertex-only { display: none; }
+.mode-vertex .vertex-only { display: grid; }
+.mode-vertex .standard-only { display: none; }
+
+@media print {
+  body { background: #fff; color: #000; }
+  .page-header, .buttons, .legend, .tips { page-break-inside: avoid; }
+  .controls, .problem, .viz, .result, .explain, .tips { background: #fff; border: 1px solid #ddd; }
+  .svg-wrap { border-color: #ccc; }
+}
+
