@@ -322,7 +322,8 @@ function buildExplanation(data, ctx) {
 }
 
 // SVG描画: グリッド・軸・放物線・帯・点
-function renderSVG(container, data) {
+function renderSVG(container, data, opts = {}) {
+  const { xLeftType = 'closed', xRightType = 'closed' } = opts;
   const { a, b, c, xMin, xMax, h, k, minY, maxY } = data;
 
   // プロット範囲（自動スケール）
@@ -386,11 +387,20 @@ function renderSVG(container, data) {
   const vx = x2s(h), vy = y2s(k);
   svg.appendChild(circle(vx, vy, 4.5, { fill: getCssVar('--vertex'), stroke: "#000", "stroke-width": 0.5 }));
 
-  // 端点（xMin, xMax）
+  // 端点（xMin, xMax）: 開区間は中抜き◯、閉区間は塗りつぶし
   const p1 = { x: x2s(xMin), y: y2s(f(a, b, c, xMin)) };
   const p2 = { x: x2s(xMax), y: y2s(f(a, b, c, xMax)) };
-  svg.appendChild(circle(p1.x, p1.y, 4, { fill: getCssVar('--endpoint') }));
-  svg.appendChild(circle(p2.x, p2.y, 4, { fill: getCssVar('--endpoint') }));
+  const endpointColor = getCssVar('--endpoint');
+  if (xLeftType === 'open') {
+    svg.appendChild(circle(p1.x, p1.y, 4, { fill: 'none', stroke: endpointColor, 'stroke-width': 2 }));
+  } else {
+    svg.appendChild(circle(p1.x, p1.y, 4, { fill: endpointColor }));
+  }
+  if (xRightType === 'open') {
+    svg.appendChild(circle(p2.x, p2.y, 4, { fill: 'none', stroke: endpointColor, 'stroke-width': 2 }));
+  } else {
+    svg.appendChild(circle(p2.x, p2.y, 4, { fill: endpointColor }));
+  }
 
   // 描画
   container.innerHTML = "";
@@ -677,7 +687,7 @@ function updateAll(fromRandom = false) {
 
   // 図
   const wrap = document.getElementById('svgWrap');
-  renderSVG(wrap, data);
+  renderSVG(wrap, data, { xLeftType, xRightType });
 }
 
 // ランダム生成
