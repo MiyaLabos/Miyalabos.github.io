@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>学習ツール集 | Miyalabos</title>
+    <!--
+      目的: リポジトリ内の各ツール/教材への入口ページ。
+           追加のリンクを増やしても自然に並ぶカード型グリッドを採用。
+      方針: 画面に見える文言は日本語、コードは英語、コメントは日本語。
+      依存: 外部ライブラリなし（オフライン動作）。
+    -->
+    <style>
+      /* 全体の配色・余白（ダーク基調） */
+      :root {
+        --bg: #0e0f12;
+        --panel: #131723;
+        --ink: #e8ebf0;
+        --muted: #9aa3af;
+        --border: #1f2636;
+        --accent: #67b0ff;
+        --accent-2: #7fe0ba;
+        --chip: #0f1320;
+        --card: #0f1117cc; /* 半透明で軽いガラス感 */
+        --card-hover: #141826dd;
+        --shadow: 0 10px 30px rgba(0,0,0,0.35);
+      }
+
+      * { box-sizing: border-box; }
+      html, body { height: 100%; }
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: radial-gradient(1200px 600px at 15% -10%, #1a2040 0%, transparent 45%),
+                    radial-gradient(1000px 600px at 110% 10%, #102a22 0%, transparent 50%),
+                    var(--bg);
+        font-family: system-ui, -apple-system, Segoe UI, Roboto,
+          "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+        line-height: 1.6;
+      }
+
+      header.site-header {
+        padding: 28px 16px 8px;
+        border-bottom: 1px solid var(--border);
+        background: linear-gradient(180deg, rgba(20,24,38,0.9) 0%, rgba(14,15,18,0.6) 100%);
+      }
+      .site-header .container { max-width: 1100px; margin: 0 auto; }
+      .title-wrap { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+      h1 { margin: 0; font-size: 22px; letter-spacing: .02em; }
+      .subtitle { margin: 4px 0 0; color: var(--muted); font-size: 14px; }
+
+      main .container { max-width: 1100px; margin: 0 auto; padding: 18px 16px 28px; }
+
+      /* カードグリッド: 追加しても崩れない自動折返し */
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 14px;
+        margin-top: 12px;
+      }
+
+      /* カード（リンク） */
+      a.card {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 16px;
+        min-height: 130px;
+        box-shadow: var(--shadow);
+        position: relative;
+        overflow: hidden;
+        transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      }
+      a.card:hover { transform: translateY(-2px); background: var(--card-hover); border-color: #2a3349; }
+      a.card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+      .card .icon {
+        width: 36px; height: 36px; border-radius: 10px;
+        display: inline-flex; align-items: center; justify-content: center;
+        background: #0f1320; border: 1px solid #243052; color: var(--accent);
+        font-size: 18px; margin-bottom: 10px;
+      }
+      .card h3 { margin: 0 0 6px; font-size: 16px; letter-spacing: .01em; }
+      .card p.desc { margin: 0; color: var(--muted); font-size: 13px; }
+      .card .tags { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+      .tag { font-size: 11px; color: #c7d2fe; background: var(--chip); border: 1px solid #243052; padding: 2px 8px; border-radius: 999px; }
+      .tag.green { color: #98f5d0; border-color: #1d3a30; }
+
+      /* 区切り見出し */
+      .section-title { margin: 18px 0 8px; font-size: 14px; color: var(--muted); letter-spacing: .02em; }
+
+      footer.site-footer { color: var(--muted); text-align: center; padding: 24px 12px; border-top: 1px solid var(--border); }
+
+      /* 印刷時はシンプル化 */
+      @media print {
+        header.site-header { background: #fff; color: #111; border: none; }
+        body { background: #fff; color: #111; }
+        a.card { background: #fff; border: 1px solid #ddd; box-shadow: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header" aria-label="ページヘッダー">
+      <div class="container">
+        <div class="title-wrap">
+          <h1>学習ツール集</h1>
+        </div>
+        
+      </div>
+    </header>
+
+    <main aria-label="リンク一覧">
+      <div class="container">
+        <div class="section-title">高校数学</div>
+        <nav class="grid" aria-label="高校数学のツール">
+          <!-- 二次不等式 -->
+          <a class="card" href="2jifutoushiki/index.html">
+            <span class="icon" aria-hidden="true">∵</span>
+            <h3>二次不等式</h3>
+            <p class="desc">問題生成、分数/根号表記、グラフと日本語解説で学べます。</p>
+            <div class="tags">
+              <span class="tag">数学I</span><span class="tag">可視化</span>
+            </div>
+          </a>
+          <!-- 二次関数 -->
+          <a class="card" href="2jikansuu/index.html">
+            <span class="icon" aria-hidden="true">f(x)</span>
+            <h3>二次関数</h3>
+            <p class="desc">変域と値域を計算し、頂点・端点・帯で直感的に表示します。</p>
+            <div class="tags">
+              <span class="tag">数学I</span><span class="tag">値域</span>
+            </div>
+          </a>
+        </nav>
+
+        <div class="section-title">小学生向け 算数プリント</div>
+        <nav class="grid" aria-label="算数のプリント">
+          <!-- 入口（タブ切替） -->
+          <a class="card" href="sannsuu_pack/index.html">
+            <span class="icon" aria-hidden="true">📄</span>
+            <h3>算数プリント集（切り替え）</h3>
+            <p class="desc">小数のかけ算／たし算・ひき算／わり算をタブで切替。問題/解答の個別印刷に対応。</p>
+            <div class="tags">
+              <span class="tag green">小学生</span><span class="tag">印刷対応</span>
+            </div>
+          </a>
+          <!-- 個別ページ: 小数のかけ算 -->
+          <a class="card" href="syousuu_kakeru/syousuu_kakeru.html">
+            <span class="icon" aria-hidden="true">×</span>
+            <h3>小数のかけ算（単独版）</h3>
+            <p class="desc">桁数や0の扱いを指定して問題を自動生成。模範解答も出力。</p>
+            <div class="tags">
+              <span class="tag green">小学生</span><span class="tag">10/20問</span>
+            </div>
+          </a>
+          <!-- 個別ページ: 小数のたし算・ひき算 -->
+          <a class="card" href="syousuu_tasihiki/syousuu_tasihiki.html">
+            <span class="icon" aria-hidden="true">＋−</span>
+            <h3>小数のたし算・ひき算（単独版）</h3>
+            <p class="desc">たし算/ひき算/混合の問題を生成。ひき算は負の結果を避けます。</p>
+            <div class="tags">
+              <span class="tag green">小学生</span><span class="tag">10/20問</span>
+            </div>
+          </a>
+          <!-- 旧版: わり算（Q_maker） -->
+          <a class="card" href="Q_maker/warizanmaker.html">
+            <span class="icon" aria-hidden="true">÷</span>
+            <h3>わり算プリント（旧版）</h3>
+            <p class="desc">余りあり/なしを選択。指定桁数から40問生成し個別印刷に対応。</p>
+            <div class="tags">
+              <span class="tag green">小学生</span><span class="tag">40問</span>
+            </div>
+          </a>
+        </nav>
+
+        <!--
+          追加方法（日本語メモ）:
+          - 下のどちらかの <nav class="grid"> 内に、<a class="card" ...> を1枚増やしてください。
+          - カードは自動的にグリッドで折り返され、デザインの違和感なく追加できます。
+          - アイコンは絵文字/短いテキストでOK（例: f(x), ∑, 📄 など）。
+        -->
+      </div>
+    </main>
+
+    
+  </body>
+  </html>
