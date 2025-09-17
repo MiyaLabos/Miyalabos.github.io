@@ -1,88 +1,88 @@
-/* 二次不等式教材のスタイル（日本語UI） */
+/* 二次不等式教材のスタイル（色彩を 2jikansuu に揃える） */
 
 :root {
-  --bg: #0f1223;
-  --panel: #151937;
-  --text: #e7ebff;
-  --muted: #a9b1d6;
-  --accent: #7aa2f7;
-  --accent-2: #9ece6a;
-  --danger: #f7768e;
-  --chip-solution: #e0af68;
-  --grid: #2a2f55;
+  --bg: #0e0f12;
+  --panel: #171920;
+  --text: #e8ebf0;
+  --muted: #9aa3af;
+  --accent: #5aa7ff;
+  --curve: #ff6b6b;
+  --vertex: #ffd166;
+  --endpoint: #9bd0ff;
+  --grid: #2a2e39;
+  --axis: #56607a;
+  --error: #ff9393;
+  --plot-bg: #0f1116;
 }
 
 * { box-sizing: border-box; }
 html, body { height: 100%; }
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
-  background: linear-gradient(180deg, #0c1020, #0f1223 30% 70%, #0b0f20);
+  background: var(--bg);
   color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+  line-height: 1.6;
 }
 
 .page-header {
-  padding: 24px 16px 8px;
+  padding: 20px 16px 8px;
+  background: linear-gradient(180deg, #111319 0%, #0e0f12 100%);
+  border-bottom: 1px solid #1e2230;
   text-align: center;
 }
-.page-header h1 {
-  margin: 0 0 8px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
+.page-header h1 { margin: 0 0 6px; font-weight: 700; letter-spacing: .02em; font-size: 22px; }
+.subtitle { color: var(--muted); margin: 0; font-size: 14px; }
+
+.container { max-width: 1000px; margin: 0 auto; padding: 16px; }
+
+.controls, .problem, .viz, .result, .explain, .tips {
+  background: var(--panel);
+  border: 1px solid #1e2230;
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 16px;
 }
-.subtitle { color: var(--muted); margin: 0; }
-
-.container { max-width: 1040px; margin: 0 auto; padding: 16px; }
-
-.controls { background: var(--panel); border-radius: 12px; padding: 16px; }
 .controls h2, .problem h2, .viz h2, .result h2, .explain h2, .tips h2 { font-size: 18px; margin: 0 0 12px; }
 
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
 .control-group { display: grid; gap: 6px; }
 label { color: var(--muted); font-size: 13px; }
-input, select, button {
-  background: #0f1430;
+input, select {
+  background: var(--plot-bg);
   color: var(--text);
-  border: 1px solid #2a2f55;
+  border: 1px solid #262b3a;
   border-radius: 8px;
   padding: 8px 10px;
 }
 select { cursor: pointer; }
-button { cursor: pointer; background: var(--accent); border: none; }
+.buttons { display: flex; gap: 10px; align-items: center; margin-top: 10px; }
+button { cursor: pointer; background: var(--accent); color: #0d1320; border: none; padding: 8px 14px; border-radius: 8px; font-weight: 600; }
 button:hover { filter: brightness(1.05); }
-
-.buttons { display: flex; gap: 8px; align-items: center; margin-top: 10px; }
-.error { color: var(--danger); margin-left: 8px; }
-
-.problem, .viz, .result, .explain, .tips {
-  background: var(--panel);
-  border-radius: 12px;
-  padding: 16px;
-  margin-top: 16px;
-}
+.error { color: var(--error); margin-left: 8px; }
 
 .legend { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
-.chip { display: inline-block; padding: 4px 8px; border-radius: 999px; font-size: 12px; }
-.chip-solution { background: color-mix(in oklab, var(--chip-solution) 22%, transparent); color: #e8d6b0; border: 1px solid color-mix(in oklab, var(--chip-solution) 36%, transparent); }
-.chip-curve { background: color-mix(in oklab, var(--accent) 22%, transparent); color: #cfe0ff; border: 1px solid color-mix(in oklab, var(--accent) 36%, transparent); }
-.chip-vertex { background: color-mix(in oklab, var(--accent-2) 22%, transparent); color: #e8ffe0; border: 1px solid color-mix(in oklab, var(--accent-2) 36%, transparent); }
-.chip-root { background: color-mix(in oklab, var(--danger) 22%, transparent); color: #ffd6de; border: 1px solid color-mix(in oklab, var(--danger) 36%, transparent); }
+.chip { display: inline-block; padding: 4px 8px; border-radius: 999px; font-size: 12px; background: var(--plot-bg); border: 1px solid #262b3a; color: var(--muted); }
+.chip-solution { background: rgba(255, 200, 0, 0.25); color: #f9d15b; border-color: #332a00; }
+.chip-curve { color: var(--curve); border-color: #3b1f1f; }
+.chip-vertex { color: var(--vertex); border-color: #3a2f12; }
+.chip-root { color: var(--endpoint); border-color: #1f3347; }
 
-.svg-wrap { background: #0c1020; border: 1px solid #1b2247; border-radius: 12px; overflow: hidden; }
-.note { color: var(--muted); font-size: 12px; margin: 8px 0 0; }
+.svg-wrap { width: 100%; aspect-ratio: 16/9; background: var(--plot-bg); border: 1px solid #1e2230; border-radius: 12px; overflow: hidden; }
+.note { color: var(--muted); font-size: 13px; margin: 6px 0 0; }
 
 .result-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
 
 .footer { color: var(--muted); text-align: center; padding: 24px 12px; }
 
 /* SVG内の塗り分け */
-.band-solution { fill: color-mix(in oklab, var(--chip-solution) 22%, transparent); }
-.axis { stroke: #5b76bf; stroke-width: 1; opacity: .8; }
+.band-solution { fill: rgba(255, 200, 0, 0.25); }
+.axis { stroke: var(--axis); stroke-width: 1; opacity: .9; }
 .gridline { stroke: var(--grid); stroke-width: 1; }
-.curve { stroke: var(--accent); stroke-width: 2; fill: none; }
-.vertex { fill: var(--accent-2); stroke: none; }
-.root-open { fill: #0c1020; stroke: var(--danger); stroke-width: 2; }
-.root-closed { fill: var(--danger); stroke: var(--danger); stroke-width: 2; }
+.curve { stroke: var(--curve); stroke-width: 2; fill: none; }
+.vertex { fill: var(--vertex); stroke: none; }
+.root-open { fill: var(--plot-bg); stroke: var(--endpoint); stroke-width: 2; }
+.root-closed { fill: var(--endpoint); stroke: var(--endpoint); stroke-width: 2; }
 
 /* 入力切替（標準形/頂点形） */
 .vertex-only { display: none; }
@@ -90,9 +90,31 @@ button:hover { filter: brightness(1.05); }
 .mode-vertex .standard-only { display: none; }
 
 @media print {
-  body { background: #fff; color: #000; }
-  .page-header, .buttons, .legend, .tips { page-break-inside: avoid; }
-  .controls, .problem, .viz, .result, .explain, .tips { background: #fff; border: 1px solid #ddd; }
-  .svg-wrap { border-color: #ccc; }
+  @page { size: A4 portrait; margin: 12mm; }
+  :root {
+    --bg: #ffffff;
+    --panel: #ffffff;
+    --text: #111111;
+    --muted: #555555;
+    --accent: #000000;
+    --curve: #000000;
+    --vertex: #000000;
+    --endpoint: #000000;
+    --grid: #d0d0d0;
+    --axis: #999999;
+    --plot-bg: #ffffff;
+    --error: #bb0000;
+  }
+  body { background: #ffffff; color: #111111; }
+  .page-header { background: #ffffff; border: none; padding: 0 0 8px; }
+  .subtitle { color: #555; }
+  .container { max-width: none; padding: 0; }
+  .controls, .tips { display: none !important; }
+  .legend { gap: 6px; margin: 6px 0; }
+  .chip { background: #f3f3f3; color: #333; border-color: #ddd; font-size: 11px; padding: 2px 6px; }
+  .viz .svg-wrap { aspect-ratio: unset; height: 90mm; border: 1px solid #ccc; border-radius: 6px; background: #ffffff; }
+  .problem, .viz, .explain { break-inside: avoid; page-break-inside: avoid; }
+  h2 { font-size: 14px; margin: 6px 0; }
+  .problem p, .explain { font-size: 12px; }
+  .result { display: none; }
 }
-
