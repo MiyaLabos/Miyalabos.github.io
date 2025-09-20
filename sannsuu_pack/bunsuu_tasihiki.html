@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>分数のたし算・ひき算プリント</title>
+    <!--
+      目的: 分数の「たし算」「ひき算（負の結果は出さない）」の問題を自動生成し、
+            問題/模範解答を個別印刷できるページ。
+      注意: 画面に表示される文言はすべて日本語。コード(変数名等)は英語、コメントは日本語にしています。
+    -->
+    <style>
+      /* 全体スタイル */
+      :root { --accent:#2a7ae2; --ink:#222; --muted:#666; --bg:#fff; --panel:#f6f8fb; }
+      html, body { margin:0; padding:0; color:var(--ink); background:var(--bg);
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
+          "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Noto Sans JP", sans-serif;
+        line-height:1.6; }
+      header { padding:16px 20px 8px; }
+      header .title-line { display:flex; justify-content:center; align-items:baseline; gap:12px; }
+      header h1 { margin:0 0 8px; font-size:20px; text-align:center; }
+      header p { margin:0; color:var(--muted); font-size:13px; }
+      .container { padding: 12px 20px 28px; }
+      .score-box { border:1px solid #333; padding:2px 8px; border-radius:6px; font-size:14px; }
+
+      /* 入力パネル */
+      .controls { background:var(--panel); border:1px solid #e5e7eb; border-radius:12px; padding:16px; display:grid; gap:12px; }
+      .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:12px 16px; }
+      .field { display:grid; gap:6px; }
+      .field label { font-size:13px; color:#333; }
+      .row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+      .row span.sep { color:#999; }
+      .field input[type="number"] { padding:8px 10px; border:1px solid #cfd6e4; border-radius:8px; font-size:14px; width:100%; box-sizing:border-box; }
+      .hint { font-size:12px; color:var(--muted); }
+      .visually-hidden { position:absolute !important; height:1px; width:1px; overflow:hidden; clip:rect(1px, 1px, 1px, 1px); clip-path: inset(50%); white-space:nowrap; }
+      .buttons { display:flex; gap:10px; flex-wrap:wrap; }
+      button { appearance:none; border:1px solid var(--accent); background:var(--accent); color:#fff; padding:10px 14px; border-radius:10px; font-size:14px; cursor:pointer; }
+      button.secondary { background:#fff; color:var(--accent); }
+      .toggle-bar { display:flex; gap:8px; }
+      button.toggle { background:#fff; color:var(--accent); }
+      button.toggle.selected { background:var(--accent); color:#fff; }
+      button:disabled { opacity:.5; cursor:not-allowed; }
+      .error { color:#b00020; font-size:13px; }
+
+      /* 出力領域 */
+      .outputs { display:grid; grid-template-columns:1fr; gap:20px; margin-top:18px; }
+      @media (min-width: 980px) { .outputs { grid-template-columns:1fr 1fr; } }
+      .sheet { background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:16px 16px 6px; min-height:300px; }
+      .sheet h2 { margin:0 0 8px; font-size:18px; }
+      .sheet .meta { font-size:12px; color:var(--muted); margin-bottom:10px; }
+      ol.problem-list, ol.answer-list { margin:0 0 12px 20px; padding:0; }
+      ol.problem-list li, ol.answer-list li { margin:0 0 10px; }
+
+      /* 問題の空欄 */
+      .blank { display:inline-block; min-width: 90px; border-bottom: 2px dotted #333; height:1.2em; vertical-align:baseline; }
+
+      /* 印刷制御 */
+      @page { size: A4; margin: 7mm; }
+      .no-print {}
+      .print-only { display:none; }
+      @media print {
+        .no-print { display:none !important; }
+        .print-only { display:inline-block !important; }
+        body.print-problems #answers-sheet { display:none !important; }
+        body.print-answers #problems-sheet { display:none !important; }
+        body.print-problems #controls, body.print-answers #controls { display:none !important; }
+        header { margin-bottom:4px; }
+        header .title-line { justify-content:space-between; }
+        header p, .sheet .meta { display:none !important; }
+        .container { padding: 0 4mm; }
+        .sheet { border:none; padding:0; }
+        #problems-title { display:none !important; }
+        body.print-problems #problems { display:none !important; }
+        /* 印刷用: 2列グリッド＋均等行配置（A4想定） */
+        #problems-grid { display:grid !important; grid-template-columns:1fr 1fr; grid-auto-flow:column; gap:0 8mm; height: calc(100vh - 26mm); list-style:none; margin:0 0 0 20px; padding:0; counter-reset:pnum; }
+        body.count-10 #problems-grid { grid-template-rows: repeat(5, 1fr); }
+        body.count-20 #problems-grid { grid-template-rows: repeat(10, 1fr); }
+        #problems-grid li { position:relative; padding-left:1.8em; display:flex; align-items:center; break-inside:avoid; page-break-inside:avoid; white-space:nowrap; }
+        #problems-grid li::before { counter-increment:pnum; content:'(' counter(pnum) ') '; position:absolute; left:0; width:1.8em; text-align:right; font-weight:600; }
+        /* 解答も同様に2列グリッドで均等配置 */
+        body.print-answers #answers { display:none !important; }
+        body.print-answers #answers-title { display:none !important; }
+        #answers-grid { display:grid !important; grid-template-columns:1fr 1fr; grid-auto-flow:column; gap:0 8mm; height: calc(100vh - 26mm - 18mm); list-style:none; margin:0 0 0 20px; padding:0; counter-reset:anum; }
+        #answers-grid li { line-height: 1.35; }
+        body.count-10 #answers-grid { grid-template-rows: repeat(5, 1fr); }
+        body.count-20 #answers-grid { grid-template-rows: repeat(10, 1fr); }
+        #answers-grid li { position:relative; padding-left:1.8em; display:flex; align-items:center; break-inside:avoid; page-break-inside:avoid; white-space:nowrap; }
+        #answers-grid li::before { counter-increment:anum; content:'(' counter(anum) ') '; position:absolute; left:0; width:1.8em; text-align:right; font-weight:600; }
+      }
+    </style>
+    <!-- 数式表示: MathJax（CDN） -->
+    <script>
+      // MathJax設定（インライン: \( ... \)）
+      window.MathJax = { tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] }, options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] } };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="title-line">
+        <h1>分数のたし算・ひき算プリント</h1>
+        <span class="score-box print-only" aria-label="点数記入欄">点数（　　　　　）点</span>
+      </div>
+      <p>2つの分数の分子・分母の範囲と演算の種類を指定して問題を作成します。</p>
+    </header>
+
+    <div class="container">
+      <!-- 入力コントロール -->
+      <section id="controls" class="controls no-print" aria-label="生成条件の指定">
+        <div class="grid">
+          <div class="field">
+            <label>Aの分子の範囲</label>
+            <div class="row" aria-label="Aの分子の範囲">
+              <input id="aNumMin" type="number" inputmode="numeric" min="0" max="99" value="1" aria-label="Aの分子 下限" />
+              <span class="sep">〜</span>
+              <input id="aNumMax" type="number" inputmode="numeric" min="1" max="99" value="9" aria-label="Aの分子 上限" />
+            </div>
+            <div class="hint">0〜99の範囲で指定できます。</div>
+          </div>
+          <div class="field">
+            <label>Aの分母の範囲</label>
+            <div class="row" aria-label="Aの分母の範囲">
+              <input id="aDenMin" type="number" inputmode="numeric" min="1" max="99" value="2" aria-label="Aの分母 下限" />
+              <span class="sep">〜</span>
+              <input id="aDenMax" type="number" inputmode="numeric" min="1" max="99" value="9" aria-label="Aの分母 上限" />
+            </div>
+            <div class="hint">1〜99。0は使えません。</div>
+          </div>
+          <div class="field">
+            <label>Bの分子の範囲</label>
+            <div class="row" aria-label="Bの分子の範囲">
+              <input id="bNumMin" type="number" inputmode="numeric" min="0" max="99" value="1" aria-label="Bの分子 下限" />
+              <span class="sep">〜</span>
+              <input id="bNumMax" type="number" inputmode="numeric" min="1" max="99" value="9" aria-label="Bの分子 上限" />
+            </div>
+            <div class="hint">0〜99の範囲で指定できます。</div>
+          </div>
+          <div class="field">
+            <label>Bの分母の範囲</label>
+            <div class="row" aria-label="Bの分母の範囲">
+              <input id="bDenMin" type="number" inputmode="numeric" min="1" max="99" value="2" aria-label="Bの分母 下限" />
+              <span class="sep">〜</span>
+              <input id="bDenMax" type="number" inputmode="numeric" min="1" max="99" value="9" aria-label="Bの分母 上限" />
+            </div>
+            <div class="hint">1〜99。0は使えません。</div>
+          </div>
+          <div class="field">
+            <label><input id="allowImproper" type="checkbox" /> 仮分数を許可する（分子≧分母も可）</label>
+            <div class="hint">オフにすると常に真分数（分子＜分母）になります。</div>
+          </div>
+          <div class="field">
+            <label>演算の種類</label>
+            <div class="row" role="radiogroup" aria-label="演算の種類">
+              <label><input type="radio" name="op" id="opAdd" value="add" /> たし算（＋）</label>
+              <label><input type="radio" name="op" id="opSub" value="sub" /> ひき算（−）</label>
+              <label><input type="radio" name="op" id="opMix" value="mix" checked /> 混合（＋/−）</label>
+            </div>
+            <div class="hint">ひき算は負の結果を避けるため、大きい方から小さい方を引きます。</div>
+          </div>
+          <div class="field">
+            <label>プレビュー</label>
+            <div class="hint" id="previewText">Aの例: - / Bの例: - / 記号: -</div>
+          </div>
+          <div class="field">
+            <label>問題数</label>
+            <div class="toggle-bar" role="group" aria-label="問題数の選択">
+              <button type="button" id="count10" class="toggle selected" aria-pressed="true">10問</button>
+              <button type="button" id="count20" class="toggle" aria-pressed="false">20問</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="buttons">
+          <button id="btnGenerate">問題を生成</button>
+          <button id="btnPrintProblems" class="secondary">問題だけ印刷</button>
+          <button id="btnPrintAnswers" class="secondary">模範解答だけ印刷</button>
+        </div>
+        <div id="message" aria-live="polite" class="error" style="min-height:1.2em;"></div>
+      </section>
+
+      <!-- 出力: 問題と解答 -->
+      <section class="outputs" aria-label="出力領域">
+        <div id="problems-sheet" class="sheet" aria-labelledby="problems-title">
+          <h2 id="problems-title">問題</h2>
+          <div class="meta" id="problems-meta">設定: -</div>
+          <ol id="problems" class="problem-list"></ol>
+          <ol id="problems-grid" class="print-only"></ol>
+        </div>
+        <div id="answers-sheet" class="sheet" aria-labelledby="answers-title">
+          <h2 id="answers-title">模範解答</h2>
+          <div class="meta" id="answers-meta">設定: -</div>
+          <ol id="answers" class="answer-list"></ol>
+          <ol id="answers-grid" class="print-only"></ol>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      // 共通ユーティリティ
+      function randInt(min, max) {
+        const a = Math.ceil(min);
+        const b = Math.floor(max);
+        return Math.floor(Math.random() * (b - a + 1)) + a;
+      }
+
+      // 最大公約数（BigInt版）
+      function gcd(a, b) {
+        a = BigInt(a); b = BigInt(b);
+        if (a < 0n) a = -a; if (b < 0n) b = -b;
+        while (b !== 0n) { const t = b; b = a % b; a = t; }
+        return a < 0n ? -a : a;
+      }
+
+      // 既約分数へ正規化（分母は常に正）
+      function simplifyFrac(n, d) {
+        if (d === 0) return { n: 0, d: 1 };
+        let bn = BigInt(n), bd = BigInt(d);
+        if (bd < 0n) { bn = -bn; bd = -bd; }
+        const g = gcd(bn, bd);
+        return { n: Number(bn / g), d: Number(bd / g) };
+      }
+
+      // TeX用の分数文字列へ（0や整数は簡潔に）
+      function fracTeX(n, d) {
+        if (n === 0) return '0';
+        if (d === 1) return String(n);
+        return `\\frac{${n}}{${d}}`;
+      }
+
+      // 分数を生成
+      function generateFraction(nMin, nMax, dMin, dMax, allowImproper) {
+        // 分母は0不可
+        let d = 0;
+        let tries = 0;
+        do { d = randInt(dMin, dMax); tries++; if (tries > 100) { d = Math.max(1, dMin); break; } } while (d === 0);
+        // 分子
+        let n = randInt(nMin, nMax);
+        if (!allowImproper) {
+          // 真分数化（上限超過なら分子を調整）
+          if (n >= d) n = Math.max(nMin, Math.min(d - 1, n));
+          // もしそれでも nMin >= d のような設定なら再試行
+          let guard = 0;
+          while (n >= d && guard < 50) { n = randInt(nMin, Math.max(nMin, Math.min(nMax, d - 1))); guard++; }
+          if (n >= d) n = Math.max(0, Math.min(d - 1, n));
+        }
+        const s = simplifyFrac(n, d);
+        return { n: s.n, d: s.d, tex: fracTeX(s.n, s.d) };
+      }
+
+      // 設定の取得とチェック
+      function readConfig() {
+        const aNumMin = parseInt(document.getElementById('aNumMin').value, 10);
+        const aNumMax = parseInt(document.getElementById('aNumMax').value, 10);
+        const aDenMin = parseInt(document.getElementById('aDenMin').value, 10);
+        const aDenMax = parseInt(document.getElementById('aDenMax').value, 10);
+        const bNumMin = parseInt(document.getElementById('bNumMin').value, 10);
+        const bNumMax = parseInt(document.getElementById('bNumMax').value, 10);
+        const bDenMin = parseInt(document.getElementById('bDenMin').value, 10);
+        const bDenMax = parseInt(document.getElementById('bDenMax').value, 10);
+        const allowImproper = !!document.getElementById('allowImproper').checked;
+        const count = (document.getElementById('count20') && document.getElementById('count20').classList.contains('selected')) ? 20 : 10;
+
+        let op = 'mix';
+        if (document.getElementById('opAdd').checked) op = 'add';
+        if (document.getElementById('opSub').checked) op = 'sub';
+        if (document.getElementById('opMix').checked) op = 'mix';
+
+        // 入力チェック
+        const err = (msg) => ({ ok:false, message: msg });
+        for (const [v, name] of [
+          [aNumMin,'Aの分子(下限)'],[aNumMax,'Aの分子(上限)'],[aDenMin,'Aの分母(下限)'],[aDenMax,'Aの分母(上限)'],
+          [bNumMin,'Bの分子(下限)'],[bNumMax,'Bの分子(上限)'],[bDenMin,'Bの分母(下限)'],[bDenMax,'Bの分母(上限)']
+        ]) { if (!Number.isFinite(v)) return err(`${name}を数値で入力してください。`); }
+        if (aNumMin < 0 || aNumMax < 0 || bNumMin < 0 || bNumMax < 0) return err('分子は0以上で入力してください。');
+        if (aDenMin < 1 || aDenMax < 1 || bDenMin < 1 || bDenMax < 1) return err('分母は1以上で入力してください。');
+        if (aNumMin > aNumMax) return err('Aの分子の範囲が不正です（下限 ≤ 上限）。');
+        if (aDenMin > aDenMax) return err('Aの分母の範囲が不正です（下限 ≤ 上限）。');
+        if (bNumMin > bNumMax) return err('Bの分子の範囲が不正です（下限 ≤ 上限）。');
+        if (bDenMin > bDenMax) return err('Bの分母の範囲が不正です（下限 ≤ 上限）。');
+
+        return { ok:true, config: { aNumMin, aNumMax, aDenMin, aDenMax, bNumMin, bNumMax, bDenMin, bDenMax, allowImproper, count, op } };
+      }
+
+      // 問題1件を生成
+      function createOneProblem(cfg, mode) {
+        const A = generateFraction(cfg.aNumMin, cfg.aNumMax, cfg.aDenMin, cfg.aDenMax, cfg.allowImproper);
+        const B = generateFraction(cfg.bNumMin, cfg.bNumMax, cfg.bDenMin, cfg.bDenMax, cfg.allowImproper);
+
+        // 混合ならランダム
+        let op = mode;
+        if (op === 'mix') op = (Math.random() < 0.5 ? 'add' : 'sub');
+
+        let An = A.n, Ad = A.d, Bn = B.n, Bd = B.d;
+        let symbolLabel = '＋';
+        let symbolMath = '+';
+        let rn = 0, rd = 1; // 結果
+        if (op === 'add') {
+          symbolLabel = '＋'; symbolMath = '+';
+          rn = An * Bd + Bn * Ad;
+          rd = Ad * Bd;
+        } else { // sub
+          symbolLabel = '−'; symbolMath = '-';
+          // 大小比較（負回避のため並び替え）
+          if (An * Bd < Bn * Ad) {
+            // AとBを入れ替える
+            [An, Ad, Bn, Bd] = [Bn, Bd, An, Ad];
+          }
+          rn = An * Bd - Bn * Ad;
+          rd = Ad * Bd;
+        }
+        const simp = simplifyFrac(rn, rd);
+        // 帯分数（mixed number）表記
+        let mixed = '';
+        if (simp.n >= simp.d && simp.d !== 0) {
+          const w = Math.floor(simp.n / simp.d);
+          const r = simp.n % simp.d;
+          mixed = (r === 0) ? String(w) : `${w}\\frac{${r}}{${simp.d}}`;
+        }
+        return { aTeX: fracTeX(An, Ad), bTeX: fracTeX(Bn, Bd), opSymbol: symbolLabel, opMath: symbolMath, resultTeX: fracTeX(simp.n, simp.d), mixedTeX: mixed };
+      }
+
+      // 一括生成
+      function generateProblems() {
+        const msg = document.getElementById('message');
+        msg.textContent = '';
+        const res = readConfig();
+        if (!res.ok) {
+          msg.textContent = res.message;
+          renderMeta(null);
+          clearLists();
+          return;
+        }
+        const cfg = res.config;
+        const problems = [];
+        for (let i = 0; i < cfg.count; i++) problems.push(createOneProblem(cfg, cfg.op));
+
+        renderMeta(cfg);
+        document.body.classList.remove('count-10','count-20');
+        document.body.classList.add(cfg.count === 20 ? 'count-20' : 'count-10');
+        renderProblems(problems);
+        renderAnswers(problems);
+        updatePreviews();
+      }
+
+      // 設定メタの表示
+      function renderMeta(meta) {
+        const pMeta = document.getElementById('problems-meta');
+        const aMeta = document.getElementById('answers-meta');
+        if (!meta) { pMeta.textContent = '設定: -'; aMeta.textContent = '設定: -'; return; }
+        const opStr = meta.op === 'add' ? 'たし算' : (meta.op === 'sub' ? 'ひき算' : '混合');
+        const improperStr = meta.allowImproper ? '（仮分数を含む）' : '（真分数のみ）';
+        const text = `設定: A 分子${meta.aNumMin}〜${meta.aNumMax}/分母${meta.aDenMin}〜${meta.aDenMax} と B 分子${meta.bNumMin}〜${meta.bNumMax}/分母${meta.bDenMin}〜${meta.bDenMax} ${improperStr} / 演算:${opStr} / 全${meta.count}問`;
+        pMeta.textContent = text; aMeta.textContent = text;
+      }
+
+      function clearLists() { document.getElementById('problems').innerHTML = ''; document.getElementById('answers').innerHTML = ''; }
+
+      // 問題の描画
+      function renderProblems(list) {
+        const ol = document.getElementById('problems');
+        ol.innerHTML = '';
+        list.forEach((p) => {
+          const li = document.createElement('li');
+          const base = document.createElement('span');
+          base.textContent = `\\(${p.aTeX} ${p.opMath} ${p.bTeX} =\\)`; // 数式部分（= までを数式内）
+          const blank = document.createElement('span');
+          blank.className = 'blank';
+          li.appendChild(base);
+          li.appendChild(blank);
+          ol.appendChild(li);
+        });
+        // 印刷用グリッドにも反映
+        const grid = document.getElementById('problems-grid');
+        if (grid) {
+          grid.innerHTML = '';
+          list.forEach((p) => {
+            const li = document.createElement('li');
+            const base = document.createElement('span');
+            base.textContent = `\\(${p.aTeX} ${p.opMath} ${p.bTeX} =\\)`;
+            const blank = document.createElement('span');
+            blank.className = 'blank';
+            li.appendChild(base);
+            li.appendChild(blank);
+            grid.appendChild(li);
+          });
+        }
+      }
+
+      // 解答の描画
+      function renderAnswers(list) {
+        const ol = document.getElementById('answers');
+        ol.innerHTML = '';
+        list.forEach((p) => {
+          const li = document.createElement('li');
+          const math = document.createElement('span');
+          const both = p.mixedTeX ? `${p.resultTeX} = ${p.mixedTeX}` : `${p.resultTeX}`;
+          math.textContent = `\\(${p.aTeX} ${p.opMath} ${p.bTeX} = ${both}\\)`;
+          li.appendChild(math);
+          ol.appendChild(li);
+        });
+        // 印刷用グリッドにも反映
+        const grid = document.getElementById('answers-grid');
+        if (grid) {
+          grid.innerHTML = '';
+          list.forEach((p) => {
+            const li = document.createElement('li');
+            const math = document.createElement('span');
+            const both = p.mixedTeX ? `${p.resultTeX} = ${p.mixedTeX}` : `${p.resultTeX}`;
+            math.textContent = `\\(${p.aTeX} ${p.opMath} ${p.bTeX} = ${both}\\)`;
+            li.appendChild(math);
+            grid.appendChild(li);
+          });
+        }
+      }
+
+      // 印刷: 指定のみ印刷
+      function printOnly(which) {
+        document.body.classList.remove('print-problems', 'print-answers');
+        if (which === 'problems') document.body.classList.add('print-problems');
+        if (which === 'answers') document.body.classList.add('print-answers');
+        window.print();
+        setTimeout(() => { document.body.classList.remove('print-problems', 'print-answers'); }, 200);
+      }
+
+      // イベント
+      document.getElementById('btnGenerate').addEventListener('click', generateProblems);
+      document.getElementById('btnPrintProblems').addEventListener('click', () => printOnly('problems'));
+      document.getElementById('btnPrintAnswers').addEventListener('click', () => printOnly('answers'));
+      // 問題数トグル
+      function setCount(n) {
+        const b10 = document.getElementById('count10');
+        const b20 = document.getElementById('count20');
+        if (!b10 || !b20) return;
+        if (n === 20) {
+          b20.classList.add('selected'); b20.setAttribute('aria-pressed','true');
+          b10.classList.remove('selected'); b10.setAttribute('aria-pressed','false');
+        } else {
+          b10.classList.add('selected'); b10.setAttribute('aria-pressed','true');
+          b20.classList.remove('selected'); b20.setAttribute('aria-pressed','false');
+        }
+        generateProblems();
+      }
+      const c10 = document.getElementById('count10');
+      const c20 = document.getElementById('count20');
+      if (c10 && c20) {
+        c10.addEventListener('click', () => setCount(10));
+        c20.addEventListener('click', () => setCount(20));
+      }
+
+      // 入力変更でプレビュー更新
+      ['aNumMin','aNumMax','aDenMin','aDenMax','bNumMin','bNumMax','bDenMin','bDenMax','allowImproper','opAdd','opSub','opMix'].forEach(id => {
+        document.getElementById(id).addEventListener('input', updatePreviews);
+        document.getElementById(id).addEventListener('change', updatePreviews);
+      });
+
+      function updatePreviews() {
+        const res = readConfig();
+        const prev = document.getElementById('previewText');
+        if (!res.ok) { prev.textContent = 'Aの例: - / Bの例: - / 記号: -'; return; }
+        const { aNumMin,aNumMax,aDenMin,aDenMax,bNumMin,bNumMax,bDenMin,bDenMax,allowImproper, op } = res.config;
+        let A = generateFraction(aNumMin,aNumMax,aDenMin,aDenMax,allowImproper);
+        let B = generateFraction(bNumMin,bNumMax,bDenMin,bDenMax,allowImproper);
+        let symbol = '＋';
+        if (op === 'sub' || (op === 'mix' && Math.random() < 0.5)) {
+          symbol = '−';
+          // 負を避けるため大きい方を先に
+          if (A.n * B.d < B.n * A.d) { const t = A; A = B; B = t; }
+        }
+        prev.innerHTML = `Aの例: <span class="math">\\(${A.tex}\\)</span> / Bの例: <span class="math">\\(${B.tex}\\)</span> / 記号: ${symbol}`;
+        typesetMath();
+      }
+
+      // MathJaxの再描画
+      function typesetMath() {
+        if (window.MathJax && window.MathJax.typesetPromise) {
+          window.MathJax.typesetPromise();
+        }
+      }
+
+      // 初期表示
+      generateProblems();
+      updatePreviews();
+    </script>
+  </body>
+  </html>
