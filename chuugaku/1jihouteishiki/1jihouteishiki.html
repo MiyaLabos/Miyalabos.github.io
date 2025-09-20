@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>かけ算プリント</title>
+    <title>一次方程式プリント（ax + b = c）</title>
     <!--
-      目的: 整数×整数の問題を自動生成し、問題/模範解答を個別印刷できるページ。
+      目的: 整数解をもつ一次方程式 ax + b = c の問題を自動生成し、問題/模範解答を個別印刷できるページ。
       注意: 画面に表示される文言はすべて日本語。コード(変数名等)は英語、コメントは日本語にしています。
     -->
     <style>
-      /* 全体スタイル */
+      /* 全体スタイル（参照: sannsuu_pack/seisuu_kakezan.html） */
       :root { --accent:#2a7ae2; --ink:#222; --muted:#666; --bg:#fff; --panel:#f6f8fb; }
       html, body { margin:0; padding:0; color:var(--ink); background:var(--bg);
         font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
@@ -31,12 +31,11 @@
       .row span.sep { color:#999; }
       .field input[type="number"] { padding:8px 10px; border:1px solid #cfd6e4; border-radius:8px; font-size:14px; width:100%; box-sizing:border-box; }
       .hint { font-size:12px; color:var(--muted); }
-      /* アクセシビリティ用: 画面外に視覚的に隠す */
       .visually-hidden { position:absolute !important; height:1px; width:1px; overflow:hidden; clip:rect(1px, 1px, 1px, 1px); clip-path: inset(50%); white-space:nowrap; }
       .buttons { display:flex; gap:10px; flex-wrap:wrap; }
       button { appearance:none; border:1px solid var(--accent); background:var(--accent); color:#fff; padding:10px 14px; border-radius:10px; font-size:14px; cursor:pointer; }
       button.secondary { background:#fff; color:var(--accent); }
-      /* 問題数トグル用 */
+      /* 問題数トグル */
       .toggle-bar { display:flex; gap:8px; }
       button.toggle { background:#fff; color:var(--accent); }
       button.toggle.selected { background:var(--accent); color:#fff; }
@@ -55,7 +54,7 @@
       /* 問題の空欄 */
       .blank { display:inline-block; min-width: 90px; border-bottom: 2px dotted #333; height:1.2em; vertical-align:baseline; }
 
-      /* 印刷制御 */
+      /* 印刷制御（A4グリッド） */
       @page { size: A4; margin: 7mm; }
       .no-print {}
       .print-only { display:none; }
@@ -63,7 +62,7 @@
         .no-print { display:none !important; }
         .print-only { display:inline-block !important; }
         body.print-problems #answers-sheet { display:none !important; }
-        body.print-answers #problems-sheet { display:none !important; }
+        body.print-answers #problems-sheet { display:none !重要; }
         body.print-problems #controls, body.print-answers #controls { display:none !important; }
         header { margin-bottom:4px; }
         header .title-line { justify-content:space-between; }
@@ -75,19 +74,15 @@
         body.print-problems #problems { display:none !important; }
         /* 印刷用: 2列グリッド＋均等行配置（A4想定） */
         #problems-grid { display:grid !important; grid-template-columns:1fr 1fr; grid-auto-flow:column; gap:0 8mm; height: calc(100vh - 26mm); list-style:none; margin:0 0 0 20px; padding:0; counter-reset:pnum; }
-        /* 行数は問題数で可変（10問=各列5段、20問=各列10段） */
         body.count-10 #problems-grid { grid-template-rows: repeat(5, 1fr); }
         body.count-20 #problems-grid { grid-template-rows: repeat(10, 1fr); }
         #problems-grid li { position:relative; padding-left:1.8em; display:flex; align-items:center; break-inside:avoid; page-break-inside:avoid; white-space:nowrap; }
         #problems-grid li::before { counter-increment:pnum; content:'(' counter(pnum) ') '; position:absolute; left:0; width:1.8em; text-align:right; font-weight:600; }
-        /* 空欄幅を印刷時はやや短くして収まりを改善 */
         #problems-grid .blank { min-width:70px; }
         /* 解答も同様に2列グリッドで均等配置 */
         body.print-answers #answers { display:none !important; }
-        /* 解答用: 見出しは印刷時に非表示にして高さ確保 */
         body.print-answers #answers-title { display:none !important; }
         #answers-grid { display:grid !important; grid-template-columns:1fr 1fr; grid-auto-flow:column; gap:0 8mm; height: calc(100vh - 26mm - 18mm); list-style:none; margin:0 0 0 20px; padding:0; counter-reset:anum; }
-        #answers-grid li { line-height: 1.35; }
         body.count-10 #answers-grid { grid-template-rows: repeat(5, 1fr); }
         body.count-20 #answers-grid { grid-template-rows: repeat(10, 1fr); }
         #answers-grid li { position:relative; padding-left:1.8em; display:flex; align-items:center; break-inside:avoid; page-break-inside:avoid; white-space:nowrap; }
@@ -98,10 +93,10 @@
   <body>
     <header>
       <div class="title-line">
-        <h1>かけ算プリント</h1>
+        <h1>一次方程式プリント</h1>
         <span class="score-box print-only" aria-label="点数記入欄">点数（　　　　　）点</span>
       </div>
-      <p>2つの整数の桁数を指定して問題を作成します。</p>
+      <p>整数解をもつ一次方程式（ax + b = c）を自動生成します。</p>
     </header>
 
     <div class="container">
@@ -109,19 +104,41 @@
       <section id="controls" class="controls no-print" aria-label="生成条件の指定">
         <div class="grid">
           <div class="field">
-            <label for="aDigits">Aの桁数</label>
-            <input id="aDigits" type="number" inputmode="numeric" min="1" max="4" value="1" aria-describedby="hintA" />
-            <div class="hint" id="hintA">1〜4桁。1桁は1〜9、2桁は10〜99。</div>
+            <label for="aMin">a の絶対値の範囲</label>
+            <div class="row">
+              <input id="aMin" type="number" inputmode="numeric" min="1" max="9" value="1" aria-describedby="hintA" />
+              <span class="sep">〜</span>
+              <input id="aMax" type="number" inputmode="numeric" min="1" max="9" value="9" aria-describedby="hintA" />
+            </div>
+            <div class="hint" id="hintA">1〜9 の範囲で指定します。aは0になりません。</div>
           </div>
+
           <div class="field">
-            <label for="bDigits">Bの桁数</label>
-            <input id="bDigits" type="number" inputmode="numeric" min="1" max="4" value="1" aria-describedby="hintB" />
-            <div class="hint" id="hintB">1〜4桁。1桁は1〜9、2桁は10〜99。</div>
+            <label for="bMax">定数項 b の絶対値の上限</label>
+            <input id="bMax" type="number" inputmode="numeric" min="0" max="99" value="20" />
+            <div class="hint">0〜99。0も出ることがあります。</div>
           </div>
+
+          <div class="field">
+            <label for="xMin">解 x の範囲</label>
+            <div class="row">
+              <input id="xMin" type="number" inputmode="numeric" min="-50" max="50" value="-9" aria-describedby="hintX" />
+              <span class="sep">〜</span>
+              <input id="xMax" type="number" inputmode="numeric" min="-50" max="50" value="9" aria-describedby="hintX" />
+            </div>
+            <div class="hint" id="hintX">-50〜50 の範囲で整数解を出します。</div>
+          </div>
+
+          <div class="field">
+            <label><input id="allowNegative" type="checkbox" checked /> 負の数を含める（係数や定数に負符号が付きます）</label>
+            <div class="hint">オフにすると、aとbは非負、xも0以上の範囲で生成します。</div>
+          </div>
+
           <div class="field">
             <label>プレビュー</label>
-            <div class="hint" id="previewText">Aの例: - / Bの例: -</div>
+            <div class="hint" id="previewText">例: -</div>
           </div>
+
           <div class="field">
             <label>問題数</label>
             <div class="toggle-bar" role="group" aria-label="問題数の選択">
@@ -160,32 +177,62 @@
       // 乱数の基本
       function randInt(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
 
-      // 指定桁数の整数を生成
-      function generateIntByDigits(digits) {
-        if (digits <= 0) return 0; // 安全策（UIでは1以上に制限）
-        const min = Math.pow(10, digits - 1);
-        const max = Math.pow(10, digits) - 1;
-        return randInt(min, max);
+      // 係数や式の整形
+      function formatATerm(a) {
+        if (a === 1) return 'x';
+        if (a === -1) return '-x';
+        return `${a}x`;
       }
+      function formatLHS(a, b) {
+        const aPart = formatATerm(a);
+        if (b === 0) return aPart;
+        const sign = b > 0 ? ' + ' : ' - ';
+        return aPart + sign + Math.abs(b);
+      }
+      function formatEquation(a, b, c) { return `${formatLHS(a, b)} = ${c}`; }
 
       // 設定の取得とチェック
       function readConfig() {
-        const aDigits = parseInt(document.getElementById('aDigits').value, 10);
-        const bDigits = parseInt(document.getElementById('bDigits').value, 10);
+        const aMin = parseInt(document.getElementById('aMin').value, 10);
+        const aMax = parseInt(document.getElementById('aMax').value, 10);
+        const bMax = parseInt(document.getElementById('bMax').value, 10);
+        let xMin = parseInt(document.getElementById('xMin').value, 10);
+        let xMax = parseInt(document.getElementById('xMax').value, 10);
+        const allowNegative = !!document.getElementById('allowNegative').checked;
         const count = (document.getElementById('count20') && document.getElementById('count20').classList.contains('selected')) ? 20 : 10;
 
-        if (!Number.isFinite(aDigits) || aDigits < 1 || aDigits > 4) return { ok:false, message:'Aの桁数は1〜4で入力してください。' };
-        if (!Number.isFinite(bDigits) || bDigits < 1 || bDigits > 4) return { ok:false, message:'Bの桁数は1〜4で入力してください。' };
+        // 入力チェック
+        if (!Number.isFinite(aMin) || !Number.isFinite(aMax) || aMin < 1 || aMax < 1 || aMin > 9 || aMax > 9 || aMin > aMax)
+          return { ok:false, message:'aの絶対値の範囲は1〜9で、最小値は最大値以下にしてください。' };
+        if (!Number.isFinite(bMax) || bMax < 0 || bMax > 99)
+          return { ok:false, message:'bの絶対値の上限は0〜99で入力してください。' };
+        if (!Number.isFinite(xMin) || !Number.isFinite(xMax) || xMin < -50 || xMax > 50 || xMin > xMax)
+          return { ok:false, message:'xの範囲は-50〜50で、最小値は最大値以下にしてください。' };
+        if (!allowNegative && xMin < 0)
+          return { ok:false, message:'負の数を含めない設定では、xの最小値は0以上にしてください。' };
 
-        return { ok:true, config: { aDigits, bDigits, count } };
+        return { ok:true, config: { aMin, aMax, bMax, xMin, xMax, allowNegative, count } };
       }
 
-      // 問題1件を生成
-      function createOneProblem(aDigits, bDigits) {
-        const A = generateIntByDigits(aDigits);
-        const B = generateIntByDigits(bDigits);
-        const productText = (BigInt(A) * BigInt(B)).toString();
-        return { aText: String(A), bText: String(B), productText };
+      // 問題1件を生成（整数解を必ず作る）
+      function createOneProblem(cfg) {
+        const { aMin, aMax, bMax, xMin, xMax, allowNegative } = cfg;
+        const aAbs = randInt(aMin, aMax);
+        const aSign = allowNegative ? (Math.random() < 0.5 ? -1 : 1) : 1;
+        const a = aAbs * aSign; // a≠0
+
+        // xは指定範囲の整数
+        const x = randInt(xMin, xMax);
+
+        // bは絶対値0〜bMax、符号は設定に従う
+        const bAbs = randInt(0, bMax);
+        const bSign = allowNegative ? (Math.random() < 0.5 ? -1 : 1) : 1;
+        const b = bAbs * bSign;
+
+        // cは ax + b
+        const c = a * x + b;
+
+        return { a, b, c, x };
       }
 
       // 一括生成
@@ -199,17 +246,15 @@
           clearLists();
           return;
         }
-        const { aDigits, bDigits, count } = res.config;
+        const cfg = res.config;
 
         const problems = [];
-        for (let i = 0; i < count; i++) {
-          problems.push(createOneProblem(aDigits, bDigits));
-        }
+        for (let i = 0; i < cfg.count; i++) problems.push(createOneProblem(cfg));
 
-        renderMeta({ aDigits, bDigits, count });
+        renderMeta(cfg);
         // 印刷時の行間調整用クラス
         document.body.classList.remove('count-10','count-20');
-        document.body.classList.add(count === 20 ? 'count-20' : 'count-10');
+        document.body.classList.add(cfg.count === 20 ? 'count-20' : 'count-10');
         renderProblems(problems);
         renderAnswers(problems);
         updatePreviews();
@@ -220,11 +265,15 @@
         const pMeta = document.getElementById('problems-meta');
         const aMeta = document.getElementById('answers-meta');
         if (!meta) { pMeta.textContent = '設定: -'; aMeta.textContent = '設定: -'; return; }
-        const text = `設定: A 桁数${meta.aDigits} × B 桁数${meta.bDigits} / 全${meta.count}問`;
+        const signStr = meta.allowNegative ? '（負の数あり）' : '（負の数なし）';
+        const text = `設定: a絶対値${meta.aMin}〜${meta.aMax} / b上限${meta.bMax} / x範囲 ${meta.xMin}〜${meta.xMax} ${signStr} / 全${meta.count}問`;
         pMeta.textContent = text; aMeta.textContent = text;
       }
 
-      function clearLists() { document.getElementById('problems').innerHTML = ''; document.getElementById('answers').innerHTML = ''; }
+      function clearLists() {
+        const ids = ['problems','answers','problems-grid','answers-grid'];
+        ids.forEach(id => { const el = document.getElementById(id); if (el) el.innerHTML = ''; });
+      }
 
       // 問題の描画
       function renderProblems(list) {
@@ -233,7 +282,7 @@
         list.forEach((p) => {
           const li = document.createElement('li');
           const base = document.createElement('span');
-          base.textContent = `${p.aText} × ${p.bText} = `;
+          base.textContent = `${formatEquation(p.a, p.b, p.c)}, x = `;
           const blank = document.createElement('span');
           blank.className = 'blank';
           li.appendChild(base);
@@ -247,7 +296,7 @@
           list.forEach((p) => {
             const li = document.createElement('li');
             const base = document.createElement('span');
-            base.textContent = `${p.aText} × ${p.bText} = `;
+            base.textContent = `${formatEquation(p.a, p.b, p.c)}, x = `;
             const blank = document.createElement('span');
             blank.className = 'blank';
             li.appendChild(base);
@@ -263,7 +312,7 @@
         ol.innerHTML = '';
         list.forEach((p) => {
           const li = document.createElement('li');
-          li.textContent = `${p.aText} × ${p.bText} = ${p.productText}`;
+          li.textContent = `${formatEquation(p.a, p.b, p.c)}, x = ${p.x}`;
           ol.appendChild(li);
         });
         // 印刷用グリッドにも反映
@@ -272,7 +321,7 @@
           grid.innerHTML = '';
           list.forEach((p) => {
             const li = document.createElement('li');
-            li.textContent = `${p.aText} × ${p.bText} = ${p.productText}`;
+            li.textContent = `${formatEquation(p.a, p.b, p.c)}, x = ${p.x}`;
             grid.appendChild(li);
           });
         }
@@ -313,18 +362,17 @@
       }
 
       // 入力変更でプレビュー更新
-      ['aDigits','bDigits'].forEach(id => {
+      ;['aMin','aMax','bMax','xMin','xMax','allowNegative'].forEach(id => {
         document.getElementById(id).addEventListener('input', updatePreviews);
         document.getElementById(id).addEventListener('change', updatePreviews);
       });
 
       function updatePreviews() {
         const res = readConfig();
-        if (!res.ok) { document.getElementById('previewText').textContent = 'Aの例: - / Bの例: -'; return; }
-        const { aDigits, bDigits } = res.config;
-        const A = generateIntByDigits(aDigits);
-        const B = generateIntByDigits(bDigits);
-        document.getElementById('previewText').textContent = `Aの例: ${A} / Bの例: ${B}`;
+        if (!res.ok) { document.getElementById('previewText').textContent = '例: -'; return; }
+        const cfg = res.config;
+        const sample = createOneProblem(cfg);
+        document.getElementById('previewText').textContent = `例: ${formatEquation(sample.a, sample.b, sample.c)}（解: x = ${sample.x}）`;
       }
 
       // 初期表示
@@ -333,3 +381,4 @@
     </script>
   </body>
   </html>
+
