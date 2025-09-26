@@ -10,7 +10,11 @@
     -->
     <style>
       /* 全体スタイル（参照: sannsuu_pack/seisuu_kakezan.html） */
-      :root { --accent:#2a7ae2; --ink:#222; --muted:#666; --bg:#fff; --panel:#f6f8fb; }
+      :root { --accent:#2a7ae2; --ink:#222; --muted:#666; --bg:#fff; --panel:#f6f8fb; 
+        /* x = の開始位置（画面/印刷） */
+        --xcol-w: 220px; /* 画面での x = の開始位置（左からの固定幅） */
+        --xcol-w-print: 60mm; /* 印刷での x = の開始位置（左からの固定幅） */
+      }
       html, body { margin:0; padding:0; color:var(--ink); background:var(--bg);
         font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
           "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Noto Sans JP", sans-serif;
@@ -53,6 +57,8 @@
 
       /* 問題の空欄 */
       .blank { display:inline-block; min-width: 90px; border-bottom: 2px dotted #333; height:1.2em; vertical-align:baseline; }
+      /* 画面: x = の開始位置で揃えるため、式部分を固定幅にする */
+      ol.problem-list .eq { display:inline-block; width: var(--xcol-w); min-width: var(--xcol-w); }
 
       /* 印刷制御（A4グリッド） */
       @page { size: A4; margin: 7mm; }
@@ -79,6 +85,8 @@
         #problems-grid li { position:relative; padding-left:1.8em; display:flex; align-items:center; break-inside:avoid; page-break-inside:avoid; white-space:nowrap; }
         #problems-grid li::before { counter-increment:pnum; content:'(' counter(pnum) ') '; position:absolute; left:0; width:1.8em; text-align:right; font-weight:600; }
         #problems-grid .blank { min-width:70px; }
+        /* 印刷: x = の開始位置で揃えるため、式部分を固定幅にする */
+        #problems-grid .eq { display:inline-block; width: var(--xcol-w-print); min-width: var(--xcol-w-print); }
         /* 解答も同様に2列グリッドで均等配置 */
         body.print-answers #answers { display:none !important; }
         body.print-answers #answers-title { display:none !important; }
@@ -281,12 +289,20 @@
         ol.innerHTML = '';
         list.forEach((p) => {
           const li = document.createElement('li');
-          const base = document.createElement('span');
-          base.textContent = `${formatEquation(p.a, p.b, p.c)}, x = `;
+          const eq = document.createElement('span');
+          eq.className = 'eq';
+          eq.textContent = `${formatEquation(p.a, p.b, p.c)} `; // 直前のカンマは付けない
+          const ans = document.createElement('span');
+          ans.className = 'ans';
+          const xlab = document.createElement('span');
+          xlab.className = 'x';
+          xlab.textContent = 'x = ';
           const blank = document.createElement('span');
           blank.className = 'blank';
-          li.appendChild(base);
-          li.appendChild(blank);
+          ans.appendChild(xlab);
+          ans.appendChild(blank);
+          li.appendChild(eq);
+          li.appendChild(ans);
           ol.appendChild(li);
         });
         // 印刷用グリッドにも反映
@@ -295,12 +311,20 @@
           grid.innerHTML = '';
           list.forEach((p) => {
             const li = document.createElement('li');
-            const base = document.createElement('span');
-            base.textContent = `${formatEquation(p.a, p.b, p.c)}, x = `;
+            const eq = document.createElement('span');
+            eq.className = 'eq';
+            eq.textContent = `${formatEquation(p.a, p.b, p.c)} `;
+            const ans = document.createElement('span');
+            ans.className = 'ans';
+            const xlab = document.createElement('span');
+            xlab.className = 'x';
+            xlab.textContent = 'x = ';
             const blank = document.createElement('span');
             blank.className = 'blank';
-            li.appendChild(base);
-            li.appendChild(blank);
+            ans.appendChild(xlab);
+            ans.appendChild(blank);
+            li.appendChild(eq);
+            li.appendChild(ans);
             grid.appendChild(li);
           });
         }
@@ -312,7 +336,7 @@
         ol.innerHTML = '';
         list.forEach((p) => {
           const li = document.createElement('li');
-          li.textContent = `${formatEquation(p.a, p.b, p.c)}, x = ${p.x}`;
+          li.textContent = `${formatEquation(p.a, p.b, p.c)} x = ${p.x}`; // カンマを削除
           ol.appendChild(li);
         });
         // 印刷用グリッドにも反映
@@ -321,7 +345,7 @@
           grid.innerHTML = '';
           list.forEach((p) => {
             const li = document.createElement('li');
-            li.textContent = `${formatEquation(p.a, p.b, p.c)}, x = ${p.x}`;
+            li.textContent = `${formatEquation(p.a, p.b, p.c)} x = ${p.x}`; // カンマを削除
             grid.appendChild(li);
           });
         }
