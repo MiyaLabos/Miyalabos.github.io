@@ -293,6 +293,18 @@
         return r * r === n;
       }
 
+      // ルートの簡約: n = k^2 * m として、kと平方因子を外に出し、mを平方因子を含まない自然数にする
+      function simplifyRadical(n) {
+        if (n <= 0 || !Number.isInteger(n)) return { k: 1, m: n };
+        let m = n;
+        let k = 1;
+        for (let i = 2; i * i <= m; i++) {
+          const sq = i * i;
+          while (m % sq === 0) { m = Math.trunc(m / sq); k *= i; }
+        }
+        return { k, m };
+      }
+
       // 問題1件を生成
       function createOneProblem(cfg) {
         const { aMin, aMax, xMin, xMax, allowNegative, allowRepeated, formType } = cfg;
@@ -483,7 +495,9 @@
             ansLine = `答え: \\(x = ${rootsText}\\)`;
           } else {
             const D = p.D;
-            const num = (p.b === 0) ? `\\pm \\sqrt{${D}}` : `${-p.b} \\pm \\sqrt{${D}}`;
+            const { k, m } = simplifyRadical(D);
+            const sqrtPart = (m === 1) ? `${k}` : (k === 1 ? `\\sqrt{${m}}` : `${k}\\sqrt{${m}}`);
+            const num = (p.b === 0) ? `\\pm ${sqrtPart}` : `${-p.b} \\pm ${sqrtPart}`;
             const den = 2 * p.a;
             ansLine = `答え: \\(x = \\dfrac{${num}}{${den}}\\)`;
           }
@@ -503,7 +517,9 @@
               ansLine = `答え: \\(x = ${rootsText}\\)`;
             } else {
               const D = p.D;
-              const num = (p.b === 0) ? `\\pm \\sqrt{${D}}` : `${-p.b} \\pm \\sqrt{${D}}`;
+              const { k, m } = simplifyRadical(D);
+              const sqrtPart = (m === 1) ? `${k}` : (k === 1 ? `\\sqrt{${m}}` : `${k}\\sqrt{${m}}`);
+              const num = (p.b === 0) ? `\\pm ${sqrtPart}` : `${-p.b} \\pm ${sqrtPart}`;
               const den = 2 * p.a;
               ansLine = `答え: \\(x = \\dfrac{${num}}{${den}}\\)`;
             }
@@ -571,7 +587,9 @@
           const rootsText = (sample.roots[0] === sample.roots[1]) ? `${sample.roots[0]}` : `${sample.roots[0]}, ${sample.roots[1]}`;
           prev.innerHTML = `例: \\(${texEquation(sample.a, sample.b, sample.c)}\\)（解: \\(x = ${rootsText}\\)）`;
         } else {
-          const num = (sample.b === 0) ? `\\pm \\sqrt{${sample.D}}` : `${-sample.b} \\pm \\sqrt{${sample.D}}`;
+          const { k, m } = simplifyRadical(sample.D);
+          const sqrtPart = (m === 1) ? `${k}` : (k === 1 ? `\\sqrt{${m}}` : `${k}\\sqrt{${m}}`);
+          const num = (sample.b === 0) ? `\\pm ${sqrtPart}` : `${-sample.b} \\pm ${sqrtPart}`;
           const den = 2 * sample.a;
           prev.innerHTML = `例: \\(${texEquation(sample.a, sample.b, sample.c)}\\)（解: \\(x = \\frac{${num}}{${den}}\\)）`;
         }
