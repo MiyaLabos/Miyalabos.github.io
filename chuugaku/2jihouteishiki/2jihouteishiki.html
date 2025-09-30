@@ -305,6 +305,14 @@
         return { k, m };
       }
 
+      // 最大公約数（整数）
+      function igcd(a, b) {
+        a = Math.abs(a|0); b = Math.abs(b|0);
+        while (b !== 0) { const t = b; b = a % b; a = t; }
+        return a || 1;
+      }
+      function gcd3(a, b, c) { return igcd(igcd(a, b), c); }
+
       // 問題1件を生成
       function createOneProblem(cfg) {
         const { aMin, aMax, xMin, xMax, allowNegative, allowRepeated, formType } = cfg;
@@ -496,10 +504,21 @@
           } else {
             const D = p.D;
             const { k, m } = simplifyRadical(D);
-            const sqrtPart = (m === 1) ? `${k}` : (k === 1 ? `\\sqrt{${m}}` : `${k}\\sqrt{${m}}`);
-            const num = (p.b === 0) ? `\\pm ${sqrtPart}` : `${-p.b} \\pm ${sqrtPart}`;
-            const den = 2 * p.a;
-            ansLine = `答え: \\(x = \\dfrac{${num}}{${den}}\\)`;
+            let rat = -p.b; // 有理数部
+            let irr = k;   // 無理数部の係数（√m）
+            let den = 2 * p.a;
+            const g = gcd3(rat, irr, den);
+            rat = Math.trunc(rat / g);
+            irr = Math.trunc(irr / g);
+            den = Math.trunc(den / g);
+            // 分母を正に正規化
+            if (den < 0) { den = -den; rat = -rat; irr = -irr; }
+            const irrAbs = Math.abs(irr);
+            const sqrtTerm = (m === 1) ? `${irrAbs}` : (irrAbs === 1 ? `\\sqrt{${m}}` : `${irrAbs}\\sqrt{${m}}`);
+            const num = (rat === 0) ? `\\pm ${sqrtTerm}` : `${rat} \\pm ${sqrtTerm}`;
+            ansLine = (den === 1)
+              ? `答え: \\(x = ${num}\\)`
+              : `答え: \\(x = \\dfrac{${num}}{${den}}\\)`;
           }
           li.innerHTML = `<div class="eq-line">${eqLine}</div><div class="ans-line">${ansLine}</div>`;
           ol.appendChild(li);
@@ -518,10 +537,20 @@
             } else {
               const D = p.D;
               const { k, m } = simplifyRadical(D);
-              const sqrtPart = (m === 1) ? `${k}` : (k === 1 ? `\\sqrt{${m}}` : `${k}\\sqrt{${m}}`);
-              const num = (p.b === 0) ? `\\pm ${sqrtPart}` : `${-p.b} \\pm ${sqrtPart}`;
-              const den = 2 * p.a;
-              ansLine = `答え: \\(x = \\dfrac{${num}}{${den}}\\)`;
+              let rat = -p.b; // 有理数部
+              let irr = k;   // 無理数部の係数（√m）
+              let den = 2 * p.a;
+              const g = gcd3(rat, irr, den);
+              rat = Math.trunc(rat / g);
+              irr = Math.trunc(irr / g);
+              den = Math.trunc(den / g);
+              if (den < 0) { den = -den; rat = -rat; irr = -irr; }
+              const irrAbs = Math.abs(irr);
+              const sqrtTerm = (m === 1) ? `${irrAbs}` : (irrAbs === 1 ? `\\sqrt{${m}}` : `${irrAbs}\\sqrt{${m}}`);
+              const num = (rat === 0) ? `\\pm ${sqrtTerm}` : `${rat} \\pm ${sqrtTerm}`;
+              ansLine = (den === 1)
+                ? `答え: \\(x = ${num}\\)`
+                : `答え: \\(x = \\dfrac{${num}}{${den}}\\)`;
             }
             li.innerHTML = `<div class=\"eq-line\">${eqLine}</div><div class=\"ans-line\">${ansLine}</div>`;
             grid.appendChild(li);
@@ -588,10 +617,20 @@
           prev.innerHTML = `例: \\(${texEquation(sample.a, sample.b, sample.c)}\\)（解: \\(x = ${rootsText}\\)）`;
         } else {
           const { k, m } = simplifyRadical(sample.D);
-          const sqrtPart = (m === 1) ? `${k}` : (k === 1 ? `\\sqrt{${m}}` : `${k}\\sqrt{${m}}`);
-          const num = (sample.b === 0) ? `\\pm ${sqrtPart}` : `${-sample.b} \\pm ${sqrtPart}`;
-          const den = 2 * sample.a;
-          prev.innerHTML = `例: \\(${texEquation(sample.a, sample.b, sample.c)}\\)（解: \\(x = \\frac{${num}}{${den}}\\)）`;
+          let rat = -sample.b;
+          let irr = k;
+          let den = 2 * sample.a;
+          const g = gcd3(rat, irr, den);
+          rat = Math.trunc(rat / g);
+          irr = Math.trunc(irr / g);
+          den = Math.trunc(den / g);
+          if (den < 0) { den = -den; rat = -rat; irr = -irr; }
+          const irrAbs = Math.abs(irr);
+          const sqrtTerm = (m === 1) ? `${irrAbs}` : (irrAbs === 1 ? `\\sqrt{${m}}` : `${irrAbs}\\sqrt{${m}}`);
+          const num = (rat === 0) ? `\\pm ${sqrtTerm}` : `${rat} \\pm ${sqrtTerm}`;
+          prev.innerHTML = (den === 1)
+            ? `例: \\(${texEquation(sample.a, sample.b, sample.c)}\\)（解: \\(x = ${num}\\)）`
+            : `例: \\(${texEquation(sample.a, sample.b, sample.c)}\\)（解: \\(x = \\frac{${num}}{${den}}\\)）`;
         }
         if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise();
       }
