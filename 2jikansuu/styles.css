@@ -30,6 +30,7 @@ body {
   padding: 20px 16px 8px;
   background: linear-gradient(180deg, #111319 0%, #0e0f12 100%);
   border-bottom: 1px solid #1e2230;
+  text-align: center;
 }
 .page-header h1 {
   margin: 0 0 6px 0;
