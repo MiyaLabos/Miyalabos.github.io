@@ -136,19 +136,41 @@
           </a>
         </nav>
 
+        <div class="section-title">中学数学</div>
+        <nav class="grid" aria-label="中学数学のツール">
+          <!-- 一次方程式プリント -->
+          <a class="card" href="chuugaku/1jihouteishiki/1jihouteishiki.html">
+            <span class="icon" aria-hidden="true">x =</span>
+            <h3>一次方程式プリント</h3>
+            <p class="desc">整数解をもつ一次方程式を自動生成。問題/解答の印刷に対応。</p>
+            <div class="tags">
+              <span class="tag">中学</span><span class="tag">印刷対応</span>
+            </div>
+          </a>
+          <!-- 二次方程式プリント -->
+          <a class="card" href="chuugaku/2jihouteishiki/2jihouteishiki.html">
+            <span class="icon" aria-hidden="true">x²</span>
+            <h3>二次方程式プリント</h3>
+            <p class="desc">整数解をもつ二次方程式を自動生成。問題/解答の印刷に対応。</p>
+            <div class="tags">
+              <span class="tag">中学</span><span class="tag">印刷対応</span>
+            </div>
+          </a>
+        </nav>
+
         <div class="section-title">小学生向け 算数プリント</div>
         <nav class="grid" aria-label="算数のプリント">
           <!-- 入口（タブ切替） -->
           <a class="card" href="sannsuu_pack/index.html">
             <span class="icon" aria-hidden="true">📄</span>
             <h3>算数プリント集（切り替え）</h3>
-            <p class="desc">小数のかけ算／たし算・ひき算／わり算をタブで切替。問題/解答の個別印刷に対応。</p>
+            <p class="desc">小数/整数/分数/わり算をタブで切替。問題/解答の印刷に対応。</p>
             <div class="tags">
               <span class="tag green">小学生</span><span class="tag">印刷対応</span>
             </div>
           </a>
           <!-- 個別ページ: 小数のかけ算 -->
-          <a class="card" href="syousuu_kakeru/syousuu_kakeru.html">
+          <a class="card" href="sannsuu_pack/syousuu_kakeru.html">
             <span class="icon" aria-hidden="true">×</span>
             <h3>小数のかけ算（単独版）</h3>
             <p class="desc">桁数や0の扱いを指定して問題を自動生成。模範解答も出力。</p>
@@ -157,7 +179,7 @@
             </div>
           </a>
           <!-- 個別ページ: 小数のたし算・ひき算 -->
-          <a class="card" href="syousuu_tasihiki/syousuu_tasihiki.html">
+          <a class="card" href="sannsuu_pack/syousuu_tasihiki.html">
             <span class="icon" aria-hidden="true">＋−</span>
             <h3>小数のたし算・ひき算（単独版）</h3>
             <p class="desc">たし算/ひき算/混合の問題を生成。ひき算は負の結果を避けます。</p>
@@ -165,20 +187,57 @@
               <span class="tag green">小学生</span><span class="tag">10/20問</span>
             </div>
           </a>
-          <!-- 旧版: わり算（Q_maker） -->
-          <a class="card" href="Q_maker/warizanmaker.html">
+          <!-- 個別ページ: 小数のわり算 -->
+          <a class="card" href="sannsuu_pack/syousuu_warizan.html">
             <span class="icon" aria-hidden="true">÷</span>
-            <h3>わり算プリント（旧版）</h3>
+            <h3>小数のわり算（単独版）</h3>
+            <p class="desc">位取りを意識して計算。問題/模範解答の印刷に対応。</p>
+            <div class="tags">
+              <span class="tag green">小学生</span><span class="tag">10/20問</span>
+            </div>
+          </a>
+          <!-- 個別ページ: 分数のたし算・ひき算 -->
+          <a class="card" href="sannsuu_pack/bunsuu_tasihiki.html">
+            <span class="icon" aria-hidden="true">a/b</span>
+            <h3>分数のたし算・ひき算（単独版）</h3>
+            <p class="desc">通分や約分の練習に。問題/解答の印刷に対応。</p>
+            <div class="tags">
+              <span class="tag green">小学生</span><span class="tag">10/20問</span>
+            </div>
+          </a>
+          <!-- 個別ページ: 整数のかけ算 -->
+          <a class="card" href="sannsuu_pack/seisuu_kakezan.html">
+            <span class="icon" aria-hidden="true">×</span>
+            <h3>かけ算（整数）</h3>
+            <p class="desc">一桁/二桁のかけ算を自動生成。問題/解答の印刷に対応。</p>
+            <div class="tags">
+              <span class="tag green">小学生</span><span class="tag">10/20問</span>
+            </div>
+          </a>
+          <!-- 個別ページ: 整数のたし算・ひき算 -->
+          <a class="card" href="sannsuu_pack/seisuu_tashihiki.html">
+            <span class="icon" aria-hidden="true">＋−</span>
+            <h3>たし算・ひき算（整数）</h3>
+            <p class="desc">繰り上がり/繰り下がりの練習に。問題/解答の印刷に対応。</p>
+            <div class="tags">
+              <span class="tag green">小学生</span><span class="tag">10/20問</span>
+            </div>
+          </a>
+          <!-- 個別ページ: わり算（新） -->
+          <a class="card" href="sannsuu_pack/warizanmaker.html">
+            <span class="icon" aria-hidden="true">÷</span>
+            <h3>わり算プリント（単独版）</h3>
             <p class="desc">余りあり/なしを選択。指定桁数から40問生成し個別印刷に対応。</p>
             <div class="tags">
               <span class="tag green">小学生</span><span class="tag">40問</span>
             </div>
           </a>
+          
         </nav>
 
         <!--
           追加方法（日本語メモ）:
-          - 下のどちらかの <nav class="grid"> 内に、<a class="card" ...> を1枚増やしてください。
+          - 下のいずれかの <nav class="grid"> 内に、<a class="card" ...> を1枚増やしてください。
           - カードは自動的にグリッドで折り返され、デザインの違和感なく追加できます。
           - アイコンは絵文字/短いテキストでOK（例: f(x), ∑, 📄 など）。
         -->
