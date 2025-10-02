@@ -329,23 +329,50 @@
 
       // 問題1件の生成
       function createOneProblem(dividendDigits, divisorDigits, mode) {
-        const b = generateByDigits(divisorDigits, true); // わる数
         const minA = Math.pow(10, dividendDigits - 1);
         const maxA = Math.pow(10, dividendDigits) - 1;
 
         if (mode === 'exact') {
-          // 割り切れるようにqを選ぶ
+          // 割り切れ、かつ商が1にならないように調整
+          let tries = 0;
+          while (tries < 200) {
+            const b = generateByDigits(divisorDigits, true); // わる数（2以上）
+            const minQ = Math.max(1, Math.ceil(minA / b));
+            const maxQ = Math.max(1, Math.floor(maxA / b));
+            const minQ2 = Math.max(2, minQ); // 商が1とならないよう2以上から
+            if (minQ2 <= maxQ) {
+              const q = randInt(minQ2, maxQ);
+              const a = b * q;
+              return { a, b, q, r: 0 };
+            }
+            tries++;
+          }
+          // セーフガード到達時は元の方式で生成（まれに商=1の可能性あり）
+          const b = generateByDigits(divisorDigits, true);
           const minQ = Math.max(1, Math.ceil(minA / b));
           const maxQ = Math.max(1, Math.floor(maxA / b));
           const q = randInt(minQ, Math.max(minQ, maxQ));
           const a = b * q;
           return { a, b, q, r: 0 };
         } else {
-          // 余りありOK。a >= bとなるよう調整
-          let a = randInt(minA, maxA);
-          if (a < b) {
-            a = randInt(b, maxA);
+          // 余りありOKだが、商が1にならないように調整
+          let tries = 0;
+          while (tries < 200) {
+            const b = generateByDigits(divisorDigits, true);
+            // 商=1を避けるため、aは少なくとも2b以上にする（可能な範囲で）
+            const start = Math.max(minA, 2 * b);
+            if (start <= maxA) {
+              const a = randInt(start, maxA);
+              const q = Math.floor(a / b);
+              const r = a % b;
+              if (q !== 1) return { a, b, q, r };
+            }
+            tries++;
           }
+          // セーフガード到達時は元の方式で生成（まれに商=1の可能性あり）
+          const b = generateByDigits(divisorDigits, true);
+          let a = randInt(minA, maxA);
+          if (a < b) a = randInt(b, maxA);
           const q = Math.floor(a / b);
           const r = a % b;
           return { a, b, q, r };

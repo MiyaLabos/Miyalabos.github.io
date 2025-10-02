@@ -366,34 +366,86 @@
         return negative ? ('-' + out) : out;
       }
 
+      // 答えが「1」相当かを判定（1, 1.0, 1.00...）
+      function isOneLike(str) { return /^1(?:\.0+)?$/.test(String(str)); }
+
       // 問題1件を生成
       function createOneProblem(aInt, aFrac, bInt, bFrac, allowZeroFraction, ansDigits, round, ansMode) {
-        const A = generateDecimal(aInt, aFrac, allowZeroFraction);
+        let A = generateDecimal(aInt, aFrac, allowZeroFraction);
         let B = generateDecimal(bInt, bFrac, allowZeroFraction);
         // Bが0.00..にならないよう保険
         let guard = 0;
         while (B.valueInt === 0n && guard < 5) { B = generateDecimal(bInt, bFrac, allowZeroFraction); guard++; }
+
         if (ansMode === 'remainder') {
-          const { q, rText } = divideWithRemainder(A, B);
-          return { mode: 'remainder', aText: A.text, bText: B.text, qText: q, rText };
-        } else if (ansMode === 'exact') {
-          // 割り切れ、かつ小数部が最大3桁以内になるまで再生成
-          let AA = A, BB = B;
+          // 商が1にならないよう再生成
           let tries = 0;
-          let digits = terminatingDigits(AA, BB);
-          while (!Number.isFinite(digits) || digits > 3) {
-            if (tries > 200) break; // セーフガード
-            if (tries % 10 === 0) AA = generateDecimal(aInt, aFrac, allowZeroFraction);
-            BB = generateDecimal(bInt, bFrac, allowZeroFraction);
-            if (BB.valueInt === 0n) BB = generateDecimal(bInt, bFrac, false);
-            digits = terminatingDigits(AA, BB);
+          while (tries < 200) {
+            const { q, rText } = divideWithRemainder(A, B);
+            if (q !== '1') {
+              return { mode: 'remainder', aText: A.text, bText: B.text, qText: q, rText };
+            }
+            // AとBを交互に更新して回避を試みる
+            if (tries % 2 === 0) {
+              B = generateDecimal(bInt, bFrac, allowZeroFraction);
+              if (B.valueInt === 0n) B = generateDecimal(bInt, bFrac, false);
+            } else {
+              A = generateDecimal(aInt, aFrac, allowZeroFraction);
+            }
             tries++;
           }
-          const ans = divideUntilExact(AA, BB, 3);
-          return { mode: 'exact', aText: AA.text, bText: BB.text, ansText: ans };
+          // セーフガード到達時は最後の結果を採用（まれ）
+          const last = divideWithRemainder(A, B);
+          return { mode: 'remainder', aText: A.text, bText: B.text, qText: last.q, rText: last.rText };
+        } else if (ansMode === 'exact') {
+          // 割り切れ（最大3桁）かつ答えが1にならないよう再生成
+          let AA = A, BB = B;
+          let outer = 0;
+          while (outer < 400) {
+            let digits = terminatingDigits(AA, BB);
+            let inner = 0;
+            while ((!Number.isFinite(digits) || digits > 3) && inner < 200) {
+              if (inner % 10 === 0) AA = generateDecimal(aInt, aFrac, allowZeroFraction);
+              BB = generateDecimal(bInt, bFrac, allowZeroFraction);
+              if (BB.valueInt === 0n) BB = generateDecimal(bInt, bFrac, false);
+              digits = terminatingDigits(AA, BB);
+              inner++;
+            }
+            const ans = divideUntilExact(AA, BB, 3);
+            if (!isOneLike(ans)) {
+              return { mode: 'exact', aText: AA.text, bText: BB.text, ansText: ans };
+            }
+            // 1になる場合はA/Bを差し替えて再試行
+            if (outer % 2 === 0) AA = generateDecimal(aInt, aFrac, allowZeroFraction);
+            else {
+              BB = generateDecimal(bInt, bFrac, allowZeroFraction);
+              if (BB.valueInt === 0n) BB = generateDecimal(bInt, bFrac, false);
+            }
+            outer++;
+          }
+          // セーフガード到達時は最後の結果を返す（まれ）
+          const fallbackAns = divideUntilExact(AA, BB, 3);
+          return { mode: 'exact', aText: AA.text, bText: BB.text, ansText: fallbackAns };
         } else {
-          const ans = divideWithRounding(A, B, ansDigits, round);
-          return { mode: 'decimal', aText: A.text, bText: B.text, ansText: ans };
+          // 小数で答える: 丸め後が1（例: 1, 1.0, 1.00）にならないよう再生成
+          let tries = 0;
+          while (tries < 200) {
+            const ans = divideWithRounding(A, B, ansDigits, round);
+            if (!isOneLike(ans)) {
+              return { mode: 'decimal', aText: A.text, bText: B.text, ansText: ans };
+            }
+            // AとBを交互に更新して回避を試みる
+            if (tries % 2 === 0) {
+              A = generateDecimal(aInt, aFrac, allowZeroFraction);
+            } else {
+              B = generateDecimal(bInt, bFrac, allowZeroFraction);
+              if (B.valueInt === 0n) B = generateDecimal(bInt, bFrac, false);
+            }
+            tries++;
+          }
+          // セーフガード到達時は最後の結果を返す（まれ）
+          const lastAns = divideWithRounding(A, B, ansDigits, round);
+          return { mode: 'decimal', aText: A.text, bText: B.text, ansText: lastAns };
         }
       }
 
