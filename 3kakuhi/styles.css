@@ -1,0 +1,86 @@
+/*
+  スタイル定義（日本語コメント）
+  - シンプルで軽量、授業用プロジェクタやスマホでも見やすい配色
+*/
+
+:root {
+  /* ../2jikansuu の配色に合わせる */
+  --bg: #0e0f12;
+  --panel: #171920;
+  --text: #e8ebf0;
+  --muted: #9aa3af;
+  --accent: #5aa7ff;
+  --grid: #2a2e39;
+  --axis: #56607a;
+  --plot-bg: #0f1116;
+  /* 本教材用の系列色（sin/cos）は 2次関数の色体系に寄せる */
+  --sin: #ff6b6b;      /* curve に対応 */
+  --cos: #9bd0ff;      /* endpoint に対応 */
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans JP", Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.site-header { padding: 24px 16px 8px; text-align: center; }
+.site-header h1 { margin: 0; font-size: 28px; letter-spacing: 0.02em; }
+.tagline { margin: 4px 0 12px; color: var(--muted); }
+
+.site-nav { display: inline-flex; gap: 12px; flex-wrap: wrap; }
+.site-nav a {
+  color: var(--text);
+  background: var(--plot-bg);
+  border: 1px solid #262b3a;
+  padding: 6px 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 14px;
+}
+.site-nav a:hover { filter: brightness(1.05); }
+
+main { max-width: 960px; margin: 0 auto; padding: 8px 16px 64px; }
+
+.section { margin-top: 20px; }
+.section h2 { margin: 0 0 6px; font-size: 22px; }
+.section p { margin: 6px 0 12px; color: var(--text); }
+
+.card {
+  background: var(--panel);
+  border: 1px solid #1e2230;
+  border-radius: 16px;
+  padding: 14px;
+}
+
+.controls { display: flex; align-items: center; gap: 8px; margin: 8px 0 12px; flex-wrap: wrap; }
+label { color: var(--muted); }
+input[type="range"] { width: min(420px, 70vw); }
+.mono { font-variant-numeric: tabular-nums; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+
+.figure-wrap { display: grid; place-items: center; border-radius: 12px; overflow: hidden; background: var(--plot-bg); border: 1px solid #1e2230; }
+#triSvg, #circSvg, #graphCanvas { width: 100%; max-width: 720px; height: auto; }
+
+.values { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px; margin-top: 8px; }
+.values div { background: #121521; padding: 8px 10px; border-radius: 10px; border: 1px solid #1e2230; }
+.values strong { color: var(--accent); }
+
+.quiz-box { display: grid; gap: 10px; }
+.quiz-q { font-weight: 600; }
+.quiz-opts { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; }
+.quiz-opts button {
+  background: var(--plot-bg); color: var(--text); border: 1px solid #262b3a;
+  padding: 10px 12px; border-radius: 12px; cursor: pointer; font-size: 16px;
+}
+.quiz-opts button:hover { filter: brightness(1.05); }
+.quiz-opts button[aria-pressed="true"] { outline: 2px solid var(--accent); }
+.quiz-actions { display: flex; align-items: center; gap: 12px; }
+.quiz-feedback { min-height: 1.4em; color: var(--muted); }
+
+.site-footer { text-align: center; color: var(--muted); padding: 24px 12px 60px; }
+.site-footer { }
+

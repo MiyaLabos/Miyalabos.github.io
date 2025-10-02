@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>三角比で遊ぶ | 高校数学（試作）</title>
+    <meta name="description" content="角度を動かして三角比（sin, cos, tan）を体感できるインタラクティブ教材。直角三角形・単位円・グラフ・クイズを収録。" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- ページ全体の導入。説明テキストは日本語で記述 -->
+    <header class="site-header">
+      <h1>三角比で遊ぶ</h1>
+      <p class="tagline">角度を動かして、三角比を体感しよう。</p>
+      <nav class="site-nav" aria-label="ページ内ナビゲーション">
+        <a href="#intro">はじめに</a>
+        <a href="#triangle">直角三角形</a>
+        <a href="#circle">単位円</a>
+        <a href="#graph">グラフ</a>
+        <a href="#quiz">クイッククイズ</a>
+      </nav>
+    </header>
+
+    <main>
+      <section id="intro" class="section">
+        <h2>はじめに</h2>
+        <p>
+          このページは高校生向けの三角比の入門教材（試作版）です。<br />
+          角度スライダーを動かすと、図形や数値が連動して変化します。<br />
+          まずは「直角三角形」で比のイメージをつかみ、次に「単位円」で範囲を広げ、
+          「グラフ」で全体像をつかんだあと「クイッククイズ」で理解を確かめましょう。
+        </p>
+        <div class="controls">
+          <label for="angleUnit">角度の表示: </label>
+          <select id="angleUnit" aria-label="角度の表示単位の選択">
+            <option value="deg">度（°）</option>
+            <option value="rad">ラジアン（rad）</option>
+          </select>
+        </div>
+      </section>
+
+      <section id="triangle" class="section card">
+        <h2>直角三角形エクスプローラ</h2>
+        <p>
+          斜辺の長さを一定にして角度<span aria-label="シータ">θ</span>を変えると、
+          対辺（赤）・隣辺（青）の長さの比が <strong>sin θ</strong>・<strong>cos θ</strong> に対応します。
+        </p>
+        <div class="controls">
+          <label for="triAngle">角度 θ: </label>
+          <input id="triAngle" type="range" min="0" max="90" step="1" value="30" />
+          <output id="triAngleOut" class="mono" for="triAngle">30°</output>
+        </div>
+
+        <div class="figure-wrap">
+          <!-- 図はSVGで描画 -->
+          <svg id="triSvg" viewBox="0 0 320 260" role="img" aria-label="直角三角形の図">
+            <!-- 座標の目安（控えめなグリッド） -->
+            <g id="triGrid" style="stroke: var(--grid);" stroke-width="1">
+              <path d="M10 240 H310" />
+              <path d="M10 20 V240" />
+            </g>
+            <!-- 斜辺・対辺・隣辺 -->
+            <g id="triGroup" fill="none" stroke-linecap="round">
+              <line id="triAdj" style="stroke: var(--cos);" stroke-width="6" x1="40" y1="240" x2="200" y2="240" />
+              <line id="triOpp" style="stroke: var(--sin);" stroke-width="6" x1="200" y1="240" x2="200" y2="120" />
+              <line id="triHyp" style="stroke: var(--accent);" stroke-width="6" x1="40" y1="240" x2="200" y2="120" />
+            </g>
+            <!-- 角度マーク -->
+            <path id="triArc" d="" fill="none" style="stroke: var(--axis);" stroke-width="2" />
+            <text id="triThetaText" x="55" y="228" font-size="14" style="fill: var(--muted);">θ</text>
+          </svg>
+        </div>
+
+        <div class="values">
+          <div>sin θ = <span id="sinVal" class="mono">0.500</span></div>
+          <div>cos θ = <span id="cosVal" class="mono">0.866</span></div>
+          <div>tan θ = <span id="tanVal" class="mono">0.577</span></div>
+        </div>
+      </section>
+
+      <section id="circle" class="section card">
+        <h2>単位円エクスプローラ</h2>
+        <p>
+          単位円（半径1の円）上の点の座標は <strong>(cos θ, sin θ)</strong>。角度を0°から360°まで動かして、
+          値の符号の変化や周期性を観察しましょう。
+        </p>
+        <div class="controls">
+          <label for="circAngle">角度 θ: </label>
+          <input id="circAngle" type="range" min="0" max="360" step="1" value="210" />
+          <output id="circAngleOut" class="mono" for="circAngle">210°</output>
+        </div>
+        <div class="figure-wrap">
+          <svg id="circSvg" viewBox="0 0 340 340" role="img" aria-label="単位円の図">
+            <!-- 軸 -->
+            <g style="stroke: var(--axis);" stroke-width="1">
+              <path d="M20 170 H320" />
+              <path d="M170 20 V320" />
+            </g>
+            <!-- 円 -->
+            <circle id="unitCircle" cx="170" cy="170" r="120" fill="none" style="stroke: var(--axis);" stroke-width="2" />
+            <!-- 角度の半直線と投影 -->
+            <line id="ray" x1="170" y1="170" x2="290" y2="170" style="stroke: var(--axis);" stroke-width="3" />
+            <line id="projX" x1="170" y1="170" x2="170" y2="170" style="stroke: var(--sin);" stroke-width="4" />
+            <line id="projY" x1="170" y1="170" x2="170" y2="170" style="stroke: var(--cos);" stroke-width="4" />
+            <circle id="point" cx="290" cy="170" r="5" style="fill: var(--text);" />
+          </svg>
+        </div>
+        <div class="values">
+          <div>(cos θ, sin θ) = (<span id="cosVal2" class="mono">-0.866</span>, <span id="sinVal2" class="mono">-0.500</span>)</div>
+          <div>象限: <span id="quadrant" class="mono">第III象限</span></div>
+        </div>
+      </section>
+
+      <section id="graph" class="section card">
+        <h2>グラフをなぞる</h2>
+        <p>
+          下のグラフは y = sin x（赤）と y = cos x（青）です。角度を動かすと、対応する位置がハイライトされます。角度は度数法で0°〜360°に対応しています。
+        </p>
+        <div class="controls">
+          <label for="graphAngle">角度 x: </label>
+          <input id="graphAngle" type="range" min="0" max="360" step="1" value="45" />
+          <output id="graphAngleOut" class="mono" for="graphAngle">45°</output>
+        </div>
+        <div class="figure-wrap">
+          <canvas id="graphCanvas" width="640" height="240" aria-label="正弦・余弦のグラフ"></canvas>
+        </div>
+      </section>
+
+      <section id="quiz" class="section card">
+        <h2>クイッククイズ（特別角）</h2>
+        <p>
+          特別角の三角比を四択で確認しましょう。<br />
+          小数ではなく、分数や√を用いた表現で答える形式です（例: √3/2）。
+        </p>
+        <div class="quiz-box">
+          <div class="quiz-q" id="quizQ" aria-live="polite">問題を読み込み中...</div>
+          <div class="quiz-opts" id="quizOpts" role="group" aria-label="選択肢"></div>
+          <div class="quiz-actions">
+            <button id="quizNext">次の問題</button>
+            <span id="quizFeedback" class="quiz-feedback" aria-live="polite"></span>
+          </div>
+          <div class="quiz-score">正答: <span id="quizCorrect" class="mono">0</span> / <span id="quizTotal" class="mono">0</span></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>試作版 v0.1 — 内容・仕様は今後変更される可能性があります。</p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+  </html>
