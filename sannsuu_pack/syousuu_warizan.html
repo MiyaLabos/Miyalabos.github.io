@@ -369,13 +369,27 @@
       // 答えが「1」相当かを判定（1, 1.0, 1.00...）
       function isOneLike(str) { return /^1(?:\.0+)?$/.test(String(str)); }
 
+      // 小数表現がちょうど1か（B=1, 1.0, 1.00...）を判定
+      function isOneDecimal(dec) {
+        try {
+          const tenPow = 10n ** BigInt(dec.scale);
+          return dec.valueInt === tenPow;
+        } catch (_) {
+          // 念のためのフォールバック（scaleが小さい前提なのでまず到達しない）
+          return dec.valueInt === BigInt(Math.pow(10, dec.scale));
+        }
+      }
+
       // 問題1件を生成
       function createOneProblem(aInt, aFrac, bInt, bFrac, allowZeroFraction, ansDigits, round, ansMode) {
         let A = generateDecimal(aInt, aFrac, allowZeroFraction);
         let B = generateDecimal(bInt, bFrac, allowZeroFraction);
-        // Bが0.00..にならないよう保険
+        // Bが0や1（1.0, 1.00…）にならないよう保険
         let guard = 0;
-        while (B.valueInt === 0n && guard < 5) { B = generateDecimal(bInt, bFrac, allowZeroFraction); guard++; }
+        while ((B.valueInt === 0n || isOneDecimal(B)) && guard < 10) {
+          B = generateDecimal(bInt, bFrac, allowZeroFraction);
+          guard++;
+        }
 
         if (ansMode === 'remainder') {
           // 商が1にならないよう再生成
@@ -388,6 +402,12 @@
             // AとBを交互に更新して回避を試みる
             if (tries % 2 === 0) {
               B = generateDecimal(bInt, bFrac, allowZeroFraction);
+              // Bが0や1を避ける
+              let g = 0;
+              while ((B.valueInt === 0n || isOneDecimal(B)) && g < 10) {
+                B = generateDecimal(bInt, bFrac, allowZeroFraction);
+                g++;
+              }
               if (B.valueInt === 0n) B = generateDecimal(bInt, bFrac, false);
             } else {
               A = generateDecimal(aInt, aFrac, allowZeroFraction);
@@ -407,6 +427,12 @@
             while ((!Number.isFinite(digits) || digits > 3) && inner < 200) {
               if (inner % 10 === 0) AA = generateDecimal(aInt, aFrac, allowZeroFraction);
               BB = generateDecimal(bInt, bFrac, allowZeroFraction);
+              // BBが0や1を避ける
+              let g2 = 0;
+              while ((BB.valueInt === 0n || isOneDecimal(BB)) && g2 < 10) {
+                BB = generateDecimal(bInt, bFrac, allowZeroFraction);
+                g2++;
+              }
               if (BB.valueInt === 0n) BB = generateDecimal(bInt, bFrac, false);
               digits = terminatingDigits(AA, BB);
               inner++;
@@ -419,6 +445,12 @@
             if (outer % 2 === 0) AA = generateDecimal(aInt, aFrac, allowZeroFraction);
             else {
               BB = generateDecimal(bInt, bFrac, allowZeroFraction);
+              // BBが0や1を避ける
+              let g3 = 0;
+              while ((BB.valueInt === 0n || isOneDecimal(BB)) && g3 < 10) {
+                BB = generateDecimal(bInt, bFrac, allowZeroFraction);
+                g3++;
+              }
               if (BB.valueInt === 0n) BB = generateDecimal(bInt, bFrac, false);
             }
             outer++;
@@ -439,6 +471,12 @@
               A = generateDecimal(aInt, aFrac, allowZeroFraction);
             } else {
               B = generateDecimal(bInt, bFrac, allowZeroFraction);
+              // Bが0や1を避ける
+              let g4 = 0;
+              while ((B.valueInt === 0n || isOneDecimal(B)) && g4 < 10) {
+                B = generateDecimal(bInt, bFrac, allowZeroFraction);
+                g4++;
+              }
               if (B.valueInt === 0n) B = generateDecimal(bInt, bFrac, false);
             }
             tries++;
