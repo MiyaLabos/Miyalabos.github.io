@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>はば単プリントメーカー</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container" id="printView">
+      <header class="page-header">
+        <h1>はば単プリントメーカー</h1>
+        <p>
+          兵庫県版「はば単 2,500」をもとに、筆記テスト用のプリントを作成できます。
+          クイズ学習を行う場合は <a href="quiz.html">クイズページ</a> をご利用ください。
+        </p>
+      </header>
+
+      <section class="panel" id="print-tools">
+        <h2>プリント作成</h2>
+        <form id="printForm" class="form-grid">
+          <fieldset class="field-group">
+            <legend>出題形式</legend>
+            <label>
+              <input type="radio" name="printMode" value="enToJa" checked />
+              英語 → 日本語
+            </label>
+            <label>
+              <input type="radio" name="printMode" value="jaToEn" />
+              日本語 → 英語
+            </label>
+          </fieldset>
+
+          <label class="field-group">
+            １ページあたりの問題数（１０～３０）
+            <input type="number" id="printCount" min="10" max="30" value="20" />
+          </label>
+
+          <button type="button" id="generateButton" class="primary" disabled>生成</button>
+          <button type="button" id="printButton" class="secondary" disabled>印刷</button>
+          <p class="note" id="printStatus">単語データを読み込み中...</p>
+        </form>
+
+        <div id="printPreview" class="hidden" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <script src="print.js" defer></script>
+  </body>
+</html>

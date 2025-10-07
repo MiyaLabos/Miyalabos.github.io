@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>はば単クイズ</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <main class="container" id="homeView">
+        <header class="page-header">
+          <h1>はば単クイズ</h1>
+          <p>
+            兵庫県版「はば単 2,500」をもとにした５択形式の単語クイズです。
+            プリントを作成する場合は <a href="index.html">プリントページ</a> をご利用ください。
+          </p>
+        </header>
+
+        <section class="panel" id="quiz-setup">
+          <h2>クイズ設定</h2>
+          <form id="quizForm" class="form-grid">
+            <fieldset class="field-group">
+              <legend>出題形式</legend>
+              <label>
+                <input type="radio" name="mode" value="enToJa" checked />
+                英語 → 日本語
+              </label>
+              <label>
+                <input type="radio" name="mode" value="jaToEn" />
+                日本語 → 英語
+              </label>
+            </fieldset>
+
+            <label class="field-group">
+              １回の出題数（５～５０）
+              <input type="number" id="questionCount" min="5" max="50" value="20" />
+            </label>
+
+            <button type="submit" id="startButton" class="primary big" disabled>テスト開始</button>
+            <p class="note" id="dataStatus">単語データを読み込み中...</p>
+          </form>
+        </section>
+      </main>
+
+      <section class="quiz-view hidden" id="quizView" aria-live="polite">
+        <div class="quiz-topbar">
+          <button type="button" id="quizBackButton" class="ghost">終了して設定に戻る</button>
+          <div class="quiz-progress">
+            <span id="quizProgressLabel">0 / 0</span>
+            <div class="quiz-progress-bar">
+              <div id="quizProgressBar"></div>
+            </div>
+          </div>
+          <div class="quiz-score">
+            <span>正答</span>
+            <strong id="quizScoreValue">0</strong>
+          </div>
+        </div>
+
+        <div class="quiz-content">
+          <div class="question-card">
+            <div class="question-meta" id="questionMeta">英語 → 日本語</div>
+            <h2 class="question-prompt" id="questionPrompt">問題文</h2>
+            <p class="question-sub" id="questionSubtext">選択肢から答えを選んでください。</p>
+          </div>
+
+          <div class="choices-grid" id="choicesGrid"></div>
+
+          <div class="answer-panel" id="answerPanel">
+            <div class="answer-status" id="answerStatus">選択すると結果が表示されます。</div>
+            <div class="answer-detail" id="answerDetail"></div>
+            <button type="button" id="quizRetryButton" class="secondary wide hidden">同じ条件でもう一度</button>
+            <button type="button" id="quizNextButton" class="primary wide" disabled>次へ</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script src="quiz.js" defer></script>
+  </body>
+</html>
