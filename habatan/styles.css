@@ -79,6 +79,20 @@ body.quiz-active {
   font-size: 0.95rem;
 }
 
+.range-inputs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.range-inputs input[type="number"] {
+  flex: 1 1 0;
+}
+
+.range-separator {
+  font-size: 1rem;
+}
+
 fieldset.field-group {
   border: 1px solid var(--border-color);
   border-radius: 12px;

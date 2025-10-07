@@ -5,6 +5,9 @@ const state = {
   },
 };
 
+const WORD_NUMBER_MIN = 1;
+const WORD_NUMBER_MAX = 2500;
+
 const elements = {};
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -13,6 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
   elements.printForm = document.getElementById("printForm");
   elements.printPreview = document.getElementById("printPreview");
   elements.printCount = document.getElementById("printCount");
+  elements.printStartNumber = document.getElementById("printStartNumber");
+  elements.printEndNumber = document.getElementById("printEndNumber");
   elements.printStatus = document.getElementById("printStatus");
 
   elements.generateButton.disabled = true;
@@ -70,8 +75,27 @@ async function fetchWords() {
 function collectPrintSettings() {
   const modeInput = new FormData(elements.printForm).get("printMode");
   const mode = modeInput === "jaToEn" ? "jaToEn" : "enToJa";
-  const perPage = clamp(Number(elements.printCount.value) || 20, 10, 30);
-  return { mode, perPage, pages: 1 };
+  const perPageInput = Number(elements.printCount.value);
+  const perPage = clamp(Number.isFinite(perPageInput) ? perPageInput : 20, 10, 30);
+
+  const startInput = Number(elements.printStartNumber.value);
+  const endInput = Number(elements.printEndNumber.value);
+
+  let startNumber = Number.isFinite(startInput) ? startInput : WORD_NUMBER_MIN;
+  let endNumber = Number.isFinite(endInput) ? endInput : WORD_NUMBER_MAX;
+
+  startNumber = clamp(startNumber, WORD_NUMBER_MIN, WORD_NUMBER_MAX);
+  endNumber = clamp(endNumber, WORD_NUMBER_MIN, WORD_NUMBER_MAX);
+
+  if (startNumber > endNumber) {
+    [startNumber, endNumber] = [endNumber, startNumber];
+  }
+
+  elements.printCount.value = perPage;
+  elements.printStartNumber.value = startNumber;
+  elements.printEndNumber.value = endNumber;
+
+  return { mode, perPage, pages: 1, startNumber, endNumber };
 }
 
 function generatePrintSheets(config) {
@@ -82,11 +106,22 @@ function generatePrintSheets(config) {
   const mode = config?.mode ?? "enToJa";
   const perPage = config?.perPage ?? 20;
   const pages = config?.pages ?? 1;
+  let startNumber = config?.startNumber ?? WORD_NUMBER_MIN;
+  let endNumber = config?.endNumber ?? WORD_NUMBER_MAX;
 
-  const available = state.words.filter((entry) => isValidForMode(entry, mode));
+  startNumber = clamp(startNumber, WORD_NUMBER_MIN, WORD_NUMBER_MAX);
+  endNumber = clamp(endNumber, WORD_NUMBER_MIN, WORD_NUMBER_MAX);
+
+  if (startNumber > endNumber) {
+    [startNumber, endNumber] = [endNumber, startNumber];
+  }
+
+  const available = state.words.filter(
+    (entry) => isValidForMode(entry, mode) && isWithinNumberRange(entry, startNumber, endNumber)
+  );
   if (available.length < 5) {
     elements.printPreview.classList.remove("hidden");
-    elements.printPreview.textContent = "印刷用の問題を作成するためのデータが不足しています。";
+    elements.printPreview.textContent = "指定範囲に該当するデータが不足しています。";
     return false;
   }
 
@@ -130,18 +165,21 @@ function generatePrintSheets(config) {
     pagesData.push({ pageNumber: pageIndex + 1, questions });
   }
 
-  renderPrintPreview(pagesData, mode);
+  renderPrintPreview(pagesData, mode, { startNumber, endNumber });
   elements.printPreview.classList.remove("hidden");
 
-  state.print.lastConfig = { mode, perPage, pages };
+  state.print.lastConfig = { mode, perPage, pages, startNumber, endNumber };
   elements.printCount.value = perPage;
+  elements.printStartNumber.value = startNumber;
+  elements.printEndNumber.value = endNumber;
 
   return true;
 }
 
-function renderPrintPreview(pagesData, mode) {
+function renderPrintPreview(pagesData, mode, range) {
   elements.printPreview.innerHTML = "";
   const modeLabel = formatModeLabel(mode);
+  const rangeLabel = range ? formatRangeLabel(range.startNumber, range.endNumber) : "";
 
   pagesData.forEach((page) => {
     const pageBlock = document.createElement("section");
@@ -172,6 +210,12 @@ function renderPrintPreview(pagesData, mode) {
     const scoreSpan = document.createElement("span");
     scoreSpan.textContent = `得点：＿＿＿＿／${page.questions.length}`;
     infoGroup.appendChild(scoreSpan);
+
+    if (rangeLabel) {
+      const rangeSpan = document.createElement("span");
+      rangeSpan.textContent = rangeLabel;
+      infoGroup.appendChild(rangeSpan);
+    }
 
     meta.appendChild(infoGroup);
     header.appendChild(meta);
@@ -243,6 +287,11 @@ function renderPrintPreview(pagesData, mode) {
   const modeSpan = document.createElement("span");
   modeSpan.textContent = `形式: ${modeLabel}`;
   answerInfo.appendChild(modeSpan);
+  if (rangeLabel) {
+    const rangeSpan = document.createElement("span");
+    rangeSpan.textContent = rangeLabel;
+    answerInfo.appendChild(rangeSpan);
+  }
   answerMeta.appendChild(answerInfo);
   answerHeader.appendChild(answerMeta);
   answerPage.appendChild(answerHeader);
@@ -299,6 +348,13 @@ function isValidForMode(entry, mode) {
   return Boolean(entry.word.trim());
 }
 
+function isWithinNumberRange(entry, start, end) {
+  if (!entry || typeof entry.number !== "number") {
+    return false;
+  }
+  return entry.number >= start && entry.number <= end;
+}
+
 function shuffle(list) {
   const array = [...list];
   for (let i = array.length - 1; i > 0; i -= 1) {
@@ -312,3 +368,9 @@ function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max);
 }
 
+function formatRangeLabel(start, end) {
+  if (typeof start !== "number" || typeof end !== "number") {
+    return "";
+  }
+  return `番号: ${start}～${end}`;
+}
