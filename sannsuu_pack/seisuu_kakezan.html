@@ -129,6 +129,14 @@
               <button type="button" id="count20" class="toggle" aria-pressed="false">20問</button>
             </div>
           </div>
+          <div class="field">
+            <label for="excludeOnes">1を含むかけ算の除外</label>
+            <div class="row">
+              <input id="excludeOnes" type="checkbox" />
+              <span>1が含まれる問題を作らない</span>
+            </div>
+            <div class="hint">AまたはBが1となる組み合わせを除外します。</div>
+          </div>
         </div>
 
         <div class="buttons">
@@ -161,11 +169,16 @@
       function randInt(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
 
       // 指定桁数の整数を生成
-      function generateIntByDigits(digits) {
+      function generateIntByDigits(digits, options = {}) {
         if (digits <= 0) return 0; // 安全策（UIでは1以上に制限）
+        const { excludeOnes = false } = options;
         const min = Math.pow(10, digits - 1);
         const max = Math.pow(10, digits) - 1;
-        return randInt(min, max);
+        let value;
+        do {
+          value = randInt(min, max);
+        } while (excludeOnes && value === 1);
+        return value;
       }
 
       // 設定の取得とチェック
@@ -173,17 +186,19 @@
         const aDigits = parseInt(document.getElementById('aDigits').value, 10);
         const bDigits = parseInt(document.getElementById('bDigits').value, 10);
         const count = (document.getElementById('count20') && document.getElementById('count20').classList.contains('selected')) ? 20 : 10;
+        const excludeOnesEl = document.getElementById('excludeOnes');
+        const excludeOnes = excludeOnesEl ? excludeOnesEl.checked : false;
 
         if (!Number.isFinite(aDigits) || aDigits < 1 || aDigits > 4) return { ok:false, message:'Aの桁数は1〜4で入力してください。' };
         if (!Number.isFinite(bDigits) || bDigits < 1 || bDigits > 4) return { ok:false, message:'Bの桁数は1〜4で入力してください。' };
 
-        return { ok:true, config: { aDigits, bDigits, count } };
+        return { ok:true, config: { aDigits, bDigits, count, excludeOnes } };
       }
 
       // 問題1件を生成
-      function createOneProblem(aDigits, bDigits) {
-        const A = generateIntByDigits(aDigits);
-        const B = generateIntByDigits(bDigits);
+      function createOneProblem(aDigits, bDigits, options = {}) {
+        const A = generateIntByDigits(aDigits, options);
+        const B = generateIntByDigits(bDigits, options);
         const productText = (BigInt(A) * BigInt(B)).toString();
         return { aText: String(A), bText: String(B), productText };
       }
@@ -199,14 +214,16 @@
           clearLists();
           return;
         }
-        const { aDigits, bDigits, count } = res.config;
+        const { aDigits, bDigits, count, excludeOnes } = res.config;
+
+        const options = { excludeOnes };
 
         const problems = [];
         for (let i = 0; i < count; i++) {
-          problems.push(createOneProblem(aDigits, bDigits));
+          problems.push(createOneProblem(aDigits, bDigits, options));
         }
 
-        renderMeta({ aDigits, bDigits, count });
+        renderMeta({ aDigits, bDigits, count, excludeOnes });
         // 印刷時の行間調整用クラス
         document.body.classList.remove('count-10','count-20');
         document.body.classList.add(count === 20 ? 'count-20' : 'count-10');
@@ -220,7 +237,9 @@
         const pMeta = document.getElementById('problems-meta');
         const aMeta = document.getElementById('answers-meta');
         if (!meta) { pMeta.textContent = '設定: -'; aMeta.textContent = '設定: -'; return; }
-        const text = `設定: A 桁数${meta.aDigits} × B 桁数${meta.bDigits} / 全${meta.count}問`;
+        const base = `設定: A 桁数${meta.aDigits} × B 桁数${meta.bDigits} / 全${meta.count}問`;
+        const extra = meta.excludeOnes ? ' / 1のかけ算除外' : '';
+        const text = `${base}${extra}`;
         pMeta.textContent = text; aMeta.textContent = text;
       }
 
@@ -317,13 +336,21 @@
         document.getElementById(id).addEventListener('input', updatePreviews);
         document.getElementById(id).addEventListener('change', updatePreviews);
       });
+      const excludeOnesToggle = document.getElementById('excludeOnes');
+      if (excludeOnesToggle) {
+        excludeOnesToggle.addEventListener('change', () => {
+          generateProblems();
+          updatePreviews();
+        });
+      }
 
       function updatePreviews() {
         const res = readConfig();
         if (!res.ok) { document.getElementById('previewText').textContent = 'Aの例: - / Bの例: -'; return; }
-        const { aDigits, bDigits } = res.config;
-        const A = generateIntByDigits(aDigits);
-        const B = generateIntByDigits(bDigits);
+        const { aDigits, bDigits, excludeOnes } = res.config;
+        const options = { excludeOnes };
+        const A = generateIntByDigits(aDigits, options);
+        const B = generateIntByDigits(bDigits, options);
         document.getElementById('previewText').textContent = `Aの例: ${A} / Bの例: ${B}`;
       }
 
