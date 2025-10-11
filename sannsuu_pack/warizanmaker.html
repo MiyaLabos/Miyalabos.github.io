@@ -355,27 +355,44 @@
           const a = b * q;
           return { a, b, q, r: 0 };
         } else {
-          // 余りありOKだが、商が1にならないように調整
+          // 余りありOKだが、商が1とならず、余りが必ず生じるように調整
           let tries = 0;
           while (tries < 200) {
             const b = generateByDigits(divisorDigits, true);
-            // 商=1を避けるため、aは少なくとも2b以上にする（可能な範囲で）
             const start = Math.max(minA, 2 * b);
             if (start <= maxA) {
               const a = randInt(start, maxA);
               const q = Math.floor(a / b);
               const r = a % b;
-              if (q !== 1) return { a, b, q, r };
+              if (q > 1 && r > 0) return { a, b, q, r };
             }
             tries++;
           }
-          // セーフガード到達時は元の方式で生成（まれに商=1の可能性あり）
-          const b = generateByDigits(divisorDigits, true);
-          let a = randInt(minA, maxA);
-          if (a < b) a = randInt(b, maxA);
-          const q = Math.floor(a / b);
-          const r = a % b;
-          return { a, b, q, r };
+          // セーフガード: 条件を満たす組を探索してから返す
+          for (let fallbackTries = 0; fallbackTries < 400; fallbackTries++) {
+            const b = generateByDigits(divisorDigits, true);
+            const qMin = Math.max(2, Math.ceil((minA - (b - 1)) / b));
+            const qMax = Math.floor((maxA - 1) / b);
+            if (qMin > qMax) continue;
+            const q = randInt(qMin, qMax);
+            const rLower = Math.max(1, minA - b * q);
+            const rUpper = Math.min(b - 1, maxA - b * q);
+            if (rLower > rUpper) continue;
+            const r = randInt(rLower, rUpper);
+            const a = b * q + r;
+            if (a >= minA && a <= maxA) {
+              return { a, b, q, r };
+            }
+          }
+          // ここまで到達することは極めて稀だが、最後の保険として範囲内を走査して生成
+          const minB = Math.max(2, Math.pow(10, Math.max(0, divisorDigits - 1)));
+          const maxB = Math.pow(10, divisorDigits) - 1;
+          for (let b = minB; b <= maxB; b++) {
+            const baseA = 2 * b + 1; // 商=2, 余り=1のパターン
+            if (baseA < minA || baseA > maxA) continue;
+            return { a: baseA, b, q: 2, r: 1 };
+          }
+          throw new Error('余りありの問題を生成できませんでした。');
         }
       }
 
