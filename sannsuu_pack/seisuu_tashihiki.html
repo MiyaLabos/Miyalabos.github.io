@@ -342,8 +342,21 @@
         const { aDigits, bDigits, count, op, allowCarry, allowBorrow } = res.config;
 
         const problems = [];
+        let modeQueue = null;
+        if (op === 'mix') {
+          const addCount = Math.ceil(count / 2);
+          const subCount = count - addCount;
+          modeQueue = new Array(addCount).fill('add').concat(new Array(subCount).fill('sub'));
+          for (let i = modeQueue.length - 1; i > 0; i--) {
+            const j = randInt(0, i);
+            const tmp = modeQueue[i];
+            modeQueue[i] = modeQueue[j];
+            modeQueue[j] = tmp;
+          }
+        }
         for (let i = 0; i < count; i++) {
-          problems.push(createOneProblem(aDigits, bDigits, allowCarry, allowBorrow, op));
+          const currentMode = (op === 'mix' && modeQueue) ? modeQueue[i] : op;
+          problems.push(createOneProblem(aDigits, bDigits, allowCarry, allowBorrow, currentMode));
         }
 
         renderMeta({ aDigits, bDigits, count, op, allowCarry, allowBorrow });
