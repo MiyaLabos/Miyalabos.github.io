@@ -218,6 +218,8 @@
           return { ok:false, message:'xの範囲は-50〜50で、最小値は最大値以下にしてください。' };
         if (!allowNegative && xMin < 0)
           return { ok:false, message:'負の数を含めない設定では、xの最小値は0以上にしてください。' };
+        if (!allowNegative && aMin === 1 && aMax === 1 && bMax === 0)
+          return { ok:false, message:'この設定では a=1, b=0 しか生成できません。他の値を指定してください。' };
 
         return { ok:true, config: { aMin, aMax, bMax, xMin, xMax, allowNegative, count } };
       }
@@ -225,22 +227,26 @@
       // 問題1件を生成（整数解を必ず作る）
       function createOneProblem(cfg) {
         const { aMin, aMax, bMax, xMin, xMax, allowNegative } = cfg;
-        const aAbs = randInt(aMin, aMax);
-        const aSign = allowNegative ? (Math.random() < 0.5 ? -1 : 1) : 1;
-        const a = aAbs * aSign; // a≠0
+        while (true) {
+          const aAbs = randInt(aMin, aMax);
+          const aSign = allowNegative ? (Math.random() < 0.5 ? -1 : 1) : 1;
+          const a = aAbs * aSign; // a≠0
 
-        // xは指定範囲の整数
-        const x = randInt(xMin, xMax);
+          // xは指定範囲の整数
+          const x = randInt(xMin, xMax);
 
-        // bは絶対値0〜bMax、符号は設定に従う
-        const bAbs = randInt(0, bMax);
-        const bSign = allowNegative ? (Math.random() < 0.5 ? -1 : 1) : 1;
-        const b = bAbs * bSign;
+          // bは絶対値0〜bMax、符号は設定に従う
+          const bAbs = randInt(0, bMax);
+          const bSign = allowNegative ? (Math.random() < 0.5 ? -1 : 1) : 1;
+          const b = bAbs * bSign;
 
-        // cは ax + b
-        const c = a * x + b;
+          if (a === 1 && b === 0) continue; // a=1, b=0 の組合せは避ける
 
-        return { a, b, c, x };
+          // cは ax + b
+          const c = a * x + b;
+
+          return { a, b, c, x };
+        }
       }
 
       // 一括生成
