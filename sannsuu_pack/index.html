@@ -37,6 +37,7 @@
       <button type="button" class="tab" data-target="seisuu-kakezan" aria-selected="false">かけ算</button>
       <button type="button" class="tab" data-target="seisuu-tasihiki" aria-selected="false">たし算・ひき算</button>
       <button type="button" class="tab" data-target="warizan" aria-selected="false">わり算</button>
+      <button type="button" class="tab" data-target="shishagonyuu" aria-selected="false">四捨五入</button>
     </nav>
     <main class="frame-wrap" aria-label="コンテンツ">
       <iframe src="syousuu_kakeru.html" title="小数のかけ算" class="tool active" id="frame-kakeru"></iframe>
@@ -47,6 +48,7 @@
       <iframe src="seisuu_kakezan.html" title="かけ算" class="tool" id="frame-seisuu-kakezan"></iframe>
       <iframe src="seisuu_tashihiki.html" title="たし算・ひき算" class="tool" id="frame-seisuu-tasihiki"></iframe>
       <iframe src="warizanmaker.html" title="わり算" class="tool" id="frame-warizan"></iframe>
+      <iframe src="shishagonyuu.html" title="四捨五入" class="tool" id="frame-shishagonyuu"></iframe>
     </main>
 
     <script>
@@ -60,7 +62,8 @@
         'bunsuu-kakewari': document.getElementById('frame-bunsuu-kakewari'),
         'seisuu-kakezan': document.getElementById('frame-seisuu-kakezan'),
         'seisuu-tasihiki': document.getElementById('frame-seisuu-tasihiki'),
-        warizan: document.getElementById('frame-warizan')
+        warizan: document.getElementById('frame-warizan'),
+        shishagonyuu: document.getElementById('frame-shishagonyuu')
       };
       function activate(name) {
         // ボタンの状態
