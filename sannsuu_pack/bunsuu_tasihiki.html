@@ -203,6 +203,14 @@
         return Math.floor(Math.random() * (b - a + 1)) + a;
       }
 
+      function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+      }
+
       // 最大公約数（BigInt版）
       function gcd(a, b) {
         a = BigInt(a); b = BigInt(b);
@@ -282,12 +290,12 @@
       }
 
       // 問題1件を生成
-      function createOneProblem(cfg, mode) {
+      function createOneProblem(cfg, mode, forcedOp) {
         const A = generateFraction(cfg.aNumMin, cfg.aNumMax, cfg.aDenMin, cfg.aDenMax, cfg.allowImproper);
         const B = generateFraction(cfg.bNumMin, cfg.bNumMax, cfg.bDenMin, cfg.bDenMax, cfg.allowImproper);
 
         // 混合ならランダム
-        let op = mode;
+        let op = forcedOp || mode;
         if (op === 'mix') op = (Math.random() < 0.5 ? 'add' : 'sub');
 
         let An = A.n, Ad = A.d, Bn = B.n, Bd = B.d;
@@ -331,8 +339,25 @@
           return;
         }
         const cfg = res.config;
+        if (cfg.op === 'mix' && cfg.count % 2 !== 0) {
+          msg.textContent = '混合（＋/−）では問題数を偶数に設定してください。';
+          renderMeta(null);
+          clearLists();
+          return;
+        }
         const problems = [];
-        for (let i = 0; i < cfg.count; i++) problems.push(createOneProblem(cfg, cfg.op));
+        const operations = [];
+        if (cfg.op === 'mix') {
+          const half = cfg.count / 2;
+          for (let i = 0; i < half; i++) {
+            operations.push('add');
+            operations.push('sub');
+          }
+          shuffle(operations);
+        } else {
+          for (let i = 0; i < cfg.count; i++) operations.push(cfg.op);
+        }
+        for (let i = 0; i < cfg.count; i++) problems.push(createOneProblem(cfg, cfg.op, operations[i]));
 
         renderMeta(cfg);
         document.body.classList.remove('count-10','count-20');
