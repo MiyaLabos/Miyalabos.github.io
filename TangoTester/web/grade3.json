@@ -1,0 +1,607 @@
+{
+  "grade": "3",
+  "source_pdf": "Tangolist/英検３級頻出英単語リスト.pdf",
+  "word_count": 100,
+  "entries": [
+    {
+      "number": 1,
+      "word": "absent",
+      "pos": "形",
+      "meaning": "不在で，欠席で"
+    },
+    {
+      "number": 2,
+      "word": "accident",
+      "pos": "名",
+      "meaning": "事故，思いがけないできごと"
+    },
+    {
+      "number": 3,
+      "word": "adult",
+      "pos": "名",
+      "meaning": "おとな"
+    },
+    {
+      "number": 4,
+      "word": "allow",
+      "pos": "動",
+      "meaning": "許す"
+    },
+    {
+      "number": 5,
+      "word": "athlete",
+      "pos": "名",
+      "meaning": "運動選手，スポーツ選手"
+    },
+    {
+      "number": 6,
+      "word": "aquarium",
+      "pos": "名",
+      "meaning": "水族館"
+    },
+    {
+      "number": 7,
+      "word": "bake",
+      "pos": "動",
+      "meaning": "（オーブンで）焼く"
+    },
+    {
+      "number": 8,
+      "word": "barbecue",
+      "pos": "名",
+      "meaning": "バーベキュー"
+    },
+    {
+      "number": 9,
+      "word": "boring",
+      "pos": "形",
+      "meaning": "退屈な，つまらない"
+    },
+    {
+      "number": 10,
+      "word": "business",
+      "pos": "名",
+      "meaning": "仕事，職業，商売"
+    },
+    {
+      "number": 11,
+      "word": "capital",
+      "pos": "名",
+      "meaning": "首都，大文字"
+    },
+    {
+      "number": 12,
+      "word": "celebrate",
+      "pos": "動",
+      "meaning": "祝う"
+    },
+    {
+      "number": 13,
+      "word": "cellphone",
+      "pos": "名",
+      "meaning": "携帯電話"
+    },
+    {
+      "number": 14,
+      "word": "ceremony",
+      "pos": "名",
+      "meaning": "儀式"
+    },
+    {
+      "number": 15,
+      "word": "cheap",
+      "pos": "形",
+      "meaning": "安い"
+    },
+    {
+      "number": 16,
+      "word": "cheer",
+      "pos": "動",
+      "meaning": "元気づける，声援を送る"
+    },
+    {
+      "number": 17,
+      "word": "clever",
+      "pos": "形",
+      "meaning": "りこうな，頭のよい"
+    },
+    {
+      "number": 18,
+      "word": "clothes",
+      "pos": "名",
+      "meaning": "衣服"
+    },
+    {
+      "number": 19,
+      "word": "common",
+      "pos": "形",
+      "meaning": "ふつうの，共通の （金が）かかる，"
+    },
+    {
+      "number": 20,
+      "word": "cost",
+      "pos": "動",
+      "meaning": "（値段が）～である"
+    },
+    {
+      "number": 21,
+      "word": "costume",
+      "pos": "名",
+      "meaning": "服装，衣装"
+    },
+    {
+      "number": 22,
+      "word": "cross",
+      "pos": "動",
+      "meaning": "横切る，わたる"
+    },
+    {
+      "number": 23,
+      "word": "crowded",
+      "pos": "形",
+      "meaning": "こみ合った，混雑した"
+    },
+    {
+      "number": 24,
+      "word": "customer",
+      "pos": "名",
+      "meaning": "客，顧客 配達する，届ける，"
+    },
+    {
+      "number": 25,
+      "word": "deliver",
+      "pos": "動",
+      "meaning": "（演説などを）する"
+    },
+    {
+      "number": 26,
+      "word": "destroy",
+      "pos": "動",
+      "meaning": "破壊する，だめにする"
+    },
+    {
+      "number": 27,
+      "word": "difference",
+      "pos": "名",
+      "meaning": "ちがい"
+    },
+    {
+      "number": 28,
+      "word": "discount",
+      "pos": "名",
+      "meaning": "割引，値引き"
+    },
+    {
+      "number": 29,
+      "word": "doughnut",
+      "pos": "名",
+      "meaning": "ドーナツ"
+    },
+    {
+      "number": 30,
+      "word": "entrance",
+      "pos": "名",
+      "meaning": "入口，玄関"
+    },
+    {
+      "number": 31,
+      "word": "environment",
+      "pos": "名",
+      "meaning": "環境"
+    },
+    {
+      "number": 32,
+      "word": "excellent",
+      "pos": "形",
+      "meaning": "すぐれた，すばらしい，優秀な"
+    },
+    {
+      "number": 33,
+      "word": "exchange",
+      "pos": "動",
+      "meaning": "交換する，両替する"
+    },
+    {
+      "number": 34,
+      "word": "exercise",
+      "pos": "名",
+      "meaning": "運動，練習"
+    },
+    {
+      "number": 35,
+      "word": "expect",
+      "pos": "動",
+      "meaning": "予期する，期待する"
+    },
+    {
+      "number": 36,
+      "word": "explain",
+      "pos": "動",
+      "meaning": "説明する"
+    },
+    {
+      "number": 37,
+      "word": "fact",
+      "pos": "名",
+      "meaning": "事実，現実"
+    },
+    {
+      "number": 38,
+      "word": "factory",
+      "pos": "名",
+      "meaning": "工場"
+    },
+    {
+      "number": 39,
+      "word": "fair",
+      "pos": "形",
+      "meaning": "公平な，適正な よく知られた，精通している，"
+    },
+    {
+      "number": 40,
+      "word": "familiar",
+      "pos": "形",
+      "meaning": "親しい"
+    },
+    {
+      "number": 41,
+      "word": "forest",
+      "pos": "名",
+      "meaning": "森，森林，山林"
+    },
+    {
+      "number": 42,
+      "word": "fresh",
+      "pos": "形",
+      "meaning": "新鮮な，さわやかな"
+    },
+    {
+      "number": 43,
+      "word": "fridge",
+      "pos": "名",
+      "meaning": "冷蔵庫"
+    },
+    {
+      "number": 44,
+      "word": "garbage",
+      "pos": "名",
+      "meaning": "生ごみ，ごみ"
+    },
+    {
+      "number": 45,
+      "word": "government",
+      "pos": "名",
+      "meaning": "政府，政治"
+    },
+    {
+      "number": 46,
+      "word": "graduate",
+      "pos": "動",
+      "meaning": "卒業する"
+    },
+    {
+      "number": 47,
+      "word": "habit",
+      "pos": "名",
+      "meaning": "（個人の）習慣，くせ"
+    },
+    {
+      "number": 48,
+      "word": "healthy",
+      "pos": "形",
+      "meaning": "健康な"
+    },
+    {
+      "number": 49,
+      "word": "height",
+      "pos": "名",
+      "meaning": "高さ，身長"
+    },
+    {
+      "number": 50,
+      "word": "hurt",
+      "pos": "動",
+      "meaning": "傷つける，けがをさせる"
+    },
+    {
+      "number": 51,
+      "word": "imagine",
+      "pos": "動",
+      "meaning": "想像する"
+    },
+    {
+      "number": 52,
+      "word": "influence",
+      "pos": "動",
+      "meaning": "影響を与える"
+    },
+    {
+      "number": 53,
+      "word": "insect",
+      "pos": "名",
+      "meaning": "昆虫"
+    },
+    {
+      "number": 54,
+      "word": "instead",
+      "pos": "副",
+      "meaning": "その代わりに"
+    },
+    {
+      "number": 55,
+      "word": "invent",
+      "pos": "動",
+      "meaning": "発明する，考案する"
+    },
+    {
+      "number": 56,
+      "word": "knock",
+      "pos": "動",
+      "meaning": "ノックする，ぶつける"
+    },
+    {
+      "number": 57,
+      "word": "lend",
+      "pos": "動",
+      "meaning": "貸す"
+    },
+    {
+      "number": 58,
+      "word": "librarian",
+      "pos": "名",
+      "meaning": "図書館員"
+    },
+    {
+      "number": 59,
+      "word": "machine",
+      "pos": "名",
+      "meaning": "機械 経営者，"
+    },
+    {
+      "number": 60,
+      "word": "manager",
+      "pos": "名",
+      "meaning": "（スポーツチームなどの）監督"
+    },
+    {
+      "number": 61,
+      "word": "meal",
+      "pos": "名",
+      "meaning": "食事"
+    },
+    {
+      "number": 62,
+      "word": "moment",
+      "pos": "名",
+      "meaning": "瞬間"
+    },
+    {
+      "number": 63,
+      "word": "narrow",
+      "pos": "形",
+      "meaning": "（幅が）せまい"
+    },
+    {
+      "number": 64,
+      "word": "nature",
+      "pos": "名",
+      "meaning": "自然"
+    },
+    {
+      "number": 65,
+      "word": "notice",
+      "pos": "動",
+      "meaning": "気がつく"
+    },
+    {
+      "number": 66,
+      "word": "overcome",
+      "pos": "動",
+      "meaning": "克服する"
+    },
+    {
+      "number": 67,
+      "word": "pay",
+      "pos": "動",
+      "meaning": "払う，金を払う"
+    },
+    {
+      "number": 68,
+      "word": "perform",
+      "pos": "動",
+      "meaning": "演じる，演奏する，行う"
+    },
+    {
+      "number": 69,
+      "word": "performance",
+      "pos": "名",
+      "meaning": "上演，演技，演奏"
+    },
+    {
+      "number": 70,
+      "word": "pollution",
+      "pos": "名",
+      "meaning": "汚染，公害"
+    },
+    {
+      "number": 71,
+      "word": "possible",
+      "pos": "形",
+      "meaning": "可能な，ありうる"
+    },
+    {
+      "number": 72,
+      "word": "president",
+      "pos": "名",
+      "meaning": "大統領，社長"
+    },
+    {
+      "number": 73,
+      "word": "prize",
+      "pos": "名",
+      "meaning": "賞，賞金，賞品"
+    },
+    {
+      "number": 74,
+      "word": "probably",
+      "pos": "副",
+      "meaning": "たぶん，おそらく"
+    },
+    {
+      "number": 75,
+      "word": "project",
+      "pos": "名",
+      "meaning": "計画，事業"
+    },
+    {
+      "number": 76,
+      "word": "promise",
+      "pos": "名/動",
+      "meaning": "約束 / 約束する"
+    },
+    {
+      "number": 77,
+      "word": "protect",
+      "pos": "動",
+      "meaning": "保護する，守る"
+    },
+    {
+      "number": 78,
+      "word": "public",
+      "pos": "形",
+      "meaning": "公の，公共の"
+    },
+    {
+      "number": 79,
+      "word": "recipe",
+      "pos": "名",
+      "meaning": "レシピ，調理法"
+    },
+    {
+      "number": 80,
+      "word": "repeat",
+      "pos": "動",
+      "meaning": "繰り返して言う，繰り返す"
+    },
+    {
+      "number": 81,
+      "word": "research",
+      "pos": "名/動",
+      "meaning": "調査 / 調査する"
+    },
+    {
+      "number": 82,
+      "word": "restroom",
+      "pos": "名",
+      "meaning": "トイレ，洗面所"
+    },
+    {
+      "number": 83,
+      "word": "scared",
+      "pos": "形",
+      "meaning": "おびえた"
+    },
+    {
+      "number": 84,
+      "word": "scary",
+      "pos": "形",
+      "meaning": "恐ろしい"
+    },
+    {
+      "number": 85,
+      "word": "schedule",
+      "pos": "名",
+      "meaning": "予定（表），スケジュール"
+    },
+    {
+      "number": 86,
+      "word": "secret",
+      "pos": "名",
+      "meaning": "秘密"
+    },
+    {
+      "number": 87,
+      "word": "silent",
+      "pos": "形",
+      "meaning": "静かな，無言の"
+    },
+    {
+      "number": 88,
+      "word": "smart",
+      "pos": "形",
+      "meaning": "りこうな"
+    },
+    {
+      "number": 89,
+      "word": "smell",
+      "pos": "動",
+      "meaning": "においがする"
+    },
+    {
+      "number": 90,
+      "word": "spread",
+      "pos": "動",
+      "meaning": "広がる，広げる"
+    },
+    {
+      "number": 91,
+      "word": "steal",
+      "pos": "動",
+      "meaning": "ぬすむ"
+    },
+    {
+      "number": 92,
+      "word": "suggest",
+      "pos": "動",
+      "meaning": "提案する，それとなく示す"
+    },
+    {
+      "number": 93,
+      "word": "surprise",
+      "pos": "動",
+      "meaning": "おどろかせる"
+    },
+    {
+      "number": 94,
+      "word": "taste",
+      "pos": "動",
+      "meaning": "味わう，味がする"
+    },
+    {
+      "number": 95,
+      "word": "terrible",
+      "pos": "形",
+      "meaning": "ひどい，ひどく悪い"
+    },
+    {
+      "number": 96,
+      "word": "tool",
+      "pos": "名",
+      "meaning": "道具，工具"
+    },
+    {
+      "number": 97,
+      "word": "tradition",
+      "pos": "名",
+      "meaning": "伝統"
+    },
+    {
+      "number": 98,
+      "word": "wallet",
+      "pos": "名",
+      "meaning": "札入れ，さいふ"
+    },
+    {
+      "number": 99,
+      "word": "wild",
+      "pos": "形",
+      "meaning": "野生の，あれはてた"
+    },
+    {
+      "number": 100,
+      "word": "worried",
+      "pos": "形",
+      "meaning": "心配した，不安な"
+    }
+  ]
+}

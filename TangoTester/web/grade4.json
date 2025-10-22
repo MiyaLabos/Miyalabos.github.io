@@ -1,0 +1,607 @@
+{
+  "grade": "4",
+  "source_pdf": "Tangolist/英検４級頻出英単語リスト.pdf",
+  "word_count": 100,
+  "entries": [
+    {
+      "number": 1,
+      "word": "address",
+      "pos": "名",
+      "meaning": "住所，アドレス"
+    },
+    {
+      "number": 2,
+      "word": "angry",
+      "pos": "形",
+      "meaning": "怒った，腹を立てた"
+    },
+    {
+      "number": 3,
+      "word": "answer",
+      "pos": "動",
+      "meaning": "答える どこへでも，（疑問文で）どこかに，"
+    },
+    {
+      "number": 4,
+      "word": "anywhere",
+      "pos": "副",
+      "meaning": "（否定文で）どこにも"
+    },
+    {
+      "number": 5,
+      "word": "apartment",
+      "pos": "名",
+      "meaning": "アパート，マンション"
+    },
+    {
+      "number": 6,
+      "word": "arrive",
+      "pos": "動",
+      "meaning": "到着する，着く"
+    },
+    {
+      "number": 7,
+      "word": "artist",
+      "pos": "名",
+      "meaning": "芸術家"
+    },
+    {
+      "number": 8,
+      "word": "because",
+      "pos": "接",
+      "meaning": "～だから，なぜなら"
+    },
+    {
+      "number": 9,
+      "word": "between",
+      "pos": "前",
+      "meaning": "（２つ）の間に"
+    },
+    {
+      "number": 10,
+      "word": "borrow",
+      "pos": "動",
+      "meaning": "（無料で）借りる"
+    },
+    {
+      "number": 11,
+      "word": "building",
+      "pos": "名",
+      "meaning": "建物，ビル"
+    },
+    {
+      "number": 12,
+      "word": "camping",
+      "pos": "名",
+      "meaning": "キャンプ（すること）"
+    },
+    {
+      "number": 13,
+      "word": "careful",
+      "pos": "形",
+      "meaning": "注意深い"
+    },
+    {
+      "number": 14,
+      "word": "City Hall",
+      "pos": "名",
+      "meaning": "市役所"
+    },
+    {
+      "number": 15,
+      "word": "collect",
+      "pos": "動",
+      "meaning": "集める"
+    },
+    {
+      "number": 16,
+      "word": "company",
+      "pos": "名",
+      "meaning": "会社"
+    },
+    {
+      "number": 17,
+      "word": "contest",
+      "pos": "名",
+      "meaning": "コンテスト，競技会"
+    },
+    {
+      "number": 18,
+      "word": "cookbook",
+      "pos": "名",
+      "meaning": "料理の本"
+    },
+    {
+      "number": 19,
+      "word": "cooking",
+      "pos": "名",
+      "meaning": "料理（すること）"
+    },
+    {
+      "number": 20,
+      "word": "cycling",
+      "pos": "名",
+      "meaning": "サイクリング"
+    },
+    {
+      "number": 21,
+      "word": "dentist",
+      "pos": "名",
+      "meaning": "歯医者"
+    },
+    {
+      "number": 22,
+      "word": "dirty",
+      "pos": "形",
+      "meaning": "きたない，よごれた"
+    },
+    {
+      "number": 23,
+      "word": "drama",
+      "pos": "名",
+      "meaning": "劇，ドラマ"
+    },
+    {
+      "number": 24,
+      "word": "draw",
+      "pos": "動",
+      "meaning": "描く，（線を）引く"
+    },
+    {
+      "number": 25,
+      "word": "dress",
+      "pos": "名",
+      "meaning": "ドレス"
+    },
+    {
+      "number": 26,
+      "word": "during",
+      "pos": "前",
+      "meaning": "（特定の期間）の間に"
+    },
+    {
+      "number": 27,
+      "word": "elementary school",
+      "pos": "名",
+      "meaning": "小学校"
+    },
+    {
+      "number": 28,
+      "word": "event",
+      "pos": "名",
+      "meaning": "できごと，行事"
+    },
+    {
+      "number": 29,
+      "word": "expensive",
+      "pos": "形",
+      "meaning": "高価な，高い"
+    },
+    {
+      "number": 30,
+      "word": "fishing",
+      "pos": "名",
+      "meaning": "魚つり"
+    },
+    {
+      "number": 31,
+      "word": "front",
+      "pos": "名",
+      "meaning": "前，前面"
+    },
+    {
+      "number": 32,
+      "word": "full",
+      "pos": "形",
+      "meaning": "いっぱいの"
+    },
+    {
+      "number": 33,
+      "word": "grade",
+      "pos": "名",
+      "meaning": "学年"
+    },
+    {
+      "number": 34,
+      "word": "grandparent",
+      "pos": "名",
+      "meaning": "祖父，祖母，（複数形で）祖父母"
+    },
+    {
+      "number": 35,
+      "word": "group",
+      "pos": "名",
+      "meaning": "グループ，集団"
+    },
+    {
+      "number": 36,
+      "word": "haircut",
+      "pos": "名",
+      "meaning": "散髪，ヘアカット"
+    },
+    {
+      "number": 37,
+      "word": "half",
+      "pos": "名",
+      "meaning": "半分"
+    },
+    {
+      "number": 38,
+      "word": "happen",
+      "pos": "動",
+      "meaning": "起こる"
+    },
+    {
+      "number": 39,
+      "word": "heavy",
+      "pos": "形",
+      "meaning": "重い"
+    },
+    {
+      "number": 40,
+      "word": "hobby",
+      "pos": "名",
+      "meaning": "趣味"
+    },
+    {
+      "number": 41,
+      "word": "hometown",
+      "pos": "名",
+      "meaning": "故郷"
+    },
+    {
+      "number": 42,
+      "word": "husband",
+      "pos": "名",
+      "meaning": "夫"
+    },
+    {
+      "number": 43,
+      "word": "inside",
+      "pos": "副",
+      "meaning": "内側に［へ］"
+    },
+    {
+      "number": 44,
+      "word": "instrument",
+      "pos": "名",
+      "meaning": "楽器，道具，器具"
+    },
+    {
+      "number": 45,
+      "word": "invite",
+      "pos": "動",
+      "meaning": "招く，招待する"
+    },
+    {
+      "number": 46,
+      "word": "low",
+      "pos": "形",
+      "meaning": "低い"
+    },
+    {
+      "number": 47,
+      "word": "luck",
+      "pos": "名",
+      "meaning": "運，幸運"
+    },
+    {
+      "number": 48,
+      "word": "lucky",
+      "pos": "形",
+      "meaning": "運のよい"
+    },
+    {
+      "number": 49,
+      "word": "mailbox",
+      "pos": "名",
+      "meaning": "郵便ポスト，郵便受け"
+    },
+    {
+      "number": 50,
+      "word": "medium",
+      "pos": "形",
+      "meaning": "（サイズ・量などが）中ぐらいの"
+    },
+    {
+      "number": 51,
+      "word": "musical",
+      "pos": "名",
+      "meaning": "ミュージカル"
+    },
+    {
+      "number": 52,
+      "word": "myself",
+      "pos": "代",
+      "meaning": "私自身，私自身を［に］"
+    },
+    {
+      "number": 53,
+      "word": "outside",
+      "pos": "副",
+      "meaning": "外で，外側へ［に，で］"
+    },
+    {
+      "number": 54,
+      "word": "painting",
+      "pos": "名",
+      "meaning": "絵，絵を描くこと"
+    },
+    {
+      "number": 55,
+      "word": "parade",
+      "pos": "名",
+      "meaning": "パレード，行列"
+    },
+    {
+      "number": 56,
+      "word": "parent",
+      "pos": "名",
+      "meaning": "親，（複数形で）両親"
+    },
+    {
+      "number": 57,
+      "word": "passport",
+      "pos": "名",
+      "meaning": "パスポート"
+    },
+    {
+      "number": 58,
+      "word": "picnic",
+      "pos": "名",
+      "meaning": "ピクニック"
+    },
+    {
+      "number": 59,
+      "word": "post office",
+      "pos": "名",
+      "meaning": "郵便局"
+    },
+    {
+      "number": 60,
+      "word": "price",
+      "pos": "名",
+      "meaning": "値段，価格，代償"
+    },
+    {
+      "number": 61,
+      "word": "professional",
+      "pos": "形",
+      "meaning": "プロの"
+    },
+    {
+      "number": 62,
+      "word": "quickly",
+      "pos": "副",
+      "meaning": "速く，すぐに，急いで"
+    },
+    {
+      "number": 63,
+      "word": "record",
+      "pos": "名",
+      "meaning": "記録，レコード"
+    },
+    {
+      "number": 64,
+      "word": "report",
+      "pos": "名",
+      "meaning": "レポート，報告"
+    },
+    {
+      "number": 65,
+      "word": "rich",
+      "pos": "形",
+      "meaning": "金持ちの，豊かな"
+    },
+    {
+      "number": 66,
+      "word": "ride",
+      "pos": "動",
+      "meaning": "乗る"
+    },
+    {
+      "number": 67,
+      "word": "ring",
+      "pos": "動",
+      "meaning": "（電話などが）鳴る"
+    },
+    {
+      "number": 68,
+      "word": "safe",
+      "pos": "形",
+      "meaning": "安全な"
+    },
+    {
+      "number": 69,
+      "word": "sale",
+      "pos": "名",
+      "meaning": "販売，売上高，特売"
+    },
+    {
+      "number": 70,
+      "word": "salesclerk",
+      "pos": "名",
+      "meaning": "店員"
+    },
+    {
+      "number": 71,
+      "word": "same",
+      "pos": "形",
+      "meaning": "同じ"
+    },
+    {
+      "number": 72,
+      "word": "schoolyard",
+      "pos": "名",
+      "meaning": "校庭，運動場"
+    },
+    {
+      "number": 73,
+      "word": "scientist",
+      "pos": "名",
+      "meaning": "科学者"
+    },
+    {
+      "number": 74,
+      "word": "sell",
+      "pos": "動",
+      "meaning": "売る"
+    },
+    {
+      "number": 75,
+      "word": "send",
+      "pos": "動",
+      "meaning": "送る"
+    },
+    {
+      "number": 76,
+      "word": "simple",
+      "pos": "形",
+      "meaning": "簡単な，単純な"
+    },
+    {
+      "number": 77,
+      "word": "slowly",
+      "pos": "副",
+      "meaning": "ゆっくり，遅く"
+    },
+    {
+      "number": 78,
+      "word": "snack",
+      "pos": "名",
+      "meaning": "軽食，おやつ"
+    },
+    {
+      "number": 79,
+      "word": "social",
+      "pos": "形",
+      "meaning": "社会の，社交の"
+    },
+    {
+      "number": 80,
+      "word": "someday",
+      "pos": "副",
+      "meaning": "（未来の）いつか"
+    },
+    {
+      "number": 81,
+      "word": "sometime",
+      "pos": "副",
+      "meaning": "いつか，そのうち"
+    },
+    {
+      "number": 82,
+      "word": "speech",
+      "pos": "名",
+      "meaning": "演説，スピーチ"
+    },
+    {
+      "number": 83,
+      "word": "stamp",
+      "pos": "名",
+      "meaning": "切手，刻印"
+    },
+    {
+      "number": 84,
+      "word": "step",
+      "pos": "名",
+      "meaning": "歩み，１歩，１段"
+    },
+    {
+      "number": 85,
+      "word": "strong",
+      "pos": "形",
+      "meaning": "強い"
+    },
+    {
+      "number": 86,
+      "word": "subway",
+      "pos": "名",
+      "meaning": "地下鉄"
+    },
+    {
+      "number": 87,
+      "word": "sweater",
+      "pos": "名",
+      "meaning": "セーター"
+    },
+    {
+      "number": 88,
+      "word": "title",
+      "pos": "名",
+      "meaning": "題，題名，タイトル"
+    },
+    {
+      "number": 89,
+      "word": "tonight",
+      "pos": "副",
+      "meaning": "今夜（は）"
+    },
+    {
+      "number": 90,
+      "word": "toothbrush",
+      "pos": "名",
+      "meaning": "歯ブラシ"
+    },
+    {
+      "number": 91,
+      "word": "top",
+      "pos": "名",
+      "meaning": "頂上，首位"
+    },
+    {
+      "number": 92,
+      "word": "trumpet",
+      "pos": "名",
+      "meaning": "トランペット"
+    },
+    {
+      "number": 93,
+      "word": "twice",
+      "pos": "副",
+      "meaning": "２度，２回，２倍 ふたごの一方，"
+    },
+    {
+      "number": 94,
+      "word": "twin",
+      "pos": "名",
+      "meaning": "（複数形で）ふたご"
+    },
+    {
+      "number": 95,
+      "word": "usual",
+      "pos": "形",
+      "meaning": "いつもの，平常の"
+    },
+    {
+      "number": 96,
+      "word": "vegetable",
+      "pos": "名",
+      "meaning": "野菜"
+    },
+    {
+      "number": 97,
+      "word": "wake",
+      "pos": "動",
+      "meaning": "目を覚ます，目を覚まさせる"
+    },
+    {
+      "number": 98,
+      "word": "wife",
+      "pos": "名",
+      "meaning": "妻"
+    },
+    {
+      "number": 99,
+      "word": "writer",
+      "pos": "名",
+      "meaning": "作家"
+    },
+    {
+      "number": 100,
+      "word": "wrong",
+      "pos": "形",
+      "meaning": "間違った，調子が悪い"
+    }
+  ]
+}

@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>英検単語テストジェネレーター</title>
+    <style>
+        :root {
+            color-scheme: light;
+            font-family: 'Yu Gothic', 'Hiragino Kaku Gothic ProN', sans-serif;
+        }
+
+        @page {
+            size: A4 portrait;
+            margin: 12mm;
+        }
+
+        body {
+            margin: 24px;
+            background-color: #fafafa;
+            color: #1a1a1a;
+        }
+
+        h1 {
+            margin: 0 0 12px;
+            font-size: 24px;
+        }
+
+        h2 {
+            margin: 16px 0 8px;
+            font-size: 18px;
+        }
+
+        .panel {
+            background-color: #fff;
+            border: 1px solid #d9d9d9;
+            border-radius: 8px;
+            padding: 20px;
+            max-width: 840px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .panel + .panel {
+            margin-top: 24px;
+        }
+
+        .control-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        label {
+            display: flex;
+            flex-direction: column;
+            font-size: 14px;
+        }
+
+        select,
+        input[type="number"],
+        input[type="text"] {
+            margin-top: 4px;
+            padding: 6px 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            min-width: 120px;
+        }
+
+        button {
+            padding: 10px 18px;
+            font-size: 16px;
+            background-color: #2952ff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        button:hover:not(:disabled) {
+            background-color: #1b39b8;
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .status {
+            font-size: 14px;
+            color: #444;
+            min-height: 20px;
+            margin-top: 8px;
+        }
+
+        .error {
+            color: #d2312d;
+        }
+
+        .tests-wrapper {
+            display: grid;
+            gap: 24px;
+        }
+
+        .test-card {
+            border: 1px solid #d9d9d9;
+            border-radius: 8px;
+            padding: 20px;
+            background-color: #fff;
+            page-break-inside: avoid;
+        }
+
+        .test-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 12px;
+        }
+
+        .test-title {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .test-meta {
+            margin: 0;
+            font-size: 14px;
+            color: #666;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        th,
+        td {
+            border: 1px solid #888;
+            padding: 6px 8px;
+            text-align: left;
+            font-size: 13px;
+            vertical-align: top;
+            line-height: 1.35;
+        }
+
+        th {
+            background-color: #f3f3f3;
+        }
+
+        .question {
+            font-size: 14px;
+        }
+
+        .blank {
+            color: #999;
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        @media print {
+            html,
+            body {
+                margin: 0;
+                background-color: #fff;
+            }
+
+            body {
+                margin: 0;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+
+            .panel,
+            .test-card {
+                box-shadow: none;
+                border-radius: 0;
+                border-width: 1px;
+                padding: 12px 14px;
+            }
+
+            .tests-wrapper {
+                gap: 12px;
+            }
+
+            .test-card {
+                page-break-after: always;
+            }
+
+            .test-card:last-child {
+                page-break-after: auto;
+            }
+
+            th,
+            td {
+                font-size: 12px;
+                padding: 4px 5px;
+                line-height: 1.25;
+            }
+
+            tbody tr {
+                height: 11.5mm;
+            }
+
+            .question {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="panel no-print">
+        <h1>英検単語テストジェネレーター</h1>
+        <p>
+            Tangolist のPDFから抽出した単語データを利用し、英語→日本語・日本語→英語のテストを同時に作成します。
+        </p>
+        <form id="control-panel">
+            <div class="control-row">
+                <label>対象級
+                    <select id="grade-select" required>
+                        <option value="3">英検3級</option>
+                        <option value="4">英検4級</option>
+                        <option value="5" selected>英検5級</option>
+                    </select>
+                </label>
+                <label>出題数
+                    <select id="count-select" required>
+                        <option value="10">10問</option>
+                        <option value="20">20問</option>
+                    </select>
+                </label>
+                <label>乱数シード（任意）
+                    <input id="seed-input" type="text" placeholder="例: 202401" />
+                </label>
+            </div>
+            <div class="actions">
+                <button id="generate-button" type="button">テストを作成する</button>
+                <button id="print-button" type="button">印刷</button>
+            </div>
+            <div id="status" class="status"></div>
+        </form>
+    </div>
+
+    <div id="results" class="panel tests-wrapper" hidden>
+        <article class="test-card" id="card-en-ja">
+            <div class="test-header">
+                <h2 class="test-title"></h2>
+                <p class="test-meta"></p>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>英単語</th>
+                        <th>意味欄</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </article>
+
+        <article class="test-card" id="card-ja-en">
+            <div class="test-header">
+                <h2 class="test-title"></h2>
+                <p class="test-meta"></p>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>日本語</th>
+                        <th>英語欄</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </article>
+    </div>
+
+    <script>
+        const gradeSelect = document.getElementById('grade-select');
+        const countSelect = document.getElementById('count-select');
+        const seedInput = document.getElementById('seed-input');
+        const generateButton = document.getElementById('generate-button');
+        const printButton = document.getElementById('print-button');
+        const statusEl = document.getElementById('status');
+        const resultsEl = document.getElementById('results');
+
+        const cardEnJa = document.getElementById('card-en-ja');
+        const cardJaEn = document.getElementById('card-ja-en');
+
+        const dataCache = new Map();
+
+        printButton.addEventListener('click', () => {
+            if (resultsEl.hidden) {
+                statusEl.textContent = '先にテストを作成してください。';
+                statusEl.classList.add('error');
+                return;
+            }
+            window.print();
+        });
+
+        generateButton.addEventListener('click', async () => {
+            const grade = gradeSelect.value;
+            const count = Number.parseInt(countSelect.value, 10);
+            const seedText = seedInput.value.trim();
+
+            statusEl.textContent = 'データを読み込んでいます…';
+            statusEl.classList.remove('error');
+            generateButton.disabled = true;
+
+            try {
+                const dataset = await loadGradeData(grade);
+
+                if (!dataset || !Array.isArray(dataset.entries)) {
+                    throw new Error('単語データの形式が不正です。');
+                }
+
+                if (dataset.entries.length < count) {
+                    throw new Error('出題数よりも単語数が少ないため作成できません。');
+                }
+
+                const seedValue = seedText === '' ? null : deriveSeed(seedText);
+                const picked = pickEntries(dataset.entries, count, seedValue);
+
+                renderTests({ dataset, picked, count, seedValue });
+
+                const seedDisplay = seedValue === null ? 'ランダム' : `シード: ${seedText}`;
+                statusEl.textContent = `英検${grade}級／${count}問／${seedDisplay} で作成しました。`;
+
+                resultsEl.hidden = false;
+            } catch (error) {
+                console.error(error);
+                statusEl.textContent = `エラー: ${error.message}`;
+                statusEl.classList.add('error');
+            } finally {
+                generateButton.disabled = false;
+            }
+        });
+
+        async function loadGradeData(grade) {
+            if (dataCache.has(grade)) {
+                return dataCache.get(grade);
+            }
+
+            const response = await fetch(`grade${grade}.json`, { cache: 'no-store' });
+            if (!response.ok) {
+                throw new Error(`grade${grade}.json を読み込めませんでした。`);
+            }
+
+            const payload = await response.json();
+            dataCache.set(grade, payload);
+            return payload;
+        }
+
+        function deriveSeed(text) {
+            const numeric = Number.parseInt(text, 10);
+            if (!Number.isNaN(numeric)) {
+                return numeric >>> 0;
+            }
+
+            let hash = 0;
+            for (let i = 0; i < text.length; i += 1) {
+                hash = (hash * 31 + text.charCodeAt(i)) >>> 0;
+            }
+            return hash;
+        }
+
+        function pickEntries(entries, count, seedValue) {
+            const source = entries.slice();
+            const randomFn = createRandomSource(seedValue);
+
+            for (let i = source.length - 1; i > 0; i -= 1) {
+                const j = Math.floor(randomFn() * (i + 1));
+                [source[i], source[j]] = [source[j], source[i]];
+            }
+
+            return source.slice(0, count);
+        }
+
+        function createRandomSource(seedValue) {
+            if (seedValue === null) {
+                const crypto = window.crypto || window.msCrypto;
+                return () => {
+                    if (crypto && crypto.getRandomValues) {
+                        const buffer = new Uint32Array(1);
+                        crypto.getRandomValues(buffer);
+                        return buffer[0] / 0xffffffff;
+                    }
+                    return Math.random();
+                };
+            }
+
+            let seed = seedValue >>> 0;
+            return () => {
+                seed = (seed + 0x6d2b79f5) >>> 0;
+                let t = seed;
+                t = Math.imul(t ^ (t >>> 15), t | 1);
+                t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+                return ((t ^ (t >>> 14)) >>> 0) / 0x100000000;
+            };
+        }
+
+        function renderTests({ dataset, picked, count, seedValue }) {
+            const gradeLabel = `英検${dataset.grade}級`;
+            const seedLabel = seedValue === null ? 'シード: 無指定（ランダム）' : `シード: ${seedInput.value.trim()}`;
+
+            renderCard(cardEnJa, {
+                title: `${gradeLabel} 単語テスト（英→日）`,
+                meta: `出題数: ${count}／${seedLabel}`,
+                headers: ['No.', '英単語', '意味欄'],
+                rows: picked.map((entry, index) => [
+                    String(index + 1),
+                    `<span class="question">${escapeHtml(entry.word)}</span>`,
+                    '<div class="blank">意味：</div>',
+                ]),
+            });
+
+            renderCard(cardJaEn, {
+                title: `${gradeLabel} 単語テスト（日→英）`,
+                meta: `出題数: ${count}／${seedLabel}`,
+                headers: ['No.', '日本語', '英語欄'],
+                rows: picked.map((entry, index) => [
+                    String(index + 1),
+                    `<span class="question">${escapeHtml(entry.meaning)}</span>`,
+                    '<div class="blank">英語：</div>',
+                ]),
+            });
+        }
+
+        function renderCard(cardElement, { title, meta, rows }) {
+            const titleEl = cardElement.querySelector('.test-title');
+            const metaEl = cardElement.querySelector('.test-meta');
+            const tbody = cardElement.querySelector('tbody');
+
+            titleEl.textContent = title;
+            metaEl.textContent = meta;
+
+            tbody.innerHTML = rows
+                .map((cols) => `<tr>${cols.map((col) => `<td>${col}</td>`).join('')}</tr>`)
+                .join('');
+        }
+
+        function escapeHtml(text) {
+            return text
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+        }
+    </script>
+</body>
+</html>

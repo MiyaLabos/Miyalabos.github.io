@@ -1,0 +1,607 @@
+{
+  "grade": "5",
+  "source_pdf": "Tangolist/英検５級頻出英単語リスト.pdf",
+  "word_count": 100,
+  "entries": [
+    {
+      "number": 1,
+      "word": "backpack",
+      "pos": "名",
+      "meaning": "リュックサック，バックパック"
+    },
+    {
+      "number": 2,
+      "word": "badminton",
+      "pos": "名",
+      "meaning": "バドミントン"
+    },
+    {
+      "number": 3,
+      "word": "banana",
+      "pos": "名",
+      "meaning": "バナナ"
+    },
+    {
+      "number": 4,
+      "word": "basket",
+      "pos": "名",
+      "meaning": "かご，バスケット"
+    },
+    {
+      "number": 5,
+      "word": "beach",
+      "pos": "名",
+      "meaning": "浜辺"
+    },
+    {
+      "number": 6,
+      "word": "bedroom",
+      "pos": "名",
+      "meaning": "寝室"
+    },
+    {
+      "number": 7,
+      "word": "begin",
+      "pos": "動",
+      "meaning": "始まる，始める"
+    },
+    {
+      "number": 8,
+      "word": "bench",
+      "pos": "名",
+      "meaning": "ベンチ，長いす"
+    },
+    {
+      "number": 9,
+      "word": "bicycle",
+      "pos": "名",
+      "meaning": "自転車"
+    },
+    {
+      "number": 10,
+      "word": "blackboard",
+      "pos": "名",
+      "meaning": "黒板"
+    },
+    {
+      "number": 11,
+      "word": "bookstore",
+      "pos": "名",
+      "meaning": "書店"
+    },
+    {
+      "number": 12,
+      "word": "bus stop",
+      "pos": "名",
+      "meaning": "バス停 （手段）～で，"
+    },
+    {
+      "number": 13,
+      "word": "by",
+      "pos": "前",
+      "meaning": "（場所）～のそばに"
+    },
+    {
+      "number": 14,
+      "word": "calendar",
+      "pos": "名",
+      "meaning": "カレンダー，暦"
+    },
+    {
+      "number": 15,
+      "word": "call",
+      "pos": "動",
+      "meaning": "電話をかける"
+    },
+    {
+      "number": 16,
+      "word": "candy",
+      "pos": "名",
+      "meaning": "キャンディー"
+    },
+    {
+      "number": 17,
+      "word": "carrot",
+      "pos": "名",
+      "meaning": "ニンジン セント"
+    },
+    {
+      "number": 18,
+      "word": "cent",
+      "pos": "名",
+      "meaning": "（アメリカなどの通貨単位）"
+    },
+    {
+      "number": 19,
+      "word": "centimeter",
+      "pos": "名",
+      "meaning": "センチメートル"
+    },
+    {
+      "number": 20,
+      "word": "chocolate",
+      "pos": "名",
+      "meaning": "チョコレート"
+    },
+    {
+      "number": 21,
+      "word": "coat",
+      "pos": "名",
+      "meaning": "（洋服の）コート"
+    },
+    {
+      "number": 22,
+      "word": "coin",
+      "pos": "名",
+      "meaning": "硬貨"
+    },
+    {
+      "number": 23,
+      "word": "comic book",
+      "pos": "名",
+      "meaning": "マンガ本"
+    },
+    {
+      "number": 24,
+      "word": "cucumber",
+      "pos": "名",
+      "meaning": "キュウリ"
+    },
+    {
+      "number": 25,
+      "word": "cut",
+      "pos": "動",
+      "meaning": "切る"
+    },
+    {
+      "number": 26,
+      "word": "dancer",
+      "pos": "名",
+      "meaning": "踊る人，ダンサー"
+    },
+    {
+      "number": 27,
+      "word": "department store",
+      "pos": "名",
+      "meaning": "デパート"
+    },
+    {
+      "number": 28,
+      "word": "dessert",
+      "pos": "名",
+      "meaning": "デザート"
+    },
+    {
+      "number": 29,
+      "word": "diary",
+      "pos": "名",
+      "meaning": "日記"
+    },
+    {
+      "number": 30,
+      "word": "doll",
+      "pos": "名",
+      "meaning": "人形"
+    },
+    {
+      "number": 31,
+      "word": "driver",
+      "pos": "名",
+      "meaning": "運転手，車を運転する人"
+    },
+    {
+      "number": 32,
+      "word": "drum",
+      "pos": "名",
+      "meaning": "ドラム，たいこ"
+    },
+    {
+      "number": 33,
+      "word": "easy",
+      "pos": "形",
+      "meaning": "やさしい，簡単な"
+    },
+    {
+      "number": 34,
+      "word": "eat",
+      "pos": "動",
+      "meaning": "食べる"
+    },
+    {
+      "number": 35,
+      "word": "final",
+      "pos": "形",
+      "meaning": "最後の，最終の"
+    },
+    {
+      "number": 36,
+      "word": "find",
+      "pos": "動",
+      "meaning": "見つける，わかる"
+    },
+    {
+      "number": 37,
+      "word": "fish",
+      "pos": "名",
+      "meaning": "魚"
+    },
+    {
+      "number": 38,
+      "word": "flower",
+      "pos": "名",
+      "meaning": "花"
+    },
+    {
+      "number": 39,
+      "word": "fly",
+      "pos": "動",
+      "meaning": "飛ぶ，飛行機で行く"
+    },
+    {
+      "number": 40,
+      "word": "garden",
+      "pos": "名",
+      "meaning": "庭"
+    },
+    {
+      "number": 41,
+      "word": "glass",
+      "pos": "名",
+      "meaning": "ガラス，コップ 手袋，"
+    },
+    {
+      "number": 42,
+      "word": "glove",
+      "pos": "名",
+      "meaning": "（野球・ボクシングの）グローブ"
+    },
+    {
+      "number": 43,
+      "word": "golf",
+      "pos": "名",
+      "meaning": "ゴルフ"
+    },
+    {
+      "number": 44,
+      "word": "grape",
+      "pos": "名",
+      "meaning": "ブドウ"
+    },
+    {
+      "number": 45,
+      "word": "ground",
+      "pos": "名",
+      "meaning": "地面，土地"
+    },
+    {
+      "number": 46,
+      "word": "hamburger",
+      "pos": "名",
+      "meaning": "ハンバーガー"
+    },
+    {
+      "number": 47,
+      "word": "jam",
+      "pos": "名",
+      "meaning": "ジャム"
+    },
+    {
+      "number": 48,
+      "word": "jump",
+      "pos": "動",
+      "meaning": "跳ぶ，ジャンプする"
+    },
+    {
+      "number": 49,
+      "word": "kilogram",
+      "pos": "名",
+      "meaning": "キログラム"
+    },
+    {
+      "number": 50,
+      "word": "living room",
+      "pos": "名",
+      "meaning": "居間"
+    },
+    {
+      "number": 51,
+      "word": "love",
+      "pos": "動",
+      "meaning": "大好きである，愛する"
+    },
+    {
+      "number": 52,
+      "word": "lunchbox",
+      "pos": "名",
+      "meaning": "弁当箱"
+    },
+    {
+      "number": 53,
+      "word": "lunchtime",
+      "pos": "名",
+      "meaning": "昼食時間"
+    },
+    {
+      "number": 54,
+      "word": "magazine",
+      "pos": "名",
+      "meaning": "雑誌"
+    },
+    {
+      "number": 55,
+      "word": "main",
+      "pos": "形",
+      "meaning": "主な"
+    },
+    {
+      "number": 56,
+      "word": "many",
+      "pos": "形",
+      "meaning": "（数が）たくさんの"
+    },
+    {
+      "number": 57,
+      "word": "meat",
+      "pos": "名",
+      "meaning": "肉"
+    },
+    {
+      "number": 58,
+      "word": "monkey",
+      "pos": "名",
+      "meaning": "サル"
+    },
+    {
+      "number": 59,
+      "word": "museum",
+      "pos": "名",
+      "meaning": "博物館，美術館"
+    },
+    {
+      "number": 60,
+      "word": "news",
+      "pos": "名",
+      "meaning": "ニュース，知らせ"
+    },
+    {
+      "number": 61,
+      "word": "onion",
+      "pos": "名",
+      "meaning": "タマネギ"
+    },
+    {
+      "number": 62,
+      "word": "package",
+      "pos": "名",
+      "meaning": "包み，郵便小包"
+    },
+    {
+      "number": 63,
+      "word": "page",
+      "pos": "名",
+      "meaning": "ページ"
+    },
+    {
+      "number": 64,
+      "word": "paint",
+      "pos": "動",
+      "meaning": "（絵の具で絵を）描く"
+    },
+    {
+      "number": 65,
+      "word": "panda",
+      "pos": "名",
+      "meaning": "パンダ"
+    },
+    {
+      "number": 66,
+      "word": "peach",
+      "pos": "名",
+      "meaning": "モモ"
+    },
+    {
+      "number": 67,
+      "word": "people",
+      "pos": "名",
+      "meaning": "人々，国民"
+    },
+    {
+      "number": 68,
+      "word": "pianist",
+      "pos": "名",
+      "meaning": "ピアニスト"
+    },
+    {
+      "number": 69,
+      "word": "pie",
+      "pos": "名",
+      "meaning": "パイ"
+    },
+    {
+      "number": 70,
+      "word": "postcard",
+      "pos": "名",
+      "meaning": "郵便はがき，絵はがき"
+    },
+    {
+      "number": 71,
+      "word": "poster",
+      "pos": "名",
+      "meaning": "ポスター，びら"
+    },
+    {
+      "number": 72,
+      "word": "potato",
+      "pos": "名",
+      "meaning": "ジャガイモ"
+    },
+    {
+      "number": 73,
+      "word": "pretty",
+      "pos": "形",
+      "meaning": "かわいらしい，きれいな"
+    },
+    {
+      "number": 74,
+      "word": "purple",
+      "pos": "名",
+      "meaning": "紫色"
+    },
+    {
+      "number": 75,
+      "word": "rabbit",
+      "pos": "名",
+      "meaning": "ウサギ"
+    },
+    {
+      "number": 76,
+      "word": "racket",
+      "pos": "名",
+      "meaning": "ラケット"
+    },
+    {
+      "number": 77,
+      "word": "rose",
+      "pos": "名",
+      "meaning": "バラ，バラの花"
+    },
+    {
+      "number": 78,
+      "word": "run",
+      "pos": "動",
+      "meaning": "走る"
+    },
+    {
+      "number": 79,
+      "word": "ship",
+      "pos": "名",
+      "meaning": "船 シャワー，"
+    },
+    {
+      "number": 80,
+      "word": "shower",
+      "pos": "名",
+      "meaning": "シャワーを浴びること"
+    },
+    {
+      "number": 81,
+      "word": "skate",
+      "pos": "動",
+      "meaning": "スケートをする"
+    },
+    {
+      "number": 82,
+      "word": "skirt",
+      "pos": "名",
+      "meaning": "スカート"
+    },
+    {
+      "number": 83,
+      "word": "slow",
+      "pos": "形",
+      "meaning": "遅い"
+    },
+    {
+      "number": 84,
+      "word": "soft",
+      "pos": "形",
+      "meaning": "やわらかい"
+    },
+    {
+      "number": 85,
+      "word": "softball",
+      "pos": "名",
+      "meaning": "ソフトボール"
+    },
+    {
+      "number": 86,
+      "word": "spaghetti",
+      "pos": "名",
+      "meaning": "スパゲッティ"
+    },
+    {
+      "number": 87,
+      "word": "start",
+      "pos": "動",
+      "meaning": "始まる，始める"
+    },
+    {
+      "number": 88,
+      "word": "strawberry",
+      "pos": "名",
+      "meaning": "イチゴ"
+    },
+    {
+      "number": 89,
+      "word": "sugar",
+      "pos": "名",
+      "meaning": "砂糖"
+    },
+    {
+      "number": 90,
+      "word": "sweet",
+      "pos": "形",
+      "meaning": "甘い，美しい"
+    },
+    {
+      "number": 91,
+      "word": "talk",
+      "pos": "動",
+      "meaning": "話す"
+    },
+    {
+      "number": 92,
+      "word": "taxi",
+      "pos": "名",
+      "meaning": "タクシー"
+    },
+    {
+      "number": 93,
+      "word": "theater",
+      "pos": "名",
+      "meaning": "劇場，演劇"
+    },
+    {
+      "number": 94,
+      "word": "ticket",
+      "pos": "名",
+      "meaning": "切符，チケット"
+    },
+    {
+      "number": 95,
+      "word": "tomato",
+      "pos": "名",
+      "meaning": "トマト"
+    },
+    {
+      "number": 96,
+      "word": "tower",
+      "pos": "名",
+      "meaning": "塔，タワー"
+    },
+    {
+      "number": 97,
+      "word": "use",
+      "pos": "動",
+      "meaning": "使う"
+    },
+    {
+      "number": 98,
+      "word": "want",
+      "pos": "動",
+      "meaning": "ほしい"
+    },
+    {
+      "number": 99,
+      "word": "work",
+      "pos": "動",
+      "meaning": "働く，うまくいく"
+    },
+    {
+      "number": 100,
+      "word": "yen",
+      "pos": "名",
+      "meaning": "円（日本の通貨単位）"
+    }
+  ]
+}
