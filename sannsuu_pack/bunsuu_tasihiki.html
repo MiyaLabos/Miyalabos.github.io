@@ -235,6 +235,21 @@
         return `\\frac{${n}}{${d}}`;
       }
 
+      // 分数の大小比較と重複判定用キー
+      function compareFraction(n1, d1, n2, d2) {
+        return n1 * d2 - n2 * d1;
+      }
+
+      function buildProblemKey(op, An, Ad, Bn, Bd) {
+        let aN = An, aD = Ad, bN = Bn, bD = Bd;
+        if (op === 'add') {
+          if (compareFraction(aN, aD, bN, bD) < 0) {
+            [aN, aD, bN, bD] = [bN, bD, aN, aD];
+          }
+        }
+        return `${op}:${aN}/${aD}-${bN}/${bD}`;
+      }
+
       // 分数を生成
       function generateFraction(nMin, nMax, dMin, dMax, allowImproper) {
         // 分母は0不可
@@ -290,41 +305,50 @@
       }
 
       // 問題1件を生成
-      function createOneProblem(cfg, mode, forcedOp) {
-        const A = generateFraction(cfg.aNumMin, cfg.aNumMax, cfg.aDenMin, cfg.aDenMax, cfg.allowImproper);
-        const B = generateFraction(cfg.bNumMin, cfg.bNumMax, cfg.bDenMin, cfg.bDenMax, cfg.allowImproper);
+      function createOneProblem(cfg, mode, forcedOp, usedKeys) {
+        const maxAttempts = 200;
+        for (let attempt = 0; attempt < maxAttempts; attempt++) {
+          const A = generateFraction(cfg.aNumMin, cfg.aNumMax, cfg.aDenMin, cfg.aDenMax, cfg.allowImproper);
+          const B = generateFraction(cfg.bNumMin, cfg.bNumMax, cfg.bDenMin, cfg.bDenMax, cfg.allowImproper);
 
-        // 混合ならランダム
-        let op = forcedOp || mode;
-        if (op === 'mix') op = (Math.random() < 0.5 ? 'add' : 'sub');
+          // 混合ならランダム
+          let op = forcedOp || mode;
+          if (op === 'mix') op = (Math.random() < 0.5 ? 'add' : 'sub');
 
-        let An = A.n, Ad = A.d, Bn = B.n, Bd = B.d;
-        let symbolLabel = '＋';
-        let symbolMath = '+';
-        let rn = 0, rd = 1; // 結果
-        if (op === 'add') {
-          symbolLabel = '＋'; symbolMath = '+';
-          rn = An * Bd + Bn * Ad;
-          rd = Ad * Bd;
-        } else { // sub
-          symbolLabel = '−'; symbolMath = '-';
-          // 大小比較（負回避のため並び替え）
-          if (An * Bd < Bn * Ad) {
-            // AとBを入れ替える
-            [An, Ad, Bn, Bd] = [Bn, Bd, An, Ad];
+          let An = A.n, Ad = A.d, Bn = B.n, Bd = B.d;
+          let symbolLabel = '＋';
+          let symbolMath = '+';
+          let rn = 0, rd = 1; // 結果
+          if (op === 'add') {
+            symbolLabel = '＋'; symbolMath = '+';
+            rn = An * Bd + Bn * Ad;
+            rd = Ad * Bd;
+          } else { // sub
+            symbolLabel = '−'; symbolMath = '-';
+            // 同値（結果0）は再生成
+            if (An * Bd === Bn * Ad) continue;
+            // 大小比較（負回避のため並び替え）
+            if (An * Bd < Bn * Ad) {
+              // AとBを入れ替える
+              [An, Ad, Bn, Bd] = [Bn, Bd, An, Ad];
+            }
+            rn = An * Bd - Bn * Ad;
+            rd = Ad * Bd;
           }
-          rn = An * Bd - Bn * Ad;
-          rd = Ad * Bd;
+          const key = buildProblemKey(op, An, Ad, Bn, Bd);
+          if (usedKeys && usedKeys.has(key)) continue;
+          const simp = simplifyFrac(rn, rd);
+          // 帯分数（mixed number）表記
+          let mixed = '';
+          if (simp.n >= simp.d && simp.d !== 0) {
+            const w = Math.floor(simp.n / simp.d);
+            const r = simp.n % simp.d;
+            mixed = (r === 0) ? String(w) : `${w}\\frac{${r}}{${simp.d}}`;
+          }
+          if (usedKeys) usedKeys.add(key);
+          return { aTeX: fracTeX(An, Ad), bTeX: fracTeX(Bn, Bd), opSymbol: symbolLabel, opMath: symbolMath, resultTeX: fracTeX(simp.n, simp.d), mixedTeX: mixed };
         }
-        const simp = simplifyFrac(rn, rd);
-        // 帯分数（mixed number）表記
-        let mixed = '';
-        if (simp.n >= simp.d && simp.d !== 0) {
-          const w = Math.floor(simp.n / simp.d);
-          const r = simp.n % simp.d;
-          mixed = (r === 0) ? String(w) : `${w}\\frac{${r}}{${simp.d}}`;
-        }
-        return { aTeX: fracTeX(An, Ad), bTeX: fracTeX(Bn, Bd), opSymbol: symbolLabel, opMath: symbolMath, resultTeX: fracTeX(simp.n, simp.d), mixedTeX: mixed };
+        return null;
       }
 
       // 一括生成
@@ -346,6 +370,7 @@
           return;
         }
         const problems = [];
+        const usedKeys = new Set();
         const operations = [];
         if (cfg.op === 'mix') {
           const half = cfg.count / 2;
@@ -357,7 +382,16 @@
         } else {
           for (let i = 0; i < cfg.count; i++) operations.push(cfg.op);
         }
-        for (let i = 0; i < cfg.count; i++) problems.push(createOneProblem(cfg, cfg.op, operations[i]));
+        for (let i = 0; i < cfg.count; i++) {
+          const problem = createOneProblem(cfg, cfg.op, operations[i], usedKeys);
+          if (!problem) {
+            msg.textContent = '設定により、条件を満たし重複のない問題を生成できません。範囲を調整してください。';
+            renderMeta(null);
+            clearLists();
+            return;
+          }
+          problems.push(problem);
+        }
 
         renderMeta(cfg);
         document.body.classList.remove('count-10','count-20');
