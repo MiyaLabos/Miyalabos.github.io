@@ -270,7 +270,23 @@
         const cfg = res.config;
 
         const problems = [];
-        for (let i = 0; i < cfg.count; i++) problems.push(createOneProblem(cfg));
+        const seen = new Set();
+        const maxAttempts = cfg.count * 200;
+        let attempts = 0;
+        while (problems.length < cfg.count && attempts < maxAttempts) {
+          const prob = createOneProblem(cfg);
+          const key = `${prob.a}|${prob.b}|${prob.c}`;
+          attempts++;
+          if (seen.has(key)) continue;
+          seen.add(key);
+          problems.push(prob);
+        }
+        if (problems.length < cfg.count) {
+          msg.textContent = '同じ問題を除外すると十分な問題数を生成できませんでした。条件を見直してください。';
+          renderMeta(null);
+          clearLists();
+          return;
+        }
 
         renderMeta(cfg);
         // 印刷時の行間調整用クラス

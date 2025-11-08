@@ -203,6 +203,36 @@
         return { aText: String(A), bText: String(B), productText };
       }
 
+      // 異なる値の組み合わせ総数を算出
+      function countAvailableValues(digits, excludeOnes) {
+        if (digits <= 0) return 0;
+        const min = Math.pow(10, digits - 1);
+        const max = Math.pow(10, digits) - 1;
+        let total = max - min + 1;
+        if (excludeOnes && min <= 1 && max >= 1) total -= 1;
+        return Math.max(0, total);
+      }
+
+      // 重複のない問題をまとめて生成
+      function buildUniqueProblems(aDigits, bDigits, count, options = {}) {
+        const problems = [];
+        const seen = new Set();
+        const maxAttempts = Math.max(500, count * 50);
+        let attempts = 0;
+        while (problems.length < count && attempts < maxAttempts) {
+          attempts += 1;
+          const problem = createOneProblem(aDigits, bDigits, options);
+          const key = `${problem.aText}#${problem.bText}`;
+          if (seen.has(key)) continue;
+          seen.add(key);
+          problems.push(problem);
+        }
+        if (problems.length < count) {
+          return { ok:false, message:'指定条件で異なる問題を十分に生成できませんでした。設定を見直してください。' };
+        }
+        return { ok:true, list: problems };
+      }
+
       // 一括生成
       function generateProblems() {
         const msg = document.getElementById('message');
@@ -218,10 +248,23 @@
 
         const options = { excludeOnes };
 
-        const problems = [];
-        for (let i = 0; i < count; i++) {
-          problems.push(createOneProblem(aDigits, bDigits, options));
+        const availableA = countAvailableValues(aDigits, excludeOnes);
+        const availableB = countAvailableValues(bDigits, excludeOnes);
+        if (availableA * availableB < count) {
+          msg.textContent = '指定条件では異なる問題を指定数生成できません。桁数や設定を変更してください。';
+          renderMeta(null);
+          clearLists();
+          return;
         }
+
+        const unique = buildUniqueProblems(aDigits, bDigits, count, options);
+        if (!unique.ok) {
+          msg.textContent = unique.message;
+          renderMeta(null);
+          clearLists();
+          return;
+        }
+        const problems = unique.list;
 
         renderMeta({ aDigits, bDigits, count, excludeOnes });
         // 印刷時の行間調整用クラス
