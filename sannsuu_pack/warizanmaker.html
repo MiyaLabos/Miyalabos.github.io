@@ -410,8 +410,24 @@
         const { dividendDigits, divisorDigits, count, mode } = res.config;
 
         const problems = [];
-        for (let i = 0; i < count; i++) {
-          problems.push(createOneProblem(dividendDigits, divisorDigits, mode));
+        const seen = new Set();
+        const maxAttempts = count * 200; // 重複回避のための試行上限
+        let attempts = 0;
+        while (problems.length < count && attempts < maxAttempts) {
+          const problem = createOneProblem(dividendDigits, divisorDigits, mode);
+          const key = `${problem.a}-${problem.b}`;
+          if (!seen.has(key)) {
+            seen.add(key);
+            problems.push(problem);
+          }
+          attempts++;
+        }
+
+        if (problems.length < count) {
+          msg.textContent = '同じ問題を避けながら作成しましたが、条件内で十分な組み合わせが見つかりませんでした。桁数やモードを変更して再度お試しください。';
+          renderMeta(null);
+          clearLists();
+          return;
         }
 
         renderMeta({ dividendDigits, divisorDigits, mode, count });
