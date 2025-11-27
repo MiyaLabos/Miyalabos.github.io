@@ -57,6 +57,22 @@
             font-size: 14px;
         }
 
+        .range-inputs {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 4px;
+        }
+
+        .range-inputs input {
+            margin-top: 0;
+            width: 80px;
+        }
+
+        .range-inputs span {
+            font-size: 16px;
+        }
+
         select,
         input[type="number"],
         input[type="text"] {
@@ -240,6 +256,13 @@
                 <label>乱数シード（任意）
                     <input id="seed-input" type="text" placeholder="例: 202401" />
                 </label>
+                <label>出題範囲（No.）
+                    <div class="range-inputs">
+                        <input id="range-start" type="number" min="1" max="100" value="1" />
+                        <span>〜</span>
+                        <input id="range-end" type="number" min="1" max="100" value="100" />
+                    </div>
+                </label>
             </div>
             <div class="actions">
                 <button id="generate-button" type="button">テストを作成する</button>
@@ -289,6 +312,8 @@
         const gradeSelect = document.getElementById('grade-select');
         const countSelect = document.getElementById('count-select');
         const seedInput = document.getElementById('seed-input');
+        const rangeStartInput = document.getElementById('range-start');
+        const rangeEndInput = document.getElementById('range-end');
         const generateButton = document.getElementById('generate-button');
         const printButton = document.getElementById('print-button');
         const statusEl = document.getElementById('status');
@@ -312,6 +337,8 @@
             const grade = gradeSelect.value;
             const count = Number.parseInt(countSelect.value, 10);
             const seedText = seedInput.value.trim();
+            const rangeStart = Number.parseInt(rangeStartInput.value, 10);
+            const rangeEnd = Number.parseInt(rangeEndInput.value, 10);
 
             statusEl.textContent = 'データを読み込んでいます…';
             statusEl.classList.remove('error');
@@ -328,13 +355,40 @@
                     throw new Error('出題数よりも単語数が少ないため作成できません。');
                 }
 
-                const seedValue = seedText === '' ? null : deriveSeed(seedText);
-                const picked = pickEntries(dataset.entries, count, seedValue);
+                if (Number.isNaN(rangeStart) || Number.isNaN(rangeEnd)) {
+                    throw new Error('出題範囲には1〜100の数値を入力してください。');
+                }
 
-                renderTests({ dataset, picked, count, seedValue });
+                if (rangeStart > rangeEnd) {
+                    throw new Error('出題範囲の開始番号は終了番号以下に設定してください。');
+                }
+
+                const minNumber = 1;
+                const datasetWordCount = Number(dataset.word_count);
+                const maxNumber = Number.isFinite(datasetWordCount)
+                    ? datasetWordCount
+                    : dataset.entries.length;
+
+                if (rangeStart < minNumber || rangeEnd > maxNumber) {
+                    throw new Error(`出題範囲は${minNumber}〜${maxNumber}の間で指定してください。`);
+                }
+
+                const seedValue = seedText === '' ? null : deriveSeed(seedText);
+                const filtered = dataset.entries.filter((entry) => {
+                    const numberValue = typeof entry.number === 'number' ? entry.number : Number.NaN;
+                    return numberValue >= rangeStart && numberValue <= rangeEnd;
+                });
+
+                if (filtered.length < count) {
+                    throw new Error('指定した範囲内の単語数が出題数より少ないため作成できません。');
+                }
+
+                const picked = pickEntries(filtered, count, seedValue);
+
+                renderTests({ dataset, picked, count, seedValue, rangeStart, rangeEnd });
 
                 const seedDisplay = seedValue === null ? 'ランダム' : `シード: ${seedText}`;
-                statusEl.textContent = `英検${grade}級／${count}問／${seedDisplay} で作成しました。`;
+                statusEl.textContent = `英検${grade}級／${count}問／${seedDisplay}／範囲: No.${rangeStart}〜${rangeEnd} で作成しました。`;
 
                 resultsEl.hidden = false;
             } catch (error) {
@@ -409,13 +463,14 @@
             };
         }
 
-        function renderTests({ dataset, picked, count, seedValue }) {
+        function renderTests({ dataset, picked, count, seedValue, rangeStart, rangeEnd }) {
             const gradeLabel = `英検${dataset.grade}級`;
             const seedLabel = seedValue === null ? 'シード: 無指定（ランダム）' : `シード: ${seedInput.value.trim()}`;
+            const rangeLabel = `範囲: No.${rangeStart}〜${rangeEnd}`;
 
             renderCard(cardEnJa, {
                 title: `${gradeLabel} 単語テスト（英→日）`,
-                meta: `出題数: ${count}／${seedLabel}`,
+                meta: `出題数: ${count}／${seedLabel}／${rangeLabel}`,
                 headers: ['No.', '英単語', '意味欄'],
                 rows: picked.map((entry, index) => [
                     String(index + 1),
@@ -426,7 +481,7 @@
 
             renderCard(cardJaEn, {
                 title: `${gradeLabel} 単語テスト（日→英）`,
-                meta: `出題数: ${count}／${seedLabel}`,
+                meta: `出題数: ${count}／${seedLabel}／${rangeLabel}`,
                 headers: ['No.', '日本語', '英語欄'],
                 rows: picked.map((entry, index) => [
                     String(index + 1),
