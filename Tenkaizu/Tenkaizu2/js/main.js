@@ -1,5 +1,6 @@
 import { NetValidator } from './validator.js';
-import { NetVisualizer } from './visualizer.js';
+import { NetValidator } from './validator.js';
+// NetVisualizer is imported dynamically to ensure the 2D editor works even if Three.js (CDN) fails to load.
 
 class App {
     constructor() {
@@ -18,14 +19,23 @@ class App {
         this.init();
     }
 
-    init() {
+    async init() {
         this.renderGrid();
         this.attachEvents();
 
-        // Init Visualizer
-        const canvasContainer = document.getElementById('canvasContainer');
-        this.visualizer = new NetVisualizer(canvasContainer);
-        this.visualizer.animate();
+        // Init Visualizer Dynamically
+        try {
+            const { NetVisualizer } = await import('./visualizer.js');
+            const canvasContainer = document.getElementById('canvasContainer');
+            this.visualizer = new NetVisualizer(canvasContainer);
+            this.visualizer.animate();
+        } catch (e) {
+            console.error("Failed to load 3D visualizer. Likely network issue with Three.js CDN.", e);
+            const container = document.getElementById('canvasContainer');
+            container.innerHTML = `<div style="color:white; display:flex; height:100%; justify-content:center; align-items:center; text-align:center; padding:1rem;">
+                3D表示を読み込めませんでした。<br>インターネット接続を確認してください。<br>(${e.message})
+            </div>`;
+        }
     }
 
     renderGrid() {
@@ -52,16 +62,20 @@ class App {
         this.grid[r][c] = this.grid[r][c] === 1 ? 0 : 1;
         this.renderGrid(); // Naive re-render, optimize if needed
         this.checkValidity();
-        this.updateVisualizer();
+        if (this.visualizer) {
+            this.updateVisualizer();
+        }
     }
 
     reset() {
         this.grid = Array(this.rows).fill().map(() => Array(this.cols).fill(0));
         this.renderGrid();
         this.checkValidity();
-        this.updateVisualizer();
+        if (this.visualizer) {
+            this.updateVisualizer();
+            this.visualizer.setFoldAngle(0);
+        }
         this.foldSlider.value = 0;
-        this.visualizer.setFoldAngle(0);
     }
 
     updateStatus() {
@@ -89,6 +103,7 @@ class App {
     }
 
     updateVisualizer() {
+        if (!this.visualizer) return;
         // Pass grid data to visualizer
         // Only if we have some cells, otherwise clear
         this.visualizer.updateNet(this.grid);
@@ -98,8 +113,10 @@ class App {
         this.resetBtn.addEventListener('click', () => this.reset());
 
         this.foldSlider.addEventListener('input', (e) => {
-            const val = parseFloat(e.target.value);
-            this.visualizer.setFoldAngle(val);
+            if (this.visualizer) {
+                const val = parseFloat(e.target.value);
+                this.visualizer.setFoldAngle(val);
+            }
         });
     }
 }

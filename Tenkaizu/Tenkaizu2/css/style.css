@@ -149,6 +149,18 @@ main {
     cursor: pointer;
     transition: all 0.2s ease;
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+    /* Robust aspect ratio for older browsers */
+    aspect-ratio: 1;
+    position: relative;
+}
+
+/* Fallback for browsers not supporting aspect-ratio */
+@supports not (aspect-ratio: 1) {
+    .grid-cell::before {
+        content: "";
+        display: block;
+        padding-top: 100%;
+    }
 }
 
 .grid-cell:hover {
