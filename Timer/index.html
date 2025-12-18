@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Timer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Navigation -->
+        <nav class="nav-bar">
+            <button class="nav-btn active" data-target="clock-section" id="btn-clock">CLOCK</button>
+            <button class="nav-btn" data-target="stopwatch-section" id="btn-stopwatch">STOPWATCH</button>
+            <button class="nav-btn" data-target="timer-section" id="btn-timer">TIMER</button>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="content-area">
+            <!-- Clock Section -->
+            <section id="clock-section" class="mode-section active">
+                <div class="digital-display glow-cyan">
+                    <div class="date-text" id="clock-date">----.--.-- ---</div>
+                    <div class="time-text-large" id="clock-time">00:00:00</div>
+                </div>
+            </section>
+
+            <!-- Stopwatch Section -->
+            <section id="stopwatch-section" class="mode-section">
+                <div class="digital-display glow-green">
+                    <div class="time-text-large" id="stopwatch-time">00:00.00</div>
+                </div>
+                <div class="controls">
+                    <button class="control-btn btn-start" id="sw-start">START</button>
+                    <button class="control-btn btn-stop" id="sw-stop" disabled>STOP</button>
+                    <button class="control-btn btn-reset" id="sw-reset" disabled>RESET</button>
+                </div>
+            </section>
+
+            <!-- Timer Section -->
+            <section id="timer-section" class="mode-section">
+                <div class="digital-display glow-pink">
+                    <div class="time-text-large" id="timer-display">00:00</div>
+                </div>
+
+                <div class="timer-input-area" id="timer-setup">
+                    <div class="time-adjusters">
+                        <div class="adjuster-group">
+                            <button class="adjust-btn" data-action="inc-min">+1m</button>
+                            <button class="adjust-btn" data-action="inc-sec">+10s</button>
+                        </div>
+                        <div class="adjuster-group">
+                            <button class="adjust-btn" data-action="dec-min">-1m</button>
+                            <button class="adjust-btn" data-action="dec-sec">-10s</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <button class="control-btn btn-start" id="tm-start">START</button>
+                    <button class="control-btn btn-stop" id="tm-pause" disabled>PAUSE</button>
+                    <button class="control-btn btn-reset" id="tm-reset">RESET</button>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
