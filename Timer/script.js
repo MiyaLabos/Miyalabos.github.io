@@ -35,7 +35,7 @@ function initClock() {
 
     const updateClock = () => {
         const now = new Date();
-        
+
         // Time: HH:MM:SS
         const h = String(now.getHours()).padStart(2, '0');
         const m = String(now.getMinutes()).padStart(2, '0');
@@ -80,7 +80,7 @@ function initStopwatch() {
             elapsedTime = Date.now() - startTime;
             display.textContent = formatTime(elapsedTime);
         }, 10);
-        
+
         startBtn.disabled = true;
         stopBtn.disabled = false;
         resetBtn.disabled = true;
@@ -89,7 +89,7 @@ function initStopwatch() {
     stopBtn.addEventListener('click', () => {
         clearInterval(intervalId);
         intervalId = null;
-        
+
         startBtn.disabled = false;
         stopBtn.disabled = true;
         resetBtn.disabled = false;
@@ -101,7 +101,7 @@ function initStopwatch() {
         intervalId = null;
         elapsedTime = 0;
         display.textContent = "00:00.00";
-        
+
         startBtn.disabled = false;
         stopBtn.disabled = true;
         resetBtn.disabled = true;
@@ -121,23 +121,32 @@ function initTimer() {
     let remainingSeconds = totalSeconds;
     let intervalId = null;
     let isAlarmPlaying = false;
+    let alarmInterval = null;
 
     // Audio Context for Beep
     let audioCtx = null;
-    
+
+    const initAudio = () => {
+        if (!audioCtx) {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
+    };
+
     const playAlarm = () => {
-        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        if (audioCtx.state === 'suspended') audioCtx.resume();
+        if (!audioCtx) return;
 
         const oscillator = audioCtx.createOscillator();
         const gainNode = audioCtx.createGain();
 
         oscillator.type = 'square';
-        oscillator.frequency.setValueAtTime(440, audioCtx.currentTime); // A4
-        oscillator.frequency.setValueAtTime(880, audioCtx.currentTime + 0.1); 
-        
-        gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.5);
+        oscillator.frequency.setValueAtTime(880, audioCtx.currentTime); // High beep
+        oscillator.frequency.linearRampToValueAtTime(440, audioCtx.currentTime + 0.1); // Drop pitch
+
+        gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.5);
 
         oscillator.connect(gainNode);
         gainNode.connect(audioCtx.destination);
@@ -155,6 +164,10 @@ function initTimer() {
     const stopAlarm = () => {
         document.body.classList.remove('alarm-active');
         isAlarmPlaying = false;
+        if (alarmInterval) {
+            clearInterval(alarmInterval);
+            alarmInterval = null;
+        }
     };
 
     updateDisplay();
@@ -163,19 +176,28 @@ function initTimer() {
     adjustBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             if (intervalId) return; // Cannot adjust while running
-            
+
+            // Interaction sound (optional, but good for retro feel)
+            // initAudio(); // Optional, maybe too aggressive
+
             const action = btn.getAttribute('data-action');
+            if (action === 'inc-10min') totalSeconds += 600;
+            if (action === 'dec-10min') totalSeconds = Math.max(0, totalSeconds - 600);
             if (action === 'inc-min') totalSeconds += 60;
             if (action === 'dec-min') totalSeconds = Math.max(0, totalSeconds - 60);
             if (action === 'inc-sec') totalSeconds += 10;
             if (action === 'dec-sec') totalSeconds = Math.max(0, totalSeconds - 10);
-            
+            if (action === 'reset-setup') totalSeconds = 0;
+
             remainingSeconds = totalSeconds;
             updateDisplay();
         });
     });
 
     startBtn.addEventListener('click', () => {
+        // Initialize Audio on user interaction
+        initAudio();
+
         if (intervalId) return;
         if (remainingSeconds === 0) return;
         if (isAlarmPlaying) { stopAlarm(); return; }
@@ -190,16 +212,15 @@ function initTimer() {
                 intervalId = null;
                 startBtn.disabled = false;
                 pauseBtn.disabled = true;
-                
+
                 // Alarm trigger
                 document.body.classList.add('alarm-active');
                 isAlarmPlaying = true;
-                
+
+                playAlarm(); // Play initial
                 // Play sound repeatedly
-                const alarmInterval = setInterval(() => {
-                    if (!isAlarmPlaying) {
-                        clearInterval(alarmInterval);
-                    } else {
+                alarmInterval = setInterval(() => {
+                    if (isAlarmPlaying) {
                         playAlarm();
                     }
                 }, 1000);
@@ -224,10 +245,10 @@ function initTimer() {
         stopAlarm();
         if (intervalId) clearInterval(intervalId);
         intervalId = null;
-        
+
         remainingSeconds = totalSeconds;
         updateDisplay();
-        
+
         startBtn.disabled = false;
         pauseBtn.disabled = true;
     });
