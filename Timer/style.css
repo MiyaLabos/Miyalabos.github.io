@@ -141,20 +141,24 @@ body {
 .digital-display {
     background-color: var(--lcd-bg);
     width: 100%;
-    padding: 2rem 1rem;
+    /* Fixed Height for consistency */
+    height: 28vh;
+    padding: 1rem;
     border-radius: 10px;
-    text-align: center;
     margin-bottom: 2rem;
     box-shadow:
         inset 5px 5px 15px rgba(0, 0, 0, 0.25),
         inset -2px -2px 5px rgba(255, 255, 255, 0.1),
         0 2px 2px rgba(255, 255, 255, 0.5);
-    /* Highlight at bottom of bezel */
     border: 8px solid #b0b0b0;
-    /* Bezel around screen */
     color: var(--lcd-text);
     position: relative;
     overflow: hidden;
+
+    /* Alignment Logic (Absolute) */
+    position: relative;
+    /* Remove Flex centering to allow absolute positioning */
+    display: block;
 }
 
 /* Screen Grid texture (Pixel effect) */
@@ -175,25 +179,40 @@ body {
 }
 
 .date-text {
-    font-size: 3rem;
+    font-size: 2rem;
+    /* Reduced to fit */
     opacity: 0.8;
-    margin-bottom: 2rem;
+    position: absolute;
+    top: 5%;
+    /* Higher up for snug fit */
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin: 0;
 }
 
 .time-text-large {
     font-family: 'Digital-7 Mono', monospace;
-    /* 8-segment font */
-    font-size: 25vw;
-    line-height: 0.9;
+    font-size: 20vw;
+    /* Slightly larger again as absolute alignment handles space better */
+    line-height: 1;
     font-weight: 400;
     letter-spacing: 0;
-    /* Segmented fonts usually align well without extra spacing */
+    white-space: nowrap;
+
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    /* Centered vertically */
+    left: 0;
+    right: 0;
+    text-align: center;
 }
 
 /* Tablet optimization / Landscape limit */
 @media (min-width: 1024px) {
     .time-text-large {
-        font-size: 250px;
+        font-size: 200px;
     }
 }
 
@@ -270,12 +289,13 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
+    gap: 0.8rem;
+    /* Tighter gap to fit larger screen */
 }
 
 .adjuster-row {
     display: flex;
-    gap: 1.5rem;
+    gap: 1rem;
     width: 100%;
     justify-content: center;
 }
@@ -285,7 +305,8 @@ body {
     border: none;
     box-shadow: 0 4px 0 #999, 0 5px 5px rgba(0, 0, 0, 0.1);
     color: #333;
-    padding: 20px 30px;
+    padding: 20px 0;
+    /* Removing horizontal padding to depend on flex */
     /* Larger padding */
     font-family: 'VT323', monospace;
     font-size: 2rem;
@@ -293,7 +314,11 @@ body {
     border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
-    min-width: 100px;
+    min-width: 0;
+    /* allow shrinking if needed, but flex grows */
+    flex: 1;
+    /* Stretch to fill */
+    text-align: center;
 }
 
 .adjust-btn:active {
