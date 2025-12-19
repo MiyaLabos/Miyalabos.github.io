@@ -41,16 +41,17 @@ body {
     background-color: var(--device-plastic);
     width: 95vw;
     height: 90vh;
-    max-width: none;
-    max-height: none;
-    border-radius: 40px;
+    max-width: 800px;
+    /* Limit on very large screens */
+    max-height: 1000px;
+    border-radius: clamp(20px, 5vmin, 40px);
     box-shadow:
         15px 15px 40px rgba(0, 0, 0, 0.5),
         inset 5px 5px 10px rgba(255, 255, 255, 0.5),
         inset -5px -5px 10px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
-    padding: 3rem;
+    padding: clamp(1rem, 3vmin, 2rem);
     position: relative;
     border: 1px solid #aaa;
 }
@@ -73,7 +74,10 @@ body {
 .nav-bar {
     display: flex;
     justify-content: center;
-    padding-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1rem;
+    /* Reduced padding */
     gap: 10px;
     z-index: 1;
 }
@@ -81,9 +85,9 @@ body {
 .nav-btn {
     background: var(--btn-gray);
     border: none;
-    padding: 15px 30px;
+    padding: clamp(10px, 2vmin, 15px) clamp(15px, 4vmin, 30px);
     font-family: 'VT323', monospace;
-    font-size: 2rem;
+    font-size: clamp(1.2rem, 4vmin, 2rem);
     color: #333;
     text-transform: uppercase;
     cursor: pointer;
@@ -141,23 +145,19 @@ body {
 .digital-display {
     background-color: var(--lcd-bg);
     width: 100%;
-    /* Fixed Height for consistency */
-    height: 28vh;
-    padding: 1rem;
+    /* Flexible height based on perspective, but bounded */
+    height: clamp(150px, 35vh, 400px);
+    padding: clamp(0.5rem, 2vmin, 1rem);
     border-radius: 10px;
-    margin-bottom: 2rem;
+    margin-bottom: clamp(0.5rem, 2vmin, 1rem);
     box-shadow:
         inset 5px 5px 15px rgba(0, 0, 0, 0.25),
         inset -2px -2px 5px rgba(255, 255, 255, 0.1),
         0 2px 2px rgba(255, 255, 255, 0.5);
-    border: 8px solid #b0b0b0;
+    border: clamp(4px, 1vmin, 8px) solid #b0b0b0;
     color: var(--lcd-text);
     position: relative;
     overflow: hidden;
-
-    /* Alignment Logic (Absolute) */
-    position: relative;
-    /* Remove Flex centering to allow absolute positioning */
     display: block;
 }
 
@@ -179,12 +179,10 @@ body {
 }
 
 .date-text {
-    font-size: 2rem;
-    /* Reduced to fit */
+    font-size: clamp(1rem, 4vmin, 2rem);
     opacity: 0.8;
     position: absolute;
-    top: 5%;
-    /* Higher up for snug fit */
+    top: 8%;
     left: 0;
     right: 0;
     text-align: center;
@@ -193,15 +191,14 @@ body {
 
 .time-text-large {
     font-family: 'Digital-7 Mono', monospace;
-    font-size: 20vw;
-    /* Slightly larger again as absolute alignment handles space better */
+    font-size: clamp(4rem, 18vmin, 12rem);
     line-height: 1;
     font-weight: 400;
     letter-spacing: 0;
     white-space: nowrap;
 
     position: absolute;
-    top: 50%;
+    top: 55%;
     transform: translateY(-50%);
     /* Centered vertically */
     left: 0;
@@ -219,24 +216,26 @@ body {
 /* --- Controls (Buttons) --- */
 .controls {
     display: flex;
-    gap: 40px;
+    gap: clamp(10px, 4vmin, 40px);
     margin-top: auto;
-    /* Push to bottom of section if needed */
-    margin-bottom: 2rem;
+    margin-bottom: 0.5rem;
+    width: 100%;
+    justify-content: center;
 }
 
 .control-btn {
     font-family: 'VT323', monospace;
-    font-size: 2.5rem;
+    font-size: clamp(1.2rem, 5vmin, 2.5rem);
     border: none;
     border-radius: 10px;
-    padding: 20px 50px;
+    padding: clamp(10px, 2vmin, 15px) 0;
     cursor: pointer;
     font-weight: bold;
     text-transform: uppercase;
     transition: transform 0.1s;
     color: white;
-    min-width: 200px;
+    flex: 1;
+    max-width: 250px;
     text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
 }
 
@@ -289,13 +288,14 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.8rem;
-    /* Tighter gap to fit larger screen */
+    gap: 0.5rem;
+    /* Tighter gap */
 }
 
 .adjuster-row {
     display: flex;
-    gap: 1rem;
+    gap: 0.5rem;
+    /* Tighter gap */
     width: 100%;
     justify-content: center;
 }
@@ -305,19 +305,14 @@ body {
     border: none;
     box-shadow: 0 4px 0 #999, 0 5px 5px rgba(0, 0, 0, 0.1);
     color: #333;
-    padding: 20px 0;
-    /* Removing horizontal padding to depend on flex */
-    /* Larger padding */
+    padding: clamp(5px, 1.5vmin, 10px) 0;
     font-family: 'VT323', monospace;
-    font-size: 2rem;
-    /* Larger Font */
+    font-size: clamp(1.2rem, 4vmin, 2rem);
     border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
     min-width: 0;
-    /* allow shrinking if needed, but flex grows */
     flex: 1;
-    /* Stretch to fill */
     text-align: center;
 }
 
