@@ -138,21 +138,30 @@ function initTimer() {
     const playAlarm = () => {
         if (!audioCtx) return;
 
-        const oscillator = audioCtx.createOscillator();
-        const gainNode = audioCtx.createGain();
+        const now = audioCtx.currentTime;
+        const pips = 4; // Number of beeps in the pattern
+        const pipDuration = 0.05; // 50ms each
+        const interval = 0.12; // Time between beeps
 
-        oscillator.type = 'square';
-        oscillator.frequency.setValueAtTime(880, audioCtx.currentTime); // High beep
-        oscillator.frequency.linearRampToValueAtTime(440, audioCtx.currentTime + 0.1); // Drop pitch
+        for (let i = 0; i < pips; i++) {
+            const startTime = now + (i * interval);
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
 
-        gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.5);
+            oscillator.type = 'square';
+            oscillator.frequency.setValueAtTime(2500, startTime);
 
-        oscillator.connect(gainNode);
-        gainNode.connect(audioCtx.destination);
+            gainNode.gain.setValueAtTime(0, startTime);
+            gainNode.gain.linearRampToValueAtTime(0.2, startTime + 0.01);
+            gainNode.gain.linearRampToValueAtTime(0.2, startTime + pipDuration - 0.01);
+            gainNode.gain.linearRampToValueAtTime(0, startTime + pipDuration);
 
-        oscillator.start();
-        oscillator.stop(audioCtx.currentTime + 0.5);
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+
+            oscillator.start(startTime);
+            oscillator.stop(startTime + pipDuration);
+        }
     };
 
     const updateDisplay = () => {
