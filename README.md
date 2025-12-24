@@ -14,6 +14,9 @@
   - 小数のたし算・ひき算（`syousuu_tasihiki/syousuu_tasihiki.html`）
   - わり算 旧版（`Q_maker/warizanmaker.html`）
 
+- Cyber Turn Timer（`Timer/`）
+  - 時計・ストップウォッチ・カウントダウンを備えたネオン調タイマー。iPadブラウザでの利用を想定しています。
+
 ## 使い方
 - すぐ使う
   - ルートの `index.html` をブラウザで開くと、カード型リンク集が表示されます。
