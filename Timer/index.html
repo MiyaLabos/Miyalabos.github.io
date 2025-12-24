@@ -28,16 +28,66 @@
         <main class="content-area">
             <!-- Clock Section -->
             <section id="clock-section" class="mode-section active">
-                <div class="digital-display glow-cyan">
-                    <div class="date-text" id="clock-date">----.--.-- ---</div>
-                    <div class="time-text-large" id="clock-time">00:00:00</div>
+                <div class="lcd-display">
+                    <!-- Left Indicators -->
+                    <div class="indicators-left">
+                        <div class="ampm-group">
+                            <span id="label-am">AM</span>
+                            <span id="label-pm">PM</span>
+                        </div>
+                        <div class="icon-group">
+                            <svg viewBox="0 0 24 24" class="lightning-icon">
+                                <path d="M7 2v11h3v9l7-12h-4l4-8z" fill="currentColor" />
+                            </svg>
+                        </div>
+                        <div class="small-time" id="small-time">0:00</div>
+                    </div>
+
+                    <!-- Main Time (7-Segment) -->
+                    <div class="main-display">
+                        <div class="seven-segment-group" id="main-clock-display">
+                            <!-- Digits will be injected by JS -->
+                            <div class="digit" id="digit-h1"></div>
+                            <div class="digit" id="digit-h2"></div>
+                            <div class="colon-group">
+                                <div class="colon-dot"></div>
+                                <div class="colon-dot"></div>
+                            </div>
+                            <div class="digit" id="digit-m1"></div>
+                            <div class="digit" id="digit-m2"></div>
+                        </div>
+                    </div>
+
+                    <!-- Right Info -->
+                    <div class="info-right">
+                        <div class="date-big" id="date-main">12月24日 (水)</div>
+                        <div class="date-era" id="date-era">令和7年</div>
+                        <div class="date-rokuyo" id="date-rokuyo">先負</div>
+                    </div>
                 </div>
             </section>
 
             <!-- Stopwatch Section -->
             <section id="stopwatch-section" class="mode-section">
-                <div class="digital-display glow-green">
-                    <div class="time-text-large" id="stopwatch-time">00:00.00</div>
+                <!-- Similar LCD structure for stopwatch -->
+                <div class="lcd-display">
+                    <div class="spacer"></div>
+                    <div class="main-display">
+                        <div class="seven-segment-group" id="main-stopwatch-display">
+                            <div class="digit" id="sw-m1"></div>
+                            <div class="digit" id="sw-m2"></div>
+                            <div class="colon-group">
+                                <div class="colon-dot"></div>
+                                <div class="colon-dot"></div>
+                            </div>
+                            <div class="digit" id="sw-s1"></div>
+                            <div class="digit" id="sw-s2"></div>
+                            <div class="segment-dot"></div>
+                            <div class="digit small" id="sw-ms1"></div>
+                            <div class="digit small" id="sw-ms2"></div>
+                        </div>
+                    </div>
+                    <div class="spacer"></div>
                 </div>
                 <div class="controls">
                     <button class="control-btn btn-start" id="sw-start">START</button>
@@ -48,11 +98,25 @@
 
             <!-- Timer Section -->
             <section id="timer-section" class="mode-section">
-                <div class="digital-display glow-pink">
-                    <div class="time-text-large" id="timer-display">00:00</div>
+                <div class="lcd-display">
+                    <div class="spacer"></div>
+                    <div class="main-display">
+                        <div class="seven-segment-group" id="main-timer-display">
+                            <div class="digit" id="tm-m1"></div>
+                            <div class="digit" id="tm-m2"></div>
+                            <div class="colon-group">
+                                <div class="colon-dot"></div>
+                                <div class="colon-dot"></div>
+                            </div>
+                            <div class="digit" id="tm-s1"></div>
+                            <div class="digit" id="tm-s2"></div>
+                        </div>
+                    </div>
+                    <div class="spacer"></div>
                 </div>
 
                 <div class="timer-input-area" id="timer-setup">
+                    <!-- Adjusted for UI -->
                     <div class="time-adjusters">
                         <div class="adjuster-row">
                             <button class="adjust-btn" data-action="inc-10min">+10m</button>
@@ -63,9 +127,6 @@
                             <button class="adjust-btn" data-action="dec-10min">-10m</button>
                             <button class="adjust-btn" data-action="dec-min">-1m</button>
                             <button class="adjust-btn" data-action="dec-sec">-10s</button>
-                        </div>
-                        <div class="adjuster-row">
-                            <button class="adjust-btn btn-clear" data-action="reset-setup">RESET TO 0</button>
                         </div>
                     </div>
                 </div>

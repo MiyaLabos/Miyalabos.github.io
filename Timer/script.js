@@ -1,13 +1,89 @@
-/*
- * Cyber Timer Logic
+/**
+ * Redesigned Timer Logic
+ * Supporting 7-segment display and Japanese date info
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+    init7Segments();
     initNavigation();
     initClock();
     initStopwatch();
     initTimer();
 });
+
+/* --- 7-Segment Logic --- */
+const segmentMap = {
+    '0': ['a', 'b', 'c', 'd', 'e', 'f'],
+    '1': ['b', 'c'],
+    '2': ['a', 'b', 'g', 'e', 'd'],
+    '3': ['a', 'b', 'g', 'c', 'd'],
+    '4': ['f', 'g', 'b', 'c'],
+    '5': ['a', 'f', 'g', 'c', 'd'],
+    '6': ['a', 'f', 'e', 'd', 'c', 'g'],
+    '7': ['a', 'b', 'c'],
+    '8': ['a', 'b', 'c', 'd', 'e', 'f', 'g'],
+    '9': ['a', 'b', 'c', 'd', 'f', 'g'],
+    ' ': []
+};
+
+function init7Segments() {
+    // Inject segment divs into all digit containers
+    document.querySelectorAll('.digit').forEach(el => {
+        el.innerHTML = ''; // Clear existing
+        ['a', 'b', 'c', 'd', 'e', 'f', 'g'].forEach(seg => {
+            const segDiv = document.createElement('div');
+            segDiv.className = `segment seg-${seg}`;
+            segDiv.dataset.seg = seg; // Add data-seg for reliable identification
+            el.appendChild(segDiv);
+        });
+    });
+}
+
+const digitCache = {};
+
+function updateDigit(id, val) {
+    if (digitCache[id] === val) return; // Prevent flickering by skipping redundant updates
+    digitCache[id] = val;
+
+    const el = document.getElementById(id);
+    if (!el) return;
+    const activeSegs = segmentMap[val] || [];
+    el.querySelectorAll('.segment').forEach(segEl => {
+        const segName = segEl.dataset.seg;
+        if (activeSegs.includes(segName)) {
+            segEl.classList.add('on');
+        } else {
+            segEl.classList.remove('on');
+        }
+    });
+}
+
+/* --- Japanese Date Info --- */
+function getJapaneseInfo(date) {
+    // Era: Reiwa starts from 2019
+    const year = date.getFullYear();
+    let era = "";
+    if (year >= 2019) {
+        const reiwaYear = year - 2018;
+        era = `令和${reiwaYear === 1 ? '元' : reiwaYear}年`;
+    } else if (year >= 1989) {
+        era = `平成${year - 1988}年`;
+    }
+
+    // Rokuyo: Simplified calculation (requires lunar month/day)
+    // For now, providing a lookup for 2024-2025 or a rough approximation
+    // Real calculation is complex. Using a dummy for demo or a simplified arithmetic
+    const rokuyoNames = ["先勝", "友引", "先負", "仏滅", "大安", "赤口"];
+
+    // This is a VERY simplified mock logic. Accurate Rokuyo needs a library or full table.
+    // For this redesign, we'll use a deterministic but not 100% accurate formula
+    // (month + day) % 6 is commonly used for rough estimates but resets on lunar months.
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const rokuyo = rokuyoNames[(month + day) % 6];
+
+    return { era, rokuyo };
+}
 
 /* --- Navigation --- */
 function initNavigation() {
@@ -16,11 +92,8 @@ function initNavigation() {
 
     navBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            // Remove active from all
             navBtns.forEach(b => b.classList.remove('active'));
             sections.forEach(s => s.classList.remove('active'));
-
-            // Add active to clicked
             btn.classList.add('active');
             const targetId = btn.getAttribute('data-target');
             document.getElementById(targetId).classList.add('active');
@@ -30,24 +103,31 @@ function initNavigation() {
 
 /* --- Clock --- */
 function initClock() {
-    const timeEl = document.getElementById('clock-time');
-    const dateEl = document.getElementById('clock-date');
-
     const updateClock = () => {
         const now = new Date();
+        const h = now.getHours();
+        const m = now.getMinutes();
+        const s = now.getSeconds();
 
-        // Time: HH:MM:SS
-        const h = String(now.getHours()).padStart(2, '0');
-        const m = String(now.getMinutes()).padStart(2, '0');
-        const s = String(now.getSeconds()).padStart(2, '0');
-        timeEl.textContent = `${h}:${m}:${s}`;
+        // Main Digits
+        const hStr = String(h).padStart(2, '0');
+        const mStr = String(m).padStart(2, '0');
+        updateDigit('digit-h1', hStr[0]);
+        updateDigit('digit-h2', hStr[1]);
+        updateDigit('digit-m1', mStr[0]);
+        updateDigit('digit-m2', mStr[1]);
 
-        // Date: YYYY.MM.DD ???
-        const y = now.getFullYear();
-        const mo = String(now.getMonth() + 1).padStart(2, '0');
-        const d = String(now.getDate()).padStart(2, '0');
-        const day = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'][now.getDay()];
-        dateEl.textContent = `${y}.${mo}.${d} ${day}`;
+        // Left Indicators
+        document.getElementById('label-am').classList.toggle('active', h < 12);
+        document.getElementById('label-pm').classList.toggle('active', h >= 12);
+        document.getElementById('small-time').textContent = `${h}:${mStr}`;
+
+        // Right Info
+        const days = ['日', '月', '火', '水', '木', '金', '土'];
+        document.getElementById('date-main').textContent = `${now.getMonth() + 1}月${now.getDate()}日 (${days[now.getDay()]})`;
+        const jInfo = getJapaneseInfo(now);
+        document.getElementById('date-era').textContent = jInfo.era;
+        document.getElementById('date-rokuyo').textContent = jInfo.rokuyo;
     };
 
     setInterval(updateClock, 1000);
@@ -56,7 +136,6 @@ function initClock() {
 
 /* --- Stopwatch --- */
 function initStopwatch() {
-    const display = document.getElementById('stopwatch-time');
     const startBtn = document.getElementById('sw-start');
     const stopBtn = document.getElementById('sw-stop');
     const resetBtn = document.getElementById('sw-reset');
@@ -65,12 +144,18 @@ function initStopwatch() {
     let elapsedTime = 0;
     let intervalId = null;
 
-    const formatTime = (ms) => {
+    const updateDisplay = (ms) => {
         const totalSec = Math.floor(ms / 1000);
         const m = String(Math.floor(totalSec / 60)).padStart(2, '0');
         const s = String(totalSec % 60).padStart(2, '0');
-        const centi = String(Math.floor((ms % 1000) / 10)).padStart(2, '0');
-        return `${m}:${s}.${centi}`;
+        const msPart = String(Math.floor((ms % 1000) / 10)).padStart(2, '0');
+
+        updateDigit('sw-m1', m[0]);
+        updateDigit('sw-m2', m[1]);
+        updateDigit('sw-s1', s[0]);
+        updateDigit('sw-s2', s[1]);
+        updateDigit('sw-ms1', msPart[0]);
+        updateDigit('sw-ms2', msPart[1]);
     };
 
     startBtn.addEventListener('click', () => {
@@ -78,8 +163,8 @@ function initStopwatch() {
         startTime = Date.now() - elapsedTime;
         intervalId = setInterval(() => {
             elapsedTime = Date.now() - startTime;
-            display.textContent = formatTime(elapsedTime);
-        }, 10);
+            updateDisplay(elapsedTime);
+        }, 30); // 30ms for performance
 
         startBtn.disabled = true;
         stopBtn.disabled = false;
@@ -89,7 +174,6 @@ function initStopwatch() {
     stopBtn.addEventListener('click', () => {
         clearInterval(intervalId);
         intervalId = null;
-
         startBtn.disabled = false;
         stopBtn.disabled = true;
         resetBtn.disabled = false;
@@ -97,13 +181,8 @@ function initStopwatch() {
     });
 
     resetBtn.addEventListener('click', () => {
-        clearInterval(intervalId);
-        intervalId = null;
         elapsedTime = 0;
-        display.textContent = "00:00.00";
-
-        startBtn.disabled = false;
-        stopBtn.disabled = true;
+        updateDisplay(0);
         resetBtn.disabled = true;
         startBtn.textContent = "START";
     });
@@ -111,84 +190,27 @@ function initStopwatch() {
 
 /* --- Timer --- */
 function initTimer() {
-    const display = document.getElementById('timer-display');
     const startBtn = document.getElementById('tm-start');
     const pauseBtn = document.getElementById('tm-pause');
     const resetBtn = document.getElementById('tm-reset');
     const adjustBtns = document.querySelectorAll('.adjust-btn');
 
-    let totalSeconds = 300; // Default 5 min
+    let totalSeconds = 300;
     let remainingSeconds = totalSeconds;
     let intervalId = null;
-    let isAlarmPlaying = false;
-    let alarmInterval = null;
-
-    // Audio Context for Beep
-    let audioCtx = null;
-
-    const initAudio = () => {
-        if (!audioCtx) {
-            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        }
-        if (audioCtx.state === 'suspended') {
-            audioCtx.resume();
-        }
-    };
-
-    const playAlarm = () => {
-        if (!audioCtx) return;
-
-        const now = audioCtx.currentTime;
-        const pips = 4; // Number of beeps in the pattern
-        const pipDuration = 0.05; // 50ms each
-        const interval = 0.12; // Time between beeps
-
-        for (let i = 0; i < pips; i++) {
-            const startTime = now + (i * interval);
-            const oscillator = audioCtx.createOscillator();
-            const gainNode = audioCtx.createGain();
-
-            oscillator.type = 'square';
-            oscillator.frequency.setValueAtTime(2500, startTime);
-
-            gainNode.gain.setValueAtTime(0, startTime);
-            gainNode.gain.linearRampToValueAtTime(0.2, startTime + 0.01);
-            gainNode.gain.linearRampToValueAtTime(0.2, startTime + pipDuration - 0.01);
-            gainNode.gain.linearRampToValueAtTime(0, startTime + pipDuration);
-
-            oscillator.connect(gainNode);
-            gainNode.connect(audioCtx.destination);
-
-            oscillator.start(startTime);
-            oscillator.stop(startTime + pipDuration);
-        }
-    };
 
     const updateDisplay = () => {
         const m = String(Math.floor(remainingSeconds / 60)).padStart(2, '0');
         const s = String(remainingSeconds % 60).padStart(2, '0');
-        display.textContent = `${m}:${s}`;
+        updateDigit('tm-m1', m[0]);
+        updateDigit('tm-m2', m[1]);
+        updateDigit('tm-s1', s[0]);
+        updateDigit('tm-s2', s[1]);
     };
 
-    const stopAlarm = () => {
-        document.body.classList.remove('alarm-active');
-        isAlarmPlaying = false;
-        if (alarmInterval) {
-            clearInterval(alarmInterval);
-            alarmInterval = null;
-        }
-    };
-
-    updateDisplay();
-
-    // Adjust Buttons
     adjustBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            if (intervalId) return; // Cannot adjust while running
-
-            // Interaction sound (optional, but good for retro feel)
-            // initAudio(); // Optional, maybe too aggressive
-
+            if (intervalId) return;
             const action = btn.getAttribute('data-action');
             if (action === 'inc-10min') totalSeconds += 600;
             if (action === 'dec-10min') totalSeconds = Math.max(0, totalSeconds - 600);
@@ -196,69 +218,42 @@ function initTimer() {
             if (action === 'dec-min') totalSeconds = Math.max(0, totalSeconds - 60);
             if (action === 'inc-sec') totalSeconds += 10;
             if (action === 'dec-sec') totalSeconds = Math.max(0, totalSeconds - 10);
-            if (action === 'reset-setup') totalSeconds = 0;
-
             remainingSeconds = totalSeconds;
             updateDisplay();
         });
     });
 
     startBtn.addEventListener('click', () => {
-        // Initialize Audio on user interaction
-        initAudio();
-
-        if (intervalId) return;
-        if (remainingSeconds === 0) return;
-        if (isAlarmPlaying) { stopAlarm(); return; }
-
+        if (intervalId || remainingSeconds <= 0) return;
         intervalId = setInterval(() => {
             if (remainingSeconds > 0) {
                 remainingSeconds--;
                 updateDisplay();
             } else {
-                // Time's up
                 clearInterval(intervalId);
                 intervalId = null;
-                startBtn.disabled = false;
-                pauseBtn.disabled = true;
-
-                // Alarm trigger
-                document.body.classList.add('alarm-active');
-                isAlarmPlaying = true;
-
-                playAlarm(); // Play initial
-                // Play sound repeatedly
-                alarmInterval = setInterval(() => {
-                    if (isAlarmPlaying) {
-                        playAlarm();
-                    }
-                }, 1000);
+                alert("Time's up!");
             }
         }, 1000);
-
         startBtn.disabled = true;
         pauseBtn.disabled = false;
-        resetBtn.disabled = false;
     });
 
     pauseBtn.addEventListener('click', () => {
-        if (intervalId) {
-            clearInterval(intervalId);
-            intervalId = null;
-            startBtn.disabled = false;
-            pauseBtn.disabled = true;
-        }
-    });
-
-    resetBtn.addEventListener('click', () => {
-        stopAlarm();
-        if (intervalId) clearInterval(intervalId);
+        clearInterval(intervalId);
         intervalId = null;
-
-        remainingSeconds = totalSeconds;
-        updateDisplay();
-
         startBtn.disabled = false;
         pauseBtn.disabled = true;
     });
+
+    resetBtn.addEventListener('click', () => {
+        clearInterval(intervalId);
+        intervalId = null;
+        remainingSeconds = totalSeconds;
+        updateDisplay();
+        startBtn.disabled = false;
+        pauseBtn.disabled = true;
+    });
+
+    updateDisplay();
 }
