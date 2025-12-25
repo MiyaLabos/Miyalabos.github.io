@@ -177,6 +177,7 @@
       ol.answer-list li {
         margin: 0 0 10px;
       }
+      .answer-value { color:#c00; }
 
       .blank {
         display: inline-block;
@@ -562,23 +563,23 @@
 
       // 解答の描画
       function renderAnswers(list) {
-        const ol = document.getElementById('answers');
-        ol.innerHTML = '';
-        list.forEach((item) => {
-          const li = document.createElement('li');
-          li.textContent = `${item.originalDisplay} を ${item.placeLabel}に四捨五入すると ${item.roundedDisplay}`;
-          ol.appendChild(li);
-        });
-
-        const grid = document.getElementById('answers-grid');
-        if (grid) {
-          grid.innerHTML = '';
+        const fill = (parent) => {
+          if (!parent) return;
+          parent.innerHTML = '';
           list.forEach((item) => {
             const li = document.createElement('li');
-            li.textContent = `${item.originalDisplay} を ${item.placeLabel}に四捨五入すると ${item.roundedDisplay}`;
-            grid.appendChild(li);
+            const left = document.createElement('span');
+            left.textContent = `${item.originalDisplay} を ${item.placeLabel}に四捨五入すると `;
+            const ans = document.createElement('span');
+            ans.className = 'answer-value';
+            ans.textContent = item.roundedDisplay;
+            li.appendChild(left);
+            li.appendChild(ans);
+            parent.appendChild(li);
           });
-        }
+        };
+        fill(document.getElementById('answers'));
+        fill(document.getElementById('answers-grid'));
       }
 
       // 指定した種類のみ印刷

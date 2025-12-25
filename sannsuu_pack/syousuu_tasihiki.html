@@ -51,6 +51,7 @@
       .sheet .meta { font-size:12px; color:var(--muted); margin-bottom:10px; }
       ol.problem-list, ol.answer-list { margin:0 0 12px 20px; padding:0; }
       ol.problem-list li, ol.answer-list li { margin:0 0 10px; }
+      .answer-value { color:#c00; }
 
       /* 問題の空欄 */
       .blank { display:inline-block; min-width: 90px; border-bottom: 2px dotted #333; height:1.2em; vertical-align:baseline; }
@@ -359,23 +360,23 @@
 
       // 解答の描画
       function renderAnswers(list) {
-        const ol = document.getElementById('answers');
-        ol.innerHTML = '';
-        list.forEach((p) => {
-          const li = document.createElement('li');
-          li.textContent = `${p.aText} ${p.opSymbol} ${p.bText} = ${p.resultText}`;
-          ol.appendChild(li);
-        });
-        // 印刷用グリッドにも反映
-        const grid = document.getElementById('answers-grid');
-        if (grid) {
-          grid.innerHTML = '';
+        const fill = (parent) => {
+          if (!parent) return;
+          parent.innerHTML = '';
           list.forEach((p) => {
             const li = document.createElement('li');
-            li.textContent = `${p.aText} ${p.opSymbol} ${p.bText} = ${p.resultText}`;
-            grid.appendChild(li);
+            const left = document.createElement('span');
+            left.textContent = `${p.aText} ${p.opSymbol} ${p.bText} = `;
+            const ans = document.createElement('span');
+            ans.className = 'answer-value';
+            ans.textContent = p.resultText;
+            li.appendChild(left);
+            li.appendChild(ans);
+            parent.appendChild(li);
           });
-        }
+        };
+        fill(document.getElementById('answers'));
+        fill(document.getElementById('answers-grid'));
       }
 
       // 印刷: 指定のみ印刷

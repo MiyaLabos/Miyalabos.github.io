@@ -160,6 +160,7 @@
       ol.problem-list li, ol.answer-list li {
         margin: 0 0 10px;
       }
+      .answer-value { color:#c00; }
 
       /* 問題の空欄スタイル */
       .blank {
@@ -516,31 +517,24 @@
 
       // 解答の描画
       function renderAnswers(list) {
-        const ol = document.getElementById('answers');
-        ol.innerHTML = '';
-        list.forEach((p) => {
-          const li = document.createElement('li');
-          if (p.r === 0) {
-            li.textContent = `${p.a} ÷ ${p.b} = ${p.q}`;
-          } else {
-            li.textContent = `${p.a} ÷ ${p.b} = ${p.q} あまり ${p.r}`;
-          }
-          ol.appendChild(li);
-        });
-        // 印刷用グリッドにも反映
-        const grid = document.getElementById('answers-grid');
-        if (grid) {
-          grid.innerHTML = '';
+        const answerText = (p) => (p.r === 0 ? `${p.q}` : `${p.q} あまり ${p.r}`);
+        const fill = (parent) => {
+          if (!parent) return;
+          parent.innerHTML = '';
           list.forEach((p) => {
             const li = document.createElement('li');
-            if (p.r === 0) {
-              li.textContent = `${p.a} ÷ ${p.b} = ${p.q}`;
-            } else {
-              li.textContent = `${p.a} ÷ ${p.b} = ${p.q} あまり ${p.r}`;
-            }
-            grid.appendChild(li);
+            const left = document.createElement('span');
+            left.textContent = `${p.a} ÷ ${p.b} = `;
+            const ans = document.createElement('span');
+            ans.className = 'answer-value';
+            ans.textContent = answerText(p);
+            li.appendChild(left);
+            li.appendChild(ans);
+            parent.appendChild(li);
           });
-        }
+        };
+        fill(document.getElementById('answers'));
+        fill(document.getElementById('answers-grid'));
       }
 
       // 印刷: 指定セクションだけ印刷
