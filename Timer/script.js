@@ -70,17 +70,27 @@ function getJapaneseInfo(date) {
         era = `平成${year - 1988}年`;
     }
 
-    // Rokuyo: Simplified calculation (requires lunar month/day)
-    // For now, providing a lookup for 2024-2025 or a rough approximation
-    // Real calculation is complex. Using a dummy for demo or a simplified arithmetic
-    const rokuyoNames = ["先勝", "友引", "先負", "仏滅", "大安", "赤口"];
+    // Rokuyo: Accurate calculation using Intl.DateTimeFormat with Chinese calendar (lunar)
+    const rokuyoNames = ["大安", "赤口", "先勝", "友引", "先負", "仏滅"];
 
-    // This is a VERY simplified mock logic. Accurate Rokuyo needs a library or full table.
-    // For this redesign, we'll use a deterministic but not 100% accurate formula
-    // (month + day) % 6 is commonly used for rough estimates but resets on lunar months.
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
-    const rokuyo = rokuyoNames[(month + day) % 6];
+    // Use Intl.DateTimeFormat to get lunar month and day
+    // The Chinese calendar is practically identical to the Japanese lunar calendar for Rokuyo purposes.
+    const formatter = new Intl.DateTimeFormat('en-US-u-ca-chinese');
+    const parts = formatter.formatToParts(date);
+
+    let lMonth = 0;
+    let lDay = 0;
+
+    parts.forEach(part => {
+        if (part.type === 'month') {
+            // Handle leap months (e.g., "2bis" -> 2)
+            lMonth = parseInt(part.value, 10);
+        } else if (part.type === 'day') {
+            lDay = parseInt(part.value, 10);
+        }
+    });
+
+    const rokuyo = rokuyoNames[(lMonth + lDay) % 6];
 
     return { era, rokuyo };
 }
