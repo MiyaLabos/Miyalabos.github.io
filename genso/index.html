@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>元素記号プリント</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="toolbar" aria-label="操作パネル">
+        <div class="toolbar__title">
+          <p class="toolbar__eyebrow">元素記号の学習プリント</p>
+          <h1>周期表 穴埋めプリント</h1>
+        </div>
+        <div class="toolbar__actions">
+          <button id="generateButton" type="button">新しい問題を作る</button>
+          <button id="printButton" type="button">2枚まとめて印刷</button>
+        </div>
+      </header>
+
+      <main class="preview" aria-label="印刷プレビュー">
+        <section class="page page--question" id="questionPage" aria-label="問題用紙"></section>
+        <section class="page page--answer" id="answerPage" aria-label="模範解答"></section>
+      </main>
+    </div>
+
+    <template id="headerTemplate">
+      <div class="sheet-header">
+        <div>
+          <p class="sheet-header__eyebrow"></p>
+          <h2 class="sheet-header__title"></h2>
+        </div>
+        <div class="sheet-header__meta"></div>
+      </div>
+    </template>
+
+    <script src="./app.js"></script>
+  </body>
+  </html>
