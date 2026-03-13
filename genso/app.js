@@ -152,23 +152,18 @@ const ALLOWED_QUIZ_SYMBOLS = [
   "Pb",
 ];
 
-const QUIZ_COUNT_OPTIONS = [10, 20, 30];
-const DEFAULT_QUIZ_COUNT = 10;
+const QUIZ_COUNT = 10;
 const QUIZ_RANGE_LABEL = "指定30元素";
 
 const state = {
   quizItems: [],
   quizMeta: null,
-  quizCount: DEFAULT_QUIZ_COUNT,
 };
 
 const questionPage = document.querySelector("#questionPage");
 const answerPage = document.querySelector("#answerPage");
 const generateButton = document.querySelector("#generateButton");
 const printButton = document.querySelector("#printButton");
-const quizCountSelect = document.querySelector("#quizCountSelect");
-
-quizCountSelect.value = String(state.quizCount);
 
 generateButton.addEventListener("click", () => {
   regenerateQuiz();
@@ -178,19 +173,8 @@ printButton.addEventListener("click", () => {
   window.print();
 });
 
-quizCountSelect.addEventListener("change", (event) => {
-  const nextCount = Number(event.target.value);
-
-  if (!QUIZ_COUNT_OPTIONS.includes(nextCount)) {
-    return;
-  }
-
-  state.quizCount = nextCount;
-  regenerateQuiz();
-});
-
 function regenerateQuiz() {
-  state.quizItems = createQuizItems(ELEMENTS, state.quizCount);
+  state.quizItems = createQuizItems(ELEMENTS, QUIZ_COUNT);
   state.quizMeta = createQuizMeta();
   render();
 }
@@ -323,7 +307,7 @@ function createScoreField(label) {
   box.className = "score-box";
 
   const unit = document.createElement("span");
-  unit.textContent = ` / ${state.quizCount}`;
+  unit.textContent = ` / ${QUIZ_COUNT}`;
 
   field.append(labelNode, box, unit);
   return field;
@@ -352,11 +336,11 @@ function createLegend() {
   const badgeSample = document.createElement("span");
   badgeSample.className = "legend-chip__sample";
   const badgeText = document.createElement("span");
-  badgeText.textContent = `出題された${state.quizCount}問`;
+  badgeText.textContent = `出題された${QUIZ_COUNT}問`;
   badge.append(badgeSample, badgeText);
 
   const cellInfo = document.createElement("span");
-  cellInfo.textContent = `${QUIZ_RANGE_LABEL}から${state.quizCount}問を出題・原子番号順で番号付け`;
+  cellInfo.textContent = `${QUIZ_RANGE_LABEL}から${QUIZ_COUNT}問を出題・原子番号順で番号付け`;
   items.append(badge, cellInfo);
 
   wrapper.append(info, items);
@@ -449,7 +433,7 @@ function createAnswerKey() {
 
   const note = document.createElement("p");
   note.className = "answer-sheet__note";
-  note.textContent = `出題された${state.quizCount}問の正答一覧`;
+  note.textContent = `出題された${QUIZ_COUNT}問の正答一覧`;
   fragment.append(note);
 
   const key = document.createElement("section");
