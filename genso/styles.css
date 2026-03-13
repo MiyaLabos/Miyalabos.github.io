@@ -29,6 +29,7 @@ body {
 
 button,
 input,
+select,
 textarea {
   font: inherit;
 }
@@ -73,7 +74,25 @@ textarea {
 
 .toolbar__actions {
   display: flex;
+  align-items: center;
   gap: 12px;
+}
+
+.toolbar__field {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+  font-size: 13px;
+}
+
+.toolbar__field select {
+  min-width: 96px;
+  padding: 10px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  background: #fff;
+  cursor: pointer;
 }
 
 .toolbar button {
@@ -364,6 +383,11 @@ textarea {
 
   .toolbar__actions {
     flex-direction: column;
+    align-items: stretch;
+  }
+
+  .toolbar__field {
+    justify-content: space-between;
   }
 
   .page {
