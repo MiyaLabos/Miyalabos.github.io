@@ -11,10 +11,15 @@
     -->
     <style>
       /* 全体スタイル（2jihouteishiki を踏襲） */
-      :root { --accent:#2a7ae2; --ink:#222; --muted:#666; --bg:#fff; --panel:#f6f8fb;
+      :root { --accent:#2a7ae2; --ink:#222; --muted:#666; --bg:#fff; --panel:#f6f8fb; --answer-red:#c62828;
         /* 左側の式（=の左）の固定幅 */
         --xcol-w: 240px; /* 画面 */
-        --xcol-w-print: 70mm; /* 印刷 */
+        --xcol-w-print: 40mm; /* 印刷 */
+        /* 問題欄の記入線長（旧2空欄の記入長を維持） */
+        --blank-w-screen: 60px;
+        --blank-w-print: 55px;
+        --answer-line-gap: 10px;
+        --answer-line-offset: 0.6em;
         /* 印刷時の高さ調整（ページ下余白の最適化） */
         --print-problems-offset: 22mm; /* 見出し等を差し引く高さ（従来:26mm）*/
         --print-answers-extra: 18mm;   /* 解答は式2行の分だけ余分に差し引く */
@@ -62,9 +67,15 @@
       /* 模範解答を見やすく（問題行と答え行を分ける） */
       ol.answer-list li .eq-line { display:block; }
       ol.answer-list li .ans-line { display:block; margin-top:2px; }
+      ol.answer-list li .ans-line,
+      ol.answer-list li .ans-line mjx-container,
+      #answers-grid li .ans-line,
+      #answers-grid li .ans-line mjx-container { color:var(--answer-red); }
 
       /* 問題の空欄 */
-      .blank { display:inline-block; min-width: 60px; border-bottom: 2px dotted #333; height:1.2em; vertical-align:baseline; }
+      .blank { display:inline-block; min-width: var(--blank-w-screen); border-bottom: 2px dotted #333; height:1.2em; vertical-align:baseline; }
+      .answer-line-shell { position:relative; display:inline-block; width: calc((var(--blank-w-screen) * 2) + var(--answer-line-gap)); height:1.2em; margin-left: var(--answer-line-offset); vertical-align:baseline; }
+      .answer-line-shell .answer-line { position:absolute; left:0; right:0; bottom:0.08em; border-bottom: 2px dotted #333; }
       /* 画面: = の左側（式部分）を固定幅にする */
       ol.problem-list .eq { display:inline-block; width: var(--xcol-w); min-width: var(--xcol-w); }
 
@@ -92,7 +103,8 @@
         body.count-20 #problems-grid { grid-template-rows: repeat(10, 1fr); }
         #problems-grid li { position:relative; padding-left:1.8em; display:flex; align-items:center; height:100%; break-inside:avoid; page-break-inside:avoid; white-space:nowrap; }
         #problems-grid li::before { counter-increment:pnum; content:'(' counter(pnum) ') '; position:absolute; left:0; width:1.8em; text-align:right; font-weight:600; }
-        #problems-grid .blank { min-width:55px; }
+        #problems-grid .blank { min-width: var(--blank-w-print); }
+        #problems-grid .answer-line-shell { width: calc((var(--blank-w-print) * 2) + var(--answer-line-gap)); }
         /* 印刷: = の左側（式部分）を固定幅にする */
         #problems-grid .eq { display:inline-block; width: var(--xcol-w-print); min-width: var(--xcol-w-print); }
         /* 解答も同様に2列グリッドで均等配置 */
@@ -316,6 +328,12 @@
         ids.forEach(id => { const el = document.getElementById(id); if (el) el.innerHTML = ''; });
       }
 
+      // 問題欄の回答欄（現行レイアウト幅を保ったアンダーライン形式）
+      function renderProblemAnswerLine(withAria) {
+        const aria = withAria ? ' aria-label="回答欄"' : '';
+        return `<span class="answer-line-shell"${aria}><span class="answer-line"></span></span>`;
+      }
+
       // 問題の描画（画面）
       function renderProblems(list) {
         const ol = document.getElementById('problems');
@@ -323,8 +341,7 @@
         list.forEach((p) => {
           const li = document.createElement('li');
           const left = `<span class="eq">${formatEquationHTML(p.b, p.c)} = </span>`;
-          const blanks = `( <span class="blank" aria-label="因数1"></span> )( <span class="blank" aria-label="因数2"></span> )`;
-          li.innerHTML = left + blanks;
+          li.innerHTML = left + renderProblemAnswerLine(true);
           ol.appendChild(li);
         });
 
@@ -334,8 +351,7 @@
         list.forEach((p) => {
           const li = document.createElement('li');
           const left = `<span class="eq">${formatEquationHTML(p.b, p.c)} = </span>`;
-          const blanks = `( <span class="blank"></span> )( <span class="blank"></span> )`;
-          li.innerHTML = left + blanks;
+          li.innerHTML = left + renderProblemAnswerLine(false);
           grid.appendChild(li);
         });
       }

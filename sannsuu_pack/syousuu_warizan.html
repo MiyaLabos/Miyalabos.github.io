@@ -381,16 +381,41 @@
         }
       }
 
+      // 小数表記の末尾が0で終わるか（例: 1.20, 3.0）
+      function endsWithZeroDecimal(dec) {
+        return dec.scale > 0 && (dec.valueInt % 10n === 0n);
+      }
+
+      // わる数として不適切な値かを判定
+      function isInvalidDivisorDecimal(dec) {
+        return dec.valueInt === 0n || isOneDecimal(dec) || endsWithZeroDecimal(dec);
+      }
+
+      // わる数用の小数を生成（0, 1, 末尾0を除外）
+      function generateValidDivisorDecimal(intDigits, fracDigits, allowZeroFraction) {
+        let attempt = 0;
+        while (attempt < 200) {
+          const dec = generateDecimal(intDigits, fracDigits, allowZeroFraction);
+          if (!isInvalidDivisorDecimal(dec)) return dec;
+          attempt++;
+        }
+
+        // セーフガード: 条件を満たす最小構成の値を返す
+        const integerPart = intDigits === 0 ? 0 : (intDigits === 1 ? 2 : Math.pow(10, intDigits - 1));
+        const fracText = `${'0'.repeat(Math.max(0, fracDigits - 1))}1`;
+        const scaleBase = 10n ** BigInt(fracDigits);
+        const valueInt = BigInt(integerPart) * scaleBase + BigInt(fracText);
+        return {
+          valueInt,
+          scale: fracDigits,
+          text: `${integerPart}.${fracText}`
+        };
+      }
+
       // 問題1件を生成
       function createOneProblem(aInt, aFrac, bInt, bFrac, allowZeroFraction, ansDigits, round, ansMode) {
         let A = generateDecimal(aInt, aFrac, allowZeroFraction);
-        let B = generateDecimal(bInt, bFrac, allowZeroFraction);
-        // Bが0や1（1.0, 1.00…）にならないよう保険
-        let guard = 0;
-        while ((B.valueInt === 0n || isOneDecimal(B)) && guard < 10) {
-          B = generateDecimal(bInt, bFrac, allowZeroFraction);
-          guard++;
-        }
+        let B = generateValidDivisorDecimal(bInt, bFrac, allowZeroFraction);
 
         if (ansMode === 'remainder') {
           // 商が1にならないよう再生成
@@ -402,14 +427,7 @@
             }
             // AとBを交互に更新して回避を試みる
             if (tries % 2 === 0) {
-              B = generateDecimal(bInt, bFrac, allowZeroFraction);
-              // Bが0や1を避ける
-              let g = 0;
-              while ((B.valueInt === 0n || isOneDecimal(B)) && g < 10) {
-                B = generateDecimal(bInt, bFrac, allowZeroFraction);
-                g++;
-              }
-              if (B.valueInt === 0n) B = generateDecimal(bInt, bFrac, false);
+              B = generateValidDivisorDecimal(bInt, bFrac, allowZeroFraction);
             } else {
               A = generateDecimal(aInt, aFrac, allowZeroFraction);
             }
@@ -427,14 +445,7 @@
             let inner = 0;
             while ((!Number.isFinite(digits) || digits > 3) && inner < 200) {
               if (inner % 10 === 0) AA = generateDecimal(aInt, aFrac, allowZeroFraction);
-              BB = generateDecimal(bInt, bFrac, allowZeroFraction);
-              // BBが0や1を避ける
-              let g2 = 0;
-              while ((BB.valueInt === 0n || isOneDecimal(BB)) && g2 < 10) {
-                BB = generateDecimal(bInt, bFrac, allowZeroFraction);
-                g2++;
-              }
-              if (BB.valueInt === 0n) BB = generateDecimal(bInt, bFrac, false);
+              BB = generateValidDivisorDecimal(bInt, bFrac, allowZeroFraction);
               digits = terminatingDigits(AA, BB);
               inner++;
             }
@@ -445,14 +456,7 @@
             // 1になる場合はA/Bを差し替えて再試行
             if (outer % 2 === 0) AA = generateDecimal(aInt, aFrac, allowZeroFraction);
             else {
-              BB = generateDecimal(bInt, bFrac, allowZeroFraction);
-              // BBが0や1を避ける
-              let g3 = 0;
-              while ((BB.valueInt === 0n || isOneDecimal(BB)) && g3 < 10) {
-                BB = generateDecimal(bInt, bFrac, allowZeroFraction);
-                g3++;
-              }
-              if (BB.valueInt === 0n) BB = generateDecimal(bInt, bFrac, false);
+              BB = generateValidDivisorDecimal(bInt, bFrac, allowZeroFraction);
             }
             outer++;
           }
@@ -471,14 +475,7 @@
             if (tries % 2 === 0) {
               A = generateDecimal(aInt, aFrac, allowZeroFraction);
             } else {
-              B = generateDecimal(bInt, bFrac, allowZeroFraction);
-              // Bが0や1を避ける
-              let g4 = 0;
-              while ((B.valueInt === 0n || isOneDecimal(B)) && g4 < 10) {
-                B = generateDecimal(bInt, bFrac, allowZeroFraction);
-                g4++;
-              }
-              if (B.valueInt === 0n) B = generateDecimal(bInt, bFrac, false);
+              B = generateValidDivisorDecimal(bInt, bFrac, allowZeroFraction);
             }
             tries++;
           }
@@ -697,8 +694,7 @@
         if (!res.ok) { prev.textContent = 'Aの例: - / Bの例: - / 指示: -'; syncControlsDisable(); return; }
         const { aInt, aFrac, bInt, bFrac, allowZeroFraction, ansDigits, round, ansMode } = res.config;
         const A = generateDecimal(aInt, aFrac, allowZeroFraction);
-        let B = generateDecimal(bInt, bFrac, allowZeroFraction);
-        if (B.valueInt === 0n) B = generateDecimal(bInt, bFrac, false);
+        const B = generateValidDivisorDecimal(bInt, bFrac, allowZeroFraction);
         if (ansMode === 'remainder') {
           prev.textContent = `Aの例: ${A.text} / Bの例: ${B.text} / 指示: 商と余り`;
         } else if (ansMode === 'exact') {
