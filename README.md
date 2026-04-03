@@ -20,6 +20,8 @@
   - 二次方程式プリントを自動生成し、問題・解答を印刷できます。
 - `chuugaku/insuubunkai/`
   - 因数分解の問題を条件付きで自動生成し、印刷できます。
+- `chuugaku/plusminus/`
+  - 正の数・負の数の加法・減法・乗法・除法プリントを自動生成し、印刷できます。
 - `chuugaku/tenkai/`
   - 展開公式の問題を形式ごとに切り替えて自動生成し、印刷できます。
 
@@ -28,6 +30,8 @@
   - 小数・整数・分数・わり算のプリントをタブ切り替えで利用できます。
 - `Tenkaizu/`
   - 立方体の展開図を作り、3D 表示で組み立てを確認できます。
+- `Tenkaizu/Tenkaizu2/`
+  - 展開図の検証と 3D 表示を強化した別バージョンです。
 
 ### 英語学習
 - `TangoTester/`
@@ -64,22 +68,52 @@ python3 -m http.server 8000
 - `habatan/`
 - `Tenkaizu/`
 
-## ディレクトリ構成（抜粋）
+## ディレクトリ構成（公開用の主な構成）
 
 ```text
 ./
 ├─ index.html                  # トップページ
 ├─ README.md                   # リポジトリ案内
 ├─ koukou/                     # 高校数学教材
+│  ├─ 2jifutoushiki/
+│  ├─ 2jikansuu/
+│  └─ 3kakuhi/
 ├─ chuugaku/                   # 中学数学教材
+│  ├─ 1jihouteishiki/
+│  ├─ 2jihouteishiki/
+│  ├─ insuubunkai/
+│  ├─ plusminus/
+│  └─ tenkai/
 ├─ sannsuu_pack/               # 小学生向け算数プリント集
+│  ├─ index.html
+│  ├─ bunsuu_kakewari.html
+│  ├─ bunsuu_tasihiki.html
+│  ├─ seisuu_kakezan.html
+│  ├─ seisuu_tashihiki.html
+│  ├─ shishagonyuu.html
+│  ├─ syousuu_kakeru.html
+│  ├─ syousuu_tasihiki.html
+│  ├─ syousuu_warizan.html
+│  └─ warizanmaker.html
 ├─ Tenkaizu/                   # 立方体展開図教材
+│  ├─ index.html
+│  ├─ css/
+│  ├─ js/
+│  └─ Tenkaizu2/
 ├─ TangoTester/                # 英単語テスト生成
 ├─ habatan/                    # はば単プリント・クイズ
+│  ├─ index.html
+│  ├─ quiz.html
+│  ├─ data/
+│  └─ scripts/
 ├─ genso/                      # 元素記号プリント
 ├─ Timer/                      # タイマー
 └─ .gitignore
 ```
+
+補足:
+- 上の一覧は、ブラウザから利用する教材ページと、それを支える主要ディレクトリに絞った構成です。
+- `.git/` や `tmp/` などの管理用・一時用ディレクトリは省略しています。
 
 ## トップページへの追加方法
 `index.html` の各カテゴリにある `<nav class="grid">` 内へ、次の形式でカードを追加します。
