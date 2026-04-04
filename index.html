@@ -4,286 +4,714 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>学習ツール集 | Miyalabos</title>
-    <!--
-      目的: リポジトリ内の各ツール/教材への入口ページ。
-           追加のリンクを増やしても自然に並ぶカード型グリッドを採用。
-      方針: 画面に見える文言は日本語、コードは英語、コメントは日本語。
-      依存: 外部ライブラリなし（オフライン動作）。
-    -->
+    <meta
+      name="description"
+      content="Miyalabos の学習用ツールを、現在のディレクトリ構成に合わせてカテゴリ別に一覧できるトップページです。"
+    />
     <style>
-      /* 全体の配色・余白（ダーク基調） */
       :root {
-        --bg: #0e0f12;
-        --panel: #131723;
-        --ink: #e8ebf0;
-        --muted: #9aa3af;
-        --border: #1f2636;
-        --accent: #67b0ff;
-        --accent-2: #7fe0ba;
-        --chip: #0f1320;
-        --card: #0f1117cc; /* 半透明で軽いガラス感 */
-        --card-hover: #141826dd;
-        --shadow: 0 10px 30px rgba(0,0,0,0.35);
+        --bg: #f5f1e8;
+        --bg-strong: #efe5d3;
+        --surface: rgba(255, 251, 245, 0.92);
+        --surface-strong: #fffdf8;
+        --ink: #1f2a22;
+        --muted: #5f685e;
+        --line: rgba(63, 74, 66, 0.16);
+        --accent: #1f6f5f;
+        --accent-strong: #174f44;
+        --accent-soft: #d8ebe4;
+        --shadow: 0 16px 40px rgba(54, 48, 37, 0.12);
+        --radius-lg: 24px;
+        --radius-md: 18px;
+        --radius-sm: 999px;
       }
 
-      * { box-sizing: border-box; }
-      html, body { height: 100%; }
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
       body {
         margin: 0;
+        min-height: 100vh;
         color: var(--ink);
-        background: radial-gradient(1200px 600px at 15% -10%, #1a2040 0%, transparent 45%),
-                    radial-gradient(1000px 600px at 110% 10%, #102a22 0%, transparent 50%),
-                    var(--bg);
-        font-family: system-ui, -apple-system, Segoe UI, Roboto,
-          "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
-        line-height: 1.6;
+        background:
+          radial-gradient(circle at top left, rgba(205, 231, 222, 0.9), transparent 35%),
+          radial-gradient(circle at top right, rgba(243, 225, 198, 0.95), transparent 32%),
+          linear-gradient(180deg, #faf6ef 0%, var(--bg) 100%);
+        font-family:
+          "Hiragino Sans",
+          "Yu Gothic",
+          "Noto Sans JP",
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        line-height: 1.65;
       }
 
-      header.site-header {
-        padding: 28px 16px 8px;
-        border-bottom: 1px solid var(--border);
-        background: linear-gradient(180deg, rgba(20,24,38,0.9) 0%, rgba(14,15,18,0.6) 100%);
-      }
-      .site-header .container { max-width: 1100px; margin: 0 auto; }
-      .title-wrap { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
-      h1 { margin: 0; font-size: 22px; letter-spacing: .02em; }
-      .subtitle { margin: 4px 0 0; color: var(--muted); font-size: 14px; }
-
-      main .container { max-width: 1100px; margin: 0 auto; padding: 18px 16px 28px; }
-
-      /* カードグリッド: 追加しても崩れない自動折返し */
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 14px;
-        margin-top: 12px;
-      }
-
-      /* カード（リンク） */
-      a.card {
-        display: block;
-        text-decoration: none;
+      a {
         color: inherit;
-        background: var(--card);
-        border: 1px solid var(--border);
-        border-radius: 14px;
-        padding: 16px;
-        min-height: 130px;
+      }
+
+      .shell {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .hero {
+        padding: 40px 0 28px;
+      }
+
+      .hero-panel {
+        display: grid;
+        gap: 24px;
+        padding: 28px;
+        background: linear-gradient(145deg, rgba(255, 252, 247, 0.95), rgba(248, 241, 228, 0.92));
+        border: 1px solid rgba(74, 87, 78, 0.12);
+        border-radius: 30px;
         box-shadow: var(--shadow);
-        position: relative;
-        overflow: hidden;
-        transition: transform .18s ease, background .18s ease, border-color .18s ease;
       }
-      a.card:hover { transform: translateY(-2px); background: var(--card-hover); border-color: #2a3349; }
-      a.card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
-      .card .icon {
-        width: 36px; height: 36px; border-radius: 10px;
-        display: inline-flex; align-items: center; justify-content: center;
-        background: #0f1320; border: 1px solid #243052; color: var(--accent);
-        font-size: 18px; margin-bottom: 10px;
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        width: fit-content;
+        padding: 6px 12px;
+        border-radius: var(--radius-sm);
+        background: var(--accent-soft);
+        color: var(--accent-strong);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.03em;
       }
-      .card h3 { margin: 0 0 6px; font-size: 16px; letter-spacing: .01em; }
-      .card p.desc { margin: 0; color: var(--muted); font-size: 13px; }
-      .card .tags { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
-      .tag { font-size: 11px; color: #c7d2fe; background: var(--chip); border: 1px solid #243052; padding: 2px 8px; border-radius: 999px; }
-      .tag.green { color: #98f5d0; border-color: #1d3a30; }
 
-      /* 区切り見出し */
-      .section-title { margin: 18px 0 8px; font-size: 14px; color: var(--muted); letter-spacing: .02em; }
+      h1 {
+        margin: 0;
+        font-size: clamp(32px, 5vw, 52px);
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+      }
 
-      footer.site-footer { color: var(--muted); text-align: center; padding: 24px 12px; border-top: 1px solid var(--border); }
+      .hero-copy {
+        margin: 14px 0 0;
+        max-width: 760px;
+        color: var(--muted);
+        font-size: clamp(15px, 2vw, 18px);
+      }
 
-      /* 印刷時はシンプル化 */
+      .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 12px;
+      }
+
+      .stat-card {
+        padding: 16px 18px;
+        border-radius: var(--radius-md);
+        background: rgba(255, 255, 255, 0.56);
+        border: 1px solid rgba(57, 69, 62, 0.1);
+      }
+
+      .stat-label {
+        display: block;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .stat-value {
+        display: block;
+        margin-top: 6px;
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+      }
+
+      main {
+        padding-bottom: 36px;
+      }
+
+      .overview {
+        display: grid;
+        gap: 18px;
+        margin-bottom: 28px;
+      }
+
+      .panel {
+        padding: 22px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(14px);
+      }
+
+      .panel h2 {
+        margin: 0 0 10px;
+        font-size: 20px;
+      }
+
+      .panel p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .jump-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .jump-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 9px 14px;
+        border-radius: var(--radius-sm);
+        background: #fffdfa;
+        border: 1px solid rgba(54, 66, 59, 0.14);
+        text-decoration: none;
+        font-weight: 700;
+        transition: transform 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
+      }
+
+      .jump-link:hover,
+      .jump-link:focus-visible {
+        transform: translateY(-1px);
+        border-color: rgba(31, 111, 95, 0.4);
+        background: #ffffff;
+      }
+
+      .note-list {
+        margin: 14px 0 0;
+        padding-left: 18px;
+        color: var(--muted);
+      }
+
+      .catalog {
+        display: grid;
+        gap: 22px;
+      }
+
+      .section-card {
+        padding: 24px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        box-shadow: var(--shadow);
+      }
+
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 16px;
+        margin-bottom: 18px;
+        flex-wrap: wrap;
+      }
+
+      .section-head h2 {
+        margin: 0;
+        font-size: clamp(24px, 3vw, 30px);
+      }
+
+      .section-desc {
+        margin-top: 6px;
+        color: var(--muted);
+      }
+
+      .section-count {
+        padding: 8px 12px;
+        border-radius: var(--radius-sm);
+        background: var(--accent-soft);
+        color: var(--accent-strong);
+        font-size: 13px;
+        font-weight: 800;
+        white-space: nowrap;
+      }
+
+      .tool-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 14px;
+      }
+
+      .tool-card {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        min-height: 220px;
+        padding: 18px;
+        background: var(--surface-strong);
+        border: 1px solid rgba(57, 69, 62, 0.12);
+        border-radius: 22px;
+        text-decoration: none;
+        transition:
+          transform 0.18s ease,
+          box-shadow 0.18s ease,
+          border-color 0.18s ease;
+      }
+
+      .tool-card:hover,
+      .tool-card:focus-visible {
+        transform: translateY(-2px);
+        border-color: rgba(31, 111, 95, 0.36);
+        box-shadow: 0 18px 30px rgba(64, 59, 48, 0.12);
+      }
+
+      .tool-top {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .tool-icon {
+        flex: 0 0 auto;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 48px;
+        height: 48px;
+        padding: 0 10px;
+        border-radius: 16px;
+        background: linear-gradient(145deg, #e5f2ed, #f7efe2);
+        color: var(--accent-strong);
+        border: 1px solid rgba(31, 111, 95, 0.12);
+        font-weight: 800;
+        font-size: 18px;
+      }
+
+      .tool-title {
+        margin: 2px 0 0;
+        font-size: 18px;
+        line-height: 1.35;
+      }
+
+      .tool-path {
+        margin: 4px 0 0;
+        color: var(--muted);
+        font-size: 12px;
+        word-break: break-all;
+      }
+
+      .tool-desc {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .tool-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: auto;
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        padding: 5px 10px;
+        border-radius: var(--radius-sm);
+        background: #f4efe5;
+        border: 1px solid rgba(60, 73, 66, 0.12);
+        color: #495249;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      footer {
+        padding: 0 0 40px;
+      }
+
+      .footer-panel {
+        padding: 18px 22px;
+        background: rgba(255, 251, 245, 0.84);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      @media (max-width: 720px) {
+        .shell {
+          width: min(100% - 20px, 1180px);
+        }
+
+        .hero {
+          padding-top: 20px;
+        }
+
+        .hero-panel,
+        .panel,
+        .section-card {
+          padding: 18px;
+        }
+
+        .tool-card {
+          min-height: auto;
+        }
+      }
+
       @media print {
-        header.site-header { background: #fff; color: #111; border: none; }
-        body { background: #fff; color: #111; }
-        a.card { background: #fff; border: 1px solid #ddd; box-shadow: none; }
+        body {
+          background: #fff;
+        }
+
+        .hero-panel,
+        .panel,
+        .section-card,
+        .footer-panel,
+        .tool-card,
+        .stat-card {
+          box-shadow: none;
+          background: #fff;
+        }
       }
     </style>
   </head>
   <body>
-    <header class="site-header" aria-label="ページヘッダー">
-      <div class="container">
-        <div class="title-wrap">
-          <h1>学習ツール集</h1>
+    <header class="hero">
+      <div class="shell">
+        <div class="hero-panel">
+          <div>
+            <div class="eyebrow">Miyalabos 学習サイト</div>
+            <h1>学習ツール集</h1>
+            <p class="hero-copy">
+              リポジトリ内の公開 HTML を、現在のディレクトリ構成に合わせてカテゴリ別に整理した入口ページです。
+              問題生成、可視化教材、印刷用プリント、学習サポートをまとめて辿れます。
+            </p>
+          </div>
+          <div class="hero-stats" id="hero-stats" aria-label="サイト概要"></div>
         </div>
-        
       </div>
     </header>
 
-    <main aria-label="リンク一覧">
-      <div class="container">
-        <div class="section-title">高校数学</div>
-        <nav class="grid" aria-label="高校数学のツール">
-          <!-- 二次不等式 -->
-          <a class="card" href="koukou/2jifutoushiki/index.html">
-            <span class="icon" aria-hidden="true">∵</span>
-            <h3>二次不等式</h3>
-            <p class="desc">問題生成、分数/根号表記、グラフと日本語解説で学べます。</p>
-            <div class="tags">
-              <span class="tag">数学I</span><span class="tag">可視化</span>
-            </div>
-          </a>
-          <!-- 二次関数 -->
-          <a class="card" href="koukou/2jikansuu/index.html">
-            <span class="icon" aria-hidden="true">f(x)</span>
-            <h3>二次関数</h3>
-            <p class="desc">変域と値域を計算し、頂点・端点・帯で直感的に表示します。</p>
-            <div class="tags">
-              <span class="tag">数学I</span><span class="tag">値域</span>
-            </div>
-          </a>
-          <!-- 三角比 -->
-          <a class="card" href="koukou/3kakuhi/index.html">
-            <span class="icon" aria-hidden="true">sin</span>
-            <h3>三角比で遊ぶ</h3>
-            <p class="desc">直角三角形・単位円・グラフ・クイズを通して三角比を体感できます。</p>
-            <div class="tags">
-              <span class="tag">数学I</span><span class="tag">試作教材</span>
-            </div>
-          </a>
-        </nav>
+    <main>
+      <div class="shell">
+        <section class="overview">
+          <div class="panel">
+            <h2>カテゴリから探す</h2>
+            <p>
+              各カテゴリの先頭へ移動できます。トップページ自身を除いた公開 HTML を一覧化しています。
+            </p>
+            <nav class="jump-links" id="jump-links" aria-label="カテゴリジャンプ"></nav>
+          </div>
+          <div class="panel">
+            <h2>利用時の補足</h2>
+            <p>
+              一部の教材は `fetch()` や ES Modules を使うため、ローカルサーバー経由で開く方が安定します。
+            </p>
+            <ul class="note-list">
+              <li>ローカルサーバー推奨: `TangoTester`、`habatan`、`Tenkaizu`</li>
+              <li>`sannsuu_pack` はまとめページと個別プリントの両方を掲載しています</li>
+              <li>削除済みの `Tenkaizu/Tenkaizu2/` へのリンクは掲載していません</li>
+            </ul>
+          </div>
+        </section>
 
-        <div class="section-title">中学数学</div>
-        <nav class="grid" aria-label="中学数学のツール">
-          <!-- 正の数・負の数プリント -->
-          <a class="card" href="chuugaku/plusminus/plusminus.html">
-            <span class="icon" aria-hidden="true">±</span>
-            <h3>正の数・負の数プリント</h3>
-            <p class="desc">加法・減法・乗法・除法を選んで、問題と模範解答を印刷できます。</p>
-            <div class="tags">
-              <span class="tag">中学1年</span><span class="tag">印刷対応</span>
-            </div>
-          </a>
-          <!-- 一次方程式プリント -->
-          <a class="card" href="chuugaku/1jihouteishiki/1jihouteishiki.html">
-            <span class="icon" aria-hidden="true">x =</span>
-            <h3>一次方程式プリント</h3>
-            <p class="desc">整数解をもつ一次方程式を自動生成。問題/解答の印刷に対応。</p>
-            <div class="tags">
-              <span class="tag">中学</span><span class="tag">印刷対応</span>
-            </div>
-          </a>
-          <!-- 二次方程式プリント -->
-          <a class="card" href="chuugaku/2jihouteishiki/2jihouteishiki.html">
-            <span class="icon" aria-hidden="true">x²</span>
-            <h3>二次方程式プリント</h3>
-            <p class="desc">整数解をもつ二次方程式を自動生成。問題/解答の印刷に対応。</p>
-            <div class="tags">
-              <span class="tag">中学</span><span class="tag">印刷対応</span>
-            </div>
-          </a>
-          <!-- 因数分解プリント（x^2 + bx + c） -->
-          <a class="card" href="chuugaku/insuubunkai/insuubunkai.html">
-            <span class="icon" aria-hidden="true">因</span>
-            <h3>因数分解プリント</h3>
-            <p class="desc">x²+bx+c を中心に、条件に応じて問題を自動生成。模範解答を含めて印刷できます。</p>
-            <div class="tags">
-              <span class="tag">中学</span><span class="tag">印刷対応</span>
-            </div>
-          </a>
-          <!-- 展開公式プリント -->
-          <a class="card" href="chuugaku/tenkai/tenkai.html">
-            <span class="icon" aria-hidden="true">展</span>
-            <h3>展開公式プリント</h3>
-            <p class="desc">(x+a)(x+b)、(x±a)²、和と差などを自動出題。問題/解答をそれぞれ印刷できます。</p>
-            <div class="tags">
-              <span class="tag">中学</span><span class="tag">印刷対応</span>
-            </div>
-          </a>
-        </nav>
-
-        <div class="section-title">小学生算数</div>
-        <nav class="grid" aria-label="小学生算数のプリント">
-          <!-- 入口（タブ切替） -->
-          <a class="card" href="sannsuu_pack/index.html">
-            <span class="icon" aria-hidden="true">📄</span>
-            <h3>算数プリント集（切り替え）</h3>
-            <p class="desc">小数/整数/分数/わり算をタブで切替。問題/解答の印刷に対応。</p>
-            <div class="tags">
-              <span class="tag green">小学生</span><span class="tag">印刷対応</span>
-            </div>
-          </a>
-          <a class="card" href="Tenkaizu/index.html">
-            <span class="icon" aria-hidden="true">展</span>
-            <h3>立方体展開図マスター</h3>
-            <p class="desc">立方体の展開図から立方体を作成し、面のつながりを確認できます。</p>
-            <div class="tags">
-              <span class="tag green">小学生</span><span class="tag">立体</span>
-            </div>
-          </a>
-          <a class="card" href="Tenkaizu/Tenkaizu2/index.html">
-            <span class="icon" aria-hidden="true">3D</span>
-            <h3>立方体展開図マスター Ver.2</h3>
-            <p class="desc">展開図の妥当性を検証しながら、折りたたみ方を3D表示で確認できます。</p>
-            <div class="tags">
-              <span class="tag green">小学生</span><span class="tag">立体</span><span class="tag">3D</span>
-            </div>
-          </a>
-        </nav>
-
-        <div class="section-title">英単語学習</div>
-        <nav class="grid" aria-label="英単語学習のツール">
-          <a class="card" href="TangoTester/index.html">
-            <span class="icon" aria-hidden="true">Aa</span>
-            <h3>英検単語テストジェネレーター</h3>
-            <p class="desc">英検3〜5級の語彙を条件指定で抽出し、英→日・日→英のテストを同時生成します。</p>
-            <div class="tags">
-              <span class="tag">英語</span><span class="tag">印刷対応</span>
-            </div>
-          </a>
-          <a class="card" href="habatan/index.html">
-            <span class="icon" aria-hidden="true">単</span>
-            <h3>はば単プリントメーカー</h3>
-            <p class="desc">はば単 2,500 をもとに、英日・日英の小テストを範囲指定で作成できます。</p>
-            <div class="tags">
-              <span class="tag">英語</span><span class="tag">印刷対応</span>
-            </div>
-          </a>
-          <a class="card" href="habatan/quiz.html">
-            <span class="icon" aria-hidden="true">5択</span>
-            <h3>はば単クイズ</h3>
-            <p class="desc">はば単 2,500 の単語を使った5択クイズで、テンポよく反復学習できます。</p>
-            <div class="tags">
-              <span class="tag">英語</span><span class="tag">クイズ</span>
-            </div>
-          </a>
-        </nav>
-
-        <div class="section-title">理科</div>
-        <nav class="grid" aria-label="理科のツール">
-          <a class="card" href="genso/index.html">
-            <span class="icon" aria-hidden="true">元素</span>
-            <h3>周期表 穴埋めプリント</h3>
-            <p class="desc">元素記号の穴埋め問題を自動生成し、問題用紙と模範解答をまとめて印刷できます。</p>
-            <div class="tags">
-              <span class="tag">理科</span><span class="tag">印刷対応</span>
-            </div>
-          </a>
-        </nav>
-
-        <div class="section-title">学習サポート</div>
-        <nav class="grid" aria-label="学習サポートのツール">
-          <a class="card" href="Timer/index.html">
-            <span class="icon" aria-hidden="true">⏱</span>
-            <h3>Timer</h3>
-            <p class="desc">時計・ストップウォッチ・カウントダウンを兼ね備えたタイマーです。</p>
-            <div class="tags">
-              <span class="tag">時間管理</span><span class="tag">iPad対応</span>
-            </div>
-          </a>
-        </nav>
-
-        <!--
-          追加方法（日本語メモ）:
-          - 下のいずれかの <nav class="grid"> 内に、<a class="card" ...> を1枚増やしてください。
-          - カードは自動的にグリッドで折り返され、デザインの違和感なく追加できます。
-          - アイコンは絵文字/短いテキストでOK（例: f(x), ∑, 📄 など）。
-        -->
+        <div class="catalog" id="catalog" aria-label="教材一覧"></div>
       </div>
     </main>
 
-    
+    <footer>
+      <div class="shell">
+        <div class="footer-panel">
+          表示中のリンク一覧は、現在のリポジトリ構成に合わせて整理しています。新しい教材を追加する場合は、
+          このページ内のカタログ定義に 1 件追加すると反映できます。
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // 公開ページ一覧の単一データソース。存在する HTML のみを列挙する。
+      const catalog = [
+        {
+          slug: "koukou",
+          title: "高校数学",
+          description: "問題生成と可視化を中心にした高校数学教材",
+          items: [
+            {
+              href: "koukou/2jifutoushiki/index.html",
+              title: "二次不等式",
+              description: "問題生成、解の集合、グラフ、日本語解説をまとめて確認できます。",
+              tags: ["数学I", "可視化", "解説つき"],
+              icon: "x²",
+            },
+            {
+              href: "koukou/2jikansuu/index.html",
+              title: "二次関数",
+              description: "変域と値域を計算し、頂点や端点をグラフつきで確認できます。",
+              tags: ["数学I", "グラフ", "値域"],
+              icon: "f(x)",
+            },
+            {
+              href: "koukou/3kakuhi/index.html",
+              title: "三角比で遊ぶ",
+              description: "直角三角形、単位円、グラフ、クイズを切り替えながら学べます。",
+              tags: ["数学I", "試作教材", "体験型"],
+              icon: "sin",
+            },
+          ],
+        },
+        {
+          slug: "chuugaku",
+          title: "中学数学",
+          description: "印刷しやすい自動生成プリントを中心とした教材",
+          items: [
+            {
+              href: "chuugaku/plusminus/plusminus.html",
+              title: "正の数・負の数プリント",
+              description: "加法・減法・乗法・除法を選び、問題と模範解答を印刷できます。",
+              tags: ["中学1年", "印刷対応"],
+              icon: "±",
+            },
+            {
+              href: "chuugaku/1jihouteishiki/1jihouteishiki.html",
+              title: "一次方程式プリント",
+              description: "整数解をもつ一次方程式を自動生成し、問題用紙と解答を出力できます。",
+              tags: ["中学", "印刷対応"],
+              icon: "x=",
+            },
+            {
+              href: "chuugaku/2jihouteishiki/2jihouteishiki.html",
+              title: "二次方程式プリント",
+              description: "整数解をもつ二次方程式を自動生成し、解答つきで印刷できます。",
+              tags: ["中学", "印刷対応"],
+              icon: "x²",
+            },
+            {
+              href: "chuugaku/insuubunkai/insuubunkai.html",
+              title: "因数分解プリント",
+              description: "x²+bx+c を中心に、条件に応じた因数分解問題を作成できます。",
+              tags: ["中学", "印刷対応"],
+              icon: "因",
+            },
+            {
+              href: "chuugaku/tenkai/tenkai.html",
+              title: "展開公式プリント",
+              description: "展開公式の練習問題を形式別に切り替えて印刷できます。",
+              tags: ["中学", "印刷対応"],
+              icon: "展",
+            },
+          ],
+        },
+        {
+          slug: "shougaku",
+          title: "小学生向け算数",
+          description: "算数プリント集と立体教材をまとめたカテゴリ",
+          items: [
+            {
+              href: "sannsuu_pack/index.html",
+              title: "算数プリント集",
+              description: "小数、整数、分数、わり算のプリントをまとめて切り替えられる入口ページです。",
+              tags: ["小学生", "まとめページ", "印刷対応"],
+              icon: "集",
+            },
+            {
+              href: "sannsuu_pack/seisuu_tashihiki.html",
+              title: "たし算・ひき算プリント",
+              description: "整数のたし算とひき算を練習する個別プリントページです。",
+              tags: ["小学生", "個別ページ", "印刷対応"],
+              icon: "+-",
+            },
+            {
+              href: "sannsuu_pack/seisuu_kakezan.html",
+              title: "かけ算プリント",
+              description: "整数のかけ算問題を作成して印刷できます。",
+              tags: ["小学生", "個別ページ", "印刷対応"],
+              icon: "×",
+            },
+            {
+              href: "sannsuu_pack/syousuu_tasihiki.html",
+              title: "小数のたし算・ひき算プリント",
+              description: "小数の加減計算を段階別に練習できます。",
+              tags: ["小学生", "個別ページ", "印刷対応"],
+              icon: "0.1",
+            },
+            {
+              href: "sannsuu_pack/syousuu_kakeru.html",
+              title: "小数のかけ算プリント",
+              description: "小数のかけ算を反復練習できるプリントを生成します。",
+              tags: ["小学生", "個別ページ", "印刷対応"],
+              icon: "0.x",
+            },
+            {
+              href: "sannsuu_pack/syousuu_warizan.html",
+              title: "小数のわり算プリント",
+              description: "小数のわり算問題を出題形式付きで作れます。",
+              tags: ["小学生", "個別ページ", "印刷対応"],
+              icon: "0/0",
+            },
+            {
+              href: "sannsuu_pack/bunsuu_tasihiki.html",
+              title: "分数のたし算・ひき算プリント",
+              description: "分数の加減計算を練習するための個別プリントです。",
+              tags: ["小学生", "個別ページ", "印刷対応"],
+              icon: "a/b",
+            },
+            {
+              href: "sannsuu_pack/bunsuu_kakewari.html",
+              title: "分数のかけ算・わり算プリント",
+              description: "分数の乗除計算を練習するプリントを作成できます。",
+              tags: ["小学生", "個別ページ", "印刷対応"],
+              icon: "÷",
+            },
+            {
+              href: "sannsuu_pack/shishagonyuu.html",
+              title: "四捨五入プリント",
+              description: "位を指定しながら四捨五入の問題を生成できます。",
+              tags: ["小学生", "個別ページ", "印刷対応"],
+              icon: "四",
+            },
+            {
+              href: "sannsuu_pack/warizanmaker.html",
+              title: "わり算プリント",
+              description: "整数のわり算を条件指定で出題できる個別ページです。",
+              tags: ["小学生", "個別ページ", "印刷対応"],
+              icon: "余",
+            },
+            {
+              href: "Tenkaizu/index.html",
+              title: "立方体展開図マスター",
+              description: "立方体の展開図を作り、組み立てや面のつながりを確認できます。",
+              tags: ["小学生", "立体", "可視化"],
+              icon: "立",
+            },
+          ],
+        },
+        {
+          slug: "eigo",
+          title: "英語学習",
+          description: "語彙テスト生成とクイズ型学習のページ",
+          items: [
+            {
+              href: "TangoTester/index.html",
+              title: "英検単語テストジェネレーター",
+              description: "英検 3 級から 5 級の語彙テストを条件指定で作成できます。",
+              tags: ["英語", "印刷対応", "ローカル推奨"],
+              icon: "Aa",
+            },
+            {
+              href: "habatan/index.html",
+              title: "はば単プリントメーカー",
+              description: "はば単 2,500 をもとに、英日・日英の小テストを範囲指定で作れます。",
+              tags: ["英語", "印刷対応", "ローカル推奨"],
+              icon: "単",
+            },
+            {
+              href: "habatan/quiz.html",
+              title: "はば単クイズ",
+              description: "5 択形式でテンポよく単語を反復できるクイズページです。",
+              tags: ["英語", "クイズ", "ローカル推奨"],
+              icon: "5択",
+            },
+          ],
+        },
+        {
+          slug: "rika",
+          title: "理科",
+          description: "暗記プリントと穴埋め学習のページ",
+          items: [
+            {
+              href: "genso/index.html",
+              title: "周期表 穴埋めプリント",
+              description: "元素記号の穴埋め問題を自動生成し、問題と模範解答を印刷できます。",
+              tags: ["理科", "印刷対応"],
+              icon: "元素",
+            },
+          ],
+        },
+        {
+          slug: "support",
+          title: "学習サポート",
+          description: "授業や自習で使いやすい補助ツール",
+          items: [
+            {
+              href: "Timer/index.html",
+              title: "Timer",
+              description: "時計、ストップウォッチ、カウントダウンを切り替えられるタイマーです。",
+              tags: ["時間管理", "サポート"],
+              icon: "時",
+            },
+          ],
+        },
+      ];
+
+      const totalPages = catalog.reduce((sum, section) => sum + section.items.length, 0);
+      const totalCategories = catalog.length;
+
+      const heroStats = [
+        { label: "カテゴリ数", value: `${totalCategories}` },
+        { label: "公開ページ数", value: `${totalPages}` },
+        { label: "トップ以外の HTML", value: `${totalPages}` },
+      ];
+
+      const heroStatsRoot = document.querySelector("#hero-stats");
+      heroStatsRoot.innerHTML = heroStats
+        .map(
+          (stat) => `
+            <div class="stat-card">
+              <span class="stat-label">${stat.label}</span>
+              <span class="stat-value">${stat.value}</span>
+            </div>
+          `
+        )
+        .join("");
+
+      const jumpLinksRoot = document.querySelector("#jump-links");
+      jumpLinksRoot.innerHTML = catalog
+        .map(
+          (section) => `
+            <a class="jump-link" href="#${section.slug}">
+              <span>${section.title}</span>
+              <span>${section.items.length}件</span>
+            </a>
+          `
+        )
+        .join("");
+
+      const catalogRoot = document.querySelector("#catalog");
+      catalogRoot.innerHTML = catalog
+        .map(
+          (section) => `
+            <section class="section-card" id="${section.slug}" aria-labelledby="${section.slug}-title">
+              <div class="section-head">
+                <div>
+                  <h2 id="${section.slug}-title">${section.title}</h2>
+                  <p class="section-desc">${section.description}</p>
+                </div>
+                <div class="section-count">${section.items.length}ページ</div>
+              </div>
+              <div class="tool-grid">
+                ${section.items
+                  .map(
+                    (item) => `
+                      <a class="tool-card" href="${item.href}">
+                        <div class="tool-top">
+                          <span class="tool-icon" aria-hidden="true">${item.icon}</span>
+                          <div>
+                            <h3 class="tool-title">${item.title}</h3>
+                            <p class="tool-path">${item.href}</p>
+                          </div>
+                        </div>
+                        <p class="tool-desc">${item.description}</p>
+                        <div class="tool-tags">
+                          ${item.tags.map((tag) => `<span class="tag">${tag}</span>`).join("")}
+                        </div>
+                      </a>
+                    `
+                  )
+                  .join("")}
+              </div>
+            </section>
+          `
+        )
+        .join("");
+    </script>
   </body>
-  </html>
+</html>
