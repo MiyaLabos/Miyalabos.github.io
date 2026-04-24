@@ -3,18 +3,18 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>因数分解プリント（x^2 + bx + c）</title>
+    <title>因数分解プリント</title>
     <!--
-      目的: 中学生向けの二次式の因数分解（x^2 + bx + c）を自動生成し、問題/模範解答を個別印刷できるページ。
+      目的: 中学生向けの二次式の因数分解を自動生成し、問題/模範解答を個別印刷できるページ。
       注意: 画面に表示される文言は日本語、コード(変数名等)は英語、コメントは日本語とします。
-      条件: x^2 の係数は 1 に固定（モニック）。
+      条件: 通常は x^2 + bx + c、係数付きモードでは (ax + p)(ax + q) を出題します。
     -->
     <style>
       /* 全体スタイル（2jihouteishiki を踏襲） */
       :root { --accent:#2a7ae2; --ink:#222; --muted:#666; --bg:#fff; --panel:#f6f8fb; --answer-red:#c62828;
         /* 左側の式（=の左）の固定幅 */
-        --xcol-w: 240px; /* 画面 */
-        --xcol-w-print: 40mm; /* 印刷 */
+        --xcol-w: 300px; /* 画面 */
+        --xcol-w-print: 48mm; /* 印刷 */
         /* 問題欄の記入線長（旧2空欄の記入長を維持） */
         --blank-w-screen: 60px;
         --blank-w-print: 55px;
@@ -135,7 +135,7 @@
         <h1>因数分解プリント</h1>
         <span class="score-box print-only" aria-label="点数記入欄">点数（　　　　　）点</span>
       </div>
-      <p>中学生向けの二次式の因数分解（x^2 + bx + c）を自動生成します。x^2 の係数は 1 に固定します。</p>
+      <p>中学生向けの二次式の因数分解を自動生成します。通常問題と、x に係数が付く問題を切り替えて出題できます。</p>
     </header>
 
     <div class="container">
@@ -143,13 +143,13 @@
       <section id="controls" class="controls no-print" aria-label="生成条件の指定">
         <div class="grid">
           <div class="field">
-            <label for="rMin">因数（x + p）（x + q）の p, q の範囲</label>
+            <label for="rMin">因数の定数項 p, q の範囲</label>
             <div class="row">
               <input id="rMin" type="number" inputmode="numeric" min="-20" max="20" value="-9" aria-describedby="hintR" />
               <span class="sep">〜</span>
               <input id="rMax" type="number" inputmode="numeric" min="-20" max="20" value="9" aria-describedby="hintR" />
             </div>
-            <div class="hint" id="hintR">-20〜20 の範囲で指定します。負の数を含めない場合は 0 以上にしてください。</div>
+            <div class="hint" id="hintR">-20〜20 の範囲で指定します。係数付きモードでも p, q の範囲として使います。</div>
           </div>
 
           <div class="field">
@@ -159,7 +159,12 @@
 
           <div class="field">
             <label><input id="allowRepeated" type="checkbox" checked /> 重解（同じ因数）を含める</label>
-            <div class="hint">オフにすると、(x + p)(x + q) において p ≠ q のみ生成します。</div>
+            <div class="hint">オフにすると、同じ因数を2回使う問題は生成しません。</div>
+          </div>
+
+          <div class="field">
+            <label><input id="useXCoefficient" type="checkbox" /> x に係数がある問題を作る</label>
+            <div class="hint">オンにすると、(ax + p)(ax + q) 形のみ出題します。a は 2〜9 の整数です。</div>
           </div>
 
           <div class="field">
@@ -198,57 +203,71 @@
 
     <script>
       // 乱数の基本
+      const AX_COEFF_MIN = 2;
+      const AX_COEFF_MAX = 9;
       function randInt(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
 
       // 係数や式の整形（画面表示）
-      function formatX2() { return 'x<sup>2</sup>'; }
-      function formatX(b) {
-        if (b === 0) return '';
-        if (b === 1) return ' + x';
-        if (b === -1) return ' - x';
-        const sign = b > 0 ? ' + ' : ' - ';
-        return sign + Math.abs(b) + 'x';
+      function formatQuadraticHTML(a) {
+        if (a === 1) return 'x<sup>2</sup>';
+        if (a === -1) return '-x<sup>2</sup>';
+        return `${a}x<sup>2</sup>`;
       }
-      function formatC(c) {
+      function formatLinearHTML(b) {
+        if (b === 0) return '';
+        const sign = b > 0 ? ' + ' : ' - ';
+        const abs = Math.abs(b);
+        return sign + (abs === 1 ? 'x' : `${abs}x`);
+      }
+      function formatConstantHTML(c) {
         if (c === 0) return '';
         const sign = c > 0 ? ' + ' : ' - ';
         return sign + Math.abs(c);
       }
-      function formatEquationHTML(b, c) { return `${formatX2()}${formatX(b)}${formatC(c)}`; }
+      function formatEquationHTML(a, b, c) { return `${formatQuadraticHTML(a)}${formatLinearHTML(b)}${formatConstantHTML(c)}`; }
 
       // TeX 用（MathJax）
-      function texX2() { return 'x^{2}'; }
-      function texX(b) {
-        if (b === 0) return '';
-        if (b === 1) return ' + x';
-        if (b === -1) return ' - x';
-        const sign = b > 0 ? ' + ' : ' - ';
-        return sign + Math.abs(b) + 'x';
+      function texQuadratic(a) {
+        if (a === 1) return 'x^{2}';
+        if (a === -1) return '-x^{2}';
+        return `${a}x^{2}`;
       }
-      function texC(c) {
+      function texLinear(b) {
+        if (b === 0) return '';
+        const sign = b > 0 ? ' + ' : ' - ';
+        const abs = Math.abs(b);
+        return sign + (abs === 1 ? 'x' : `${abs}x`);
+      }
+      function texConstant(c) {
         if (c === 0) return '';
         const sign = c > 0 ? ' + ' : ' - ';
         return sign + Math.abs(c);
       }
-      function texEquation(b, c) { return `${texX2()}${texX(b)}${texC(c)}`; }
-      function texFactorTerm(n) { return n >= 0 ? `(x + ${n})` : `(x - ${Math.abs(n)})`; }
+      function texEquation(a, b, c) { return `${texQuadratic(a)}${texLinear(b)}${texConstant(c)}`; }
+      function texFactorBase(a) { return a === 1 ? 'x' : `${a}x`; }
+      function texSignedConstant(n) {
+        if (n === 0) return '';
+        return n >= 0 ? ` + ${n}` : ` - ${Math.abs(n)}`;
+      }
+      function texFactorTerm(a, n) { return `(${texFactorBase(a)}${texSignedConstant(n)})`; }
       // 因数表示（特別仕様）
-      // - 重解: (x + a)^2（a=0 のときは x^2）
-      // - 片方が 0: x(x + a) の形（a はもう一方の因数）
-      // - それ以外: (x + p)(x + q)
-      function texFactorizationFromPQ(p, q) {
+      // - 重解: (ax + p)^2（p=0 のときは (ax)^2、a=1 のときは x^2）
+      // - 片方が 0: ax(ax + p) の形
+      // - それ以外: (ax + p)(ax + q)
+      function texFactorization(problem) {
+        const a = problem.a;
+        const p = problem.roots[0];
+        const q = problem.roots[1];
         if (p === q) {
-          if (p === 0) return 'x^{2}';
-          const sign = p >= 0 ? ' + ' : ' - ';
-          return `(x${sign}${Math.abs(p)})^{2}`;
+          if (p === 0) return a === 1 ? 'x^{2}' : `(${texFactorBase(a)})^{2}`;
+          return `(${texFactorBase(a)}${texSignedConstant(p)})^{2}`;
         }
         if (p === 0 || q === 0) {
-          const a = (p === 0 ? q : p);
-          const term = a >= 0 ? `(x + ${a})` : `(x - ${Math.abs(a)})`;
-          return `x${term}`;
+          const other = (p === 0 ? q : p);
+          return `${texFactorBase(a)}${texFactorTerm(a, other)}`;
         }
-        const t1 = texFactorTerm(p);
-        const t2 = texFactorTerm(q);
+        const t1 = texFactorTerm(a, p);
+        const t2 = texFactorTerm(a, q);
         return `${t1}${t2}`;
       }
 
@@ -258,6 +277,7 @@
         let rMax = parseInt(document.getElementById('rMax').value, 10);
         const allowNegative = !!document.getElementById('allowNegative').checked;
         const allowRepeated = !!document.getElementById('allowRepeated').checked;
+        const useXCoefficient = !!document.getElementById('useXCoefficient').checked;
         const count = (document.getElementById('count20') && document.getElementById('count20').classList.contains('selected')) ? 20 : 10;
 
         // 入力チェック
@@ -268,23 +288,88 @@
         if (!allowRepeated && rMin === rMax)
           return { ok:false, message:'重解を含めない設定では、因数の範囲幅は 2 以上にしてください。' };
 
-        return { ok:true, config: { rMin, rMax, allowNegative, allowRepeated, count } };
+        return {
+          ok:true,
+          config: {
+            mode: useXCoefficient ? 'ax' : 'monic',
+            rMin,
+            rMax,
+            allowNegative,
+            allowRepeated,
+            count,
+            aMin: AX_COEFF_MIN,
+            aMax: AX_COEFF_MAX
+          }
+        };
       }
 
-      // 問題1件を生成（(x + p)(x + q) を展開して b, c を作る）
-      function createOneProblem(cfg) {
-        const { rMin, rMax, allowRepeated } = cfg;
-        let p = randInt(rMin, rMax);
-        let q = randInt(rMin, rMax);
-        if (!allowRepeated) {
-          let tries = 0;
-          while (q === p && tries < 20) { q = randInt(rMin, rMax); tries++; }
-          if (q === p) q = (p === rMax ? p - 1 : p + 1);
-        }
-        const b = p + q;
+      // 問題データを構築
+      function buildProblem(type, a, p, q) {
+        const quadratic = a * a;
+        const linear = a * (p + q);
         const c = p * q;
         const roots = [p, q].sort((a, b) => a - b);
-        return { p, q, b, c, roots };
+        return { type, a, p, q, quadratic, linear, c, roots };
+      }
+      function buildMonicProblemFromPQ(p, q) { return buildProblem('monic', 1, p, q); }
+      function buildAxProblemFromAPQ(a, p, q) { return buildProblem('ax', a, p, q); }
+
+      // 因数の順序違いを同一問題とみなすための一意キー
+      function monicProblemKeyFromPQ(p, q) {
+        const min = Math.min(p, q);
+        const max = Math.max(p, q);
+        return `monic:${min},${max}`;
+      }
+      function axProblemKeyFromAPQ(a, p, q) {
+        const min = Math.min(p, q);
+        const max = Math.max(p, q);
+        return `ax:${a}:${min},${max}`;
+      }
+
+      // 条件に合う一意な通常問題候補を全列挙
+      function listAllUniqueMonicProblems(cfg) {
+        const { rMin, rMax, allowRepeated } = cfg;
+        const problems = [];
+        const usedKeys = new Set();
+
+        for (let p = rMin; p <= rMax; p++) {
+          for (let q = rMin; q <= rMax; q++) {
+            if (!allowRepeated && p === q) continue;
+            const key = monicProblemKeyFromPQ(p, q);
+            if (usedKeys.has(key)) continue;
+            usedKeys.add(key);
+            problems.push(buildMonicProblemFromPQ(p, q));
+          }
+        }
+        return problems;
+      }
+
+      // 条件に合う一意な係数付き問題候補を全列挙
+      function listAllUniqueAxProblems(cfg) {
+        const { aMin, aMax, rMin, rMax, allowRepeated } = cfg;
+        const problems = [];
+        const usedKeys = new Set();
+
+        for (let a = aMin; a <= aMax; a++) {
+          for (let p = rMin; p <= rMax; p++) {
+            for (let q = rMin; q <= rMax; q++) {
+              if (!allowRepeated && p === q) continue;
+              const key = axProblemKeyFromAPQ(a, p, q);
+              if (usedKeys.has(key)) continue;
+              usedKeys.add(key);
+              problems.push(buildAxProblemFromAPQ(a, p, q));
+            }
+          }
+        }
+        return problems;
+      }
+
+      // Fisher-Yates シャッフル
+      function shuffleInPlace(list) {
+        for (let i = list.length - 1; i > 0; i--) {
+          const j = randInt(0, i);
+          [list[i], list[j]] = [list[j], list[i]];
+        }
       }
 
       // 一括生成
@@ -300,14 +385,21 @@
         }
         const cfg = res.config;
 
-        const problems = [];
-        for (let i = 0; i < cfg.count; i++) problems.push(createOneProblem(cfg));
+        const problems = cfg.mode === 'ax' ? listAllUniqueAxProblems(cfg) : listAllUniqueMonicProblems(cfg);
+        if (problems.length < cfg.count) {
+          msg.textContent = `指定した条件では、重複なしで ${cfg.count} 問を作成できません。作成可能なのは最大 ${problems.length} 問です。`;
+          renderMeta(null);
+          clearLists();
+          return;
+        }
+        shuffleInPlace(problems);
+        const selectedProblems = problems.slice(0, cfg.count);
 
         renderMeta(cfg);
         document.body.classList.remove('count-10','count-20');
         document.body.classList.add(cfg.count === 20 ? 'count-20' : 'count-10');
-        renderProblems(problems);
-        renderAnswers(problems);
+        renderProblems(selectedProblems);
+        renderAnswers(selectedProblems);
         updatePreviews();
         if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise();
       }
@@ -319,7 +411,8 @@
         if (!meta) { pMeta.textContent = '設定: -'; aMeta.textContent = '設定: -'; return; }
         const signStr = meta.allowNegative ? '（負の数あり）' : '（負の数なし）';
         const repStr = meta.allowRepeated ? '重解あり' : '重解なし';
-        const text = `設定: 因数範囲 ${meta.rMin}〜${meta.rMax} ${signStr} / ${repStr} / 全${meta.count}問`;
+        const modeStr = meta.mode === 'ax' ? `xに係数あり（a は ${meta.aMin}〜${meta.aMax}）` : 'xに係数なし';
+        const text = `設定: 定数項範囲 ${meta.rMin}〜${meta.rMax} ${signStr} / ${modeStr} / ${repStr} / 全${meta.count}問`;
         pMeta.textContent = text; aMeta.textContent = text;
       }
 
@@ -338,9 +431,9 @@
       function renderProblems(list) {
         const ol = document.getElementById('problems');
         ol.innerHTML = '';
-        list.forEach((p) => {
+        list.forEach((problem) => {
           const li = document.createElement('li');
-          const left = `<span class="eq">${formatEquationHTML(p.b, p.c)} = </span>`;
+          const left = `<span class="eq">${formatEquationHTML(problem.quadratic, problem.linear, problem.c)} = </span>`;
           li.innerHTML = left + renderProblemAnswerLine(true);
           ol.appendChild(li);
         });
@@ -348,9 +441,9 @@
         // 印刷グリッド
         const grid = document.getElementById('problems-grid');
         grid.innerHTML = '';
-        list.forEach((p) => {
+        list.forEach((problem) => {
           const li = document.createElement('li');
-          const left = `<span class="eq">${formatEquationHTML(p.b, p.c)} = </span>`;
+          const left = `<span class="eq">${formatEquationHTML(problem.quadratic, problem.linear, problem.c)} = </span>`;
           li.innerHTML = left + renderProblemAnswerLine(false);
           grid.appendChild(li);
         });
@@ -360,10 +453,10 @@
       function renderAnswers(list) {
         const ol = document.getElementById('answers');
         ol.innerHTML = '';
-        list.forEach((p) => {
+        list.forEach((problem) => {
           const li = document.createElement('li');
-          const eq = `\\( ${texEquation(p.b, p.c)} = \\)`;
-          const ans = `\\( ${texFactorizationFromPQ(p.roots[0], p.roots[1])} \\)`;
+          const eq = `\\( ${texEquation(problem.quadratic, problem.linear, problem.c)} = \\)`;
+          const ans = `\\( ${texFactorization(problem)} \\)`;
           li.innerHTML = `<span class=\"eq-line\">${eq}</span><span class=\"ans-line\">${ans}</span>`;
           ol.appendChild(li);
         });
@@ -371,10 +464,10 @@
         // 印刷グリッド
         const grid = document.getElementById('answers-grid');
         grid.innerHTML = '';
-        list.forEach((p) => {
+        list.forEach((problem) => {
           const li = document.createElement('li');
-          const eq = `\\( ${texEquation(p.b, p.c)} = \\)`;
-          const ans = `\\( ${texFactorizationFromPQ(p.roots[0], p.roots[1])} \\)`;
+          const eq = `\\( ${texEquation(problem.quadratic, problem.linear, problem.c)} = \\)`;
+          const ans = `\\( ${texFactorization(problem)} \\)`;
           li.innerHTML = `<span class=\"eq-line\">${eq}</span><span class=\"ans-line\">${ans}</span>`;
           grid.appendChild(li);
         });
