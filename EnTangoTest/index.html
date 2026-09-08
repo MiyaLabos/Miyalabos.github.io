@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#245b4a">
+  <meta name="description" content="中学1〜3年のNEW HORIZONに合わせた英単語テスト。1回10問、4択で少しずつ復習しましょう。">
+  <title>英単語の時間｜中学生の10問テスト</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand"><span class="brand-mark" aria-hidden="true">Aa<span>✓</span></span><span>英単語の時間<small>中学生のための10問テスト</small></span></div>
+    <span class="header-note"><span aria-hidden="true">●</span> 毎日の復習に</span>
+  </header>
+  <main id="app" tabindex="-1" aria-busy="true">
+    <section class="loading-panel" role="status"><span class="loading-dot" aria-hidden="true"></span><h1>問題を準備しています</h1><p>もう少しお待ちください。</p></section>
+  </main>
+  <footer class="site-footer"><span>1日10問。できるを、ひとつずつ。</span><span>東京書籍 NEW HORIZON 対応</span></footer>
+  <noscript><p class="noscript">このテストを使うには、ブラウザのJavaScriptを有効にしてください。</p></noscript>
+  <dialog id="exit-dialog" aria-labelledby="exit-title" aria-describedby="exit-description">
+    <form method="dialog">
+      <span class="dialog-mark" aria-hidden="true">↩</span>
+      <h2 id="exit-title">テストを終了しますか？</h2>
+      <p id="exit-description">ここまでの回答は保存されません。<br>学年選択に戻ります。</p>
+      <div class="dialog-actions"><button value="cancel" class="button primary" autofocus>テストを続ける</button><button value="exit" class="button secondary">終了して戻る</button></div>
+    </form>
+  </dialog>
+</body>
+</html>

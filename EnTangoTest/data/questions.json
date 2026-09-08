@@ -1,0 +1,5185 @@
+{
+  "schemaVersion": 1,
+  "edition": "東京書籍 NEW HORIZON English Course 令和7年度版（2026年度使用）",
+  "preparedAt": "2026-09-08",
+  "scope": "各学年の主要単元・関連教材から選んだ345語。全掲載語の網羅ではありません。",
+  "vocabularySource": "https://ten.tokyo-shoseki.co.jp/text/chu/eigo/download/documents/eigo_19goidata.xlsx",
+  "correctionsSource": "https://ten.tokyo-shoseki.co.jp/text-information/chu/english-r7/",
+  "questions": [
+    {
+      "id": "nh-1-love",
+      "grade": 1,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "love",
+      "partOfSpeech": "動詞",
+      "meaning": "大好きである",
+      "distractors": [
+        "勉強する",
+        "訪れる",
+        "心配する"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu1.html"
+    },
+    {
+      "id": "nh-1-meet",
+      "grade": 1,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "meet",
+      "partOfSpeech": "動詞",
+      "meaning": "会う",
+      "distractors": [
+        "滞在する",
+        "くつろぐ",
+        "いなくてさびしく思う"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu1.html"
+    },
+    {
+      "id": "nh-1-sweet",
+      "grade": 1,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "sweet",
+      "partOfSpeech": "形容詞",
+      "meaning": "甘い",
+      "distractors": [
+        "再使用できる",
+        "伝統的な",
+        "悪い"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu1.html"
+    },
+    {
+      "id": "nh-1-join",
+      "grade": 1,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "join",
+      "partOfSpeech": "動詞",
+      "meaning": "参加する",
+      "distractors": [
+        "持ってくる",
+        "受け取る",
+        "大好きである"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu1.html"
+    },
+    {
+      "id": "nh-1-club",
+      "grade": 1,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "club",
+      "partOfSpeech": "名詞",
+      "meaning": "部活動",
+      "distractors": [
+        "間違い",
+        "合唱",
+        "競技会"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu1.html"
+    },
+    {
+      "id": "nh-1-often",
+      "grade": 1,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "often",
+      "partOfSpeech": "副詞",
+      "meaning": "よく、たびたび",
+      "distractors": [
+        "まっすぐに",
+        "いつも",
+        "外で"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu1.html"
+    },
+    {
+      "id": "nh-1-watch",
+      "grade": 1,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "watch",
+      "partOfSpeech": "動詞",
+      "meaning": "じっと見る",
+      "distractors": [
+        "買う",
+        "必要とする",
+        "尊敬する"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu1.html"
+    },
+    {
+      "id": "nh-1-friend",
+      "grade": 1,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "friend",
+      "partOfSpeech": "名詞",
+      "meaning": "友達",
+      "distractors": [
+        "プラスチック",
+        "紙",
+        "肉"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu1.html"
+    },
+    {
+      "id": "nh-1-great",
+      "grade": 1,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "great",
+      "partOfSpeech": "形容詞",
+      "meaning": "すばらしい",
+      "distractors": [
+        "人気のある",
+        "注意深い",
+        "混み合った"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu1.html"
+    },
+    {
+      "id": "nh-1-draw",
+      "grade": 1,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "draw",
+      "partOfSpeech": "動詞",
+      "meaning": "絵を描く",
+      "distractors": [
+        "心配する",
+        "書く",
+        "働く"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu1.html"
+    },
+    {
+      "id": "nh-1-lesson",
+      "grade": 1,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "lesson",
+      "partOfSpeech": "名詞",
+      "meaning": "授業",
+      "distractors": [
+        "鳥",
+        "果物",
+        "季節"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu1.html"
+    },
+    {
+      "id": "nh-1-comic",
+      "grade": 1,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "comic",
+      "partOfSpeech": "名詞",
+      "meaning": "漫画",
+      "distractors": [
+        "子犬",
+        "動物",
+        "正午"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu1.html"
+    },
+    {
+      "id": "nh-1-strong",
+      "grade": 1,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "strong",
+      "partOfSpeech": "形容詞",
+      "meaning": "強い",
+      "distractors": [
+        "おもしろい",
+        "いちばん好きな",
+        "勇敢な"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu1.html"
+    },
+    {
+      "id": "nh-1-clock",
+      "grade": 1,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "clock",
+      "partOfSpeech": "名詞",
+      "meaning": "時計",
+      "distractors": [
+        "病院",
+        "ボランティア",
+        "いとこ"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu1.html"
+    },
+    {
+      "id": "nh-1-lake",
+      "grade": 1,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "lake",
+      "partOfSpeech": "名詞",
+      "meaning": "湖",
+      "distractors": [
+        "間違い",
+        "合唱",
+        "競技会"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu1.html"
+    },
+    {
+      "id": "nh-1-class",
+      "grade": 1,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "class",
+      "partOfSpeech": "名詞",
+      "meaning": "学級",
+      "distractors": [
+        "果物",
+        "季節",
+        "砂浜"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu2.html"
+    },
+    {
+      "id": "nh-1-new",
+      "grade": 1,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "new",
+      "partOfSpeech": "形容詞",
+      "meaning": "新しい",
+      "distractors": [
+        "かっこいい",
+        "おもしろい",
+        "いちばん好きな"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu2.html"
+    },
+    {
+      "id": "nh-1-teacher",
+      "grade": 1,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "teacher",
+      "partOfSpeech": "名詞",
+      "meaning": "先生",
+      "distractors": [
+        "湖",
+        "学級",
+        "食べ物"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu2.html"
+    },
+    {
+      "id": "nh-1-cool",
+      "grade": 1,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "cool",
+      "partOfSpeech": "形容詞",
+      "meaning": "かっこいい",
+      "distractors": [
+        "勇敢な",
+        "親切な",
+        "緊張した"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu2.html"
+    },
+    {
+      "id": "nh-1-parent",
+      "grade": 1,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "parent",
+      "partOfSpeech": "名詞",
+      "meaning": "親",
+      "distractors": [
+        "計画",
+        "市場",
+        "お土産"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu2.html"
+    },
+    {
+      "id": "nh-1-food",
+      "grade": 1,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "food",
+      "partOfSpeech": "名詞",
+      "meaning": "食べ物",
+      "distractors": [
+        "登場人物",
+        "家族",
+        "週"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu2.html"
+    },
+    {
+      "id": "nh-1-father",
+      "grade": 1,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "father",
+      "partOfSpeech": "名詞",
+      "meaning": "父",
+      "distractors": [
+        "湖",
+        "学級",
+        "食べ物"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu2.html"
+    },
+    {
+      "id": "nh-1-make",
+      "grade": 1,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "make",
+      "partOfSpeech": "動詞",
+      "meaning": "作る",
+      "distractors": [
+        "尊敬する",
+        "〜になる",
+        "減らす"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu2.html"
+    },
+    {
+      "id": "nh-1-read",
+      "grade": 1,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "read",
+      "partOfSpeech": "動詞",
+      "meaning": "読む",
+      "distractors": [
+        "楽しむ",
+        "訪れる",
+        "心配する"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu2.html"
+    },
+    {
+      "id": "nh-1-bird",
+      "grade": 1,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "bird",
+      "partOfSpeech": "名詞",
+      "meaning": "鳥",
+      "distractors": [
+        "父",
+        "果物",
+        "季節"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu2.html"
+    },
+    {
+      "id": "nh-1-fruit",
+      "grade": 1,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "fruit",
+      "partOfSpeech": "名詞",
+      "meaning": "果物",
+      "distractors": [
+        "週",
+        "廊下",
+        "駅"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu2.html"
+    },
+    {
+      "id": "nh-1-season",
+      "grade": 1,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "season",
+      "partOfSpeech": "名詞",
+      "meaning": "季節",
+      "distractors": [
+        "子犬",
+        "動物",
+        "正午"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu2.html"
+    },
+    {
+      "id": "nh-1-beach",
+      "grade": 1,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "beach",
+      "partOfSpeech": "名詞",
+      "meaning": "砂浜",
+      "distractors": [
+        "質問",
+        "週末",
+        "イルカ"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu2.html"
+    },
+    {
+      "id": "nh-1-textbook",
+      "grade": 1,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "textbook",
+      "partOfSpeech": "名詞",
+      "meaning": "教科書",
+      "distractors": [
+        "病院",
+        "ボランティア",
+        "いとこ"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu2.html"
+    },
+    {
+      "id": "nh-1-drink",
+      "grade": 1,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "drink",
+      "partOfSpeech": "動詞",
+      "meaning": "飲む",
+      "distractors": [
+        "必要とする",
+        "尊敬する",
+        "〜になる"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu2.html"
+    },
+    {
+      "id": "nh-1-symbol",
+      "grade": 1,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "symbol",
+      "partOfSpeech": "名詞",
+      "meaning": "象徴",
+      "distractors": [
+        "先生",
+        "親",
+        "食べ物"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu3.html"
+    },
+    {
+      "id": "nh-1-interesting",
+      "grade": 1,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "interesting",
+      "partOfSpeech": "形容詞",
+      "meaning": "おもしろい",
+      "distractors": [
+        "いちばん好きな",
+        "勇敢な",
+        "親切な"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu3.html"
+    },
+    {
+      "id": "nh-1-favorite",
+      "grade": 1,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "favorite",
+      "partOfSpeech": "形容詞",
+      "meaning": "いちばん好きな",
+      "distractors": [
+        "退屈した",
+        "甘い",
+        "すばらしい"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu3.html"
+    },
+    {
+      "id": "nh-1-character",
+      "grade": 1,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "character",
+      "partOfSpeech": "名詞",
+      "meaning": "登場人物",
+      "distractors": [
+        "病院",
+        "ボランティア",
+        "いとこ"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu3.html"
+    },
+    {
+      "id": "nh-1-family",
+      "grade": 1,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "family",
+      "partOfSpeech": "名詞",
+      "meaning": "家族",
+      "distractors": [
+        "午後",
+        "羊",
+        "贈り物"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu3.html"
+    },
+    {
+      "id": "nh-1-brave",
+      "grade": 1,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "brave",
+      "partOfSpeech": "形容詞",
+      "meaning": "勇敢な",
+      "distractors": [
+        "かっこいい",
+        "おもしろい",
+        "いちばん好きな"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu3.html"
+    },
+    {
+      "id": "nh-1-kind",
+      "grade": 1,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "kind",
+      "partOfSpeech": "形容詞",
+      "meaning": "親切な",
+      "distractors": [
+        "木製の",
+        "退屈した",
+        "甘い"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu3.html"
+    },
+    {
+      "id": "nh-1-study",
+      "grade": 1,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "study",
+      "partOfSpeech": "動詞",
+      "meaning": "勉強する",
+      "distractors": [
+        "読む",
+        "飲む",
+        "楽しむ"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu3.html"
+    },
+    {
+      "id": "nh-1-week",
+      "grade": 1,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "week",
+      "partOfSpeech": "名詞",
+      "meaning": "週",
+      "distractors": [
+        "病院",
+        "ボランティア",
+        "いとこ"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu3.html"
+    },
+    {
+      "id": "nh-1-hallway",
+      "grade": 1,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "hallway",
+      "partOfSpeech": "名詞",
+      "meaning": "廊下",
+      "distractors": [
+        "間違い",
+        "合唱",
+        "競技会"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu3.html"
+    },
+    {
+      "id": "nh-1-station",
+      "grade": 1,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "station",
+      "partOfSpeech": "名詞",
+      "meaning": "駅",
+      "distractors": [
+        "先生",
+        "親",
+        "食べ物"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu3.html"
+    },
+    {
+      "id": "nh-1-month",
+      "grade": 1,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "month",
+      "partOfSpeech": "名詞",
+      "meaning": "月（ひと月）",
+      "distractors": [
+        "子犬",
+        "動物",
+        "正午"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu3.html"
+    },
+    {
+      "id": "nh-1-town",
+      "grade": 1,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "town",
+      "partOfSpeech": "名詞",
+      "meaning": "町",
+      "distractors": [
+        "質問",
+        "週末",
+        "イルカ"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu3.html"
+    },
+    {
+      "id": "nh-1-sound",
+      "grade": 1,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "sound",
+      "partOfSpeech": "名詞",
+      "meaning": "音",
+      "distractors": [
+        "公演",
+        "休暇",
+        "山"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu3.html"
+    },
+    {
+      "id": "nh-1-enjoy",
+      "grade": 1,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "enjoy",
+      "partOfSpeech": "動詞",
+      "meaning": "楽しむ",
+      "distractors": [
+        "参加する",
+        "じっと見る",
+        "絵を描く"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu3.html"
+    },
+    {
+      "id": "nh-1-puppy",
+      "grade": 1,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "puppy",
+      "partOfSpeech": "名詞",
+      "meaning": "子犬",
+      "distractors": [
+        "歴史",
+        "切符",
+        "宿題"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu4.html"
+    },
+    {
+      "id": "nh-1-animal",
+      "grade": 1,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "animal",
+      "partOfSpeech": "名詞",
+      "meaning": "動物",
+      "distractors": [
+        "紙",
+        "肉",
+        "声"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu4.html"
+    },
+    {
+      "id": "nh-1-visit",
+      "grade": 1,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "visit",
+      "partOfSpeech": "動詞",
+      "meaning": "訪れる",
+      "distractors": [
+        "いなくてさびしく思う",
+        "覚えている",
+        "持ってくる"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu4.html"
+    },
+    {
+      "id": "nh-1-noon",
+      "grade": 1,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "noon",
+      "partOfSpeech": "名詞",
+      "meaning": "正午",
+      "distractors": [
+        "病院",
+        "ボランティア",
+        "いとこ"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu4.html"
+    },
+    {
+      "id": "nh-1-afternoon",
+      "grade": 1,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "afternoon",
+      "partOfSpeech": "名詞",
+      "meaning": "午後",
+      "distractors": [
+        "間違い",
+        "合唱",
+        "競技会"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu4.html"
+    },
+    {
+      "id": "nh-1-nervous",
+      "grade": 1,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "nervous",
+      "partOfSpeech": "形容詞",
+      "meaning": "緊張した",
+      "distractors": [
+        "いちばん好きな",
+        "勇敢な",
+        "親切な"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu4.html"
+    },
+    {
+      "id": "nh-1-worry",
+      "grade": 1,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "worry",
+      "partOfSpeech": "動詞",
+      "meaning": "心配する",
+      "distractors": [
+        "絵を描く",
+        "作る",
+        "読む"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu4.html"
+    },
+    {
+      "id": "nh-1-sheep",
+      "grade": 1,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "sheep",
+      "partOfSpeech": "名詞",
+      "meaning": "羊",
+      "distractors": [
+        "部活動",
+        "友達",
+        "授業"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu4.html"
+    },
+    {
+      "id": "nh-1-gift",
+      "grade": 1,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "gift",
+      "partOfSpeech": "名詞",
+      "meaning": "贈り物",
+      "distractors": [
+        "山",
+        "祖父、祖母",
+        "未来"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu4.html"
+    },
+    {
+      "id": "nh-1-picture",
+      "grade": 1,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "picture",
+      "partOfSpeech": "名詞",
+      "meaning": "絵、写真",
+      "distractors": [
+        "間違い",
+        "合唱",
+        "競技会"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu4.html"
+    },
+    {
+      "id": "nh-1-kitchen",
+      "grade": 1,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "kitchen",
+      "partOfSpeech": "名詞",
+      "meaning": "台所",
+      "distractors": [
+        "先生",
+        "親",
+        "食べ物"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu4.html"
+    },
+    {
+      "id": "nh-1-age",
+      "grade": 1,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "age",
+      "partOfSpeech": "名詞",
+      "meaning": "年齢",
+      "distractors": [
+        "音",
+        "子犬",
+        "動物"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu4.html"
+    },
+    {
+      "id": "nh-1-movie",
+      "grade": 1,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "movie",
+      "partOfSpeech": "名詞",
+      "meaning": "映画",
+      "distractors": [
+        "質問",
+        "週末",
+        "イルカ"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu4.html"
+    },
+    {
+      "id": "nh-1-famous",
+      "grade": 1,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "famous",
+      "partOfSpeech": "形容詞",
+      "meaning": "有名な",
+      "distractors": [
+        "かっこいい",
+        "おもしろい",
+        "いちばん好きな"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu4.html"
+    },
+    {
+      "id": "nh-1-subject",
+      "grade": 1,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "subject",
+      "partOfSpeech": "名詞",
+      "meaning": "教科",
+      "distractors": [
+        "間違い",
+        "合唱",
+        "競技会"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu4.html"
+    },
+    {
+      "id": "nh-1-tour",
+      "grade": 1,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "tour",
+      "partOfSpeech": "名詞",
+      "meaning": "見学旅行",
+      "distractors": [
+        "先生",
+        "親",
+        "食べ物"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu5.html"
+    },
+    {
+      "id": "nh-1-guide",
+      "grade": 1,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "guide",
+      "partOfSpeech": "名詞",
+      "meaning": "案内人",
+      "distractors": [
+        "動物",
+        "正午",
+        "午後"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu5.html"
+    },
+    {
+      "id": "nh-1-write",
+      "grade": 1,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "write",
+      "partOfSpeech": "動詞",
+      "meaning": "書く",
+      "distractors": [
+        "心配する",
+        "働く",
+        "言う"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu5.html"
+    },
+    {
+      "id": "nh-1-local",
+      "grade": 1,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "local",
+      "partOfSpeech": "形容詞",
+      "meaning": "地元の",
+      "distractors": [
+        "悪い",
+        "木製の",
+        "退屈した"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu5.html"
+    },
+    {
+      "id": "nh-1-beautiful",
+      "grade": 1,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "beautiful",
+      "partOfSpeech": "形容詞",
+      "meaning": "美しい",
+      "distractors": [
+        "混み合った",
+        "暗い",
+        "ひまな"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu5.html"
+    },
+    {
+      "id": "nh-1-spot",
+      "grade": 1,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "spot",
+      "partOfSpeech": "名詞",
+      "meaning": "場所、地点",
+      "distractors": [
+        "廊下",
+        "駅",
+        "月（ひと月）"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu5.html"
+    },
+    {
+      "id": "nh-1-brother",
+      "grade": 1,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "brother",
+      "partOfSpeech": "名詞",
+      "meaning": "兄、弟",
+      "distractors": [
+        "病院",
+        "国",
+        "むだ、廃棄物"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu5.html"
+    },
+    {
+      "id": "nh-1-work",
+      "grade": 1,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "work",
+      "partOfSpeech": "動詞",
+      "meaning": "働く",
+      "distractors": [
+        "読む",
+        "飲む",
+        "勉強する"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu5.html"
+    },
+    {
+      "id": "nh-1-nature",
+      "grade": 1,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "nature",
+      "partOfSpeech": "名詞",
+      "meaning": "自然",
+      "distractors": [
+        "病院",
+        "ボランティア",
+        "いとこ"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu5.html"
+    },
+    {
+      "id": "nh-1-life",
+      "grade": 1,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "life",
+      "partOfSpeech": "名詞",
+      "meaning": "生活、人生",
+      "distractors": [
+        "間違い",
+        "合唱",
+        "競技会"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu5.html"
+    },
+    {
+      "id": "nh-1-question",
+      "grade": 1,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "question",
+      "partOfSpeech": "名詞",
+      "meaning": "質問",
+      "distractors": [
+        "先生",
+        "親",
+        "食べ物"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu5.html"
+    },
+    {
+      "id": "nh-1-weekend",
+      "grade": 1,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "weekend",
+      "partOfSpeech": "名詞",
+      "meaning": "週末",
+      "distractors": [
+        "音",
+        "子犬",
+        "動物"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu5.html"
+    },
+    {
+      "id": "nh-1-dolphin",
+      "grade": 1,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "dolphin",
+      "partOfSpeech": "名詞",
+      "meaning": "イルカ",
+      "distractors": [
+        "登場人物",
+        "家族",
+        "週"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu5.html"
+    },
+    {
+      "id": "nh-1-popular",
+      "grade": 1,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "popular",
+      "partOfSpeech": "形容詞",
+      "meaning": "人気のある",
+      "distractors": [
+        "いちばん好きな",
+        "勇敢な",
+        "親切な"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu5.html"
+    },
+    {
+      "id": "nh-1-owner",
+      "grade": 1,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "owner",
+      "partOfSpeech": "名詞",
+      "meaning": "所有者",
+      "distractors": [
+        "午後",
+        "羊",
+        "贈り物"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu5.html"
+    },
+    {
+      "id": "nh-1-say",
+      "grade": 1,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "say",
+      "partOfSpeech": "動詞",
+      "meaning": "言う",
+      "distractors": [
+        "〜になる",
+        "減らす",
+        "滞在する"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu6.html"
+    },
+    {
+      "id": "nh-1-everything",
+      "grade": 1,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "everything",
+      "partOfSpeech": "代名詞",
+      "meaning": "すべてのもの",
+      "distractors": [
+        "だれか",
+        "何もないもの",
+        "私たち"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu6.html"
+    },
+    {
+      "id": "nh-1-performer",
+      "grade": 1,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "performer",
+      "partOfSpeech": "名詞",
+      "meaning": "演者",
+      "distractors": [
+        "漫画",
+        "時計",
+        "湖"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu6.html"
+    },
+    {
+      "id": "nh-1-together",
+      "grade": 1,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "together",
+      "partOfSpeech": "副詞",
+      "meaning": "いっしょに",
+      "distractors": [
+        "明日",
+        "まっすぐに",
+        "いつも"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu6.html"
+    },
+    {
+      "id": "nh-1-minute",
+      "grade": 1,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "minute",
+      "partOfSpeech": "名詞",
+      "meaning": "分（時間の単位）",
+      "distractors": [
+        "間違い",
+        "合唱",
+        "競技会"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu6.html"
+    },
+    {
+      "id": "nh-1-wait",
+      "grade": 1,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "wait",
+      "partOfSpeech": "動詞",
+      "meaning": "待つ",
+      "distractors": [
+        "借りる",
+        "現れる",
+        "買う"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu6.html"
+    },
+    {
+      "id": "nh-1-careful",
+      "grade": 1,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "careful",
+      "partOfSpeech": "形容詞",
+      "meaning": "注意深い",
+      "distractors": [
+        "かっこいい",
+        "おもしろい",
+        "いちばん好きな"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu6.html"
+    },
+    {
+      "id": "nh-1-crowded",
+      "grade": 1,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "crowded",
+      "partOfSpeech": "形容詞",
+      "meaning": "混み合った",
+      "distractors": [
+        "木製の",
+        "退屈した",
+        "甘い"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu6.html"
+    },
+    {
+      "id": "nh-1-history",
+      "grade": 1,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "history",
+      "partOfSpeech": "名詞",
+      "meaning": "歴史",
+      "distractors": [
+        "病院",
+        "ボランティア",
+        "いとこ"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu6.html"
+    },
+    {
+      "id": "nh-1-ticket",
+      "grade": 1,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "ticket",
+      "partOfSpeech": "名詞",
+      "meaning": "切符",
+      "distractors": [
+        "間違い",
+        "合唱",
+        "競技会"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu6.html"
+    },
+    {
+      "id": "nh-1-open",
+      "grade": 1,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "open",
+      "partOfSpeech": "動詞",
+      "meaning": "開ける",
+      "distractors": [
+        "書く",
+        "働く",
+        "言う"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu6.html"
+    },
+    {
+      "id": "nh-1-close",
+      "grade": 1,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "close",
+      "partOfSpeech": "動詞",
+      "meaning": "閉める",
+      "distractors": [
+        "受け取る",
+        "大好きである",
+        "会う"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu6.html"
+    },
+    {
+      "id": "nh-1-borrow",
+      "grade": 1,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "borrow",
+      "partOfSpeech": "動詞",
+      "meaning": "借りる",
+      "distractors": [
+        "開ける",
+        "閉める",
+        "現れる"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu6.html"
+    },
+    {
+      "id": "nh-1-homework",
+      "grade": 1,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "homework",
+      "partOfSpeech": "名詞",
+      "meaning": "宿題",
+      "distractors": [
+        "病院",
+        "ボランティア",
+        "いとこ"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu6.html"
+    },
+    {
+      "id": "nh-1-dark",
+      "grade": 1,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "dark",
+      "partOfSpeech": "形容詞",
+      "meaning": "暗い",
+      "distractors": [
+        "強い",
+        "新しい",
+        "かっこいい"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu6.html"
+    },
+    {
+      "id": "nh-1-tomorrow",
+      "grade": 1,
+      "unit": "第7単元・関連教材",
+      "unitNumber": 7,
+      "word": "tomorrow",
+      "partOfSpeech": "副詞",
+      "meaning": "明日",
+      "distractors": [
+        "いっしょに",
+        "まっすぐに",
+        "いつも"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu7.html"
+    },
+    {
+      "id": "nh-1-plan",
+      "grade": 1,
+      "unit": "第7単元・関連教材",
+      "unitNumber": 7,
+      "word": "plan",
+      "partOfSpeech": "名詞",
+      "meaning": "計画",
+      "distractors": [
+        "音",
+        "子犬",
+        "動物"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu7.html"
+    },
+    {
+      "id": "nh-1-free",
+      "grade": 1,
+      "unit": "第7単元・関連教材",
+      "unitNumber": 7,
+      "word": "free",
+      "partOfSpeech": "形容詞",
+      "meaning": "ひまな",
+      "distractors": [
+        "勇敢な",
+        "親切な",
+        "緊張した"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu7.html"
+    },
+    {
+      "id": "nh-1-busy",
+      "grade": 1,
+      "unit": "第7単元・関連教材",
+      "unitNumber": 7,
+      "word": "busy",
+      "partOfSpeech": "形容詞",
+      "meaning": "忙しい",
+      "distractors": [
+        "すばらしい",
+        "強い",
+        "新しい"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu7.html"
+    },
+    {
+      "id": "nh-1-market",
+      "grade": 1,
+      "unit": "第7単元・関連教材",
+      "unitNumber": 7,
+      "word": "market",
+      "partOfSpeech": "名詞",
+      "meaning": "市場",
+      "distractors": [
+        "間違い",
+        "合唱",
+        "競技会"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu7.html"
+    },
+    {
+      "id": "nh-1-souvenir",
+      "grade": 1,
+      "unit": "第7単元・関連教材",
+      "unitNumber": 7,
+      "word": "souvenir",
+      "partOfSpeech": "名詞",
+      "meaning": "お土産",
+      "distractors": [
+        "動物",
+        "正午",
+        "午後"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu7.html"
+    },
+    {
+      "id": "nh-1-place",
+      "grade": 1,
+      "unit": "第7単元・関連教材",
+      "unitNumber": 7,
+      "word": "place",
+      "partOfSpeech": "名詞",
+      "meaning": "場所",
+      "distractors": [
+        "イルカ",
+        "所有者",
+        "演者"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu7.html"
+    },
+    {
+      "id": "nh-1-appear",
+      "grade": 1,
+      "unit": "第7単元・関連教材",
+      "unitNumber": 7,
+      "word": "appear",
+      "partOfSpeech": "動詞",
+      "meaning": "現れる",
+      "distractors": [
+        "読む",
+        "飲む",
+        "勉強する"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu7.html"
+    },
+    {
+      "id": "nh-1-buy",
+      "grade": 1,
+      "unit": "第7単元・関連教材",
+      "unitNumber": 7,
+      "word": "buy",
+      "partOfSpeech": "動詞",
+      "meaning": "買う",
+      "distractors": [
+        "減らす",
+        "滞在する",
+        "くつろぐ"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu7.html"
+    },
+    {
+      "id": "nh-1-people",
+      "grade": 1,
+      "unit": "第7単元・関連教材",
+      "unitNumber": 7,
+      "word": "people",
+      "partOfSpeech": "名詞",
+      "meaning": "人々",
+      "distractors": [
+        "教科書",
+        "象徴",
+        "登場人物"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu7.html"
+    },
+    {
+      "id": "nh-1-street",
+      "grade": 1,
+      "unit": "第7単元・関連教材",
+      "unitNumber": 7,
+      "word": "street",
+      "partOfSpeech": "名詞",
+      "meaning": "通り",
+      "distractors": [
+        "先生",
+        "親",
+        "食べ物"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu7.html"
+    },
+    {
+      "id": "nh-1-straight",
+      "grade": 1,
+      "unit": "第7単元・関連教材",
+      "unitNumber": 7,
+      "word": "straight",
+      "partOfSpeech": "副詞",
+      "meaning": "まっすぐに",
+      "distractors": [
+        "明日",
+        "いつも",
+        "外で"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu7.html"
+    },
+    {
+      "id": "nh-1-factory",
+      "grade": 1,
+      "unit": "第7単元・関連教材",
+      "unitNumber": 7,
+      "word": "factory",
+      "partOfSpeech": "名詞",
+      "meaning": "工場",
+      "distractors": [
+        "生活、人生",
+        "質問",
+        "週末"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu7.html"
+    },
+    {
+      "id": "nh-1-building",
+      "grade": 1,
+      "unit": "第7単元・関連教材",
+      "unitNumber": 7,
+      "word": "building",
+      "partOfSpeech": "名詞",
+      "meaning": "建物",
+      "distractors": [
+        "病院",
+        "ボランティア",
+        "いとこ"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu7.html"
+    },
+    {
+      "id": "nh-1-hospital",
+      "grade": 1,
+      "unit": "第7単元・関連教材",
+      "unitNumber": 7,
+      "word": "hospital",
+      "partOfSpeech": "名詞",
+      "meaning": "病院",
+      "distractors": [
+        "間違い",
+        "合唱",
+        "競技会"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu7.html"
+    },
+    {
+      "id": "nh-1-volunteer",
+      "grade": 1,
+      "unit": "第8単元・関連教材",
+      "unitNumber": 8,
+      "word": "volunteer",
+      "partOfSpeech": "名詞",
+      "meaning": "ボランティア",
+      "distractors": [
+        "歴史",
+        "切符",
+        "宿題"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu8.html"
+    },
+    {
+      "id": "nh-1-need",
+      "grade": 1,
+      "unit": "第8単元・関連教材",
+      "unitNumber": 8,
+      "word": "need",
+      "partOfSpeech": "動詞",
+      "meaning": "必要とする",
+      "distractors": [
+        "楽しむ",
+        "訪れる",
+        "心配する"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu8.html"
+    },
+    {
+      "id": "nh-1-respect",
+      "grade": 1,
+      "unit": "第8単元・関連教材",
+      "unitNumber": 8,
+      "word": "respect",
+      "partOfSpeech": "動詞",
+      "meaning": "尊敬する",
+      "distractors": [
+        "いなくてさびしく思う",
+        "覚えている",
+        "持ってくる"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu8.html"
+    },
+    {
+      "id": "nh-1-become",
+      "grade": 1,
+      "unit": "第8単元・関連教材",
+      "unitNumber": 8,
+      "word": "become",
+      "partOfSpeech": "動詞",
+      "meaning": "〜になる",
+      "distractors": [
+        "働く",
+        "言う",
+        "待つ"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu8.html"
+    },
+    {
+      "id": "nh-1-cousin",
+      "grade": 1,
+      "unit": "第8単元・関連教材",
+      "unitNumber": 8,
+      "word": "cousin",
+      "partOfSpeech": "名詞",
+      "meaning": "いとこ",
+      "distractors": [
+        "ホテル",
+        "願い",
+        "スノーボードをすること"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu8.html"
+    },
+    {
+      "id": "nh-1-country",
+      "grade": 1,
+      "unit": "第8単元・関連教材",
+      "unitNumber": 8,
+      "word": "country",
+      "partOfSpeech": "名詞",
+      "meaning": "国",
+      "distractors": [
+        "先生",
+        "親",
+        "食べ物"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu8.html"
+    },
+    {
+      "id": "nh-1-always",
+      "grade": 1,
+      "unit": "第8単元・関連教材",
+      "unitNumber": 8,
+      "word": "always",
+      "partOfSpeech": "副詞",
+      "meaning": "いつも",
+      "distractors": [
+        "外で",
+        "昨日",
+        "よく、たびたび"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu8.html"
+    },
+    {
+      "id": "nh-1-reduce",
+      "grade": 1,
+      "unit": "第8単元・関連教材",
+      "unitNumber": 8,
+      "word": "reduce",
+      "partOfSpeech": "動詞",
+      "meaning": "減らす",
+      "distractors": [
+        "必要とする",
+        "尊敬する",
+        "〜になる"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu8.html"
+    },
+    {
+      "id": "nh-1-waste",
+      "grade": 1,
+      "unit": "第8単元・関連教材",
+      "unitNumber": 8,
+      "word": "waste",
+      "partOfSpeech": "名詞",
+      "meaning": "むだ、廃棄物",
+      "distractors": [
+        "建物",
+        "病院",
+        "ボランティア"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu8.html"
+    },
+    {
+      "id": "nh-1-plastic",
+      "grade": 1,
+      "unit": "第8単元・関連教材",
+      "unitNumber": 8,
+      "word": "plastic",
+      "partOfSpeech": "名詞",
+      "meaning": "プラスチック",
+      "distractors": [
+        "間違い",
+        "合唱",
+        "競技会"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu8.html"
+    },
+    {
+      "id": "nh-1-paper",
+      "grade": 1,
+      "unit": "第8単元・関連教材",
+      "unitNumber": 8,
+      "word": "paper",
+      "partOfSpeech": "名詞",
+      "meaning": "紙",
+      "distractors": [
+        "先生",
+        "親",
+        "食べ物"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu8.html"
+    },
+    {
+      "id": "nh-1-reusable",
+      "grade": 1,
+      "unit": "第8単元・関連教材",
+      "unitNumber": 8,
+      "word": "reusable",
+      "partOfSpeech": "形容詞",
+      "meaning": "再使用できる",
+      "distractors": [
+        "すばらしい",
+        "強い",
+        "新しい"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu8.html"
+    },
+    {
+      "id": "nh-1-meat",
+      "grade": 1,
+      "unit": "第8単元・関連教材",
+      "unitNumber": 8,
+      "word": "meat",
+      "partOfSpeech": "名詞",
+      "meaning": "肉",
+      "distractors": [
+        "時計",
+        "湖",
+        "学級"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu8.html"
+    },
+    {
+      "id": "nh-1-voice",
+      "grade": 1,
+      "unit": "第8単元・関連教材",
+      "unitNumber": 8,
+      "word": "voice",
+      "partOfSpeech": "名詞",
+      "meaning": "声",
+      "distractors": [
+        "キャンプファイヤー",
+        "薬",
+        "近所の人"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu8.html"
+    },
+    {
+      "id": "nh-1-performance",
+      "grade": 1,
+      "unit": "第8単元・関連教材",
+      "unitNumber": 8,
+      "word": "performance",
+      "partOfSpeech": "名詞",
+      "meaning": "公演",
+      "distractors": [
+        "間違い",
+        "合唱",
+        "競技会"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu8.html"
+    },
+    {
+      "id": "nh-1-during",
+      "grade": 1,
+      "unit": "第9単元・関連教材",
+      "unitNumber": 9,
+      "word": "during",
+      "partOfSpeech": "前置詞",
+      "meaning": "〜の間に",
+      "distractors": [
+        "〜の下に",
+        "〜に向かって",
+        "〜なしで"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu9.html"
+    },
+    {
+      "id": "nh-1-stay",
+      "grade": 1,
+      "unit": "第9単元・関連教材",
+      "unitNumber": 9,
+      "word": "stay",
+      "partOfSpeech": "動詞",
+      "meaning": "滞在する",
+      "distractors": [
+        "減らす",
+        "くつろぐ",
+        "いなくてさびしく思う"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu9.html"
+    },
+    {
+      "id": "nh-1-relax",
+      "grade": 1,
+      "unit": "第9単元・関連教材",
+      "unitNumber": 9,
+      "word": "relax",
+      "partOfSpeech": "動詞",
+      "meaning": "くつろぐ",
+      "distractors": [
+        "心配する",
+        "書く",
+        "働く"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu9.html"
+    },
+    {
+      "id": "nh-1-vacation",
+      "grade": 1,
+      "unit": "第9単元・関連教材",
+      "unitNumber": 9,
+      "word": "vacation",
+      "partOfSpeech": "名詞",
+      "meaning": "休暇",
+      "distractors": [
+        "建物",
+        "病院",
+        "ボランティア"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu9.html"
+    },
+    {
+      "id": "nh-1-mountain",
+      "grade": 1,
+      "unit": "第9単元・関連教材",
+      "unitNumber": 9,
+      "word": "mountain",
+      "partOfSpeech": "名詞",
+      "meaning": "山",
+      "distractors": [
+        "間違い",
+        "合唱",
+        "競技会"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu9.html"
+    },
+    {
+      "id": "nh-1-traditional",
+      "grade": 1,
+      "unit": "第9単元・関連教材",
+      "unitNumber": 9,
+      "word": "traditional",
+      "partOfSpeech": "形容詞",
+      "meaning": "伝統的な",
+      "distractors": [
+        "暗い",
+        "ひまな",
+        "忙しい"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu9.html"
+    },
+    {
+      "id": "nh-1-grandparent",
+      "grade": 1,
+      "unit": "第9単元・関連教材",
+      "unitNumber": 9,
+      "word": "grandparent",
+      "partOfSpeech": "名詞",
+      "meaning": "祖父、祖母",
+      "distractors": [
+        "願い",
+        "スノーボードをすること",
+        "間違い"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu9.html"
+    },
+    {
+      "id": "nh-1-future",
+      "grade": 1,
+      "unit": "第9単元・関連教材",
+      "unitNumber": 9,
+      "word": "future",
+      "partOfSpeech": "名詞",
+      "meaning": "未来",
+      "distractors": [
+        "生活、人生",
+        "質問",
+        "週末"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu9.html"
+    },
+    {
+      "id": "nh-1-bad",
+      "grade": 1,
+      "unit": "第9単元・関連教材",
+      "unitNumber": 9,
+      "word": "bad",
+      "partOfSpeech": "形容詞",
+      "meaning": "悪い",
+      "distractors": [
+        "木製の",
+        "退屈した",
+        "甘い"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu9.html"
+    },
+    {
+      "id": "nh-1-outside",
+      "grade": 1,
+      "unit": "第9単元・関連教材",
+      "unitNumber": 9,
+      "word": "outside",
+      "partOfSpeech": "副詞",
+      "meaning": "外で",
+      "distractors": [
+        "いつも",
+        "昨日",
+        "よく、たびたび"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu9.html"
+    },
+    {
+      "id": "nh-1-hotel",
+      "grade": 1,
+      "unit": "第9単元・関連教材",
+      "unitNumber": 9,
+      "word": "hotel",
+      "partOfSpeech": "名詞",
+      "meaning": "ホテル",
+      "distractors": [
+        "先生",
+        "親",
+        "食べ物"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu9.html"
+    },
+    {
+      "id": "nh-1-wooden",
+      "grade": 1,
+      "unit": "第9単元・関連教材",
+      "unitNumber": 9,
+      "word": "wooden",
+      "partOfSpeech": "形容詞",
+      "meaning": "木製の",
+      "distractors": [
+        "新しい",
+        "かっこいい",
+        "おもしろい"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu9.html"
+    },
+    {
+      "id": "nh-1-wish",
+      "grade": 1,
+      "unit": "第9単元・関連教材",
+      "unitNumber": 9,
+      "word": "wish",
+      "partOfSpeech": "名詞",
+      "meaning": "願い",
+      "distractors": [
+        "生活、人生",
+        "質問",
+        "週末"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu9.html"
+    },
+    {
+      "id": "nh-1-snowboarding",
+      "grade": 1,
+      "unit": "第9単元・関連教材",
+      "unitNumber": 9,
+      "word": "snowboarding",
+      "partOfSpeech": "名詞",
+      "meaning": "スノーボードをすること",
+      "distractors": [
+        "建物",
+        "病院",
+        "ボランティア"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu9.html"
+    },
+    {
+      "id": "nh-1-miss",
+      "grade": 1,
+      "unit": "第9単元・関連教材",
+      "unitNumber": 9,
+      "word": "miss",
+      "partOfSpeech": "動詞",
+      "meaning": "いなくてさびしく思う",
+      "distractors": [
+        "作る",
+        "読む",
+        "飲む"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu9.html"
+    },
+    {
+      "id": "nh-1-remember",
+      "grade": 1,
+      "unit": "第10単元・関連教材",
+      "unitNumber": 10,
+      "word": "remember",
+      "partOfSpeech": "動詞",
+      "meaning": "覚えている",
+      "distractors": [
+        "尊敬する",
+        "〜になる",
+        "減らす"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu10.html"
+    },
+    {
+      "id": "nh-1-bored",
+      "grade": 1,
+      "unit": "第10単元・関連教材",
+      "unitNumber": 10,
+      "word": "bored",
+      "partOfSpeech": "形容詞",
+      "meaning": "退屈した",
+      "distractors": [
+        "再使用できる",
+        "伝統的な",
+        "悪い"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu10.html"
+    },
+    {
+      "id": "nh-1-mistake",
+      "grade": 1,
+      "unit": "第10単元・関連教材",
+      "unitNumber": 10,
+      "word": "mistake",
+      "partOfSpeech": "名詞",
+      "meaning": "間違い",
+      "distractors": [
+        "生活、人生",
+        "質問",
+        "週末"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu10.html"
+    },
+    {
+      "id": "nh-1-chorus",
+      "grade": 1,
+      "unit": "第10単元・関連教材",
+      "unitNumber": 10,
+      "word": "chorus",
+      "partOfSpeech": "名詞",
+      "meaning": "合唱",
+      "distractors": [
+        "建物",
+        "病院",
+        "ボランティア"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu10.html"
+    },
+    {
+      "id": "nh-1-contest",
+      "grade": 1,
+      "unit": "第10単元・関連教材",
+      "unitNumber": 10,
+      "word": "contest",
+      "partOfSpeech": "名詞",
+      "meaning": "競技会",
+      "distractors": [
+        "スノーボードをすること",
+        "間違い",
+        "合唱"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu10.html"
+    },
+    {
+      "id": "nh-1-memory",
+      "grade": 1,
+      "unit": "第10単元・関連教材",
+      "unitNumber": 10,
+      "word": "memory",
+      "partOfSpeech": "名詞",
+      "meaning": "思い出",
+      "distractors": [
+        "先生",
+        "親",
+        "食べ物"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu10.html"
+    },
+    {
+      "id": "nh-1-bring",
+      "grade": 1,
+      "unit": "第10単元・関連教材",
+      "unitNumber": 10,
+      "word": "bring",
+      "partOfSpeech": "動詞",
+      "meaning": "持ってくる",
+      "distractors": [
+        "絵を描く",
+        "作る",
+        "読む"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu10.html"
+    },
+    {
+      "id": "nh-1-heart",
+      "grade": 1,
+      "unit": "第10単元・関連教材",
+      "unitNumber": 10,
+      "word": "heart",
+      "partOfSpeech": "名詞",
+      "meaning": "心臓、心",
+      "distractors": [
+        "生活、人生",
+        "質問",
+        "週末"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu10.html"
+    },
+    {
+      "id": "nh-1-album",
+      "grade": 1,
+      "unit": "第10単元・関連教材",
+      "unitNumber": 10,
+      "word": "album",
+      "partOfSpeech": "名詞",
+      "meaning": "アルバム",
+      "distractors": [
+        "建物",
+        "病院",
+        "ボランティア"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu10.html"
+    },
+    {
+      "id": "nh-1-yesterday",
+      "grade": 1,
+      "unit": "第10単元・関連教材",
+      "unitNumber": 10,
+      "word": "yesterday",
+      "partOfSpeech": "副詞",
+      "meaning": "昨日",
+      "distractors": [
+        "いっしょに",
+        "明日",
+        "まっすぐに"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu10.html"
+    },
+    {
+      "id": "nh-1-tent",
+      "grade": 1,
+      "unit": "第10単元・関連教材",
+      "unitNumber": 10,
+      "word": "tent",
+      "partOfSpeech": "名詞",
+      "meaning": "テント",
+      "distractors": [
+        "先生",
+        "親",
+        "食べ物"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu10.html"
+    },
+    {
+      "id": "nh-1-campfire",
+      "grade": 1,
+      "unit": "第10単元・関連教材",
+      "unitNumber": 10,
+      "word": "campfire",
+      "partOfSpeech": "名詞",
+      "meaning": "キャンプファイヤー",
+      "distractors": [
+        "音",
+        "子犬",
+        "動物"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu10.html"
+    },
+    {
+      "id": "nh-1-medicine",
+      "grade": 1,
+      "unit": "第10単元・関連教材",
+      "unitNumber": 10,
+      "word": "medicine",
+      "partOfSpeech": "名詞",
+      "meaning": "薬",
+      "distractors": [
+        "生活、人生",
+        "質問",
+        "週末"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu10.html"
+    },
+    {
+      "id": "nh-1-neighbor",
+      "grade": 1,
+      "unit": "第10単元・関連教材",
+      "unitNumber": 10,
+      "word": "neighbor",
+      "partOfSpeech": "名詞",
+      "meaning": "近所の人",
+      "distractors": [
+        "切符",
+        "宿題",
+        "計画"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu10.html"
+    },
+    {
+      "id": "nh-1-receive",
+      "grade": 1,
+      "unit": "第10単元・関連教材",
+      "unitNumber": 10,
+      "word": "receive",
+      "partOfSpeech": "動詞",
+      "meaning": "受け取る",
+      "distractors": [
+        "買う",
+        "必要とする",
+        "尊敬する"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu1nhu10.html"
+    },
+    {
+      "id": "nh-2-same",
+      "grade": 2,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "same",
+      "partOfSpeech": "形容詞",
+      "meaning": "同じ",
+      "distractors": [
+        "外国の",
+        "国際的な",
+        "自分自身の"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu1.html"
+    },
+    {
+      "id": "nh-2-experience",
+      "grade": 2,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "experience",
+      "partOfSpeech": "名詞",
+      "meaning": "経験",
+      "distractors": [
+        "遺産",
+        "基準",
+        "地域"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu1.html"
+    },
+    {
+      "id": "nh-2-actually",
+      "grade": 2,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "actually",
+      "partOfSpeech": "副詞",
+      "meaning": "実は",
+      "distractors": [
+        "はっきりと",
+        "まもなく",
+        "特に"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu1.html"
+    },
+    {
+      "id": "nh-2-flight",
+      "grade": 2,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "flight",
+      "partOfSpeech": "名詞",
+      "meaning": "飛行、航空便",
+      "distractors": [
+        "設計、デザイン",
+        "製品",
+        "施設"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu1.html"
+    },
+    {
+      "id": "nh-2-arrive",
+      "grade": 2,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "arrive",
+      "partOfSpeech": "動詞",
+      "meaning": "到着する",
+      "distractors": [
+        "すすめる",
+        "反映する",
+        "選ぶ"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu1.html"
+    },
+    {
+      "id": "nh-2-airport",
+      "grade": 2,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "airport",
+      "partOfSpeech": "名詞",
+      "meaning": "空港",
+      "distractors": [
+        "予約",
+        "言語",
+        "例"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu1.html"
+    },
+    {
+      "id": "nh-2-soon",
+      "grade": 2,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "soon",
+      "partOfSpeech": "副詞",
+      "meaning": "まもなく",
+      "distractors": [
+        "特に",
+        "はっきりと",
+        "実は"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu1.html"
+    },
+    {
+      "id": "nh-2-excited",
+      "grade": 2,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "excited",
+      "partOfSpeech": "形容詞",
+      "meaning": "わくわくした",
+      "distractors": [
+        "重要な",
+        "必要な",
+        "難しい"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu1.html"
+    },
+    {
+      "id": "nh-2-reservation",
+      "grade": 2,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "reservation",
+      "partOfSpeech": "名詞",
+      "meaning": "予約",
+      "distractors": [
+        "環境",
+        "価値",
+        "経験"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu1.html"
+    },
+    {
+      "id": "nh-2-tall",
+      "grade": 2,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "tall",
+      "partOfSpeech": "形容詞",
+      "meaning": "背が高い",
+      "distractors": [
+        "利用しやすい",
+        "独特な",
+        "自然の"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu1.html"
+    },
+    {
+      "id": "nh-2-weigh",
+      "grade": 2,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "weigh",
+      "partOfSpeech": "動詞",
+      "meaning": "〜の重さがある",
+      "distractors": [
+        "選ぶ",
+        "教える",
+        "学ぶ"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu1.html"
+    },
+    {
+      "id": "nh-2-language",
+      "grade": 2,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "language",
+      "partOfSpeech": "名詞",
+      "meaning": "言語",
+      "distractors": [
+        "建築",
+        "材料",
+        "汚染"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu1.html"
+    },
+    {
+      "id": "nh-2-example",
+      "grade": 2,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "example",
+      "partOfSpeech": "名詞",
+      "meaning": "例",
+      "distractors": [
+        "創造力",
+        "職業、経歴",
+        "情報"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu1.html"
+    },
+    {
+      "id": "nh-2-communicate",
+      "grade": 2,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "communicate",
+      "partOfSpeech": "動詞",
+      "meaning": "意思を伝え合う",
+      "distractors": [
+        "選ぶ",
+        "守る",
+        "到着する"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu1.html"
+    },
+    {
+      "id": "nh-2-culture",
+      "grade": 2,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "culture",
+      "partOfSpeech": "名詞",
+      "meaning": "文化",
+      "distractors": [
+        "基準",
+        "地域",
+        "多様性"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu1.html"
+    },
+    {
+      "id": "nh-2-especially",
+      "grade": 2,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "especially",
+      "partOfSpeech": "副詞",
+      "meaning": "特に",
+      "distractors": [
+        "まもなく",
+        "はっきりと",
+        "実は"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu2.html"
+    },
+    {
+      "id": "nh-2-order",
+      "grade": 2,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "order",
+      "partOfSpeech": "動詞",
+      "meaning": "注文する",
+      "distractors": [
+        "学ぶ",
+        "調整する",
+        "理解する"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu2.html"
+    },
+    {
+      "id": "nh-2-various",
+      "grade": 2,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "various",
+      "partOfSpeech": "形容詞",
+      "meaning": "さまざまな",
+      "distractors": [
+        "公共の",
+        "役に立つ",
+        "利用しやすい"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu2.html"
+    },
+    {
+      "id": "nh-2-flavor",
+      "grade": 2,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "flavor",
+      "partOfSpeech": "名詞",
+      "meaning": "風味",
+      "distractors": [
+        "予約",
+        "言語",
+        "例"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu2.html"
+    },
+    {
+      "id": "nh-2-salt",
+      "grade": 2,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "salt",
+      "partOfSpeech": "名詞",
+      "meaning": "塩",
+      "distractors": [
+        "制限",
+        "夫婦、二人組",
+        "皿"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu2.html"
+    },
+    {
+      "id": "nh-2-speech",
+      "grade": 2,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "speech",
+      "partOfSpeech": "名詞",
+      "meaning": "スピーチ",
+      "distractors": [
+        "半分",
+        "意見、反応",
+        "話し手"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu2.html"
+    },
+    {
+      "id": "nh-2-add",
+      "grade": 2,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "add",
+      "partOfSpeech": "動詞",
+      "meaning": "加える",
+      "distractors": [
+        "傷つける",
+        "説明する",
+        "取り除く"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu2.html"
+    },
+    {
+      "id": "nh-2-forget",
+      "grade": 2,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "forget",
+      "partOfSpeech": "動詞",
+      "meaning": "忘れる",
+      "distractors": [
+        "理解する",
+        "従う",
+        "終える"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu2.html"
+    },
+    {
+      "id": "nh-2-thick",
+      "grade": 2,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "thick",
+      "partOfSpeech": "形容詞",
+      "meaning": "厚い",
+      "distractors": [
+        "外国の",
+        "国際的な",
+        "自分自身の"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu2.html"
+    },
+    {
+      "id": "nh-2-recommend",
+      "grade": 2,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "recommend",
+      "partOfSpeech": "動詞",
+      "meaning": "すすめる",
+      "distractors": [
+        "忘れる",
+        "反映する",
+        "選ぶ"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu2.html"
+    },
+    {
+      "id": "nh-2-manufacturer",
+      "grade": 2,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "manufacturer",
+      "partOfSpeech": "名詞",
+      "meaning": "製造業者",
+      "distractors": [
+        "職業、経歴",
+        "情報",
+        "挿絵"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu2.html"
+    },
+    {
+      "id": "nh-2-reflect",
+      "grade": 2,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "reflect",
+      "partOfSpeech": "動詞",
+      "meaning": "反映する",
+      "distractors": [
+        "守る",
+        "到着する",
+        "〜の重さがある"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu2.html"
+    },
+    {
+      "id": "nh-2-climate",
+      "grade": 2,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "climate",
+      "partOfSpeech": "名詞",
+      "meaning": "気候",
+      "distractors": [
+        "地域",
+        "多様性",
+        "種（生物の分類）"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu2.html"
+    },
+    {
+      "id": "nh-2-creativity",
+      "grade": 2,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "creativity",
+      "partOfSpeech": "名詞",
+      "meaning": "創造力",
+      "distractors": [
+        "塩",
+        "スピーチ",
+        "製造業者"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu2.html"
+    },
+    {
+      "id": "nh-2-foreign",
+      "grade": 2,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "foreign",
+      "partOfSpeech": "形容詞",
+      "meaning": "外国の",
+      "distractors": [
+        "すべての人に共通の",
+        "自動の",
+        "調整できる"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu2.html"
+    },
+    {
+      "id": "nh-2-career",
+      "grade": 2,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "career",
+      "partOfSpeech": "名詞",
+      "meaning": "職業、経歴",
+      "distractors": [
+        "話題",
+        "親切",
+        "遺産"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu3.html"
+    },
+    {
+      "id": "nh-2-information",
+      "grade": 2,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "information",
+      "partOfSpeech": "名詞",
+      "meaning": "情報",
+      "distractors": [
+        "言語",
+        "例",
+        "文化"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu3.html"
+    },
+    {
+      "id": "nh-2-international",
+      "grade": 2,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "international",
+      "partOfSpeech": "形容詞",
+      "meaning": "国際的な",
+      "distractors": [
+        "利用しやすい",
+        "独特な",
+        "自然の"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu3.html"
+    },
+    {
+      "id": "nh-2-own",
+      "grade": 2,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "own",
+      "partOfSpeech": "形容詞",
+      "meaning": "自分自身の",
+      "distractors": [
+        "大切な",
+        "すべての人に共通の",
+        "自動の"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu3.html"
+    },
+    {
+      "id": "nh-2-choose",
+      "grade": 2,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "choose",
+      "partOfSpeech": "動詞",
+      "meaning": "選ぶ",
+      "distractors": [
+        "到着する",
+        "〜の重さがある",
+        "意思を伝え合う"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu3.html"
+    },
+    {
+      "id": "nh-2-colorful",
+      "grade": 2,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "colorful",
+      "partOfSpeech": "形容詞",
+      "meaning": "色とりどりの",
+      "distractors": [
+        "わくわくした",
+        "背が高い",
+        "さまざまな"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu3.html"
+    },
+    {
+      "id": "nh-2-illustration",
+      "grade": 2,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "illustration",
+      "partOfSpeech": "名詞",
+      "meaning": "挿絵",
+      "distractors": [
+        "グラフ",
+        "パーセント",
+        "結論"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu3.html"
+    },
+    {
+      "id": "nh-2-teach",
+      "grade": 2,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "teach",
+      "partOfSpeech": "動詞",
+      "meaning": "教える",
+      "distractors": [
+        "すすめる",
+        "反映する",
+        "選ぶ"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu3.html"
+    },
+    {
+      "id": "nh-2-important",
+      "grade": 2,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "important",
+      "partOfSpeech": "形容詞",
+      "meaning": "重要な",
+      "distractors": [
+        "年配の",
+        "すべての人に共通の",
+        "自動の"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu3.html"
+    },
+    {
+      "id": "nh-2-learn",
+      "grade": 2,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "learn",
+      "partOfSpeech": "動詞",
+      "meaning": "学ぶ",
+      "distractors": [
+        "到着する",
+        "〜の重さがある",
+        "意思を伝え合う"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu3.html"
+    },
+    {
+      "id": "nh-2-necessary",
+      "grade": 2,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "necessary",
+      "partOfSpeech": "形容詞",
+      "meaning": "必要な",
+      "distractors": [
+        "さまざまな",
+        "厚い",
+        "外国の"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu3.html"
+    },
+    {
+      "id": "nh-2-adjust",
+      "grade": 2,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "adjust",
+      "partOfSpeech": "動詞",
+      "meaning": "調整する",
+      "distractors": [
+        "傷つける",
+        "説明する",
+        "取り除く"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu3.html"
+    },
+    {
+      "id": "nh-2-difficult",
+      "grade": 2,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "difficult",
+      "partOfSpeech": "形容詞",
+      "meaning": "難しい",
+      "distractors": [
+        "外国の",
+        "国際的な",
+        "自分自身の"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu3.html"
+    },
+    {
+      "id": "nh-2-clearly",
+      "grade": 2,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "clearly",
+      "partOfSpeech": "副詞",
+      "meaning": "はっきりと",
+      "distractors": [
+        "実は",
+        "まもなく",
+        "特に"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu3.html"
+    },
+    {
+      "id": "nh-2-understand",
+      "grade": 2,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "understand",
+      "partOfSpeech": "動詞",
+      "meaning": "理解する",
+      "distractors": [
+        "忘れる",
+        "すすめる",
+        "反映する"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu3.html"
+    },
+    {
+      "id": "nh-2-advice",
+      "grade": 2,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "advice",
+      "partOfSpeech": "名詞",
+      "meaning": "助言",
+      "distractors": [
+        "皿",
+        "設計、デザイン",
+        "製品"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu4.html"
+    },
+    {
+      "id": "nh-2-member",
+      "grade": 2,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "member",
+      "partOfSpeech": "名詞",
+      "meaning": "一員",
+      "distractors": [
+        "話し手",
+        "内容",
+        "話し方、伝え方"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu4.html"
+    },
+    {
+      "id": "nh-2-guest",
+      "grade": 2,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "guest",
+      "partOfSpeech": "名詞",
+      "meaning": "客",
+      "distractors": [
+        "飛行、航空便",
+        "空港",
+        "予約"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu4.html"
+    },
+    {
+      "id": "nh-2-follow",
+      "grade": 2,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "follow",
+      "partOfSpeech": "動詞",
+      "meaning": "従う",
+      "distractors": [
+        "終える",
+        "傷つける",
+        "説明する"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu4.html"
+    },
+    {
+      "id": "nh-2-rule",
+      "grade": 2,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "rule",
+      "partOfSpeech": "名詞",
+      "meaning": "規則",
+      "distractors": [
+        "パーセント",
+        "結論",
+        "半分"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu4.html"
+    },
+    {
+      "id": "nh-2-host",
+      "grade": 2,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "host",
+      "partOfSpeech": "名詞",
+      "meaning": "受け入れ側の人",
+      "distractors": [
+        "政府",
+        "環境",
+        "価値"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu4.html"
+    },
+    {
+      "id": "nh-2-perfect",
+      "grade": 2,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "perfect",
+      "partOfSpeech": "形容詞",
+      "meaning": "完璧な",
+      "distractors": [
+        "独特な",
+        "自然の",
+        "文化の"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu4.html"
+    },
+    {
+      "id": "nh-2-limit",
+      "grade": 2,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "limit",
+      "partOfSpeech": "名詞",
+      "meaning": "制限",
+      "distractors": [
+        "調査",
+        "戦略",
+        "技能"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu4.html"
+    },
+    {
+      "id": "nh-2-elderly",
+      "grade": 2,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "elderly",
+      "partOfSpeech": "形容詞",
+      "meaning": "年配の",
+      "distractors": [
+        "色とりどりの",
+        "重要な",
+        "必要な"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu4.html"
+    },
+    {
+      "id": "nh-2-couple",
+      "grade": 2,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "couple",
+      "partOfSpeech": "名詞",
+      "meaning": "夫婦、二人組",
+      "distractors": [
+        "製造業者",
+        "気候",
+        "創造力"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu4.html"
+    },
+    {
+      "id": "nh-2-finish",
+      "grade": 2,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "finish",
+      "partOfSpeech": "動詞",
+      "meaning": "終える",
+      "distractors": [
+        "理解する",
+        "従う",
+        "傷つける"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu4.html"
+    },
+    {
+      "id": "nh-2-plate",
+      "grade": 2,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "plate",
+      "partOfSpeech": "名詞",
+      "meaning": "皿",
+      "distractors": [
+        "遺産",
+        "基準",
+        "地域"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu4.html"
+    },
+    {
+      "id": "nh-2-hurt",
+      "grade": 2,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "hurt",
+      "partOfSpeech": "動詞",
+      "meaning": "傷つける",
+      "distractors": [
+        "すすめる",
+        "反映する",
+        "選ぶ"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu4.html"
+    },
+    {
+      "id": "nh-2-explain",
+      "grade": 2,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "explain",
+      "partOfSpeech": "動詞",
+      "meaning": "説明する",
+      "distractors": [
+        "注文する",
+        "加える",
+        "忘れる"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu4.html"
+    },
+    {
+      "id": "nh-2-precious",
+      "grade": 2,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "precious",
+      "partOfSpeech": "形容詞",
+      "meaning": "大切な",
+      "distractors": [
+        "年配の",
+        "すべての人に共通の",
+        "自動の"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu4.html"
+    },
+    {
+      "id": "nh-2-universal",
+      "grade": 2,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "universal",
+      "partOfSpeech": "形容詞",
+      "meaning": "すべての人に共通の",
+      "distractors": [
+        "完璧な",
+        "年配の",
+        "大切な"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu5.html"
+    },
+    {
+      "id": "nh-2-design",
+      "grade": 2,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "design",
+      "partOfSpeech": "名詞",
+      "meaning": "設計、デザイン",
+      "distractors": [
+        "規則",
+        "受け入れ側の人",
+        "制限"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu5.html"
+    },
+    {
+      "id": "nh-2-automatic",
+      "grade": 2,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "automatic",
+      "partOfSpeech": "形容詞",
+      "meaning": "自動の",
+      "distractors": [
+        "同じ",
+        "わくわくした",
+        "背が高い"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu5.html"
+    },
+    {
+      "id": "nh-2-adjustable",
+      "grade": 2,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "adjustable",
+      "partOfSpeech": "形容詞",
+      "meaning": "調整できる",
+      "distractors": [
+        "公共の",
+        "役に立つ",
+        "利用しやすい"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu5.html"
+    },
+    {
+      "id": "nh-2-public",
+      "grade": 2,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "public",
+      "partOfSpeech": "形容詞",
+      "meaning": "公共の",
+      "distractors": [
+        "難しい",
+        "完璧な",
+        "年配の"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu5.html"
+    },
+    {
+      "id": "nh-2-product",
+      "grade": 2,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "product",
+      "partOfSpeech": "名詞",
+      "meaning": "製品",
+      "distractors": [
+        "戦略",
+        "技能",
+        "グラフ"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu5.html"
+    },
+    {
+      "id": "nh-2-facility",
+      "grade": 2,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "facility",
+      "partOfSpeech": "名詞",
+      "meaning": "施設",
+      "distractors": [
+        "建築",
+        "材料",
+        "汚染"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu5.html"
+    },
+    {
+      "id": "nh-2-useful",
+      "grade": 2,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "useful",
+      "partOfSpeech": "形容詞",
+      "meaning": "役に立つ",
+      "distractors": [
+        "自動の",
+        "調整できる",
+        "公共の"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu5.html"
+    },
+    {
+      "id": "nh-2-sign",
+      "grade": 2,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "sign",
+      "partOfSpeech": "名詞",
+      "meaning": "標識",
+      "distractors": [
+        "手荷物",
+        "大学教授",
+        "能力"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu5.html"
+    },
+    {
+      "id": "nh-2-wheelchair",
+      "grade": 2,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "wheelchair",
+      "partOfSpeech": "名詞",
+      "meaning": "車いす",
+      "distractors": [
+        "基準",
+        "地域",
+        "多様性"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu5.html"
+    },
+    {
+      "id": "nh-2-baggage",
+      "grade": 2,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "baggage",
+      "partOfSpeech": "名詞",
+      "meaning": "手荷物",
+      "distractors": [
+        "風味",
+        "塩",
+        "スピーチ"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu5.html"
+    },
+    {
+      "id": "nh-2-professor",
+      "grade": 2,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "professor",
+      "partOfSpeech": "名詞",
+      "meaning": "大学教授",
+      "distractors": [
+        "設計、デザイン",
+        "製品",
+        "施設"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu5.html"
+    },
+    {
+      "id": "nh-2-remove",
+      "grade": 2,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "remove",
+      "partOfSpeech": "動詞",
+      "meaning": "取り除く",
+      "distractors": [
+        "〜の重さがある",
+        "意思を伝え合う",
+        "注文する"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu5.html"
+    },
+    {
+      "id": "nh-2-ability",
+      "grade": 2,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "ability",
+      "partOfSpeech": "名詞",
+      "meaning": "能力",
+      "distractors": [
+        "客",
+        "規則",
+        "受け入れ側の人"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu5.html"
+    },
+    {
+      "id": "nh-2-accessible",
+      "grade": 2,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "accessible",
+      "partOfSpeech": "形容詞",
+      "meaning": "利用しやすい",
+      "distractors": [
+        "独特な",
+        "自然の",
+        "文化の"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu5.html"
+    },
+    {
+      "id": "nh-2-survey",
+      "grade": 2,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "survey",
+      "partOfSpeech": "名詞",
+      "meaning": "調査",
+      "distractors": [
+        "半分",
+        "意見、反応",
+        "話し手"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu6.html"
+    },
+    {
+      "id": "nh-2-strategy",
+      "grade": 2,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "strategy",
+      "partOfSpeech": "名詞",
+      "meaning": "戦略",
+      "distractors": [
+        "価値",
+        "経験",
+        "飛行、航空便"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu6.html"
+    },
+    {
+      "id": "nh-2-skill",
+      "grade": 2,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "skill",
+      "partOfSpeech": "名詞",
+      "meaning": "技能",
+      "distractors": [
+        "戦略",
+        "グラフ",
+        "パーセント"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu6.html"
+    },
+    {
+      "id": "nh-2-graph",
+      "grade": 2,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "graph",
+      "partOfSpeech": "名詞",
+      "meaning": "グラフ",
+      "distractors": [
+        "戦略",
+        "技能",
+        "パーセント"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu6.html"
+    },
+    {
+      "id": "nh-2-percent",
+      "grade": 2,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "percent",
+      "partOfSpeech": "名詞",
+      "meaning": "パーセント",
+      "distractors": [
+        "材料",
+        "汚染",
+        "政府"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu6.html"
+    },
+    {
+      "id": "nh-2-conclusion",
+      "grade": 2,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "conclusion",
+      "partOfSpeech": "名詞",
+      "meaning": "結論",
+      "distractors": [
+        "創造力",
+        "職業、経歴",
+        "情報"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu6.html"
+    },
+    {
+      "id": "nh-2-half",
+      "grade": 2,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "half",
+      "partOfSpeech": "名詞",
+      "meaning": "半分",
+      "distractors": [
+        "手荷物",
+        "大学教授",
+        "能力"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu6.html"
+    },
+    {
+      "id": "nh-2-feedback",
+      "grade": 2,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "feedback",
+      "partOfSpeech": "名詞",
+      "meaning": "意見、反応",
+      "distractors": [
+        "地域",
+        "多様性",
+        "種（生物の分類）"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu6.html"
+    },
+    {
+      "id": "nh-2-speaker",
+      "grade": 2,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "speaker",
+      "partOfSpeech": "名詞",
+      "meaning": "話し手",
+      "distractors": [
+        "塩",
+        "スピーチ",
+        "製造業者"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu6.html"
+    },
+    {
+      "id": "nh-2-content",
+      "grade": 2,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "content",
+      "partOfSpeech": "名詞",
+      "meaning": "内容",
+      "distractors": [
+        "製品",
+        "施設",
+        "標識"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu6.html"
+    },
+    {
+      "id": "nh-2-delivery",
+      "grade": 2,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "delivery",
+      "partOfSpeech": "名詞",
+      "meaning": "話し方、伝え方",
+      "distractors": [
+        "話題",
+        "親切",
+        "遺産"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu6.html"
+    },
+    {
+      "id": "nh-2-topic",
+      "grade": 2,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "topic",
+      "partOfSpeech": "名詞",
+      "meaning": "話題",
+      "distractors": [
+        "言語",
+        "例",
+        "文化"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu6.html"
+    },
+    {
+      "id": "nh-2-unique",
+      "grade": 2,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "unique",
+      "partOfSpeech": "形容詞",
+      "meaning": "独特な",
+      "distractors": [
+        "難しい",
+        "完璧な",
+        "年配の"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu6.html"
+    },
+    {
+      "id": "nh-2-earn",
+      "grade": 2,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "earn",
+      "partOfSpeech": "動詞",
+      "meaning": "稼ぐ",
+      "distractors": [
+        "従う",
+        "終える",
+        "傷つける"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu6.html"
+    },
+    {
+      "id": "nh-2-kindness",
+      "grade": 2,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "kindness",
+      "partOfSpeech": "名詞",
+      "meaning": "親切",
+      "distractors": [
+        "経験",
+        "飛行、航空便",
+        "空港"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu6.html"
+    },
+    {
+      "id": "nh-2-select",
+      "grade": 2,
+      "unit": "第7単元・関連教材",
+      "unitNumber": 7,
+      "word": "select",
+      "partOfSpeech": "動詞",
+      "meaning": "選ぶ",
+      "distractors": [
+        "意思を伝え合う",
+        "注文する",
+        "加える"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu7.html"
+    },
+    {
+      "id": "nh-2-heritage",
+      "grade": 2,
+      "unit": "第7単元・関連教材",
+      "unitNumber": 7,
+      "word": "heritage",
+      "partOfSpeech": "名詞",
+      "meaning": "遺産",
+      "distractors": [
+        "技能",
+        "グラフ",
+        "パーセント"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu7.html"
+    },
+    {
+      "id": "nh-2-natural",
+      "grade": 2,
+      "unit": "第7単元・関連教材",
+      "unitNumber": 7,
+      "word": "natural",
+      "partOfSpeech": "形容詞",
+      "meaning": "自然の",
+      "distractors": [
+        "厚い",
+        "外国の",
+        "国際的な"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu7.html"
+    },
+    {
+      "id": "nh-2-cultural",
+      "grade": 2,
+      "unit": "第7単元・関連教材",
+      "unitNumber": 7,
+      "word": "cultural",
+      "partOfSpeech": "形容詞",
+      "meaning": "文化の",
+      "distractors": [
+        "独特な",
+        "自然の",
+        "同じ"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu7.html"
+    },
+    {
+      "id": "nh-2-standard",
+      "grade": 2,
+      "unit": "第7単元・関連教材",
+      "unitNumber": 7,
+      "word": "standard",
+      "partOfSpeech": "名詞",
+      "meaning": "基準",
+      "distractors": [
+        "大学教授",
+        "能力",
+        "調査"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu7.html"
+    },
+    {
+      "id": "nh-2-region",
+      "grade": 2,
+      "unit": "第7単元・関連教材",
+      "unitNumber": 7,
+      "word": "region",
+      "partOfSpeech": "名詞",
+      "meaning": "地域",
+      "distractors": [
+        "多様性",
+        "種（生物の分類）",
+        "建築"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu7.html"
+    },
+    {
+      "id": "nh-2-diversity",
+      "grade": 2,
+      "unit": "第7単元・関連教材",
+      "unitNumber": 7,
+      "word": "diversity",
+      "partOfSpeech": "名詞",
+      "meaning": "多様性",
+      "distractors": [
+        "スピーチ",
+        "製造業者",
+        "気候"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu7.html"
+    },
+    {
+      "id": "nh-2-species",
+      "grade": 2,
+      "unit": "第7単元・関連教材",
+      "unitNumber": 7,
+      "word": "species",
+      "partOfSpeech": "名詞",
+      "meaning": "種（生物の分類）",
+      "distractors": [
+        "施設",
+        "標識",
+        "車いす"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu7.html"
+    },
+    {
+      "id": "nh-2-architecture",
+      "grade": 2,
+      "unit": "第7単元・関連教材",
+      "unitNumber": 7,
+      "word": "architecture",
+      "partOfSpeech": "名詞",
+      "meaning": "建築",
+      "distractors": [
+        "話題",
+        "親切",
+        "遺産"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu7.html"
+    },
+    {
+      "id": "nh-2-material",
+      "grade": 2,
+      "unit": "第7単元・関連教材",
+      "unitNumber": 7,
+      "word": "material",
+      "partOfSpeech": "名詞",
+      "meaning": "材料",
+      "distractors": [
+        "例",
+        "文化",
+        "風味"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu7.html"
+    },
+    {
+      "id": "nh-2-pollution",
+      "grade": 2,
+      "unit": "第7単元・関連教材",
+      "unitNumber": 7,
+      "word": "pollution",
+      "partOfSpeech": "名詞",
+      "meaning": "汚染",
+      "distractors": [
+        "夫婦、二人組",
+        "皿",
+        "設計、デザイン"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu7.html"
+    },
+    {
+      "id": "nh-2-government",
+      "grade": 2,
+      "unit": "第7単元・関連教材",
+      "unitNumber": 7,
+      "word": "government",
+      "partOfSpeech": "名詞",
+      "meaning": "政府",
+      "distractors": [
+        "意見、反応",
+        "話し手",
+        "内容"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu7.html"
+    },
+    {
+      "id": "nh-2-protect",
+      "grade": 2,
+      "unit": "第7単元・関連教材",
+      "unitNumber": 7,
+      "word": "protect",
+      "partOfSpeech": "動詞",
+      "meaning": "守る",
+      "distractors": [
+        "調整する",
+        "理解する",
+        "従う"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu7.html"
+    },
+    {
+      "id": "nh-2-environment",
+      "grade": 2,
+      "unit": "第7単元・関連教材",
+      "unitNumber": 7,
+      "word": "environment",
+      "partOfSpeech": "名詞",
+      "meaning": "環境",
+      "distractors": [
+        "客",
+        "規則",
+        "受け入れ側の人"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu7.html"
+    },
+    {
+      "id": "nh-2-value",
+      "grade": 2,
+      "unit": "第7単元・関連教材",
+      "unitNumber": 7,
+      "word": "value",
+      "partOfSpeech": "名詞",
+      "meaning": "価値",
+      "distractors": [
+        "グラフ",
+        "パーセント",
+        "結論"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu2nhu7.html"
+    },
+    {
+      "id": "nh-3-discover",
+      "grade": 3,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "discover",
+      "partOfSpeech": "動詞",
+      "meaning": "発見する",
+      "distractors": [
+        "放す",
+        "けがをさせる",
+        "蓄える"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu1.html"
+    },
+    {
+      "id": "nh-3-finally",
+      "grade": 3,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "finally",
+      "partOfSpeech": "副詞",
+      "meaning": "ついに",
+      "distractors": [
+        "確かに",
+        "急速に",
+        "近くに"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu1.html"
+    },
+    {
+      "id": "nh-3-actor",
+      "grade": 3,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "actor",
+      "partOfSpeech": "名詞",
+      "meaning": "俳優",
+      "distractors": [
+        "存在",
+        "影響",
+        "装身具、アクセサリー"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu1.html"
+    },
+    {
+      "id": "nh-3-fashion",
+      "grade": 3,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "fashion",
+      "partOfSpeech": "名詞",
+      "meaning": "流行、ファッション",
+      "distractors": [
+        "生態系",
+        "平和",
+        "災害"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu1.html"
+    },
+    {
+      "id": "nh-3-foreigner",
+      "grade": 3,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "foreigner",
+      "partOfSpeech": "名詞",
+      "meaning": "外国人",
+      "distractors": [
+        "必需品、供給品",
+        "地球",
+        "国境"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu1.html"
+    },
+    {
+      "id": "nh-3-genre",
+      "grade": 3,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "genre",
+      "partOfSpeech": "名詞",
+      "meaning": "分野、ジャンル",
+      "distractors": [
+        "会社",
+        "化学物質",
+        "羊毛"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu1.html"
+    },
+    {
+      "id": "nh-3-adventure",
+      "grade": 3,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "adventure",
+      "partOfSpeech": "名詞",
+      "meaning": "冒険",
+      "distractors": [
+        "緊急事態",
+        "地震",
+        "橋"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu1.html"
+    },
+    {
+      "id": "nh-3-adult",
+      "grade": 3,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "adult",
+      "partOfSpeech": "名詞",
+      "meaning": "大人",
+      "distractors": [
+        "関係",
+        "俳優",
+        "流行、ファッション"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu1.html"
+    },
+    {
+      "id": "nh-3-quality",
+      "grade": 3,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "quality",
+      "partOfSpeech": "名詞",
+      "meaning": "質",
+      "distractors": [
+        "賃金",
+        "危険",
+        "絶滅"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu1.html"
+    },
+    {
+      "id": "nh-3-delicate",
+      "grade": 3,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "delicate",
+      "partOfSpeech": "形容詞",
+      "meaning": "繊細な",
+      "distractors": [
+        "困難な",
+        "不公平な",
+        "効果的な"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu1.html"
+    },
+    {
+      "id": "nh-3-positive",
+      "grade": 3,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "positive",
+      "partOfSpeech": "形容詞",
+      "meaning": "前向きな",
+      "distractors": [
+        "繊細な",
+        "否定的な",
+        "人間の"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu1.html"
+    },
+    {
+      "id": "nh-3-ignore",
+      "grade": 3,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "ignore",
+      "partOfSpeech": "動詞",
+      "meaning": "無視する",
+      "distractors": [
+        "想像する",
+        "頼る",
+        "輸入する"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu1.html"
+    },
+    {
+      "id": "nh-3-existence",
+      "grade": 3,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "existence",
+      "partOfSpeech": "名詞",
+      "meaning": "存在",
+      "distractors": [
+        "支持者",
+        "後世に残したもの",
+        "必需品、供給品"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu1.html"
+    },
+    {
+      "id": "nh-3-express",
+      "grade": 3,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "express",
+      "partOfSpeech": "動詞",
+      "meaning": "表現する",
+      "distractors": [
+        "けがをさせる",
+        "蓄える",
+        "励ます"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu1.html"
+    },
+    {
+      "id": "nh-3-influence",
+      "grade": 3,
+      "unit": "第1単元・関連教材",
+      "unitNumber": 1,
+      "word": "influence",
+      "partOfSpeech": "名詞",
+      "meaning": "影響",
+      "distractors": [
+        "差別",
+        "税金",
+        "支持者"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu1.html"
+    },
+    {
+      "id": "nh-3-accessory",
+      "grade": 3,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "accessory",
+      "partOfSpeech": "名詞",
+      "meaning": "装身具、アクセサリー",
+      "distractors": [
+        "存在",
+        "影響",
+        "影響、衝撃"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu2.html"
+    },
+    {
+      "id": "nh-3-recycle",
+      "grade": 3,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "recycle",
+      "partOfSpeech": "動詞",
+      "meaning": "再生利用する",
+      "distractors": [
+        "受け入れる",
+        "逮捕する",
+        "寄付する"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu2.html"
+    },
+    {
+      "id": "nh-3-impact",
+      "grade": 3,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "impact",
+      "partOfSpeech": "名詞",
+      "meaning": "影響、衝撃",
+      "distractors": [
+        "国境",
+        "生存",
+        "例外"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu2.html"
+    },
+    {
+      "id": "nh-3-since",
+      "grade": 3,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "since",
+      "partOfSpeech": "前置詞",
+      "meaning": "〜以来",
+      "distractors": [
+        "〜の下に",
+        "〜に向かって",
+        "〜なしで"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu2.html"
+    },
+    {
+      "id": "nh-3-introduce",
+      "grade": 3,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "introduce",
+      "partOfSpeech": "動詞",
+      "meaning": "紹介する",
+      "distractors": [
+        "無視する",
+        "表現する",
+        "再生利用する"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu2.html"
+    },
+    {
+      "id": "nh-3-clothing",
+      "grade": 3,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "clothing",
+      "partOfSpeech": "名詞",
+      "meaning": "衣類",
+      "distractors": [
+        "外国人",
+        "分野、ジャンル",
+        "冒険"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu2.html"
+    },
+    {
+      "id": "nh-3-company",
+      "grade": 3,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "company",
+      "partOfSpeech": "名詞",
+      "meaning": "会社",
+      "distractors": [
+        "存在",
+        "影響",
+        "装身具、アクセサリー"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu2.html"
+    },
+    {
+      "id": "nh-3-chemical",
+      "grade": 3,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "chemical",
+      "partOfSpeech": "名詞",
+      "meaning": "化学物質",
+      "distractors": [
+        "平和",
+        "災害",
+        "避難所"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu2.html"
+    },
+    {
+      "id": "nh-3-negative",
+      "grade": 3,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "negative",
+      "partOfSpeech": "形容詞",
+      "meaning": "否定的な",
+      "distractors": [
+        "活力のある",
+        "突然の",
+        "困難な"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu2.html"
+    },
+    {
+      "id": "nh-3-include",
+      "grade": 3,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "include",
+      "partOfSpeech": "動詞",
+      "meaning": "含む",
+      "distractors": [
+        "頼る",
+        "輸入する",
+        "発見する"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu2.html"
+    },
+    {
+      "id": "nh-3-avoid",
+      "grade": 3,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "avoid",
+      "partOfSpeech": "動詞",
+      "meaning": "避ける",
+      "distractors": [
+        "抗議する",
+        "受け入れる",
+        "逮捕する"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu2.html"
+    },
+    {
+      "id": "nh-3-wool",
+      "grade": 3,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "wool",
+      "partOfSpeech": "名詞",
+      "meaning": "羊毛",
+      "distractors": [
+        "状態、条件",
+        "賃金",
+        "危険"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu2.html"
+    },
+    {
+      "id": "nh-3-fur",
+      "grade": 3,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "fur",
+      "partOfSpeech": "名詞",
+      "meaning": "毛皮",
+      "distractors": [
+        "指導者",
+        "暴力",
+        "独立"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu2.html"
+    },
+    {
+      "id": "nh-3-condition",
+      "grade": 3,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "condition",
+      "partOfSpeech": "名詞",
+      "meaning": "状態、条件",
+      "distractors": [
+        "分野、ジャンル",
+        "冒険",
+        "大人"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu2.html"
+    },
+    {
+      "id": "nh-3-wage",
+      "grade": 3,
+      "unit": "第2単元・関連教材",
+      "unitNumber": 2,
+      "word": "wage",
+      "partOfSpeech": "名詞",
+      "meaning": "賃金",
+      "distractors": [
+        "大人",
+        "質",
+        "存在"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu2.html"
+    },
+    {
+      "id": "nh-3-danger",
+      "grade": 3,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "danger",
+      "partOfSpeech": "名詞",
+      "meaning": "危険",
+      "distractors": [
+        "会社",
+        "化学物質",
+        "羊毛"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu3.html"
+    },
+    {
+      "id": "nh-3-extinction",
+      "grade": 3,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "extinction",
+      "partOfSpeech": "名詞",
+      "meaning": "絶滅",
+      "distractors": [
+        "後世に残したもの",
+        "必需品、供給品",
+        "地球"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu3.html"
+    },
+    {
+      "id": "nh-3-challenge",
+      "grade": 3,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "challenge",
+      "partOfSpeech": "名詞",
+      "meaning": "課題、挑戦",
+      "distractors": [
+        "影響、衝撃",
+        "衣類",
+        "会社"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu3.html"
+    },
+    {
+      "id": "nh-3-human",
+      "grade": 3,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "human",
+      "partOfSpeech": "形容詞",
+      "meaning": "人間の",
+      "distractors": [
+        "困難な",
+        "不公平な",
+        "効果的な"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu3.html"
+    },
+    {
+      "id": "nh-3-endangered",
+      "grade": 3,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "endangered",
+      "partOfSpeech": "形容詞",
+      "meaning": "絶滅の危機にある",
+      "distractors": [
+        "繊細な",
+        "前向きな",
+        "否定的な"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu3.html"
+    },
+    {
+      "id": "nh-3-survive",
+      "grade": 3,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "survive",
+      "partOfSpeech": "動詞",
+      "meaning": "生き残る",
+      "distractors": [
+        "けがをさせる",
+        "蓄える",
+        "励ます"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu3.html"
+    },
+    {
+      "id": "nh-3-population",
+      "grade": 3,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "population",
+      "partOfSpeech": "名詞",
+      "meaning": "人口、個体数",
+      "distractors": [
+        "指導者",
+        "暴力",
+        "独立"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu3.html"
+    },
+    {
+      "id": "nh-3-rapidly",
+      "grade": 3,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "rapidly",
+      "partOfSpeech": "副詞",
+      "meaning": "急速に",
+      "distractors": [
+        "近くに",
+        "海外へ",
+        "外国へ"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu3.html"
+    },
+    {
+      "id": "nh-3-century",
+      "grade": 3,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "century",
+      "partOfSpeech": "名詞",
+      "meaning": "世紀",
+      "distractors": [
+        "課題、挑戦",
+        "人口、個体数",
+        "研究、調査"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu3.html"
+    },
+    {
+      "id": "nh-3-research",
+      "grade": 3,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "research",
+      "partOfSpeech": "名詞",
+      "meaning": "研究、調査",
+      "distractors": [
+        "税金",
+        "支持者",
+        "後世に残したもの"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu3.html"
+    },
+    {
+      "id": "nh-3-ecosystem",
+      "grade": 3,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "ecosystem",
+      "partOfSpeech": "名詞",
+      "meaning": "生態系",
+      "distractors": [
+        "影響",
+        "装身具、アクセサリー",
+        "影響、衝撃"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu3.html"
+    },
+    {
+      "id": "nh-3-breed",
+      "grade": 3,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "breed",
+      "partOfSpeech": "動詞",
+      "meaning": "繁殖させる",
+      "distractors": [
+        "無視する",
+        "表現する",
+        "再生利用する"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu3.html"
+    },
+    {
+      "id": "nh-3-release",
+      "grade": 3,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "release",
+      "partOfSpeech": "動詞",
+      "meaning": "放す",
+      "distractors": [
+        "寄付する",
+        "想像する",
+        "頼る"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu3.html"
+    },
+    {
+      "id": "nh-3-injure",
+      "grade": 3,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "injure",
+      "partOfSpeech": "動詞",
+      "meaning": "けがをさせる",
+      "distractors": [
+        "支える",
+        "戦う",
+        "抗議する"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu3.html"
+    },
+    {
+      "id": "nh-3-peace",
+      "grade": 3,
+      "unit": "第3単元・関連教材",
+      "unitNumber": 3,
+      "word": "peace",
+      "partOfSpeech": "名詞",
+      "meaning": "平和",
+      "distractors": [
+        "橋",
+        "アパート",
+        "指導者"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu3.html"
+    },
+    {
+      "id": "nh-3-disaster",
+      "grade": 3,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "disaster",
+      "partOfSpeech": "名詞",
+      "meaning": "災害",
+      "distractors": [
+        "分野、ジャンル",
+        "冒険",
+        "大人"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu4.html"
+    },
+    {
+      "id": "nh-3-shelter",
+      "grade": 3,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "shelter",
+      "partOfSpeech": "名詞",
+      "meaning": "避難所",
+      "distractors": [
+        "危険",
+        "絶滅",
+        "課題、挑戦"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu4.html"
+    },
+    {
+      "id": "nh-3-store",
+      "grade": 3,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "store",
+      "partOfSpeech": "動詞",
+      "meaning": "蓄える",
+      "distractors": [
+        "抗議する",
+        "受け入れる",
+        "逮捕する"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu4.html"
+    },
+    {
+      "id": "nh-3-case",
+      "grade": 3,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "case",
+      "partOfSpeech": "名詞",
+      "meaning": "場合",
+      "distractors": [
+        "地震",
+        "橋",
+        "アパート"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu4.html"
+    },
+    {
+      "id": "nh-3-emergency",
+      "grade": 3,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "emergency",
+      "partOfSpeech": "名詞",
+      "meaning": "緊急事態",
+      "distractors": [
+        "地震",
+        "橋",
+        "アパート"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu4.html"
+    },
+    {
+      "id": "nh-3-earthquake",
+      "grade": 3,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "earthquake",
+      "partOfSpeech": "名詞",
+      "meaning": "地震",
+      "distractors": [
+        "必需品、供給品",
+        "地球",
+        "国境"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu4.html"
+    },
+    {
+      "id": "nh-3-several",
+      "grade": 3,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "several",
+      "partOfSpeech": "形容詞",
+      "meaning": "いくつかの",
+      "distractors": [
+        "前向きな",
+        "否定的な",
+        "人間の"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu4.html"
+    },
+    {
+      "id": "nh-3-bridge",
+      "grade": 3,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "bridge",
+      "partOfSpeech": "名詞",
+      "meaning": "橋",
+      "distractors": [
+        "場合",
+        "緊急事態",
+        "地震"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu4.html"
+    },
+    {
+      "id": "nh-3-energetic",
+      "grade": 3,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "energetic",
+      "partOfSpeech": "形容詞",
+      "meaning": "活力のある",
+      "distractors": [
+        "読み書きのできない",
+        "繊細な",
+        "前向きな"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu4.html"
+    },
+    {
+      "id": "nh-3-encourage",
+      "grade": 3,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "encourage",
+      "partOfSpeech": "動詞",
+      "meaning": "励ます",
+      "distractors": [
+        "発見する",
+        "無視する",
+        "表現する"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu4.html"
+    },
+    {
+      "id": "nh-3-comfort",
+      "grade": 3,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "comfort",
+      "partOfSpeech": "動詞",
+      "meaning": "慰める",
+      "distractors": [
+        "想像する",
+        "頼る",
+        "輸入する"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu4.html"
+    },
+    {
+      "id": "nh-3-nearby",
+      "grade": 3,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "nearby",
+      "partOfSpeech": "副詞",
+      "meaning": "近くに",
+      "distractors": [
+        "確かに",
+        "ついに",
+        "急速に"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu4.html"
+    },
+    {
+      "id": "nh-3-apartment",
+      "grade": 3,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "apartment",
+      "partOfSpeech": "名詞",
+      "meaning": "アパート",
+      "distractors": [
+        "人口、個体数",
+        "世紀",
+        "研究、調査"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu4.html"
+    },
+    {
+      "id": "nh-3-sudden",
+      "grade": 3,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "sudden",
+      "partOfSpeech": "形容詞",
+      "meaning": "突然の",
+      "distractors": [
+        "繊細な",
+        "前向きな",
+        "否定的な"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu4.html"
+    },
+    {
+      "id": "nh-3-support",
+      "grade": 3,
+      "unit": "第4単元・関連教材",
+      "unitNumber": 4,
+      "word": "support",
+      "partOfSpeech": "動詞",
+      "meaning": "支える",
+      "distractors": [
+        "含む",
+        "避ける",
+        "生き残る"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu4.html"
+    },
+    {
+      "id": "nh-3-leader",
+      "grade": 3,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "leader",
+      "partOfSpeech": "名詞",
+      "meaning": "指導者",
+      "distractors": [
+        "災害",
+        "避難所",
+        "場合"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu5.html"
+    },
+    {
+      "id": "nh-3-violence",
+      "grade": 3,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "violence",
+      "partOfSpeech": "名詞",
+      "meaning": "暴力",
+      "distractors": [
+        "生存",
+        "例外",
+        "関係"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu5.html"
+    },
+    {
+      "id": "nh-3-independence",
+      "grade": 3,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "independence",
+      "partOfSpeech": "名詞",
+      "meaning": "独立",
+      "distractors": [
+        "羊毛",
+        "毛皮",
+        "状態、条件"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu5.html"
+    },
+    {
+      "id": "nh-3-fight",
+      "grade": 3,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "fight",
+      "partOfSpeech": "動詞",
+      "meaning": "戦う",
+      "distractors": [
+        "無視する",
+        "表現する",
+        "再生利用する"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu5.html"
+    },
+    {
+      "id": "nh-3-protest",
+      "grade": 3,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "protest",
+      "partOfSpeech": "動詞",
+      "meaning": "抗議する",
+      "distractors": [
+        "寄付する",
+        "想像する",
+        "頼る"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu5.html"
+    },
+    {
+      "id": "nh-3-tough",
+      "grade": 3,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "tough",
+      "partOfSpeech": "形容詞",
+      "meaning": "困難な",
+      "distractors": [
+        "読み書きのできない",
+        "繊細な",
+        "前向きな"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu5.html"
+    },
+    {
+      "id": "nh-3-lawyer",
+      "grade": 3,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "lawyer",
+      "partOfSpeech": "名詞",
+      "meaning": "弁護士",
+      "distractors": [
+        "差別",
+        "税金",
+        "支持者"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu5.html"
+    },
+    {
+      "id": "nh-3-discrimination",
+      "grade": 3,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "discrimination",
+      "partOfSpeech": "名詞",
+      "meaning": "差別",
+      "distractors": [
+        "存在",
+        "影響",
+        "装身具、アクセサリー"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu5.html"
+    },
+    {
+      "id": "nh-3-accept",
+      "grade": 3,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "accept",
+      "partOfSpeech": "動詞",
+      "meaning": "受け入れる",
+      "distractors": [
+        "頼る",
+        "輸入する",
+        "発見する"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu5.html"
+    },
+    {
+      "id": "nh-3-unfair",
+      "grade": 3,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "unfair",
+      "partOfSpeech": "形容詞",
+      "meaning": "不公平な",
+      "distractors": [
+        "突然の",
+        "困難な",
+        "効果的な"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu5.html"
+    },
+    {
+      "id": "nh-3-arrest",
+      "grade": 3,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "arrest",
+      "partOfSpeech": "動詞",
+      "meaning": "逮捕する",
+      "distractors": [
+        "けがをさせる",
+        "蓄える",
+        "励ます"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu5.html"
+    },
+    {
+      "id": "nh-3-effective",
+      "grade": 3,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "effective",
+      "partOfSpeech": "形容詞",
+      "meaning": "効果的な",
+      "distractors": [
+        "いくつかの",
+        "活力のある",
+        "突然の"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu5.html"
+    },
+    {
+      "id": "nh-3-tax",
+      "grade": 3,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "tax",
+      "partOfSpeech": "名詞",
+      "meaning": "税金",
+      "distractors": [
+        "俳優",
+        "流行、ファッション",
+        "外国人"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu5.html"
+    },
+    {
+      "id": "nh-3-follower",
+      "grade": 3,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "follower",
+      "partOfSpeech": "名詞",
+      "meaning": "支持者",
+      "distractors": [
+        "賃金",
+        "危険",
+        "絶滅"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu5.html"
+    },
+    {
+      "id": "nh-3-legacy",
+      "grade": 3,
+      "unit": "第5単元・関連教材",
+      "unitNumber": 5,
+      "word": "legacy",
+      "partOfSpeech": "名詞",
+      "meaning": "後世に残したもの",
+      "distractors": [
+        "暴力",
+        "独立",
+        "弁護士"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu5.html"
+    },
+    {
+      "id": "nh-3-overseas",
+      "grade": 3,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "overseas",
+      "partOfSpeech": "副詞",
+      "meaning": "海外へ",
+      "distractors": [
+        "急速に",
+        "近くに",
+        "確かに"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu6.html"
+    },
+    {
+      "id": "nh-3-unused",
+      "grade": 3,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "unused",
+      "partOfSpeech": "形容詞",
+      "meaning": "使われていない",
+      "distractors": [
+        "活力のある",
+        "突然の",
+        "困難な"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu6.html"
+    },
+    {
+      "id": "nh-3-supply",
+      "grade": 3,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "supply",
+      "partOfSpeech": "名詞",
+      "meaning": "必需品、供給品",
+      "distractors": [
+        "支持者",
+        "後世に残したもの",
+        "地球"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu6.html"
+    },
+    {
+      "id": "nh-3-abroad",
+      "grade": 3,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "abroad",
+      "partOfSpeech": "副詞",
+      "meaning": "外国へ",
+      "distractors": [
+        "ついに",
+        "急速に",
+        "近くに"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu6.html"
+    },
+    {
+      "id": "nh-3-donate",
+      "grade": 3,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "donate",
+      "partOfSpeech": "動詞",
+      "meaning": "寄付する",
+      "distractors": [
+        "放す",
+        "けがをさせる",
+        "蓄える"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu6.html"
+    },
+    {
+      "id": "nh-3-definitely",
+      "grade": 3,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "definitely",
+      "partOfSpeech": "副詞",
+      "meaning": "確かに",
+      "distractors": [
+        "近くに",
+        "海外へ",
+        "外国へ"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu6.html"
+    },
+    {
+      "id": "nh-3-imagine",
+      "grade": 3,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "imagine",
+      "partOfSpeech": "動詞",
+      "meaning": "想像する",
+      "distractors": [
+        "輸入する",
+        "発見する",
+        "無視する"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu6.html"
+    },
+    {
+      "id": "nh-3-illiterate",
+      "grade": 3,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "illiterate",
+      "partOfSpeech": "形容詞",
+      "meaning": "読み書きのできない",
+      "distractors": [
+        "繊細な",
+        "前向きな",
+        "否定的な"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu6.html"
+    },
+    {
+      "id": "nh-3-globe",
+      "grade": 3,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "globe",
+      "partOfSpeech": "名詞",
+      "meaning": "地球",
+      "distractors": [
+        "分野、ジャンル",
+        "冒険",
+        "大人"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu6.html"
+    },
+    {
+      "id": "nh-3-border",
+      "grade": 3,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "border",
+      "partOfSpeech": "名詞",
+      "meaning": "国境",
+      "distractors": [
+        "課題、挑戦",
+        "人口、個体数",
+        "世紀"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu6.html"
+    },
+    {
+      "id": "nh-3-depend",
+      "grade": 3,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "depend",
+      "partOfSpeech": "動詞",
+      "meaning": "頼る",
+      "distractors": [
+        "無視する",
+        "表現する",
+        "再生利用する"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu6.html"
+    },
+    {
+      "id": "nh-3-survival",
+      "grade": 3,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "survival",
+      "partOfSpeech": "名詞",
+      "meaning": "生存",
+      "distractors": [
+        "影響",
+        "装身具、アクセサリー",
+        "影響、衝撃"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu6.html"
+    },
+    {
+      "id": "nh-3-import",
+      "grade": 3,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "import",
+      "partOfSpeech": "動詞",
+      "meaning": "輸入する",
+      "distractors": [
+        "慰める",
+        "支える",
+        "戦う"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu6.html"
+    },
+    {
+      "id": "nh-3-exception",
+      "grade": 3,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "exception",
+      "partOfSpeech": "名詞",
+      "meaning": "例外",
+      "distractors": [
+        "地球",
+        "国境",
+        "生存"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu6.html"
+    },
+    {
+      "id": "nh-3-relationship",
+      "grade": 3,
+      "unit": "第6単元・関連教材",
+      "unitNumber": 6,
+      "word": "relationship",
+      "partOfSpeech": "名詞",
+      "meaning": "関係",
+      "distractors": [
+        "化学物質",
+        "羊毛",
+        "毛皮"
+      ],
+      "source": "https://www.eigo-duke.com/tango/chu3nhu6.html"
+    }
+  ]
+}
