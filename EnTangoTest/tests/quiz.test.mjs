@@ -1,37 +1,42 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { QUESTION_COUNT, validateBank, createSession, answerQuestion, advanceQuestion, getScore } from '../quiz.js';
+import { QUESTION_COUNT, normalizedWord, validateBank, createSession, answerQuestion, advanceQuestion, getScore } from '../quiz.js';
 
 const bank = JSON.parse(await readFile(new URL('../data/questions.json', import.meta.url), 'utf8'));
 function randomWithSeed(seed) {
   return () => { seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0; return seed / 4294967296; };
 }
 
-test('全学年のデータに必要な項目・4択・主要単元が揃う', () => {
+test('CSVの全綴りを1問ずつ収録し、学年と4択が揃う', async () => {
   assert.equal(validateBank(bank), bank);
-  assert.equal(bank.questions.length, 345);
-  for (const [grade, count, units] of [[1, 150, 10], [2, 105, 7], [3, 90, 6]]) {
+  const csv = await readFile(new URL('../eigo_19goidata.csv', import.meta.url), 'utf8');
+  const listedWords = new Set(csv.replace(/^\uFEFF/, '').trim().split(/\r?\n/).slice(1).map((line) => normalizedWord(line.split(',')[1])));
+  assert.equal(listedWords.size, 1768);
+  assert.equal(bank.questions.length, listedWords.size);
+  assert.deepEqual(new Set(bank.questions.map((item) => normalizedWord(item.word))), listedWords);
+  for (const [grade, count] of [[1, 903], [2, 395], [3, 326]]) {
     const questions = bank.questions.filter((item) => item.grade === grade);
     assert.equal(questions.length, count);
-    assert.deepEqual([...new Set(questions.map((item) => item.unitNumber))], Array.from({ length: units }, (_, index) => index + 1));
     for (const question of questions) {
-      assert.match(question.meaning, /[ぁ-んァ-ヶ一-龠]/);
+      assert.ok(question.meaning.length > 0);
       assert.equal(question.distractors.length, 3);
     }
   }
+  assert.equal(bank.questions.filter((item) => item.grade === null).length, 144);
+  assert.deepEqual([...new Set(bank.questions.filter((item) => item.unitNumber).map((item) => item.grade))], [1, 2, 3]);
 });
 
 test('各学年から重複のない10問を抽出し、正解位置が固定されない', () => {
   const before = JSON.stringify(bank);
   const positions = new Set();
   const samples = new Set();
-  for (const grade of [1, 2, 3]) {
+  for (const grade of [1, 2, 3, 'all']) {
     for (let seed = 1; seed <= 40; seed += 1) {
       const session = createSession(bank, grade, randomWithSeed(seed));
       assert.equal(session.questions.length, QUESTION_COUNT);
       assert.equal(new Set(session.questions.map((item) => item.word)).size, QUESTION_COUNT);
-      assert.ok(session.questions.every((item) => item.grade === grade));
+      assert.ok(session.questions.every((item) => grade === 'all' || item.grade === grade));
       for (const question of session.questions) {
         assert.equal(question.options.length, 4);
         assert.equal(question.options.filter((option) => option.correct).length, 1);
@@ -42,7 +47,7 @@ test('各学年から重複のない10問を抽出し、正解位置が固定さ
     }
   }
   assert.equal(positions.size, 4);
-  assert.ok(samples.size > 100);
+  assert.ok(samples.size > 140);
   assert.equal(JSON.stringify(bank), before);
 });
 
@@ -94,8 +99,21 @@ test('問題不足・選択肢重複・学年とIDの不備を検出する', () 
   assert.throws(() => validateBank(mutate((copy) => { copy.questions[0].grade = 4; })));
   assert.throws(() => validateBank(mutate((copy) => { copy.questions[1].id = copy.questions[0].id; })), /重複/);
   assert.throws(() => validateBank(mutate((copy) => { copy.questions[1].word = copy.questions[0].word.toUpperCase(); })), /重複/);
+  assert.throws(() => validateBank(mutate((copy) => { copy.questions[1].grade = null; copy.questions[1].word = copy.questions[0].word; })), /重複/);
   assert.throws(() => createSession(bank, 0));
   assert.throws(() => createSession(bank, '1'));
+});
+
+test('学年未確認の語は全収録語テストにのみ含める', () => {
+  const unknown = bank.questions.find((item) => item.grade === null);
+  assert.ok(unknown);
+  for (const grade of [1, 2, 3]) assert.ok(!bank.questions.filter((item) => item.grade === grade).includes(unknown));
+  assert.ok(bank.questions.includes(unknown));
+  const session = createSession(bank, 'all', randomWithSeed(1));
+  assert.equal(session.grade, 'all');
+  assert.equal(session.questions.length, 10);
+  assert.ok(Array.from({ length: 40 }, (_, index) => createSession(bank, 'all', randomWithSeed(index + 1)))
+    .some((sample) => sample.questions.some((item) => item.grade === null)));
 });
 
 test('意味が近い語や2026年度の訂正に関わる語を確認する', () => {

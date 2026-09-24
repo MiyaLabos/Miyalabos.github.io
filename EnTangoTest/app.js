@@ -8,6 +8,7 @@ let session = null;
 let loading = false;
 const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character]));
 const arrow = '<span class="arrow" aria-hidden="true">→</span>';
+const scopeName = (grade) => grade === 'all' ? '全収録語' : `中学${grade}年`;
 
 function focusHeading() {
   const heading = app.querySelector('h1');
@@ -29,16 +30,17 @@ function renderHome(focus = true) {
         <div class="test-facts"><div><strong>10<span>問</span></strong><small>1回のテスト</small></div><div><strong>4<span>択</span></strong><small>タップで回答</small></div><div><strong>自分の<span>ペース</span></strong><small>時間制限なし</small></div></div>
       </section>
       <section class="selection-panel" aria-labelledby="grade-title">
-        <p class="section-caption">さあ、はじめましょう</p><h2 id="grade-title">学年を選んでスタート</h2>
-        <fieldset class="grade-fieldset"><legend class="sr-only">テストの学年</legend>
+        <p class="section-caption">さあ、はじめましょう</p><h2 id="grade-title">出題範囲を選んでスタート</h2>
+        <fieldset class="grade-fieldset"><legend class="sr-only">テストの出題範囲</legend>
           ${[1, 2, 3].map((grade) => `<label class="grade-option"><input type="radio" name="grade" value="${grade}" ${grade === selectedGrade ? 'checked' : ''}><span class="grade-content"><span class="grade-number" aria-hidden="true">${grade}</span><span class="grade-description"><strong>中学${grade}年</strong><small>教科書全体から選んだ ${bank.questions.filter((item) => item.grade === grade).length} 語</small></span><span class="radio-mark" aria-hidden="true"></span></span></label>`).join('')}
+          <label class="grade-option"><input type="radio" name="grade" value="all" ${selectedGrade === 'all' ? 'checked' : ''}><span class="grade-content"><span class="grade-number all-number" aria-hidden="true">全</span><span class="grade-description"><strong>全収録語</strong><small>学年未確認の語も含む ${bank.questions.length} 語</small></span><span class="radio-mark" aria-hidden="true"></span></span></label>
         </fieldset>
         <button class="button primary full-width" data-action="start">10問テストをはじめる ${arrow}</button>
         <p class="selection-note">英単語 → 日本語の意味 ・ 毎回ランダムに出題</p>
       </section>
     </div>
     <section class="how-it-works" aria-labelledby="how-title"><h2 id="how-title">テストの進め方</h2><div class="step"><span class="step-number" aria-hidden="true">01</span><div><strong>意味を選ぶ</strong><p>4つの選択肢から1つをタップ。</p></div></div><div class="step"><span class="step-number" aria-hidden="true">02</span><div><strong>正解を確かめる</strong><p>1問ずつ、答えを確認して次へ。</p></div></div><div class="step"><span class="step-number" aria-hidden="true">03</span><div><strong>10問を振り返る</strong><p>覚えた単語も、迷った単語も復習。</p></div></div></section>
-    <details class="source-details"><summary>教科書と出題範囲について</summary><p>東京書籍『NEW HORIZON English Course』令和7年度版（2026年度使用）対応。各学年の単元から選んだ単語を収録しています。教科書の全掲載語を網羅したものではありません。</p><p>掲載語は東京書籍の公式語彙表、単元構成は公式年間指導計画で照合し、単語と学年・単元の対応は公開されている教科書準拠の学習資料で確認しています。日本語訳と誤答候補は、このテスト用に作成しています。</p><p><a href="https://ten.tokyo-shoseki.co.jp/text/chu/eigo/download/" target="_blank" rel="noopener noreferrer">公式語彙資料</a> ／ <a href="https://ten.tokyo-shoseki.co.jp/text-information/chu/english-r7/" target="_blank" rel="noopener noreferrer">2026年度の訂正情報</a> ／ <a href="./data/sources.md" target="_blank" rel="noopener noreferrer">参照資料と収録範囲</a></p><p>再読み込み・タブを閉じる操作で回答はリセットされます。生徒の氏名や成績の収集は行いません。</p></details>`;
+    <details class="source-details"><summary>教科書と出題範囲について</summary><p>東京書籍『NEW HORIZON English Course』令和7年度版（2026年度使用）の公式語彙CSVにある綴りを収録しています。同じ綴りは1問にまとめています。学年を確認できない語は「全収録語」でのみ出題します。</p><p>掲載語は東京書籍の公式語彙表、学年は2025年度版の教科書準拠資料と小学校語彙一覧で照合しました。日本語訳は短い代表的な意味にしています。</p><p><a href="https://ten.tokyo-shoseki.co.jp/text/chu/eigo/download/" target="_blank" rel="noopener noreferrer">公式語彙資料</a> ／ <a href="https://ten.tokyo-shoseki.co.jp/text-information/chu/english-r7/" target="_blank" rel="noopener noreferrer">2026年度の訂正情報</a> ／ <a href="./data/sources.md" target="_blank" rel="noopener noreferrer">参照資料と収録範囲</a></p><p>再読み込み・タブを閉じる操作で回答はリセットされます。生徒の氏名や成績の収集は行いません。</p></details>`;
   if (focus) focusHeading();
 }
 
@@ -46,7 +48,7 @@ function renderQuestion() {
   const question = session.questions[session.index];
   const current = session.index + 1;
   app.innerHTML = `<div class="quiz-shell">
-    <div class="quiz-toolbar"><button class="text-button" data-action="exit"><span aria-hidden="true">←</span> 学年選択に戻る</button><span class="grade-pill">中学${session.grade}年</span></div>
+    <div class="quiz-toolbar"><button class="text-button" data-action="exit"><span aria-hidden="true">←</span> 出題範囲選択に戻る</button><span class="grade-pill">${scopeName(session.grade)}</span></div>
     <div class="progress-heading"><span><strong>${String(current).padStart(2, '0')}</strong><small>／ ${QUESTION_COUNT} 問</small></span><span>あと ${QUESTION_COUNT - session.answers.length} 問</span></div>
     <div class="progress-track" role="progressbar" aria-label="回答済みの問題数" aria-valuemin="0" aria-valuemax="${QUESTION_COUNT}" aria-valuenow="${session.answers.length}">${session.questions.map((_, index) => `<span class="progress-step ${index < session.index ? 'done' : index === session.index ? 'current' : ''}"></span>`).join('')}</div>
     <section class="question-panel" aria-labelledby="question-word">
@@ -91,8 +93,8 @@ function renderFeedback() {
 function renderResults() {
   const score = getScore(session);
   const message = score === 10 ? '全問正解！今日の単語、しっかり身についています。' : score >= 7 ? 'よくできました！迷った単語を確認して、もう一歩。' : '最後まで取り組めました。答えを見ながら、ひとつずつ覚えよう。';
-  app.innerHTML = `<div class="quiz-shell"><div class="quiz-toolbar"><span class="grade-pill">中学${session.grade}年</span><span class="section-caption">全10問 回答完了</span></div>
-    <section class="result-hero" aria-labelledby="result-title"><span class="complete-mark" aria-hidden="true">✓</span><h1 id="result-title">10問、おつかれさまでした。</h1><p>${message}</p><div class="score-card"><div><span class="sr-only">正解数</span><span class="score-value">${score}<small> / 10 問</small></span></div><div class="score-rate">正答率<strong>${score * 10}%</strong></div></div><div class="result-actions"><button class="button primary" data-action="retry">同じ学年でもう一度 ${arrow}</button><button class="button secondary" data-action="home">学年を選び直す</button></div></section>
+  app.innerHTML = `<div class="quiz-shell"><div class="quiz-toolbar"><span class="grade-pill">${scopeName(session.grade)}</span><span class="section-caption">全10問 回答完了</span></div>
+    <section class="result-hero" aria-labelledby="result-title"><span class="complete-mark" aria-hidden="true">✓</span><h1 id="result-title">10問、おつかれさまでした。</h1><p>${message}</p><div class="score-card"><div><span class="sr-only">正解数</span><span class="score-value">${score}<small> / 10 問</small></span></div><div class="score-rate">正答率<strong>${score * 10}%</strong></div></div><div class="result-actions"><button class="button primary" data-action="retry">同じ範囲でもう一度 ${arrow}</button><button class="button secondary" data-action="home">出題範囲を選び直す</button></div></section>
     <section aria-labelledby="review-title"><div class="review-header"><h2 id="review-title">今回の単語を振り返ろう</h2><span>正解 ${score} ／ 不正解 ${QUESTION_COUNT - score}</span></div><ol class="review-list">${session.questions.map((question, index) => {
       const answer = session.answers[index];
       return `<li class="review-item ${answer.correct ? '' : 'wrong'}"><span class="review-symbol" aria-label="${index + 1}問目 ${answer.correct ? '正解' : '不正解'}">${answer.correct ? '✓' : '×'}</span><div><span class="review-word" lang="en">${escapeHtml(question.word)}</span><small class="review-unit">${escapeHtml(question.partOfSpeech)} ・ ${escapeHtml(question.unit)}</small></div><div class="review-answer"><small>正解</small>${escapeHtml(question.meaning)}${answer.correct ? '' : `<p class="wrong-answer">あなたの回答：${escapeHtml(answer.label)}</p>`}</div></li>`;
@@ -129,7 +131,7 @@ async function loadBank() {
 }
 
 app.addEventListener('change', (event) => {
-  if (event.target.matches('input[name="grade"]')) selectedGrade = Number(event.target.value);
+  if (event.target.matches('input[name="grade"]')) selectedGrade = event.target.value === 'all' ? 'all' : Number(event.target.value);
 });
 
 app.addEventListener('click', (event) => {
@@ -154,7 +156,7 @@ app.addEventListener('click', (event) => {
       exitDialog.returnValue = '';
       exitDialog.showModal();
     }
-    else if (window.confirm('テストを終了して学年選択に戻りますか？ここまでの回答は保存されません。')) renderHome();
+    else if (window.confirm('テストを終了して出題範囲選択に戻りますか？ここまでの回答は保存されません。')) renderHome();
   }
 });
 

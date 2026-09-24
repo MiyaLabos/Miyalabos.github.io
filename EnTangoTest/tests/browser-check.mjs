@@ -79,7 +79,7 @@ async function home() {
 try {
   await viewport(1024, 768); await home(); await noOverflow(); await screenshot('home-landscape');
   await viewport(768, 1024); await noOverflow(); await screenshot('home-portrait');
-  for (const [grade, expectedScore] of [[1, 10], [2, 6], [3, 0]]) {
+  for (const [grade, expectedScore] of [[1, 10], [2, 6], [3, 0], ['all', 10]]) {
     await tap(`label:has(input[value="${grade}"])`);
     await tap('[data-action=start]');
     await waitFor('!!document.querySelector(".answer-option")');
@@ -91,7 +91,7 @@ try {
     for (let index = 0; index < 10; index += 1) {
       const word = await evaluate('document.querySelector(".english-word").textContent');
       assert.ok(!used.has(word), '10問の単語が重複しない'); used.add(word);
-      assert.ok(bank.questions.some((question) => question.word === word && question.grade === grade));
+      assert.ok(bank.questions.some((question) => question.word === word && (grade === 'all' || question.grade === grade)));
       assert.equal(await evaluate('document.querySelectorAll(".answer-option").length'), 4);
       const labels = await evaluate('[...document.querySelectorAll(".answer-option")].map(el=>el.getBoundingClientRect().height)');
       assert.ok(labels.every((height) => height >= 44));
@@ -121,11 +121,11 @@ try {
     await evaluate('window.scrollTo(0,0)');
     await screenshot(`result-grade-${grade}`);
     await tap('[data-action=retry]');
-    assert.equal(await evaluate('document.querySelector(".grade-pill").textContent'), `中学${grade}年`);
+    assert.equal(await evaluate('document.querySelector(".grade-pill").textContent'), grade === 'all' ? '全収録語' : `中学${grade}年`);
     assert.equal(await evaluate('document.querySelector("[role=progressbar]").getAttribute("aria-valuenow")'), '0');
     await tap('[data-action=exit]'); await tap('dialog button[value=exit]');
     await waitFor('!!document.querySelector("[data-action=start]")');
-    console.log(`中学${grade}年：10問のタップ回答、${expectedScore}点の採点、再挑戦、途中終了を確認`);
+    console.log(`${grade === 'all' ? '全収録語' : `中学${grade}年`}：10問のタップ回答、${expectedScore}点の採点、再挑戦、途中終了を確認`);
   }
   await viewport(390, 844); await noOverflow(); await evaluate('window.scrollTo(0,0)'); await screenshot('home-mobile');
   await tap('[data-action=start]'); await noOverflow(); await screenshot('quiz-mobile');

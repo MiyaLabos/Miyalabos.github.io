@@ -207,25 +207,6 @@
       const AX_COEFF_MAX = 9;
       function randInt(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
 
-      // 係数や式の整形（画面表示）
-      function formatQuadraticHTML(a) {
-        if (a === 1) return 'x<sup>2</sup>';
-        if (a === -1) return '-x<sup>2</sup>';
-        return `${a}x<sup>2</sup>`;
-      }
-      function formatLinearHTML(b) {
-        if (b === 0) return '';
-        const sign = b > 0 ? ' + ' : ' - ';
-        const abs = Math.abs(b);
-        return sign + (abs === 1 ? 'x' : `${abs}x`);
-      }
-      function formatConstantHTML(c) {
-        if (c === 0) return '';
-        const sign = c > 0 ? ' + ' : ' - ';
-        return sign + Math.abs(c);
-      }
-      function formatEquationHTML(a, b, c) { return `${formatQuadraticHTML(a)}${formatLinearHTML(b)}${formatConstantHTML(c)}`; }
-
       // TeX 用（MathJax）
       function texQuadratic(a) {
         if (a === 1) return 'x^{2}';
@@ -433,7 +414,7 @@
         ol.innerHTML = '';
         list.forEach((problem) => {
           const li = document.createElement('li');
-          const left = `<span class="eq">${formatEquationHTML(problem.quadratic, problem.linear, problem.c)} = </span>`;
+          const left = `<span class="eq">\\( ${texEquation(problem.quadratic, problem.linear, problem.c)} = \\)</span>`;
           li.innerHTML = left + renderProblemAnswerLine(true);
           ol.appendChild(li);
         });
@@ -443,7 +424,7 @@
         grid.innerHTML = '';
         list.forEach((problem) => {
           const li = document.createElement('li');
-          const left = `<span class="eq">${formatEquationHTML(problem.quadratic, problem.linear, problem.c)} = </span>`;
+          const left = `<span class="eq">\\( ${texEquation(problem.quadratic, problem.linear, problem.c)} = \\)</span>`;
           li.innerHTML = left + renderProblemAnswerLine(false);
           grid.appendChild(li);
         });

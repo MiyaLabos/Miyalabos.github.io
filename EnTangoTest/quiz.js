@@ -1,22 +1,23 @@
 export const QUESTION_COUNT = 10;
 const text = (value) => typeof value === 'string' && value.trim().length > 0;
+export const normalizedWord = (value) => value.normalize('NFKC').trim().toLowerCase().replaceAll('’', "'");
 const normalized = (value) => value.normalize('NFKC').trim().toLowerCase();
 
 export function validateBank(bank) {
-  if (!bank || bank.schemaVersion !== 1 || !text(bank.edition) || !Array.isArray(bank.questions)) {
+  if (!bank || bank.schemaVersion !== 2 || !text(bank.edition) || !Array.isArray(bank.questions)) {
     throw new Error('問題データの形式が正しくありません。');
   }
   const ids = new Set();
   const words = new Set();
   const counts = [0, 0, 0, 0];
   for (const item of bank.questions) {
-    if (!item || ![1, 2, 3].includes(item.grade) || !['id', 'word', 'partOfSpeech', 'meaning', 'unit', 'source'].every((key) => text(item[key]))) {
+    if (!item || ![1, 2, 3, null].includes(item.grade) || !['id', 'word', 'partOfSpeech', 'meaning', 'unit', 'source'].every((key) => text(item[key]))) {
       throw new Error('問題データに必要な項目がありません。');
     }
     if (ids.has(item.id)) throw new Error('問題の番号が重複しています。');
     ids.add(item.id);
-    const wordKey = `${item.grade}:${normalized(item.word)}`;
-    if (words.has(wordKey)) throw new Error('同じ学年に英単語が重複しています。');
+    const wordKey = normalizedWord(item.word);
+    if (words.has(wordKey)) throw new Error('英単語の綴りが重複しています。');
     words.add(wordKey);
     if (!Array.isArray(item.distractors) || item.distractors.length !== 3 || !item.distractors.every(text)) {
       throw new Error('誤答候補は3つ必要です。');
@@ -24,7 +25,7 @@ export function validateBank(bank) {
     if (new Set([item.meaning, ...item.distractors].map(normalized)).size !== 4) {
       throw new Error('選択肢の意味が重複しています。');
     }
-    counts[item.grade] += 1;
+    if (item.grade !== null) counts[item.grade] += 1;
   }
   for (const grade of [1, 2, 3]) {
     if (counts[grade] < QUESTION_COUNT) throw new Error(`中学${grade}年の問題が10問に足りません。`);
@@ -43,8 +44,8 @@ export function shuffle(items, random = Math.random) {
 
 export function createSession(bank, grade, random = Math.random) {
   validateBank(bank);
-  if (![1, 2, 3].includes(grade)) throw new Error('学年を選択してください。');
-  const questions = shuffle(bank.questions.filter((item) => item.grade === grade), random)
+  if (![1, 2, 3, 'all'].includes(grade)) throw new Error('出題範囲を選択してください。');
+  const questions = shuffle(bank.questions.filter((item) => grade === 'all' || item.grade === grade), random)
     .slice(0, QUESTION_COUNT)
     .map((item) => ({
       ...item,
