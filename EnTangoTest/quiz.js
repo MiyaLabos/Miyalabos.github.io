@@ -3,6 +3,12 @@ const text = (value) => typeof value === 'string' && value.trim().length > 0;
 export const normalizedWord = (value) => value.normalize('NFKC').trim().toLowerCase().replaceAll('’', "'");
 const normalized = (value) => value.normalize('NFKC').trim().toLowerCase();
 
+export function questionLocation(item) {
+  if (item.grade === null) return '学年未確認';
+  const grade = `中学${item.grade}年`;
+  return item.unitNumber ? `${grade}・${item.unit}` : grade;
+}
+
 export function validateBank(bank) {
   if (!bank || bank.schemaVersion !== 2 || !text(bank.edition) || !Array.isArray(bank.questions)) {
     throw new Error('問題データの形式が正しくありません。');
@@ -15,6 +21,9 @@ export function validateBank(bank) {
       throw new Error('問題データに必要な項目がありません。');
     }
     if (ids.has(item.id)) throw new Error('問題の番号が重複しています。');
+    if (item.unitNumber !== undefined && (!Number.isInteger(item.unitNumber) || item.unitNumber < 1 || item.grade === null)) {
+      throw new Error('単元番号が正しくありません。');
+    }
     ids.add(item.id);
     const wordKey = normalizedWord(item.word);
     if (words.has(wordKey)) throw new Error('英単語の綴りが重複しています。');

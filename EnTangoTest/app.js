@@ -1,4 +1,4 @@
-import { QUESTION_COUNT, validateBank, createSession, answerQuestion, advanceQuestion, getScore } from './quiz.js';
+import { QUESTION_COUNT, validateBank, createSession, answerQuestion, advanceQuestion, getScore, questionLocation } from './quiz.js';
 
 const app = document.querySelector('#app');
 const exitDialog = document.querySelector('#exit-dialog');
@@ -21,19 +21,21 @@ function focusHeading() {
 
 function renderHome(focus = true) {
   session = null;
+  const gradeCounts = [1, 2, 3].map((grade) => bank.questions.filter((item) => item.grade === grade).length);
+  const unknownCount = bank.questions.length - gradeCounts.reduce((total, count) => total + count, 0);
   app.innerHTML = `
     <div class="home-layout">
       <section class="hero" aria-labelledby="home-title">
         <p class="eyebrow">今日の、ちいさな積み重ね。</p>
-        <h1 id="home-title">英単語を、<br><em>10問ずつ。</em></h1>
-        <p class="hero-copy">教科書で出会った単語を、もう一度。<br>4つの意味から選んで、今の理解を確かめよう。</p>
+        <h1 id="home-title">英語の語句を、<br><em>10問ずつ。</em></h1>
+        <p class="hero-copy">教科書で出会った単語や表現を、もう一度。<br>4つの意味から選んで、今の理解を確かめよう。</p>
         <div class="test-facts"><div><strong>10<span>問</span></strong><small>1回のテスト</small></div><div><strong>4<span>択</span></strong><small>タップで回答</small></div><div><strong>自分の<span>ペース</span></strong><small>時間制限なし</small></div></div>
       </section>
       <section class="selection-panel" aria-labelledby="grade-title">
         <p class="section-caption">さあ、はじめましょう</p><h2 id="grade-title">出題範囲を選んでスタート</h2>
         <fieldset class="grade-fieldset"><legend class="sr-only">テストの出題範囲</legend>
-          ${[1, 2, 3].map((grade) => `<label class="grade-option"><input type="radio" name="grade" value="${grade}" ${grade === selectedGrade ? 'checked' : ''}><span class="grade-content"><span class="grade-number" aria-hidden="true">${grade}</span><span class="grade-description"><strong>中学${grade}年</strong><small>教科書全体から選んだ ${bank.questions.filter((item) => item.grade === grade).length} 語</small></span><span class="radio-mark" aria-hidden="true"></span></span></label>`).join('')}
-          <label class="grade-option"><input type="radio" name="grade" value="all" ${selectedGrade === 'all' ? 'checked' : ''}><span class="grade-content"><span class="grade-number all-number" aria-hidden="true">全</span><span class="grade-description"><strong>全収録語</strong><small>学年未確認の語も含む ${bank.questions.length} 語</small></span><span class="radio-mark" aria-hidden="true"></span></span></label>
+          ${[1, 2, 3].map((grade) => `<label class="grade-option"><input type="radio" name="grade" value="${grade}" ${grade === selectedGrade ? 'checked' : ''}><span class="grade-content"><span class="grade-number" aria-hidden="true">${grade}</span><span class="grade-description"><strong>中学${grade}年</strong><small>収録 ${gradeCounts[grade - 1]} 問</small></span><span class="radio-mark" aria-hidden="true"></span></span></label>`).join('')}
+          <label class="grade-option"><input type="radio" name="grade" value="all" ${selectedGrade === 'all' ? 'checked' : ''}><span class="grade-content"><span class="grade-number all-number" aria-hidden="true">全</span><span class="grade-description"><strong>全収録語</strong><small>収録 ${bank.questions.length} 問（学年未確認 ${unknownCount} 問を含む）</small></span><span class="radio-mark" aria-hidden="true"></span></span></label>
         </fieldset>
         <button class="button primary full-width" data-action="start">10問テストをはじめる ${arrow}</button>
         <p class="selection-note">英単語 → 日本語の意味 ・ 毎回ランダムに出題</p>
@@ -52,8 +54,8 @@ function renderQuestion() {
     <div class="progress-heading"><span><strong>${String(current).padStart(2, '0')}</strong><small>／ ${QUESTION_COUNT} 問</small></span><span>あと ${QUESTION_COUNT - session.answers.length} 問</span></div>
     <div class="progress-track" role="progressbar" aria-label="回答済みの問題数" aria-valuemin="0" aria-valuemax="${QUESTION_COUNT}" aria-valuenow="${session.answers.length}">${session.questions.map((_, index) => `<span class="progress-step ${index < session.index ? 'done' : index === session.index ? 'current' : ''}"></span>`).join('')}</div>
     <section class="question-panel" aria-labelledby="question-word">
-      <p class="question-intro">この英単語の意味は？</p>
-      <div class="word-wrap"><h1 class="english-word" id="question-word" lang="en">${escapeHtml(question.word)}</h1><span class="part-of-speech">${escapeHtml(question.partOfSpeech)}</span>${question.context ? `<p class="context">${escapeHtml(question.context)}</p>` : ''}</div>
+      <p class="question-intro">この英語の語句の意味は？</p>
+      <div class="word-wrap"><h1 class="english-word ${question.word.length > 18 || question.word.includes(' ') ? 'long-word' : ''}" id="question-word" lang="en">${escapeHtml(question.word)}</h1><span class="part-of-speech">${escapeHtml(question.partOfSpeech)}</span><span class="question-origin">${escapeHtml(questionLocation(question))}</span>${question.context ? `<p class="context">${escapeHtml(question.context)}</p>` : ''}</div>
       <div class="answer-grid" role="group" aria-label="日本語の意味を1つ選択">${question.options.map((option, index) => `<button class="answer-option" data-action="answer" data-question-id="${escapeHtml(question.id)}" data-option-id="${escapeHtml(option.id)}"><span class="option-number" aria-hidden="true">${index + 1}</span><span>${escapeHtml(option.label)}</span></button>`).join('')}</div>
       <div class="feedback-area"><div id="feedback" role="status" aria-live="polite" aria-atomic="true"></div><p class="answer-hint" id="answer-hint">答えを1つタップしてください。選ぶと回答が確定します。</p></div>
     </section><p class="quiz-bottom">急がなくて大丈夫。自分のペースで進めよう。</p>
@@ -95,9 +97,9 @@ function renderResults() {
   const message = score === 10 ? '全問正解！今日の単語、しっかり身についています。' : score >= 7 ? 'よくできました！迷った単語を確認して、もう一歩。' : '最後まで取り組めました。答えを見ながら、ひとつずつ覚えよう。';
   app.innerHTML = `<div class="quiz-shell"><div class="quiz-toolbar"><span class="grade-pill">${scopeName(session.grade)}</span><span class="section-caption">全10問 回答完了</span></div>
     <section class="result-hero" aria-labelledby="result-title"><span class="complete-mark" aria-hidden="true">✓</span><h1 id="result-title">10問、おつかれさまでした。</h1><p>${message}</p><div class="score-card"><div><span class="sr-only">正解数</span><span class="score-value">${score}<small> / 10 問</small></span></div><div class="score-rate">正答率<strong>${score * 10}%</strong></div></div><div class="result-actions"><button class="button primary" data-action="retry">同じ範囲でもう一度 ${arrow}</button><button class="button secondary" data-action="home">出題範囲を選び直す</button></div></section>
-    <section aria-labelledby="review-title"><div class="review-header"><h2 id="review-title">今回の単語を振り返ろう</h2><span>正解 ${score} ／ 不正解 ${QUESTION_COUNT - score}</span></div><ol class="review-list">${session.questions.map((question, index) => {
+    <section aria-labelledby="review-title"><div class="review-header"><h2 id="review-title">今回の語句を振り返ろう</h2><span>正解 ${score} ／ 不正解 ${QUESTION_COUNT - score}</span></div><ol class="review-list">${session.questions.map((question, index) => {
       const answer = session.answers[index];
-      return `<li class="review-item ${answer.correct ? '' : 'wrong'}"><span class="review-symbol" aria-label="${index + 1}問目 ${answer.correct ? '正解' : '不正解'}">${answer.correct ? '✓' : '×'}</span><div><span class="review-word" lang="en">${escapeHtml(question.word)}</span><small class="review-unit">${escapeHtml(question.partOfSpeech)} ・ ${escapeHtml(question.unit)}</small></div><div class="review-answer"><small>正解</small>${escapeHtml(question.meaning)}${answer.correct ? '' : `<p class="wrong-answer">あなたの回答：${escapeHtml(answer.label)}</p>`}</div></li>`;
+      return `<li class="review-item ${answer.correct ? '' : 'wrong'}"><span class="review-symbol" aria-label="${index + 1}問目 ${answer.correct ? '正解' : '不正解'}">${answer.correct ? '✓' : '×'}</span><div><span class="review-word" lang="en">${escapeHtml(question.word)}</span><small class="review-unit">${escapeHtml(question.partOfSpeech)} ・ ${escapeHtml(questionLocation(question))}</small></div><div class="review-answer"><small>正解</small>${escapeHtml(question.meaning)}${answer.correct ? '' : `<p class="wrong-answer">あなたの回答：${escapeHtml(answer.label)}</p>`}</div></li>`;
     }).join('')}</ol></section><p class="quiz-bottom">再挑戦では、新しく10問を出題します。</p></div>`;
   focusHeading();
 }

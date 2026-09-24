@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { QUESTION_COUNT, normalizedWord, validateBank, createSession, answerQuestion, advanceQuestion, getScore } from '../quiz.js';
+import { QUESTION_COUNT, normalizedWord, validateBank, createSession, answerQuestion, advanceQuestion, getScore, questionLocation } from '../quiz.js';
 
 const bank = JSON.parse(await readFile(new URL('../data/questions.json', import.meta.url), 'utf8'));
 function randomWithSeed(seed) {
@@ -99,7 +99,7 @@ test('問題不足・選択肢重複・学年とIDの不備を検出する', () 
   assert.throws(() => validateBank(mutate((copy) => { copy.questions[0].grade = 4; })));
   assert.throws(() => validateBank(mutate((copy) => { copy.questions[1].id = copy.questions[0].id; })), /重複/);
   assert.throws(() => validateBank(mutate((copy) => { copy.questions[1].word = copy.questions[0].word.toUpperCase(); })), /重複/);
-  assert.throws(() => validateBank(mutate((copy) => { copy.questions[1].grade = null; copy.questions[1].word = copy.questions[0].word; })), /重複/);
+  assert.throws(() => validateBank(mutate((copy) => { copy.questions[1].grade = null; delete copy.questions[1].unitNumber; copy.questions[1].word = copy.questions[0].word; })), /重複/);
   assert.throws(() => createSession(bank, 0));
   assert.throws(() => createSession(bank, '1'));
 });
@@ -114,6 +114,18 @@ test('学年未確認の語は全収録語テストにのみ含める', () => {
   assert.equal(session.questions.length, 10);
   assert.ok(Array.from({ length: 40 }, (_, index) => createSession(bank, 'all', randomWithSeed(index + 1)))
     .some((sample) => sample.questions.some((item) => item.grade === null)));
+});
+
+test('単元の有無と学年未確認に応じて問題の出典表示を切り替える', () => {
+  const withUnit = bank.questions.find((item) => item.unitNumber);
+  const withoutUnit = bank.questions.find((item) => item.grade !== null && !item.unitNumber);
+  const unknown = bank.questions.find((item) => item.grade === null);
+  assert.equal(questionLocation(withUnit), `中学${withUnit.grade}年・${withUnit.unit}`);
+  assert.equal(questionLocation(withoutUnit), `中学${withoutUnit.grade}年`);
+  assert.equal(questionLocation(unknown), '学年未確認');
+  const broken = structuredClone(bank);
+  broken.questions[0].unitNumber = 0;
+  assert.throws(() => validateBank(broken), /単元番号/);
 });
 
 test('意味が近い語や2026年度の訂正に関わる語を確認する', () => {

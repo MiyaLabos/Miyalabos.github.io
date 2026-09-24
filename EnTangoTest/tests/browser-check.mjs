@@ -1,5 +1,6 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import assert from 'node:assert/strict';
+import { questionLocation } from '../quiz.js';
 
 // 起動済みの専用Chromeの接続先を指定する、任意の画面検証。
 const endpoint = process.argv[2];
@@ -91,7 +92,9 @@ try {
     for (let index = 0; index < 10; index += 1) {
       const word = await evaluate('document.querySelector(".english-word").textContent');
       assert.ok(!used.has(word), '10問の単語が重複しない'); used.add(word);
-      assert.ok(bank.questions.some((question) => question.word === word && (grade === 'all' || question.grade === grade)));
+      const item = bank.questions.find((question) => question.word === word && (grade === 'all' || question.grade === grade));
+      assert.ok(item);
+      assert.equal(await evaluate('document.querySelector(".question-origin").textContent'), questionLocation(item));
       assert.equal(await evaluate('document.querySelectorAll(".answer-option").length'), 4);
       const labels = await evaluate('[...document.querySelectorAll(".answer-option")].map(el=>el.getBoundingClientRect().height)');
       assert.ok(labels.every((height) => height >= 44));
